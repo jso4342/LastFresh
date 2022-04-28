@@ -6,4 +6,4 @@ import org.apache.ibatis.annotations.Mapper;
 public interface LastFreshMapper {
 }
 
-/*테스트*/
+/*테스트2*/
