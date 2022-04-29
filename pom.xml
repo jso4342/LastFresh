@@ -12,7 +12,11 @@
     <artifactId>lastfresh</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>lastfresh</name>
+<<<<<<< HEAD
     <description>Spring Boot lastfresh</description>
+=======
+    <description>Spring Boot Board</description>
+>>>>>>> 3d1b4dc64b200bbe84ec791f5d14faffea64ba0f
     <properties>
         <java.version>11</java.version>
     </properties>
