@@ -1,0 +1,85 @@
+/**
+    판매자 관련 css
+ */
+
+
+/*
+
+pos css
+
+*/
+body {
+    margin: 0;
+}
+
+div.sell-wrapper {
+    width: 100vw;
+    height: 100vh;
+}
+
+div.gnb-wrapper {
+    display: flex;
+    width: 100%;
+    height: 8vh;
+    background: #363636;
+}
+
+div.gnb-order {
+    background: #DA291C;
+    color: #ffffffe0;
+    width: 25%;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    line-height: 8vh;
+    border-color: black;
+    border-style: solid;
+    border-width: 0 2px 0 0;
+}
+
+div.content-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 90vh;
+}
+
+div.sidebar-wrapper {
+    display: flex;
+    width: 10%;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+div.reception, div.process, div.complete, div.orderhistoy {
+    height: 22vh;
+    line-height: 22vh;
+    text-align: center;
+    border: solid #b9aeae40 2px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* 디폴트 폰트*/
+div.process, div.complete, div.orderhistoy {
+    background: #81818157;
+    color: #818181cc;
+}
+
+div.sidebar-content {
+    width: 90%;
+    text-align: center;
+}
+
+/* 주문 없을 시 이미지*/
+
+div.nooder img {
+    width: 500px;
+    margin-top: 80px;
+}
+
+div.nooder p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #6a6262db;
+}
