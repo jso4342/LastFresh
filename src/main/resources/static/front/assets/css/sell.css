@@ -8,6 +8,13 @@
 pos css
 
 */
+
+*{
+    box-sizing: border-box;
+    font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;
+    letter-spacing: -0.7px;
+}
+
 body {
     margin: 0;
 }
@@ -17,6 +24,70 @@ div.sell-wrapper {
     height: 100vh;
 }
 
+div.cookingTime-wrapper {
+    background-color: rgba(0, 0, 0, 0.4);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+}
+
+div.cookingTime-content-wrapper {
+    position: absolute;
+    z-index: 1;
+    background-color: white;
+    width: 42vw;
+    opacity: 1;
+    height: 70vh;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+div.cookingTime-TopBar{
+    color: #ffffffe0;
+    height: 7vh;
+    background-color: rgb(54 54 54);
+    font-size: 1.6rem;
+    font-weight: bold;
+    line-height: 7vh;
+}
+
+/*쿠킹 타임 라디오 박스 css*/
+.cookingTime_select {
+    padding: 15px 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px 40px;
+}
+.cookingTime_select input[type=radio]{
+    display: none;
+}
+.cookingTime_select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 24px;
+    width: 90px;
+    border: 1px solid #e0e4e6;
+    line-height: 24px;
+    text-align: center;
+    font-weight:bold;
+    font-size:13px;
+}
+.cookingTime_select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.cookingTime_select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+
+
+/*
+
+GNB css
+
+*/
 div.gnb-wrapper {
     display: flex;
     width: 100%;
@@ -46,19 +117,20 @@ div.content-wrapper {
 
 div.sidebar-wrapper {
     display: flex;
-    width: 10%;
+    width: 13%;
     flex-direction: column;
     flex-wrap: wrap;
 }
 
 div.reception, div.process, div.complete, div.orderhistoy {
-    height: 22vh;
-    line-height: 22vh;
+    height: 22.9vh;
+    /*line-height: 22vh;*/
     text-align: center;
     border: solid #b9aeae40 2px;
     font-size: 1.2rem;
     font-weight: bold;
 }
+
 
 /* 디폴트 폰트*/
 div.process, div.complete, div.orderhistoy {
@@ -66,20 +138,115 @@ div.process, div.complete, div.orderhistoy {
     color: #818181cc;
 }
 
+div.reception-content, div.process-content, div.complete-content{
+    margin-top: 45px;
+}
+
+div.orderhistoy {
+    line-height: 22vh;
+}
+
 div.sidebar-content {
-    width: 90%;
+    width: 87%;
     text-align: center;
 }
 
 /* 주문 없을 시 이미지*/
 
-div.nooder img {
+div.noorder img {
     width: 500px;
     margin-top: 80px;
 }
 
-div.nooder p {
+div.noorder p {
     font-size: 1.2rem;
     font-weight: bold;
     color: #6a6262db;
 }
+
+div.noorder {
+    display: none;
+}
+
+div.order-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+div.order-list {
+    height: 19vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+div.order-info1 {
+    padding: 36px 50px 20px 50px;
+    width: 31%;
+}
+
+div.order-info2 {
+    font-size: 1.3rem;
+    line-height: 0.7;
+    width: 33%;
+    padding: 10px 30px 10px 30px;
+    text-align: left;
+}
+
+div.order-info2 div.order-address, div.order-info2 p.order-price {
+    font-weight: bold;
+}
+
+div.order-info2 p.order-menuInfo {
+    color: #818181cc;
+}
+
+div.order-accept {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    line-height: 9;
+}
+
+div.order-accept input[type=button] {
+    width: 10vw;
+    height: 15vh;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ffffffe0;
+    background-color: #DA291C;
+    box-shadow: 1px 1px 3px #da291c;
+    border: none;
+    margin: 15px;
+}
+
+div.order-time {
+    font-size: 3rem;
+}
+
+div.order-method {
+    font-size: 1.6rem;
+    display: inline-block;
+    width: 144px;
+    color: #ffffffe0;
+}
+
+div.pickUp {
+    background-color: #8BC34A;
+    box-shadow: 1px 1px 4px #8bc34a;
+}
+
+div.delivery {
+    background-color: #03A9F4;
+    box-shadow: 1px 1px 4px #03A9F4;
+}
+
+div.shipping {
+    background-color: #FFC107;
+    box-shadow: 1px 1px 4px #FFC107;
+}
+
+
+
