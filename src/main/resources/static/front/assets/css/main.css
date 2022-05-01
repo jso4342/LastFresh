@@ -33,6 +33,9 @@ body {
 	line-height: 1;
 }
 
+a{
+	cursor:pointer;
+}
 ol, ul {
 	list-style: none;
 }
@@ -83,8 +86,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #333333;
-		background-image: url("images/bg02.png");
+
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -1540,7 +1542,6 @@ input, select, textarea {
 
 		header > p {
 			display: block;
-			font-style: italic;
 			margin: 0.5em 0 0 0;
 			padding-bottom: 0.5em;
 		}
@@ -2067,9 +2068,10 @@ input, select, textarea {
 	#header {
 		position: relative;
 		background: #ffffff;
-		border-bottom: solid 1px #ccc;
-		padding: 5em 0 4em 0;
+		padding: 0 0 3.4em 0;
 		text-align: center;
+		width: 70em;
+		margin: 0 auto;
 	}
 
 		#header h1 {
@@ -2083,7 +2085,7 @@ input, select, textarea {
 /* Nav */
 
 	#nav {
-		margin: 2.5em 0 0 0;
+		margin: 1em 0 0 0;
 	}
 
 		#nav > ul {
@@ -2092,7 +2094,6 @@ input, select, textarea {
 
 			#nav > ul > li {
 				display: inline-block;
-				font-style: italic;
 				margin: 0 0.35em 0 0.35em;
 			}
 
@@ -2101,10 +2102,14 @@ input, select, textarea {
 				}
 
 				#nav > ul > li > a {
-					border-radius: 5px;
-					color: #999999;
+					font-size: 16px;
+					color: #333;
+					line-height: 20px;
+					text-align: center;
+					font-weight: 500;
+
 					text-decoration: none;
-					padding: 0.6em 1.2em 0.6em 1.2em;
+					padding: 0.6em 1.7em 0.6em 1.2em;
 					-moz-transition: background-color .25s ease-in-out;
 					-webkit-transition: background-color .25s ease-in-out;
 					-ms-transition: background-color .25s ease-in-out;
@@ -2113,7 +2118,7 @@ input, select, textarea {
 				}
 
 				#nav > ul > li:hover > a, #nav > ul > li.active > a {
-					background: #f3f3f3;
+					color: #DA291C;
 				}
 
 				#nav > ul > li.current > a {
@@ -2266,7 +2271,6 @@ input, select, textarea {
 
 	#main {
 		position: relative;
-		background: #f7f7f7 url("images/bg02.png");
 		padding: 4em 0 4em 0;
 	}
 
@@ -2489,6 +2493,7 @@ input, select, textarea {
 
 			#nav {
 				display: none;
+
 			}
 
 		/* Intro */
@@ -2544,6 +2549,7 @@ input, select, textarea {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
+				background: white;
 				-moz-transition: -moz-transform 0.5s ease;
 				-webkit-transition: -webkit-transform 0.5s ease;
 				-ms-transition: -ms-transform 0.5s ease;
