@@ -16,7 +16,8 @@
         margin: 0;
         padding: 0;
     }
-    body, input, select, textarea, button{
+
+    body, input, select, textarea, button {
         line-height: 1;
         letter-spacing: -.05em;
         color: #4c4c4c;
@@ -24,11 +25,12 @@
         max-width: 100%;
     }
 
-    div.body{
+    div.body {
         width: 650px;
-        margin:0 auto;
+        margin: 0 auto;
         height: auto;
     }
+
     h2.title {
         font-weight: 700;
         font-size: 28px;
@@ -55,34 +57,40 @@
         font-weight: 400;
         letter-spacing: 0;
     }
-    div.title_page{
+
+    div.title_page {
         overflow: hidden;
         width: 1050px;
         margin: 0 auto;
         padding: 50px 0 51px;
     }
-    table.tbl_comm{
+
+    table.tbl_comm {
         width: 100%;
         border-top: 2px solid #333;
         border-collapse: collapse;
         border-spacing: 0;
     }
+
     table {
         border-collapse: collapse;
         border-spacing: 0;
         text-indent: initial;
     }
+
     tbody {
         display: table-row-group;
         vertical-align: middle;
         border-color: inherit;
     }
+
     tr {
         display: table-row;
         vertical-align: inherit;
         border-color: inherit;
     }
-    th{
+
+    th {
         width: 159px;
         padding: 20px 0 0 20px;
         font-weight: 700;
@@ -92,18 +100,21 @@
         vertical-align: top;
         text-align: left;
     }
+
     div, th, td, li, dt, dd, p {
         word-break: break-all;
     }
 
-    th{
+    th {
         padding-top: 29px;
     }
+
     /*tbl_comm .first td{ padding-top: 19px;}*/
-     td{
+    td {
         padding-top: 19px;
     }
-    .body input[type=text],[type=password]{
+
+    .body input[type=text], [type=password] {
         width: 332px;
         height: 44px;
         padding: 0 14px;
@@ -116,6 +127,7 @@
         outline: none;
         vertical-align: top;
     }
+
     input {
         writing-mode: horizontal-tb !important;
         text-rendering: auto;
@@ -139,7 +151,8 @@
         font-size: 12px;
         max-width: 100%;
     }
-    a.btn_check{
+
+    a.btn_check {
         border: 1px solid #DA291C;
         background-color: #fff;
         color: #DA291C;
@@ -157,10 +170,11 @@
         text-decoration: none;
         margin: 0;
         padding-top: 0;
-        cursor:pointer;
+        cursor: pointer;
         margin-left: 20px;
     }
-    .requir{
+
+    .requir {
         display: block;
         overflow: hidden;
         position: absolute;
@@ -171,7 +185,8 @@
         line-height: 0;
         text-indent: -9999px
     }
-    require_bg{
+
+    require_bg {
         position: fixed;
         z-index: 9998;
         left: 0;
@@ -181,18 +196,21 @@
         background-color: #000;
         opacity: .5;
     }
-    div.allCheck{
+
+    div.allCheck {
         display: block;
         overflow: hidden;
         width: 100%;
         padding: 0 0 10px
     }
-    label.check_agree{
+
+    label.check_agree {
         padding: 12px 0 4px;
         font-weight: 700;
         font-size: 18px;
         display: block;
     }
+
     /*input[type=checkbox]{*/
     /*    position: absolute;*/
     /*    z-index: -1;*/
@@ -201,28 +219,39 @@
     /*input[type=checkbox]:checked+.icon{*/
     /*    background: url(https://res.kurly.com/pc/service/common/2006/ico_checkbox_checked.svg) no-repeat 50% 50%;*/
     /*    background-size: 24px 24px;*/
+    /*    background-color: red;*/
     /*}*/
-    /*input[type=checkbox]+icon{*/
-    /*    display: inline-block;*/
-    /*    position: relative;*/
-    /*    width: 24px;*/
-    /*    height: 24px;*/
-    /*    margin-right: 12px;*/
-    /*    border: 0;*/
-    /*    background-size: 24px 24px;*/
-    /*    vertical-align: -7px;*/
-    /*}*/
+    input[type=checkbox]+icon{
+        display: inline-block;
+        position: relative;
+        width: 24px;
+        height: 24px;
+        margin-right: 12px;
+        border: 0;
+        background-size: 24px 24px;
+        vertical-align: -7px;
+    }
+    input[type=checkbox]+label:before{
+        background-color: red;
+    }
+
+    input[type=checkbox]+label:after{
+        background-color: red;
+    }
     label {
         cursor: default;
     }
-    .agreeicon{
+
+    .agreeicon {
         background: url(https://res.kurly.com/pc/service/common/2006/ico_checkbox_checked.svg) no-repeat 50% 50%;
         background-size: 24px 24px;
     }
-    div.check_view{
+
+    div.check_view {
         position: relative;
     }
-    label.check_agree2{
+
+    label.check_agree2 {
         padding: 8px 0;
         display: block;
         font-size: 14px;
@@ -230,10 +259,12 @@
         font-weight: 400;
         letter-spacing: 0;
     }
-    .sub{
+
+    .sub {
         color: #999;
     }
-    a.link_btn_agree{
+
+    a.link_btn_agree {
         position: absolute;
         right: 22px;
         top: 0;
@@ -243,10 +274,12 @@
         line-height: 18px;
         letter-spacing: 0;
     }
-    td.td_birth{
+
+    td.td_birth {
         padding-bottom: 19px
     }
-    a.link_btn_agree{
+
+    a.link_btn_agree {
         position: absolute;
         right: 22px;
         top: 0;
@@ -256,13 +289,15 @@
         line-height: 18px;
         letter-spacing: 0;
     }
+
     a {
         background-color: transparent;
         text-decoration: none;
         color: inherit;
     }
+
     /*이용약관.ㅁㅁㄴㅇㅁ*/
-    div.layer_agreement{
+    div.layer_agreement {
         display: none;
         margin-top: -299.5px;
         position: fixed;
@@ -274,14 +309,16 @@
         background-color: #fff;
         z-index: 9999;
     }
-    div.inner_layer{
+
+    div.inner_layer {
         position: relative;
         width: 440px;
         margin: 0 auto;
         background-color: #fff;
         border-radius: 12px
     }
-    h4.tit_layer{
+
+    h4.tit_layer {
         padding: 25px 88px 8px 30px;
         font-weight: 700;
         font-size: 24px;
@@ -289,7 +326,8 @@
         color: #333;
         letter-spacing: -1px;
     }
-    div.box_tbl{
+
+    div.box_tbl {
         overflow-y: scroll;
         height: 450px;
         font-size: 14px;
@@ -298,228 +336,351 @@
         margin-top: 19px;
         padding: 0 30px;
     }
-    h3.box_tit{
+
+    h3.box_tit {
         padding-bottom: 20px;
         font-size: 14px;
     }
+
+    .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .modal.show {
+        display: block;
+    }
+
+    .modal_body {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        height: 600px;
+        padding: 40px;
+        text-align: center;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px;
+        box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+        transform: translateX(-50%) translateY(-50%);
+    }
+    button.btn_ok{
+
+    }
+    tr.agree{
+        border-top: 1px solid;
+        border-bottom:1px solid;
+    }
+    div.form_footer{
+        padding-top: 40px;
+        text-align: center;
+    }
+    button.btn_join{
+        width: 240px;
+        height: 56px;
+        font-size: 16px;
+        line-height: 54px;
+        display: inline-block;
+        margin-left: 5px;
+        vertical-align: top;
+        border-radius: 3px;
+        font-weight: 700;
+        outline: none;
+        border: 1px solid #DA291C;
+        background-color: #DA291C;
+        color: #fff;
+
+    }
 </style>
-<body style="margin-bottom:60px">
+<body>
+<!--style="margin-bottom:60px"-->
 <div class="body">
-<div class="title_page">
-    <h2 class="title">회원가입</h2>
-</div>
-<p class="page_line">
-    <span class="icon">*</span>
-    "필수입력사항"
-</p>
-<table class="tbl_comm">
-    <tbody>
-    <tr>
-        <th class="first">아이디
+    <div class="title_page">
+        <h2 class="title">회원가입</h2>
+    </div>
+    <p class="page_line">
         <span class="icon">*</span>
-        </th>
-        <td>
-        <input class="id" type="text" value maxlength="16"  placeholder="아이디를 입력하세요">
-            <a class="btn_check" href="">중복확인</a>
-        </td>
-    </tr>
-    <tr>
-        <th>비밀번호
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="password" value maxlength="16" placeholder="비밀번호를 입력하세요">
+        "필수입력사항"
+    </p>
+    <table class="tbl_comm">
+        <tbody>
+        <tr>
+            <th class="first">아이디
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" value maxlength="16" placeholder="아이디를 입력하세요">
+                <a class="btn_check" href="">중복확인</a>
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="password" value maxlength="16" placeholder="비밀번호를 입력하세요">
 
-        </td>
-    </tr>
-    <tr>
-        <th class="pw_check">비밀번호 확인
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="password" value maxlength="16"  placeholder="비밀번호를 한번 더 입력하세요">
-        </td>
-    </tr>
-    <tr>
-        <th>이름
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="text" value maxlength="16"  placeholder="이름을 입력하세요">
-        </td>
-    </tr>
-    <tr>
-        <th>이메일
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="text" placeholder="ex)LastFresh@fresh.com">
-            <a class="btn_check" href="">중복확인</a>
-        </td>
-    </tr>
-    <tr>
-        <th class="phone">휴대폰
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="text" value maxlength="16"  placeholder="하이픈(-)없이 입력하세요">
-            <a class="btn_check" href="">인증번호 받기</a>
-        </td>
-    </tr>
-    <tr>
-        <th>주소(우편번호)
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="text" value maxlength="16"  placeholder="우편번호를 입력하세요">
-            <a class="btn_check" href="">주소 검색</a>
-        </td>
-    </tr>
-    <tr>
-        <th>주소(주소)
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="text" value maxlength="16"  placeholder="주소를 입력하세요">
-        </td>
-    </tr>
-    <tr>
-        <th>주소(상세주소)
-            <span class="icon">*</span>
-        </th>
-        <td>
-            <input class="id" type="text" value maxlength="16"  placeholder="상세 주소를 입력하세요">
-        </td>
-    </tr>
-    <tr>
-        <th>생년월일
-            <span class="icon"></span>
-        </th>
-        <td class="td_birth">
-            <input class="id" type="text" value maxlength="16"  placeholder="ex)19970527">
-        </td>
-    </tr>
+            </td>
+        </tr>
+        <tr>
+            <th class="pw_check">비밀번호 확인
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="password" value maxlength="16" placeholder="비밀번호를 한번 더 입력하세요">
+            </td>
+        </tr>
+        <tr>
+            <th>이름
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" value maxlength="16" placeholder="이름을 입력하세요">
+            </td>
+        </tr>
+        <tr>
+            <th>이메일
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" placeholder="ex)LastFresh@fresh.com">
+                <a class="btn_check" href="">중복확인</a>
+            </td>
+        </tr>
+        <tr>
+            <th class="phone">휴대폰
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
+                <a class="btn_check" href="">인증번호 받기</a>
+            </td>
+        </tr>
+        <tr>
+            <th>주소(우편번호)
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" value maxlength="16" placeholder="우편번호를 입력하세요">
+                <a class="btn_check" href="">주소 검색</a>
+            </td>
+        </tr>
+        <tr>
+            <th>주소(주소)
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" value maxlength="16" placeholder="주소를 입력하세요">
+            </td>
+        </tr>
+        <tr>
+            <th>주소(상세주소)
+                <span class="icon">*</span>
+            </th>
+            <td>
+                <input class="id" type="text" value maxlength="16" placeholder="상세 주소를 입력하세요">
+            </td>
+        </tr>
+        <tr>
+            <th>생년월일
+                <span class="icon"></span>
+            </th>
+            <td class="td_birth">
+                <input class="id" type="text" value maxlength="16" placeholder="ex)19970527">
+            </td>
+        </tr>
 
-    <tr class="agree" style="border-top: 1px solid">
-        <th>
-            "이용약관동의"
-            <span class="icon">*
+        <tr class="agree" style="border-top: 1px solid">
+            <th>
+                이용약관동의
+                <span class="icon">*
             <span class="requir">필수항목</span>
             </span>
-        </th>
-        <td>
-            <div class="require_bg"></div>
-            <div class="allCheck">
-                <label class="check_agree">
-                    <input type="checkbox">
-                    <span class="agreeicon"></span>
-                    "전체 동의합니다."
-                </label>
-                <p class="sub">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.
-                </p>
-            </div>
-            <div class="check_view">
-                <label class="check_agree2">
-                    <input type="checkbox" required label="이용약관">
-                    <span class="agreeicon"></span>
-                    "이용약관 동의"
-                    <span class="sub">(필수)</span>
-                </label>
-                <a href="#none" class="link_btn_agree">
-                    "약관보기"
-                </a>
-            </div>
-            <!--이용약관 모달창-->
-            <div class="layer_agreement">
-                <div class="inner_layer">
-                    <h4 class="tit_layer">
-                        "이용약관"
+            </th>
+            <td>
+                <div class="require_bg"></div>
+                <div class="allCheck">
+                    <label class="check_agree">
+                        <input type="checkbox">
+                        <span class="agreeicon"></span>
+                        전체 동의합니다.
+                    </label>
+                    <p class="sub">선택항목에 동의하지 않은 경우도 회원가입 및 일반적인 서비스를 이용할 수 있습니다.
+                    </p>
+                </div>
+                <div class="check_view">
+                    <label class="check_agree2">
+                        <input type="checkbox" required label="이용약관">
+                        <span class="agreeicon"></span>
+                        이용약관 동의
                         <span class="sub">(필수)</span>
-                    </h4>
-                    <div id="serviceView" class="box_tbl">
-                        <div class="box_type">
-                            <h3 class="box_tit">
-                                <a class="btn_view" href="#none">총칙</a>
-                            </h3>
-                            <div class="box_view">
-                                <div class="txt_view">
-                                    "제 1조(목적)"
-                                    <br>
-                                    "이 약관은 주식회사 컬리 회사(전자상거래 사업자)가 운영하는 인터넷사이트 마켓컬리(이하 "컬리"라 한다)에서 제공하는 전자상거래 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 컬리와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다."
-                                    <br>
-                                    "*PC통신, 스마트폰 앱, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 준용합니다."
-                                    <br>
-                                    <br>
-                                    제2조(정의)
-                                    <br>
-                                    "① "LastFresh"란 회사가 재화 또는 용역(이하 "재화 등"이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 서비스를 운영하는 사업자의 의미로도 사용합니다."
-                                    <br>
-                                    "② "이용자"란 "컬리"에 접속하여 이 약관에 따라 "컬리"가 제공하는 서비스를 받는 회원 및 비회원을 말합니다."
-                                    <br>
-                                    "③ ‘회원’이라 함은 "컬리"에 회원등록을 한 자로서, 계속적으로 "컬리"가 제공하는 서비스를 이용할 수 있는 자를 말합니다."
-                                    <br>
-                                    "④ ‘비회원’이라 함은 회원에 가입하지 않고 "컬리"가 제공하는 서비스를 이용하는 자를 말합니다."
-                                    <br>
-                                    "⑤ "휴면회원"이라 함은 "컬리"의 ‘회원’중 1년 이상 서비스 이용 기록이 없는 자를 말합니다. 휴면 회원은 "컬리"의 정책에 따라 서비스 이용이 제한 될 수 있으며, 다시 서비스를 이용하기 위하여는 거래 안전 등을 위하여 "컬리"가 정하는 본인확인 절차 등을 이행하여야 올바른 ‘회원’의 서비스를 이용할 수 있습니다."
-                                    <br>
-                                    <br>
-                                    "제3조 (약관 등의 명시와 설명 및 개정)"
-                                    <br>
-                                    "① "LastFresh"는 이 약관의 내용과 상호 및 대표자 성명, 영업소 소재지 주소(소비자의 불만을 처리할 수 있는 곳의 주소를 포함), 전화번호/모사전송번호/전자우편주소, 사업자등록번호, 통신판매업 신고번호, 개인정보 보호책임자 등을 이용자가 쉽게 알 수 있도록 컬리의 초기 서비스화면(전면)에 게시합니다. 다만, 약관의 내용은 이용자가 연결화면을 통하여 볼 수 있도록 할 수 있습니다."
-                                    <br>
-                                    "② "LastFresh"는 이용자가 약관에 동의하기에 앞서 약관에 정하여져 있는 내용 중 청약철회/배송책임/환불조건 등과 같은 중요한 내용을 이용자가 이해할 수 있도록 별도의 연결화면 또는 팝업화면 등을 제공하여 이용자의 확인을 구하여야 합니다."
-                                    <br>
-                                    "③ "LastFresh"는「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「전자문서 및 전자거래기본법」, 「전자금융거래법」, 「전자서명법」, 「개인정보보호법」, 「방문판매 등에 관한 법률」, 「소비자기본법」 등 관련 법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다."
-                                    <br>
-                                    "④ "LastFresh"가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 몰의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 공지합니다. 다만, 이용자에게 불리하게 약관내용을 변경하는 경우에는 최소한 30일 이상의 사전 유예기간을 두고 공지합니다. 이 경우 "컬리"는 개정 전 내용과 개정 후 내용을 명확하게 비교하여 이용자가 알기 쉽도록 표시합니다."
-                                    <br>
-                                    "⑤ "LastFresh"가 약관을 개정할 경우에는 그 개정약관은 그 적용일자 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에 대해서는 개정 전의 약관조항이 그대로 적용됩니다. 다만 이미 계약을 체결한 이용자가 개정약관 조항의 적용을 받기를 원하는 뜻을 제4항에 의한 개정약관의 공지기간 내에 "컬리"에 송신하여 "컬리"의 동의를 받은 경우에는 개정약관 조항이 적용됩니다."
-                                    <br>
-                                    "⑥ 이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 전자상거래 등에서의 소비자보호에 관한 법률, 약관의 규제 등에 관한 법률, 공정거래위원회가 정하는 전자상거래 등에서의 소비자 보호지침 및 관계법령 또는 상관례에 따릅니다."
+                    </label>
+                    <a href="#none" class="link_btn_agree">
+                        약관보기
+                    </a>
+                </div>
+                <!--이용약관 모달창-->
+                <div class="modal">
+                    <div class="modal_body">
+                        <h4 class="tit_layer">
+                            이용약관
+                            <span class="sub">(필수)</span>
+                        </h4>
+                        <div id="serviceView" class="box_tbl">
+                            <div class="box_type">
+                                <h3 class="box_tit">
+                                    <a class="btn_view" href="#none">총칙</a>
+                                </h3>
+                                <div class="box_view">
+                                    <div class="txt_view">
+                                        "제 1조(목적)"
+                                        <br>
+                                        "이 약관은 주식회사 컬리 회사(전자상거래 사업자)가 운영하는 인터넷사이트 마켓컬리(이하 "컬리"라 한다)에서 제공하는 전자상거래 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 컬리와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다."
+                                        <br>
+                                        "*PC통신, 스마트폰 앱, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 준용합니다."
+                                        <br>
+                                        <br>
+                                        제2조(정의)
+                                        <br>
+                                        "① "LastFresh"란 회사가 재화 또는 용역(이하 "재화 등"이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 서비스를 운영하는 사업자의 의미로도 사용합니다."
+                                        <br>
+                                        "② "이용자"란 "컬리"에 접속하여 이 약관에 따라 "컬리"가 제공하는 서비스를 받는 회원 및 비회원을 말합니다."
+                                        <br>
+                                        "③ ‘회원’이라 함은 "컬리"에 회원등록을 한 자로서, 계속적으로 "컬리"가 제공하는 서비스를 이용할 수 있는 자를 말합니다."
+                                        <br>
+                                        "④ ‘비회원’이라 함은 회원에 가입하지 않고 "컬리"가 제공하는 서비스를 이용하는 자를 말합니다."
+                                        <br>
+                                        "⑤ "휴면회원"이라 함은 "컬리"의 ‘회원’중 1년 이상 서비스 이용 기록이 없는 자를 말합니다. 휴면 회원은 "컬리"의 정책에 따라 서비스 이용이 제한 될 수 있으며, 다시 서비스를 이용하기 위하여는 거래 안전 등을 위하여 "컬리"가 정하는 본인확인 절차 등을 이행하여야 올바른 ‘회원’의 서비스를 이용할 수 있습니다."
+                                        <br>
+                                        <br>
+                                        "제3조 (약관 등의 명시와 설명 및 개정)"
+                                        <br>
+                                        "① "LastFresh"는 이 약관의 내용과 상호 및 대표자 성명, 영업소 소재지 주소(소비자의 불만을 처리할 수 있는 곳의 주소를 포함), 전화번호/모사전송번호/전자우편주소, 사업자등록번호, 통신판매업 신고번호, 개인정보 보호책임자 등을 이용자가 쉽게 알 수 있도록 컬리의 초기 서비스화면(전면)에 게시합니다. 다만, 약관의 내용은 이용자가 연결화면을 통하여 볼 수 있도록 할 수 있습니다."
+                                        <br>
+                                        "② "LastFresh"는 이용자가 약관에 동의하기에 앞서 약관에 정하여져 있는 내용 중 청약철회/배송책임/환불조건 등과 같은 중요한 내용을 이용자가 이해할 수 있도록 별도의 연결화면 또는 팝업화면 등을 제공하여 이용자의 확인을 구하여야 합니다."
+                                        <br>
+                                        "③ "LastFresh"는「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「전자문서 및 전자거래기본법」, 「전자금융거래법」, 「전자서명법」, 「개인정보보호법」, 「방문판매 등에 관한 법률」, 「소비자기본법」 등 관련 법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다."
+                                        <br>
+                                        "④ "LastFresh"가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 몰의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 공지합니다. 다만, 이용자에게 불리하게 약관내용을 변경하는 경우에는 최소한 30일 이상의 사전 유예기간을 두고 공지합니다. 이 경우 "컬리"는 개정 전 내용과 개정 후 내용을 명확하게 비교하여 이용자가 알기 쉽도록 표시합니다."
+                                        <br>
+                                        "⑤ "LastFresh"가 약관을 개정할 경우에는 그 개정약관은 그 적용일자 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에 대해서는 개정 전의 약관조항이 그대로 적용됩니다. 다만 이미 계약을 체결한 이용자가 개정약관 조항의 적용을 받기를 원하는 뜻을 제4항에 의한 개정약관의 공지기간 내에 "컬리"에 송신하여 "컬리"의 동의를 받은 경우에는 개정약관 조항이 적용됩니다."
+                                        <br>
+                                        "⑥ 이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 전자상거래 등에서의 소비자보호에 관한 법률, 약관의 규제 등에 관한 법률, 공정거래위원회가 정하는 전자상거래 등에서의 소비자 보호지침 및 관계법령 또는 상관례에 따릅니다."
+                                    </div>
                                 </div>
                             </div>
-                                <button type="button" class="btn_ok">확인</button>
                         </div>
+                        <button type="button" class="btn_ok">확인</button>
                     </div>
-
                 </div>
-            </div>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                <!--개인정보 수집이용 동의-->
+                <div class="check_view">
+                    <label class="check_agree2">
+                        <input type="checkbox" required label="이용약관">
+                        <span class="agreeicon"></span>
+                        개인정보 수집이용 동의
+                        <span class="sub">(필수)</span>
+                    </label>
+                    <a href="#none" class="link_btn_agree">
+                        약관보기
+                    </a>
+                </div>
+                <!--개인정보 수집이용 동의 모달창-->
+                <div class="modal">
+                    <div class="modal_body">
+                        <h4 class="tit_layer">
+                            이용약관
+                            <span class="sub">(필수)</span>
+                        </h4>
+                        <div class="box_tbl">
+                            <div class="box_type">
+                                <h3 class="box_tit">
+                                    <a class="btn_view" href="#none">총칙</a>
+                                </h3>
+                                <div class="box_view">
+                                    <div class="txt_view">
+                                        "제 1조(목적)"
+                                        <br>
+                                        "이 약관은 주식회사 컬리 회사(전자상거래 사업자)가 운영하는 인터넷사이트 마켓컬리(이하 "컬리"라 한다)에서 제공하는 전자상거래 관련 서비스(이하 "서비스"라 한다)를 이용함에 있어 컬리와 이용자의 권리, 의무 및 책임사항을 규정함을 목적으로 합니다."
+                                        <br>
+                                        "*PC통신, 스마트폰 앱, 무선 등을 이용하는 전자상거래에 대해서도 그 성질에 반하지 않는 한 준용합니다."
+                                        <br>
+                                        <br>
+                                        제2조(정의)
+                                        <br>
+                                        "① "LastFresh"란 회사가 재화 또는 용역(이하 "재화 등"이라 함)을 이용자에게 제공하기 위하여 컴퓨터 등 정보통신설비를 이용하여 재화 등을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 서비스를 운영하는 사업자의 의미로도 사용합니다."
+                                        <br>
+                                        "② "이용자"란 "컬리"에 접속하여 이 약관에 따라 "컬리"가 제공하는 서비스를 받는 회원 및 비회원을 말합니다."
+                                        <br>
+                                        "③ ‘회원’이라 함은 "컬리"에 회원등록을 한 자로서, 계속적으로 "컬리"가 제공하는 서비스를 이용할 수 있는 자를 말합니다."
+                                        <br>
+                                        "④ ‘비회원’이라 함은 회원에 가입하지 않고 "컬리"가 제공하는 서비스를 이용하는 자를 말합니다."
+                                        <br>
+                                        "⑤ "휴면회원"이라 함은 "컬리"의 ‘회원’중 1년 이상 서비스 이용 기록이 없는 자를 말합니다. 휴면 회원은 "컬리"의 정책에 따라 서비스 이용이 제한 될 수 있으며, 다시 서비스를 이용하기 위하여는 거래 안전 등을 위하여 "컬리"가 정하는 본인확인 절차 등을 이행하여야 올바른 ‘회원’의 서비스를 이용할 수 있습니다."
+                                        <br>
+                                        <br>
+                                        "제3조 (약관 등의 명시와 설명 및 개정)"
+                                        <br>
+                                        "① "LastFresh"는 이 약관의 내용과 상호 및 대표자 성명, 영업소 소재지 주소(소비자의 불만을 처리할 수 있는 곳의 주소를 포함), 전화번호/모사전송번호/전자우편주소, 사업자등록번호, 통신판매업 신고번호, 개인정보 보호책임자 등을 이용자가 쉽게 알 수 있도록 컬리의 초기 서비스화면(전면)에 게시합니다. 다만, 약관의 내용은 이용자가 연결화면을 통하여 볼 수 있도록 할 수 있습니다."
+                                        <br>
+                                        "② "LastFresh"는 이용자가 약관에 동의하기에 앞서 약관에 정하여져 있는 내용 중 청약철회/배송책임/환불조건 등과 같은 중요한 내용을 이용자가 이해할 수 있도록 별도의 연결화면 또는 팝업화면 등을 제공하여 이용자의 확인을 구하여야 합니다."
+                                        <br>
+                                        "③ "LastFresh"는「전자상거래 등에서의 소비자보호에 관한 법률」, 「약관의 규제에 관한 법률」, 「전자문서 및 전자거래기본법」, 「전자금융거래법」, 「전자서명법」, 「개인정보보호법」, 「방문판매 등에 관한 법률」, 「소비자기본법」 등 관련 법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다."
+                                        <br>
+                                        "④ "LastFresh"가 약관을 개정할 경우에는 적용일자 및 개정사유를 명시하여 현행약관과 함께 몰의 초기화면에 그 적용일자 7일 이전부터 적용일자 전일까지 공지합니다. 다만, 이용자에게 불리하게 약관내용을 변경하는 경우에는 최소한 30일 이상의 사전 유예기간을 두고 공지합니다. 이 경우 "컬리"는 개정 전 내용과 개정 후 내용을 명확하게 비교하여 이용자가 알기 쉽도록 표시합니다."
+                                        <br>
+                                        "⑤ "LastFresh"가 약관을 개정할 경우에는 그 개정약관은 그 적용일자 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에 대해서는 개정 전의 약관조항이 그대로 적용됩니다. 다만 이미 계약을 체결한 이용자가 개정약관 조항의 적용을 받기를 원하는 뜻을 제4항에 의한 개정약관의 공지기간 내에 "컬리"에 송신하여 "컬리"의 동의를 받은 경우에는 개정약관 조항이 적용됩니다."
+                                        <br>
+                                        "⑥ 이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 전자상거래 등에서의 소비자보호에 관한 법률, 약관의 규제 등에 관한 법률, 공정거래위원회가 정하는 전자상거래 등에서의 소비자 보호지침 및 관계법령 또는 상관례에 따릅니다."
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn_ok">확인</button>
+                    </div>
+                </div>
+                <!--개인정보 수집이용 동의(선택)-->
+                <div class="check_view">
+                    <label class="check_agree2">
+                        <input type="checkbox" required label="이용약관">
+                        <span class="agreeicon"></span>
+                        개인정보 수집이용 동의
+                        <span class="sub">(선택)</span>
+                    </label>
+                    <a href="#none" class="link_btn_agree">
+                        약관보기
+                    </a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
+</div>
+        <div id="formSubmit" class="form_footer">
+            <button type="button" class="btn_join" >
+                가입하기
+            </button>
+        </div>
 </body>
-<script> const modal = document.querySelector('.body');
-         const btnOpenPopup = document.querySelector('.link_btn_agree');
-        btnOpenPopup.addEventListener('click', () => { modal.style.display = 'block'; });
+<script>
+
+    const modal = document.querySelector('.modal');
+    const btnOpenPopup = document.querySelector('.link_btn_agree');
+    btnOpenPopup.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+    modal.addEventListener('click', ()=>{
+        modal.style.display='none';
+    });
+
+    modal.forEach(element=>)
 </script>
 
-<!--<script>
-    var serviceView = new Vue({
-        el: '#serviceView',
-        data: {
-            pageUrl : campaginUrl + 'pc/service/agreement.html',
-            storagetObj : null,
-            eventStart : false, // 딱 한번만실행
-        },
-        methods: {
-            update:function(){
-                var $self = this;
-                $.ajax({
-                    url : $self.pageUrl
-                }).done(function(result){
-                    $('#serviceView').html(result);
-                    $self.storagetObj = JSON.parse(sessionStorage.getItem("agreement"));
-                    if(!$self.eventStart){
-                        $self.eventStart = true;
-                        $self.pageUrl = campaginUrl + 'pc/service/' + $self.storagetObj[$self.storagetObj.length-1].name + '.html'
-                        $self.update();
-                    }
-                });
-            }
-        }
-    });
-    serviceView.update();
-</script>-->
 </html>
