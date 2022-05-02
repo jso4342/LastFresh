@@ -93,6 +93,7 @@ div.gnb-wrapper {
 	width: 100%;
 	height: 8vh;
 	background: #363636;
+	position: fixed;
 }
 
 div.gnb-order {
@@ -120,13 +121,15 @@ div.sidebar-wrapper {
 	width: 13%;
 	flex-direction: column;
 	flex-wrap: wrap;
+	position: fixed;
+	margin-top: 66px;
 }
 
 div.deliveryList, div.myDeliveryList, div.complete{
-	height: 27.9vh;
-	/*line-height: 22vh;*/
+	height: 37.9vh;
+
 	text-align: center;
-	border: solid #b9aeae40 2px;
+	border-bottom: solid #b9aeae40 2px;
 	font-size: 1.2rem;
 	font-weight: bold;
 }
@@ -139,7 +142,7 @@ div.process, div.complete, div.orderhistoy {
 }
 
 div.deliveryList-content, div.myDeliveryList-content{
-	margin-top: 45px;
+	margin-top: 121px;
 }
 
 div.orderhistoy {
@@ -147,8 +150,9 @@ div.orderhistoy {
 }
 
 div.sidebar-content {
-	width: 87%;
+	width: 84%;
 	text-align: center;
+	margin: 75px 0 0 177px;
 }
 
 /* 주문 없을 시 이미지*/
@@ -269,7 +273,35 @@ div.callIcon {
 img.callImg{
 	height: 70px;
 }
+div.logout{
+	height: 57px;
+	color: white;
+	background: #363636;
+	padding: 1px 0 0 0;
+}
+div.logoutWrap{
+	text-align: center;
 
+}
+div.sideItem{
+	background: #81818157;
+	color: #818181cc;
+}
+div.gnb-order{
+	display: none;
+}
+div.logoWrap{
+}
+div.logo {
+	background: #DA291C;
+	color: #ffffffe0;
+	width: 100%;
+	height: 73px;
+	margin-top: -22px;
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: center;
+}
 
 @media screen and (max-width: 1000px) {
 
@@ -279,6 +311,7 @@ img.callImg{
 		height: 5vh;
 		background: #363636;
 		justify-content: space-between;
+		position: fixed;
 	}
 	div.gnb-order {
 		background: #DA291C;
@@ -297,14 +330,18 @@ img.callImg{
 		display: flex;
 		width: 100%;
 		height: 5vh;
+		position: fixed;
+		margin-top: 85px;
 	}
 	div.menuItem {
 		width: 50%;
 		text-align: center;
 		font-size: 39px;
 		padding: 15px 0 0 0;
-		border: 1px solid;
-		background: #81818157;
+		border: 5px solid;
+		border-top-left-radius: 20px;
+		border-top-right-radius: 20px;
+		background: #d9d9d9;;
 		border-bottom: none;
 		color: #818181cc;
 	}
@@ -321,7 +358,7 @@ img.callImg{
 		display: flex;
 		flex-direction: column;
 		flex-wrap: wrap;
-		margin-top: 32px;
+		margin: 113px 0 0 -175px;
 	}
 	div.order-accept{
 		display: flex;
@@ -396,6 +433,13 @@ img.callImg{
 	}
 	img.callImg{
 		height: 70px;
+	}
+	div.logoutBtn{
+		display: block;
+	}
+	div.gnb-order {
+		display: block;
+		margin-top: -30px;
 	}
 
 }
