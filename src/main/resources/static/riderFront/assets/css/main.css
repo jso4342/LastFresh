@@ -1,0 +1,405 @@
+/**
+    판매자 관련 css
+ */
+
+
+/*
+
+pos css
+
+*/
+
+*{
+	box-sizing: border-box;
+	font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;
+	letter-spacing: -0.7px;
+}
+
+body {
+	margin: 0;
+}
+
+div.sell-wrapper {
+	width: 100vw;
+	height: 100vh;
+}
+
+div.cookingTime-wrapper {
+	background-color: rgba(0, 0, 0, 0.4);
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+}
+
+div.cookingTime-content-wrapper {
+	position: absolute;
+	z-index: 1;
+	background-color: white;
+	width: 42vw;
+	opacity: 1;
+	height: 70vh;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+div.cookingTime-TopBar{
+	color: #ffffffe0;
+	height: 7vh;
+	background-color: rgb(54 54 54);
+	font-size: 1.6rem;
+	font-weight: bold;
+	line-height: 7vh;
+}
+
+/*쿠킹 타임 라디오 박스 css*/
+.cookingTime_select {
+	padding: 15px 10px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 14px 40px;
+}
+.cookingTime_select input[type=radio]{
+	display: none;
+}
+.cookingTime_select input[type=radio]+label{
+	display: inline-block;
+	cursor: pointer;
+	height: 24px;
+	width: 90px;
+	border: 1px solid #e0e4e6;
+	line-height: 24px;
+	text-align: center;
+	font-weight:bold;
+	font-size:13px;
+}
+.cookingTime_select input[type=radio]+label{
+	background-color: #fff;
+	color: #333;
+}
+.cookingTime_select input[type=radio]:checked+label{
+	background-color: #333;
+	color: #fff;
+}
+
+
+/*
+
+GNB css
+
+*/
+div.gnb-wrapper {
+	display: flex;
+	width: 100%;
+	height: 8vh;
+	background: #363636;
+}
+
+div.gnb-order {
+	background: #DA291C;
+	color: #ffffffe0;
+	width: 25%;
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: center;
+	line-height: 8vh;
+	border-color: black;
+	border-style: solid;
+	border-width: 0 2px 0 0;
+}
+
+div.content-wrapper {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	height: 90vh;
+}
+
+div.sidebar-wrapper {
+	display: flex;
+	width: 13%;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+div.deliveryList, div.myDeliveryList, div.complete{
+	height: 27.9vh;
+	/*line-height: 22vh;*/
+	text-align: center;
+	border: solid #b9aeae40 2px;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+
+
+/* 디폴트 폰트*/
+div.process, div.complete, div.orderhistoy {
+	background: #81818157;
+	color: #818181cc;
+}
+
+div.deliveryList-content, div.myDeliveryList-content{
+	margin-top: 45px;
+}
+
+div.orderhistoy {
+	line-height: 22vh;
+}
+
+div.sidebar-content {
+	width: 87%;
+	text-align: center;
+}
+
+/* 주문 없을 시 이미지*/
+
+div.noorder img {
+	width: 500px;
+	margin-top: 80px;
+}
+
+div.noorder p {
+	font-size: 1.2rem;
+	font-weight: bold;
+	color: #6a6262db;
+}
+
+div.noorder {
+	display: none;
+}
+
+div.order-content {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+}
+
+div.order-list {
+	height: 22vh;
+	display: flex;
+	flex-direction: row;
+
+}
+
+div.order-info1 {
+	width: 18%;
+	margin-top: 14px;
+}
+
+div.order-info2 {
+	font-size: 1.3rem;
+	line-height: 0.7;
+	width: 61%;
+	padding: 10px 30px 10px 30px;
+	text-align: left;
+}
+
+div.order-info2 div.order-address {
+	font-weight: bold;
+}
+
+div.order-info2 p.order-menuInfo, p.storeName {
+	color: #818181cc;
+}
+
+div.order-accept {
+	display: flex;
+	line-height: 9;
+	margin-top: 8px;
+}
+
+div.order-accept input[type=button] {
+	width: 8vw;
+	height: 16vh;
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #ffffffe0;
+	background-color: #DA291C;
+	box-shadow: 1px 1px 3px #da291c;
+	border: none;
+	margin: 15px;
+}
+
+div.order-time {
+	font-size: 3rem;
+}
+
+div.order-method{
+	font-size: 1.6rem;
+	display: inline-block;
+	width: 144px;
+	color: #ffffffe0;
+}
+
+div.pickUp {
+	background-color: #8BC34A;
+	box-shadow: 1px 1px 4px #8bc34a;
+}
+
+div.delivery {
+	background-color: #03A9F4;
+	box-shadow: 1px 1px 4px #03A9F4;
+}
+
+div.shipping {
+	background-color: #FFC107;
+	box-shadow: 1px 1px 4px #FFC107;
+}
+
+div.menu-Bar{
+	display: none;
+}
+div.logoutBtn{
+	display: none;
+}
+div.order-address{
+	display: flex;
+	padding: 24px 0 0 0;
+}
+div.addressWrap{
+	margin-top: -38px;
+	font-size: 25px;
+}
+div.addressTitle{
+	padding: 0 16px 0 0;
+}
+div.callIcon {
+	margin: -190px 0 0 0;
+}
+img.callImg{
+	height: 70px;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+	div.gnb-wrapper {
+		display: flex;
+		width: 100%;
+		height: 5vh;
+		background: #363636;
+		justify-content: space-between;
+	}
+	div.gnb-order {
+		background: #DA291C;
+		color: #ffffffe0;
+		width: 25%;
+		font-size: 2.4rem;
+		margin-top: -20px;
+		font-weight: bold;
+		text-align: center;
+		line-height: 8vh;
+		border-color: black;
+		border-style: solid;
+		border-width: 0 2px 0 0;
+	}
+	div.menu-Bar {
+		display: flex;
+		width: 100%;
+		height: 5vh;
+	}
+	div.menuItem {
+		width: 50%;
+		text-align: center;
+		font-size: 39px;
+		padding: 15px 0 0 0;
+		border: 1px solid;
+		background: #81818157;
+		border-bottom: none;
+		color: #818181cc;
+	}
+	div.sidebar-wrapper {
+		display: none;
+	}
+	div.order-list {
+		height: 19vh;
+		 display: block;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	div.order-content {
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		margin-top: 32px;
+	}
+	div.order-accept{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		line-height: 9;
+		flex-direction: column;
+		float: right;
+		margin-top: -271px;
+		width: 234px;
+	}
+	div.word{
+		color: #cac5c5;
+		font-size: 37px;
+		margin: 13px 26px 0 73px;
+	}
+	div.sidebar-content {
+		width: 100%;
+		text-align: center;
+	}
+
+	div.order-accept input[type=button] {
+		width: 16vw;
+		height: 6vh;
+		font-size: 2.4rem;
+		font-weight: bold;
+		color: #ffffffe0;
+		background-color: #DA291C;
+		box-shadow: 1px 1px 3px #da291c;
+		border: none;
+		margin: 15px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+	div.order-info1 {
+		padding: 36px 50px 20px 50px;
+		width: 36%;
+		height: 112px;
+		display: flex;
+	}
+	div.order-method{
+		font-size: 37px;
+		margin: -19px 30px 26px -9px;
+	}
+	div.order-time {
+		font-size: 3.5rem;
+		padding: 0 11px 0 0;
+		margin: -35px 13px 0 -25px;
+	}
+	div.order-info2 {
+		font-size: 30px;
+		line-height: 0.7;
+		width: 100%;
+		margin-top: -43px;
+		text-align: left;
+	}
+	div.order-address{
+		display: flex;
+		padding: 24px 0 0 0;
+	}
+	div.addressWrap{
+		margin-top: -47px;
+		font-size: 36px;
+	}
+	div.addressTitle{
+		padding: 0 16px 0 0;
+	}
+	div.callIcon{
+		margin: -176px 0 0 0;
+	}
+	img.callImg{
+		height: 70px;
+	}
+
+}
+
+
+
+
