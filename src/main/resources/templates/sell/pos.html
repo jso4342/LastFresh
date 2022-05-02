@@ -13,34 +13,45 @@
         <div class="cookingTime-wrapper">
             <div class="cookingTime-content-wrapper">
                 <div class="cookingTime-TopBar">
-                    <span>
-                        < 접수대기
-                    </span>
-                    <span>
+                    <span class="cookingTime-close-btn">
                         X
                     </span>
                 </div>
 
                 <div class="cookingTime-content">
-                    <div>
-                        <p>배달 시간을 선택해주세요</p>
+                    <div class="cookingTime-info1">
+                        <span>조리 시간을 선택해주세요</span>
+                        <img class="cookingTime-reset" src="https://cdn.discordapp.com/attachments/969471931575320587/970561183444762685/w-reset-icon-red.png" alt="">
                     </div>
+                    <!-- 조리 시간 변경 부분-->
                     <div class="cookingTime_select">
-                        <input type="radio" id="minute20" name="cookingTime" value="20">
-                        <label for="minute20">20분</label>
-                        <input type="radio" id="minute30" name="cookingTime" value="30">
-                        <label for="minute30">30분</label>
-                        <input type="radio" id="minute40" name="cookingTime" value="40">
-                        <label for="minute40">40분</label>
-                        <input type="radio" id="minute50" name="cookingTime" value="50">
-                        <label for="minute50">50분</label>
-                        <input type="radio" id="minute60" name="cookingTime" value="60">
-                        <label for="minute60">60분</label>
-                        <input type="radio" id="minute90" name="cookingTime" value="90">
-                        <label for="minute90">90분</label>
+                        <div class="cookingTime-minus">
+                            <span>
+                                -
+                            </span>
+                        </div>
+                        <div class="cookingTime-real-wrapper">
+                            <span class="cookingTime-real">
+                                0
+                            </span>
+                            <span>
+                                분
+                            </span>
+                        </div>
+                        <div class="cookingTime-plus">
+                            <span>
+                                +
+                            </span>
+                        </div>
                     </div>
-                    <div>
-                        <input type="text">
+                    <!-- 접수 및 안내 사항 -->
+                    <div class="cookingTime-bottomBar">
+                        <div class="cookingTime-info2">
+                                주문을 접수하면 라이더가 배차됩니다.
+                        </div>
+                        <div class="cookingTime-reception">
+                            접 수
+                        </div>
                     </div>
                 </div>
             </div>
@@ -57,25 +68,26 @@
         <div class="content-wrapper">
             <!-- 주문 사이드바 wrapper -->
             <div class="sidebar-wrapper">
-                <div class="reception">
+                <div class="reception sideBars sellClicked">
                     <div class="reception-content">
                         <p>접수 대기</p>
                         <p>4</p>
+                        <p class="reception-new">new</p>
                     </div>
                 </div>
-                <div class="process">
+                <div class="process sideBars">
                     <div class="process-content">
                         <p>처리중</p>
                         <p>4</p>
                     </div>
                 </div>
-                <div class="complete">
+                <div class="complete sideBars">
                     <div class="complete-content">
                         <p>완료</p>
                         <p>4</p>
                     </div>
                 </div>
-                <div class="orderhistoy">
+                <div class="orderhistoy sideBars">
                     주문조회
                 </div>
             </div>
@@ -116,8 +128,8 @@
 
                             <!-- 주문 수락 및 취소-->
                             <div class="order-accept">
-                                <input type="button" value="접수하기">
-                                <input type="button" value="취소">
+                                <input class="order-reception-btn" type="button" value="접수하기">
+                                <input class="order-cancel-btn" type="button" value="취소">
                             </div>
                         </div>
                         <hr>
