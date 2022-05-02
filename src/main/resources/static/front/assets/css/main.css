@@ -33,6 +33,9 @@ body {
 	line-height: 1;
 }
 
+a{
+	cursor:pointer;
+}
 ol, ul {
 	list-style: none;
 }
@@ -83,8 +86,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #252122;
-		background-image: url("images/bg02.png");
+
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -99,15 +101,15 @@ input, select, textarea {
 		}
 
 	body, input, textarea, select {
-		font-family: 'Source Sans Pro';
+		font-family: 'Noto Sans KR', sans-serif;
 		font-weight: 300;
-		color: #5d5d5d;
+		color: #999999;
 		font-size: 14pt;
 		line-height: 1.75em;
 	}
 
 	strong, b {
-		color: #252122;
+		color: #333333;
 		font-weight: 400;
 	}
 
@@ -134,7 +136,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #252122;
+		color: #333333;
 		font-weight: 700;
 	}
 
@@ -152,7 +154,7 @@ input, select, textarea {
 	}
 
 	a {
-		color: #d52349;
+		color: #DA291C;
 		text-decoration: underline;
 	}
 
@@ -1442,7 +1444,7 @@ input, select, textarea {
 
 	form label {
 		display: block;
-		color: #252122;
+		color: #333333;
 		font-weight: 400;
 		margin: 0 0 0.5em 0;
 	}
@@ -1540,7 +1542,6 @@ input, select, textarea {
 
 		header > p {
 			display: block;
-			font-style: italic;
 			margin: 0.5em 0 0 0;
 			padding-bottom: 0.5em;
 		}
@@ -1614,7 +1615,7 @@ input, select, textarea {
 		cursor: pointer;
 		border: 0;
 		border-radius: 5px;
-		background: #d52349;
+		background: #DA291C;
 		color: #fff !important;
 		font-weight: 700;
 		outline: 0;
@@ -1648,7 +1649,7 @@ input, select, textarea {
 		input[type="reset"].alt,
 		button.alt,
 		.button.alt {
-			background: #252122;
+			background: #333333;
 		}
 
 			input[type="button"].alt:hover,
@@ -1828,7 +1829,7 @@ input, select, textarea {
 			position: absolute;
 			left: 0;
 			top: 1.3em;
-			background-color: #d52349;
+			background-color: #DA291C;
 			height: 3.5em;
 			text-align: center;
 			color: #fff;
@@ -1843,7 +1844,7 @@ input, select, textarea {
 				position: absolute;
 				bottom: 0;
 				right: -1.2em;
-				border-left: solid 1.25em #d52349;
+				border-left: solid 1.25em #DA291C;
 				border-top: solid 1.8em transparent;
 				border-bottom: solid 1.8em transparent;
 			}
@@ -1992,7 +1993,7 @@ input, select, textarea {
 			text-rendering: auto;
 			line-height: 1;
 			text-transform: none !important;
-			font-family: 'Font Awesome 5 Free';
+			font-family: 'Noto Sans KR', sans-serif;
 			font-weight: 400;
 		}
 
@@ -2001,7 +2002,7 @@ input, select, textarea {
 		}
 
 		.icon.brands:before {
-			font-family: 'Font Awesome 5 Brands';
+			font-family: 'Noto Sans KR', sans-serif;
 		}
 
 		.icon:before {
@@ -2015,7 +2016,7 @@ input, select, textarea {
 		.icon.featured {
 			position: relative;
 			display: inline-block;
-			background-color: #d52349;
+			background-color: #DA291C;
 			width: 9em;
 			padding: 1.75em 0 0.75em 0;
 			border-top-left-radius: 5px;
@@ -2035,17 +2036,17 @@ input, select, textarea {
 				position: absolute;
 				bottom: -1.95em;
 				left: 0;
-				border-top: solid 2em #d52349;
+				border-top: solid 2em #DA291C;
 				border-left: solid 4.5em transparent;
 				border-right: solid 4.5em transparent;
 			}
 
 			.icon.featured.alt {
-				background-color: #252122;
+				background-color: #333333;
 			}
 
 				.icon.featured.alt:after {
-					border-top-color: #252122;
+					border-top-color: #333333;
 				}
 
 			.icon.featured.alt2 {
@@ -2067,13 +2068,14 @@ input, select, textarea {
 	#header {
 		position: relative;
 		background: #ffffff;
-		border-bottom: solid 1px #ccc;
-		padding: 5em 0 4em 0;
+		padding: 0 0 3.4em 0;
 		text-align: center;
+		width: 70em;
+		margin: 0 auto;
 	}
 
 		#header h1 {
-			color: #252122;
+			color: #333333;
 			font-weight: 900;
 			font-size: 2.5em;
 			letter-spacing: -0.035em;
@@ -2083,7 +2085,7 @@ input, select, textarea {
 /* Nav */
 
 	#nav {
-		margin: 2.5em 0 0 0;
+		margin: 1em 0 0 0;
 	}
 
 		#nav > ul {
@@ -2092,7 +2094,6 @@ input, select, textarea {
 
 			#nav > ul > li {
 				display: inline-block;
-				font-style: italic;
 				margin: 0 0.35em 0 0.35em;
 			}
 
@@ -2101,10 +2102,14 @@ input, select, textarea {
 				}
 
 				#nav > ul > li > a {
-					border-radius: 5px;
-					color: #5d5d5d;
+					font-size: 16px;
+					color: #333;
+					line-height: 20px;
+					text-align: center;
+					font-weight: 500;
+
 					text-decoration: none;
-					padding: 0.6em 1.2em 0.6em 1.2em;
+					padding: 0.6em 1.7em 0.6em 1.2em;
 					-moz-transition: background-color .25s ease-in-out;
 					-webkit-transition: background-color .25s ease-in-out;
 					-ms-transition: background-color .25s ease-in-out;
@@ -2113,18 +2118,18 @@ input, select, textarea {
 				}
 
 				#nav > ul > li:hover > a, #nav > ul > li.active > a {
-					background: #f3f3f3;
+					color: #DA291C;
 				}
 
 				#nav > ul > li.current > a {
-					background: #d52349;
+					background: #DA291C;
 					color: #fff !important;
 					font-weight: 700;
 				}
 
 	.dropotron {
 		border-radius: 5px;
-		background-color: #252122;
+		background-color: #333333;
 		background-color: rgba(34, 30, 31, 0.98);
 		padding: 1.25em 1.5em 1.25em 1.5em;
 		font-style: italic;
@@ -2166,7 +2171,7 @@ input, select, textarea {
 				top: -9px;
 				border-left: solid 10px transparent;
 				border-right: solid 10px transparent;
-				border-bottom: solid 10px #252122;
+				border-bottom: solid 10px #333333;
 				border-bottom-color: rgba(34, 30, 31, 0.98);
 			}
 
@@ -2198,7 +2203,7 @@ input, select, textarea {
 			}
 
 			#banner header p {
-				color: #d52349;
+				color: #DA291C;
 				padding: 0;
 				font-style: normal;
 				margin: 0;
@@ -2266,7 +2271,6 @@ input, select, textarea {
 
 	#main {
 		position: relative;
-		background: #f7f7f7 url("images/bg02.png");
 		padding: 4em 0 4em 0;
 	}
 
@@ -2489,6 +2493,7 @@ input, select, textarea {
 
 			#nav {
 				display: none;
+
 			}
 
 		/* Intro */
@@ -2544,6 +2549,7 @@ input, select, textarea {
 				-webkit-backface-visibility: hidden;
 				-ms-backface-visibility: hidden;
 				backface-visibility: hidden;
+				background: white;
 				-moz-transition: -moz-transform 0.5s ease;
 				-webkit-transition: -webkit-transform 0.5s ease;
 				-ms-transition: -ms-transform 0.5s ease;
@@ -2585,7 +2591,7 @@ input, select, textarea {
 						text-rendering: auto;
 						line-height: 1;
 						text-transform: none !important;
-						font-family: 'Font Awesome 5 Free';
+						font-family: 'Noto Sans KR', sans-serif;
 						font-weight: 900;
 					}
 
@@ -2849,7 +2855,7 @@ input, select, textarea {
 			}
 
 				#header h1 {
-					color: #252122;
+					color: #333333;
 					font-weight: 900;
 					font-size: 1.75em;
 					letter-spacing: -0.035em;

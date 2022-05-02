@@ -1,0 +1,712 @@
+<!DOCTYPE HTML>
+<!--
+	Dopetrope by Pixelarity
+	pixelarity.com | hello@pixelarity.com
+	License: pixelarity.com/license
+-->
+<html>
+<head>
+	<title>라스트프레시 | 메인페이지</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="../../static/front/assets/css/main.css">
+</head>
+<style>
+/* ------------헤더 --------------*/
+
+/* ------------유저 메뉴-----------*/
+	#userMenu{
+		margin-right:30px;
+	}
+
+	.slice{
+		color: #d8d8d8;
+		font-size:13px;
+	}
+
+	.list_menu_li{
+		float:right;
+	}
+
+	.list_menu_txt{
+		font-size: 12px;
+		color: #333333;
+		font-weight: 400;
+		text-decoration: none;
+	}
+
+	.menu_before_login{
+		list-style:none;
+	}
+
+	.menu_after_login{
+		list-style:none;
+		display:none;
+	}
+
+	.userStatus{
+		border: 1px solid #DA291C;
+		background-color: #fff;
+		color: #DA291C;
+		display: inline-block;
+		min-width: 38px;
+		height: 16px;
+		padding: 0 4px;
+		border-radius: 30px;
+		font-weight: 400;
+		font-size: 9px;
+		line-height: 14px;
+		text-align: center;
+	}
+
+/* ------------로고---------------*/
+	#logo{
+		width:110px;
+		margin-top:-15px;
+	}
+
+/* ------------제품 메뉴 -----------*/
+	.categoryIcon{
+		width: 17px;
+		margin-right: 17px;
+	}
+
+	.cart{
+		float:right;
+		padding-top:5px;
+	}
+/* ------------헤더 끝--------------*/
+
+/* ------------슬라이더 배너--------------*/
+
+[name="slide"] {display:none;}
+.slidebox {
+	width:100%;
+	margin:0 auto;
+	text-align:center;
+	white-space:nowrap;
+	font-size:0;
+	overflow:hidden;
+	position:relative;
+	display:inline-block;
+	vertical-align:middle;
+	width:100%;
+	transition:all .35s;
+}
+.slidebox img {max-width:100%;}
+.slidebox .slidelist {
+	white-space:nowrap;
+	font-size:0;
+	overflow:hidden;
+}
+.slidebox .slideitem {
+	position:relative;
+	display:inline-block;
+	vertical-align:middle;
+	width:100%;
+	transition:all .35s !important;
+}
+.slidebox .slideitem label {
+	position:absolute;
+	z-index:1;
+	top:50%;
+	transform:translateY(-50%);
+	padding:20px;
+	cursor:pointer;
+}
+label.left {
+	left:100px;
+	background-image:url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_banner_left_52_52.svg');
+	background-position:center center;
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+label.right {
+	right:100px;
+	background-image:url('https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_banner_right_52_52.svg');
+	background-position:center center;
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+
+/* 페이징 스타일 */
+	.paginglist {text-align:center;padding:30px 0;}
+	.paginglist > li {display:inline-block;vertical-align:middle;margin:0 10px;}
+	.paginglist > li > label {display:block;padding:10px 30px;border-radius:10px;background:#ccc;cursor:pointer;}
+	.paginglist > li:hover > label {background:#333;}
+
+	[id="slide01"]:checked ~ .slidelist .slideitem {transform:translateX(0);animation:slide01 20s infinite !important;}
+	[id="slide02"]:checked ~ .slidelist .slideitem {transform:translateX(-100%);animation:slide02 20s infinite !important;}
+	[id="slide03"]:checked ~ .slidelist .slideitem {transform:translateX(-200%);animation:slide03 20s infinite !important;}
+	[id="slide04"]:checked ~ .slidelist .slideitem {transform:translateX(-300%);animation:slide04 20s infinite !important;}
+
+	@keyframes slide01 {
+		0% {left:0%;}
+		23% {left:0%;}
+		25% {left:-100%;}
+		48% {left:-100%;}
+		50% {left:-200%;}
+		73% {left:-200%;}
+		75% {left:-300%;}
+		98% {left:-300%;}
+		100% {left:0%;}
+	}
+	@keyframes slide02 {
+		0% {left:0%;}
+		23% {left:0%;}
+		25% {left:-100%;}
+		48% {left:-100%;}
+		50% {left:-200%;}
+		73% {left:-200%;}
+		75% {left:100%;}
+		98% {left:100%;}
+		100% {left:0%;}
+	}
+	@keyframes slide03 {
+		0% {left:0%;}
+		23% {left:0%;}
+		25% {left:-100%;}
+		48% {left:-100%;}
+		50% {left:200%;}
+		73% {left:200%;}
+		75% {left:100%;}
+		98% {left:100%;}
+		100% {left:0%;}
+	}
+	@keyframes slide04 {
+		0% {left:0%;}
+		23% {left:0%;}
+		25% {left:300%;}
+		48% {left:300%;}
+		50% {left:200%;}
+		73% {left:200%;}
+		75% {left:100%;}
+		98% {left:100%;}
+		100% {left:0%;}
+	}
+/* ------------슬라이더 배너 끝--------------*/
+
+/* ---------------본문-------------------*/
+	.mainWrapper{
+		text-align: center;
+		margin: 0 auto;
+		width: 70em;
+	}
+
+	.newProduct{
+		margin-bottom: 112px;
+	}
+
+	.mainTitle{
+		color: rgb(51, 51, 51);
+		font-size: 28px;
+		line-height: 1.15;
+		letter-spacing: -0.26px;
+		font-weight: 500;
+		display: inline-block;
+		margin-bottom: 35px;
+	}
+
+	.titleBtn{
+		vertical-align: top;
+		max-width: 100%;
+	}
+
+	.mainNewBox{
+		text-align:left;
+		float:left;
+		margin-right: 1.5%;
+	}
+
+	.mainNewBoxLast{
+		text-align: left;
+	}
+
+	.mainNewImg{
+		width: 267px;
+		object-fit: cover;
+	}
+
+	.mainNewImg:hover{
+		object-fit: cover;
+		transition: all 0.3s ease-in-out 0s !important;
+		transform: scale(1.02);
+	}
+
+	div.mainNewTxt p, div.mainNewTxtLast p{
+		padding: 0;
+		margin: 0;
+	}
+
+	.mainNewTxt{
+		width: 250px;
+	}
+
+	.mainNewTxtLast{
+		display: contents;
+	}
+
+	.mainNewTxtTitle{
+		font-weight: 400;
+		margin-bottom: 8px;
+	}
+
+	.mainNewTxtPrice{
+		font-weight: 600;
+	}
+
+	.mainNewTxtOriginPrice{
+		color: rgb(153, 153, 153);
+		font-size: 14px;
+		font-weight: 400;
+		line-height: normal;
+		text-decoration: line-through;
+		margin-top: 2px;
+	}
+
+	.newATag{
+		text-decoration: none;
+		color:#333333;
+	}
+
+	/* -----------미니 배너-------- */
+	.miniBanner{
+		margin-bottom:80px;
+	}
+
+	/* -----------오늘 마감-------- */
+
+	.lastChance{text-align: left;}
+	.mainLastBoxTxt{
+		text-align:left;
+		width: 300px;
+		float:left;
+		margin-right: 1.5%;
+	}
+	.mainLastImg{
+		width: 356px;
+		margin-bottom:4px;
+		object-fit: cover;
+	}
+
+	.lastChanceTxt{
+		font-size: 16px;
+		font-weight: normal;
+		line-height: 1.45;
+		letter-spacing: -0.2px;
+		margin-top: -17px;
+		margin-bottom: 30px;
+	}
+
+	.lastChanceDate{
+		color:#333333;
+		font-size: 20px;
+		line-height: initial;
+	}
+
+	.mainLastBox{
+		text-align:left;
+		float:right;
+		margin-left: 1.5%;
+	}
+
+	.mainLastBoxLast{
+		text-align:left;
+		float:right;
+		margin-left: 1.5%;
+	}
+
+
+</style>
+<body class="homepage is-preload">
+<div id="page-wrapper">
+
+	<!-- Header -->
+	<section id="header">
+		<!-- userMenu -->
+		<div id="userMenu">
+			<ul class="menu_before_login">
+				<li class="list_menu_li">
+					<a href="#" class="list_menu_txt">로그인</a>
+				</li>
+				<li class="list_menu_li">
+					<a href="#" class="list_menu_txt" style="color: #DA291C">회원가입</a>
+					<span class ="slice">&nbsp; |&nbsp; </span>
+				</li>
+			</ul>
+			<ul class="menu_after_login">
+				<li class="list_menu_li">
+					<a href="#" class="list_menu_txt">로그아웃</a>
+				</li>
+				<li class="list_menu_li">
+					<span class ="userStatus">일반</span>
+					<a href="#" class="list_menu_txt"> 장서영 님</a>
+					<span class ="slice">&nbsp; |&nbsp; </span>
+				</li>
+			</ul>
+		</div>
+		<!-- Logo -->
+		<div style="margin-top: -30px;"><p>&nbsp;</p></div>
+		<div style ="margin: 0 auto;">
+
+				<a href="main.html"><img id="logo" src ="https://cdn.discordapp.com/attachments/969471931575320587/969513952226738196/logo.png"></a>
+		</div>
+		<!-- Nav -->
+		<nav id="nav">
+			<ul style="float:left; margin-top:10px">
+				<li><a href="#"><img src="https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off_x2.png" class="categoryIcon">전체 카테고리</a></li>
+				<li><a href="#">신상품</a></li>
+				<li><a href="#">우리동네 픽업</a></li>
+				<li><a href="#">우리동네 배달</a></li>
+				<li><a href="#">집 앞까지 배송</a></li>
+			</ul><ul>
+				<li class="cart"><a><img width="40px" src ="https://cdn.discordapp.com/attachments/969471931575320587/969802537794420767/2022-04-29_3.23.52.png"
+										 onmouseover="this.src='https://cdn.discordapp.com/attachments/969471931575320587/969800742623916042/2022-04-29_3.23.52.png'",
+										 onmouseout="this.src='https://cdn.discordapp.com/attachments/969471931575320587/969802537794420767/2022-04-29_3.23.52.png'"></a></li>
+			</ul>
+		</nav>
+	</section>
+
+	<!-- 슬라이더 배너 -->
+	<section id ="siderBanner">
+		<div class="slidebox">
+			<input type="radio" name="slide" id="slide01" checked>
+			<input type="radio" name="slide" id="slide02">
+			<input type="radio" name="slide" id="slide03">
+			<input type="radio" name="slide" id="slide04">
+			<ul class="slidelist">
+				<li class="slideitem">
+					<div>
+						<label for="slide04" class="left"></label>
+						<label for="slide02" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/9cac0ce1-b86c-467e-9d85-1239eb11de4e"></a>
+					</div>
+				</li>
+				<li class="slideitem">
+					<div>
+						<label for="slide01" class="left"></label>
+						<label for="slide03" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/ab2389bf-5bef-4886-b1f8-8696ddd309b3"></a>
+					</div>
+				</li>
+				<li class="slideitem">
+					<div>
+						<label for="slide02" class="left"></label>
+						<label for="slide04" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/5db631ad-2ea1-479c-a115-bed367a65c4c"></a>
+					</div>
+				</li>
+				<li class="slideitem">
+					<div>
+						<label for="slide03" class="left"></label>
+						<label for="slide01" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/72c67111-bbae-4a05-b03d-7274d5f0e0f5"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- Main -->
+	<section id="main">
+		<div class ="mainWrapper">
+			<!-- 신상품 -->
+			<div class ="newProduct">
+				<div class ="wrapper">
+					<a href="#" style="text-decoration: none;"><h2 class="mainTitle">새로 들어온 상품</h2>
+					<img class="titleBtn" src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
+				</div>
+				<!-- 신상품 목록 -->
+				<div class="mainNew">
+					<div class="mainNewBox">
+						<!-- 이거 복붙 해야함 -->
+						<div style="width:267px; height:343.69px; overflow:hidden; display:block;">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+						</div>
+							<div class="mainNewTxt">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아] 군만두</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">15%</span>
+								&nbsp;10,880원</p></a>
+							<p class="mainNewTxtOriginPrice">12,800원</p>
+						</div>
+					</div>
+
+					<div class="mainNewBox">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1618293835769l0.jpg">
+						<div class="mainNewTxt">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[OXO] 치킨 스톡 튜브</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">20%</span>
+								&nbsp;4,080원</p></a>
+							<p class="mainNewTxtOriginPrice">5,100원</p>
+						</div>
+					</div>
+
+					<div class="mainNewBox">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1637927974776l0.jpg">
+						<div class="mainNewTxt">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[남도우애] 무항생제 1++ 한우 채끝 구이용 200g (냉장)</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">30%</span>
+								&nbsp;27,930원</p></a>
+							<p class="mainNewTxtOriginPrice">39,900원</p>
+						</div>
+					</div>
+
+					<div class="mainNewBoxLast">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+						<div class="mainNewTxtLast">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아]군만두</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">15%</span>
+								&nbsp;10,880원</p></a>
+							<p class="mainNewTxtOriginPrice">12,800원</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- 미니 배너 -->
+			<div class="miniBanner">
+				<img style="width: 70em;" src="https://img-cf.kurly.com/banner/random-band/pc/img/80bdeef9-425c-4dfe-9a4e-dad6be7ac321">
+			</div>
+
+			<!-- 오늘 마감 -->
+			<div class="lastChance">
+				<div class="mainLastBoxTxt">
+					<h2 class="mainTitle">오늘 마감</h2>
+					<p class="lastChanceTxt">자정 전까지 한정 특가</p>
+					<img style ="width:30px; float:left" src="https://cdn.discordapp.com/attachments/969471931575320587/970272217000726578/2022-05-01_7.29.44.png">
+					<p class="mainNewTxtPrice lastChanceDate">&nbsp;~ 2022/05/01</p>
+				</div>
+
+				<!-- 상품 목록 -->
+				<div class="mainLastBox">
+					<img class="mainLastImg" src="https://img-cf.kurly.com/shop/data/goods/1637927974776l0.jpg">
+					<div class="mainNewTxt">
+						<a class ="newATag" href="#"><p class="mainNewTxtTitle">[남도우애] 무항생제 1++ 한우 채끝 구이용 200g (냉장)</p></a>
+						<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+							<span style="color:#FA622F;">30%</span>
+							&nbsp;27,930원</p></a>
+						<p class="mainNewTxtOriginPrice">39,900원</p>
+					</div>
+				</div>
+
+				<div class="mainLastBoxLast">
+					<img class="mainLastImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+					<div class="mainNewTxtLast">
+						<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아]군만두</p></a>
+						<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+							<span style="color:#FA622F;">15%</span>
+							&nbsp;10,880원</p></a>
+						<p class="mainNewTxtOriginPrice">12,800원</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- 미니 배너 -->
+			<div class="miniBanner">
+				<img style="width: 70em; margin-top: 83px;" src="https://img-cf.kurly.com/banner/random-band/pc/img/80bdeef9-425c-4dfe-9a4e-dad6be7ac321">
+			</div>
+
+			<!-- 후기 많은 순 -->
+			<div class ="newProduct">
+				<div class ="wrapper">
+					<a href="#" style="text-decoration: none;"><h2 class="mainTitle">베스트 후기 상품</h2>
+						<img class="titleBtn" src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
+				</div>
+				<!-- 신상품 목록 -->
+				<div class="mainNew">
+					<div class="mainNewBox">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+						<div class="mainNewTxt">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아] 군만두</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">15%</span>
+								&nbsp;10,880원</p></a>
+							<p class="mainNewTxtOriginPrice">12,800원</p>
+						</div>
+					</div>
+
+					<div class="mainNewBox">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1618293835769l0.jpg">
+						<div class="mainNewTxt">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[OXO] 치킨 스톡 튜브</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">20%</span>
+								&nbsp;4,080원</p></a>
+							<p class="mainNewTxtOriginPrice">5,100원</p>
+						</div>
+					</div>
+
+					<div class="mainNewBox">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1637927974776l0.jpg">
+						<div class="mainNewTxt">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[남도우애] 무항생제 1++ 한우 채끝 구이용 200g (냉장)</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">30%</span>
+								&nbsp;27,930원</p></a>
+							<p class="mainNewTxtOriginPrice">39,900원</p>
+						</div>
+					</div>
+
+					<div class="mainNewBoxLast">
+						<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+						<div class="mainNewTxtLast">
+							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아]군만두</p></a>
+							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
+								<span style="color:#FA622F;">15%</span>
+								&nbsp;10,880원</p></a>
+							<p class="mainNewTxtOriginPrice">12,800원</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+
+	<!-- Footer -->
+	<section id="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-8 col-12-medium">
+					<section>
+						<header>
+							<h2>Blandit nisl adipiscing</h2>
+						</header>
+						<ul class="dates">
+							<li>
+								<span class="date">Jan <strong>27</strong></span>
+								<h3><a href="#">Lorem dolor sit amet veroeros</a></h3>
+								<p>Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem consequat etiam.</p>
+							</li>
+							<li>
+								<span class="date">Jan <strong>23</strong></span>
+								<h3><a href="#">Ipsum sed blandit nisl consequat</a></h3>
+								<p>Blandit phasellus lorem ipsum dolor tempor sapien tortor hendrerit adipiscing feugiat lorem.</p>
+							</li>
+							<li>
+								<span class="date">Jan <strong>15</strong></span>
+								<h3><a href="#">Magna tempus lorem feugiat</a></h3>
+								<p>Dolore consequat sed phasellus lorem sed etiam nullam dolor etiam sed amet sit consequat.</p>
+							</li>
+							<li>
+								<span class="date">Jan <strong>12</strong></span>
+								<h3><a href="#">Dolore tempus ipsum feugiat nulla</a></h3>
+								<p>Feugiat lorem dolor sed nullam tempus lorem ipsum dolor sit amet nullam consequat.</p>
+							</li>
+							<li>
+								<span class="date">Jan <strong>10</strong></span>
+								<h3><a href="#">Blandit tempus aliquam?</a></h3>
+								<p>Feugiat sed tempus blandit tempus adipiscing nisl lorem ipsum dolor sit amet dolore.</p>
+							</li>
+						</ul>
+					</section>
+				</div>
+				<div class="col-4 col-12-medium">
+					<section>
+						<header>
+							<h2>Nullam enim vel ligula?</h2>
+						</header>
+						<a href="#" class="image featured"><img src="images/pic10.jpg" alt="" /></a>
+						<p>
+							Quam ut Varius sed curae, purus aenean augue erat nullam montes col Primis Cras lectus cep enim luctus Sapien Auctor Tortor dictum at amet nisl ut non et ata mus ligula mi libero ornare rutrum nibh lorem rutrum at congue vis!
+						</p>
+						<footer>
+							<ul class="actions">
+								<li><a href="#" class="button">Find out more</a></li>
+							</ul>
+						</footer>
+					</section>
+				</div>
+				<div class="col-4 col-6-medium col-12-small">
+					<section>
+						<header>
+							<h2>Tempus consequat</h2>
+						</header>
+						<ul class="divided">
+							<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
+							<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
+							<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
+							<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
+							<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
+							<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
+						</ul>
+					</section>
+				</div>
+				<div class="col-4 col-6-medium col-12-small">
+					<section>
+						<header>
+							<h2>Ipsum et phasellus</h2>
+						</header>
+						<ul class="divided">
+							<li><a href="#">Lorem ipsum dolor sit amet sit veroeros</a></li>
+							<li><a href="#">Sed et blandit consequat sed tlorem blandit</a></li>
+							<li><a href="#">Adipiscing feugiat phasellus sed tempus</a></li>
+							<li><a href="#">Hendrerit tortor vitae mattis tempor sapien</a></li>
+							<li><a href="#">Sem feugiat sapien id suscipit magna felis nec</a></li>
+							<li><a href="#">Elit class aptent taciti sociosqu ad litora</a></li>
+						</ul>
+					</section>
+				</div>
+				<div class="col-4 col-12-medium">
+					<section>
+						<header>
+							<h2>Vitae tempor lorem</h2>
+						</header>
+						<ul class="social">
+							<li><a class="icon brands fa-facebook-f" href="#"><span class="label">Facebook</span></a></li>
+							<li><a class="icon brands fa-twitter" href="#"><span class="label">Twitter</span></a></li>
+							<li><a class="icon brands fa-dribbble" href="#"><span class="label">Dribbble</span></a></li>
+							<li><a class="icon brands fa-tumblr" href="#"><span class="label">Tumblr</span></a></li>
+							<li><a class="icon brands fa-linkedin-in" href="#"><span class="label">LinkedIn</span></a></li>
+						</ul>
+						<ul class="contact">
+							<li>
+								<h3>Address</h3>
+								<p>
+									Untitled Incorporated<br />
+									1234 Somewhere Road Suite<br />
+									Nashville, TN 00000-0000
+								</p>
+							</li>
+							<li>
+								<h3>Mail</h3>
+								<p><a href="#">someone@untitled.tld</a></p>
+							</li>
+							<li>
+								<h3>Phone</h3>
+								<p>(800) 000-0000</p>
+							</li>
+						</ul>
+					</section>
+				</div>
+				<div class="col-12">
+
+					<!-- Copyright -->
+					<div id="copyright">
+						<ul class="links">
+							<li>&copy; Untitled. All rights reserved.</li>
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+</body>
+</html>
