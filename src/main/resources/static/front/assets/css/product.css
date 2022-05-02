@@ -191,7 +191,7 @@ body {
 }
 
 #goodsList .list_goods .thumb .btn_cart {
-    background: url(https://res.kurly.com/pc/ico/2010/ico_cart.svg) no-repeat 50% 50%;
+    background: url(../../images/장바구니.png) no-repeat 50% 50%;
     background-size: 45px 45px;
 }
 
