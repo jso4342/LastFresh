@@ -211,11 +211,12 @@
         display: block;
     }
 
-    /*input[type=checkbox]{*/
-    /*    position: absolute;*/
-    /*    z-index: -1;*/
-    /*    opacity: 0;*/
-    /*}*/
+    input[type=checkbox]{
+        /*position: absolute;*/
+        /*z-index: -1;*/
+        /*opacity: 0;*/
+        cursor: pointer;
+    }
     /*input[type=checkbox]:checked+.icon{*/
     /*    background: url(https://res.kurly.com/pc/service/common/2006/ico_checkbox_checked.svg) no-repeat 50% 50%;*/
     /*    background-size: 24px 24px;*/
@@ -231,13 +232,7 @@
         background-size: 24px 24px;
         vertical-align: -7px;
     }
-    input[type=checkbox]+label:before{
-        background-color: red;
-    }
 
-    input[type=checkbox]+label:after{
-        background-color: red;
-    }
     label {
         cursor: default;
     }
@@ -325,6 +320,8 @@
         line-height: 40px;
         color: #333;
         letter-spacing: -1px;
+        margin-top: -40px;
+        margin-left: 41px;
     }
 
     div.box_tbl {
@@ -370,7 +367,14 @@
         transform: translateX(-50%) translateY(-50%);
     }
     button.btn_ok{
-
+        cursor: pointer;
+        position: absolute;
+        right: 24px;
+        top: 30px;
+        width: 32px;
+        height: 32px;
+        border: 0;
+        background: url(https://res.kurly.com/pc/ico/1908/ico_layer_close.png) no-repeat 0 0;
     }
     tr.agree{
         border-top: 1px solid;
@@ -394,8 +398,51 @@
         border: 1px solid #DA291C;
         background-color: #DA291C;
         color: #fff;
-
     }
+
+    .box_tbl::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    }
+    /*————체크 박스———*/
+
+    [type=checkbox] {
+        width: 1.5rem;
+        height: 1.5rem;
+        color: #DA291C;
+        vertical-align: sub;
+        -webkit-appearance: none;
+        background: none;
+        border: 0;
+        outline: 0;
+        flex-grow: 0;
+        border-radius: 50%;
+        background-color: white;
+        transition: background 300ms;
+        cursor: pointer;
+    }
+
+    [type=checkbox]::before {
+        content: "";
+        color: transparent;
+        display: block;
+        width: inherit;
+        height: inherit;
+        border-radius: inherit;
+        border: 0;
+        background-color: transparent;
+        background-size: contain;
+        box-shadow: inset 0 0 0 1px #CCD3D8;
+    }
+
+    [type=checkbox]:checked {
+        background-color: currentcolor;
+    }
+
+    [type=checkbox]:checked::before {
+        box-shadow: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+    }
+
 </style>
 <body>
 <!--style="margin-bottom:60px"-->
@@ -506,7 +553,7 @@
                 <div class="require_bg"></div>
                 <div class="allCheck">
                     <label class="check_agree">
-                        <input type="checkbox">
+                        <input type="checkbox" name="checkAll" id="allCheck">
                         <span class="agreeicon"></span>
                         전체 동의합니다.
                     </label>
@@ -515,7 +562,7 @@
                 </div>
                 <div class="check_view">
                     <label class="check_agree2">
-                        <input type="checkbox" required label="이용약관">
+                        <input type="checkbox" name="check" required label="이용약관">
                         <span class="agreeicon"></span>
                         이용약관 동의
                         <span class="sub">(필수)</span>
@@ -527,6 +574,7 @@
                 <!--이용약관 모달창-->
                 <div class="modal">
                     <div class="modal_body">
+                        <button type="button" class="btn_ok"></button>
                         <h4 class="tit_layer">
                             이용약관
                             <span class="sub">(필수)</span>
@@ -575,13 +623,13 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn_ok">확인</button>
+<!--                        <button type="button" class="btn_ok">확인</button>-->
                     </div>
                 </div>
                 <!--개인정보 수집이용 동의-->
                 <div class="check_view">
                     <label class="check_agree2">
-                        <input type="checkbox" required label="이용약관">
+                        <input type="checkbox" name="check" required label="이용약관">
                         <span class="agreeicon"></span>
                         개인정보 수집이용 동의
                         <span class="sub">(필수)</span>
@@ -593,6 +641,7 @@
                 <!--개인정보 수집이용 동의 모달창-->
                 <div class="modal">
                     <div class="modal_body">
+                        <button type="button" class="btn_ok">확인</button>
                         <h4 class="tit_layer">
                             이용약관
                             <span class="sub">(필수)</span>
@@ -641,13 +690,13 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn_ok">확인</button>
+                        <!--<button type="button" class="btn_ok">확인</button>-->
                     </div>
                 </div>
                 <!--개인정보 수집이용 동의(선택)-->
                 <div class="check_view">
                     <label class="check_agree2">
-                        <input type="checkbox" required label="이용약관">
+                        <input type="checkbox" name="check" required label="이용약관">
                         <span class="agreeicon"></span>
                         개인정보 수집이용 동의
                         <span class="sub">(선택)</span>
@@ -668,6 +717,7 @@
         가입하기
     </button>
 </div>
+
 </body>
 <script>
 
@@ -679,8 +729,25 @@
     modal.addEventListener('click', ()=>{
         modal.style.display='none';
     });
-
     //modal.forEach(element=>)
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!--체크박스-->
+<script>
+    $(document).ready(function() {
+        $("#allCheck").click(function() {
+            if($("#allCheck").is(":checked")) $("input[name=check]").prop("checked", true);
+            else $("input[name=check]").prop("checked", false);
+        });
+
+        $("input[name=check]").click(function() {
+            var total = $("input[name=check]").length;
+            var checked = $("input[name=check]:checked").length;
+
+            if(total != checked) $("#allCheck").prop("checked", false);
+            else $("#allCheck").prop("checked", true);
+        });
+    });
+</script>
 </html>
