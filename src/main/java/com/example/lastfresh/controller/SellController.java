@@ -13,4 +13,7 @@ public class SellController {
     @GetMapping("/pos")
     public void pos(){}
 
+    @GetMapping("/sellMain")
+    public void sellMain(){}
+
 }
