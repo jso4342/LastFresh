@@ -57,11 +57,6 @@ $minusBtn.on("click", function () {
     $cookingTime.find('.cookingTime-real').text(cookingTime);
 });
 
-/* 클릭시 색 변화 */
-function handleClick(e) {
-
-}
-
 $.each($sideBars, function (i, e) {
     let index = 0;
     $(e).click(function () {
