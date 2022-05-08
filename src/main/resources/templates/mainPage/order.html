@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>라스트프레시 | 주문서</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../static/front/assets/css/main.css">
+    <link rel="stylesheet" href="/front/assets/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="../../static/front/assets/css/cartOrder.css">
+    <link rel="stylesheet" href="/front/assets/css/cartOrder.css">
 </head>
 <style>
     *{
@@ -36,7 +36,12 @@
                             </div>
                         </div>
                         <div class="ea">1개</div>
-                        <div class="info_price"><span class="num"><span class="price">3,600원</span></span></div>
+                        <div class="info_price">
+                            <span class="num">
+                                <span class="price" th:text="|${#numbers.formatInteger(13600, 0, 'COMMA')}|"></span>
+                                <span class="myWon">원</span>
+                            </span>
+                        </div>
                     </li>
 
                     <li>
@@ -47,7 +52,16 @@
                             </div>
                         </div>
                         <div class="ea">1개</div>
-                        <div class="info_price"><span class="num"><span class="price">3,600원</span></span></div>
+                        <div class="info_price">
+                            <span class="num">
+                                <span class="price" th:text="|${#numbers.formatInteger(3600, 0, 'COMMA')}|"></span>
+                                <span class="myWon">원</span>
+                            </span>
+                        </div>
+
+
+
+
                     </li>
 
                     <li>
@@ -58,7 +72,12 @@
                             </div>
                         </div>
                         <div class="ea">1개</div>
-                        <div class="info_price"><span class="num"><span class="price">3,600원</span></span></div>
+                        <div class="info_price">
+                            <span class="num">
+                                <span class="price" th:text="|${#numbers.formatInteger(3600, 0, 'COMMA')}|"></span>
+                                <span class="myWon">원</span>
+                            </span>
+                        </div>
                     </li>
                 </ul>
 
@@ -110,21 +129,28 @@
                             <div id="orderitem_money_info">
                                 <dl class="amount fst">
                                     <dt class="tit">주문금액</dt>
-                                    <dd class="price"><span id="productsTotalPrice">11,300</span> 원</dd>
+                                    <dd class="totalPrice">
+                                        <span id="productsTotalPrice">
+                                        </span>
+                                        <span> 원</span></dd>
                                 </dl>
+                                <!--
                                 <dl class="amount sub">
                                     <dt class="tit">상품금액</dt>
-                                    <dd class="price"><span id="paper_goodsprice">11,300</span> 원</dd>
+                                    <dd class="price"><span id="paper_goodsprice" th:text="|${#numbers.formatInteger(10000, 0, 'COMMA')}|"></span><span> 원</span></dd>
                                 </dl>
                                 <dl class="amount sub">
                                     <dt class="tit">상품할인금액</dt>
-                                    <dd class="price sales_area">
-                                        <span id="special_discount_amount" class="normal">0</span> 원</dd>
+                                    <dd class="price sales_area"><span id="special_discount_amount" th:text="|${#numbers.formatInteger(10000, 0, 'COMMA')}|"></span><span> 원</span></dd>
                                 </dl>
+                                -->
                                 <dl class="amount lst">
                                     <dt class="tit">최종결제금액</dt>
-                                    <dd class="price">
-                                        <span id="paper_settlement">14,300</span><span class="won">원</span>
+                                    <dd class="totalPrice">
+                                        <span id="paper_settlement">
+                                        </span>
+                                        <span> 원</span>
+                                        <input type="hidden" value="" id="finalPrice" name="finalPrice">
                                     </dd>
                                 </dl>
                             </div>
@@ -136,21 +162,21 @@
                         <h2 class="tit_section" id="titFocusMethod">결제 수단</h2>
                         <table class="goodsinfo_table tbl_left">
                             <tbody>
-                                <tr>
-                                    <th style="margin-top: 10px;">결제수단 선택</th>
-                                    <td>
-                                        <div class="radio-group" Style="margin: 13px 0;">
-                                            <input type="radio" id="card" name="selector"><label for="card" class="myLabel">신용카드</label>
-                                            <input type="radio" id="bank" name="selector"><label for="bank" class="myLabel">실시간 계좌이체</label>
-                                            <input type="radio" id="phone" name="selector"><label for="phone" class="myLabel">휴대폰</label>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="txt_notice" colspan="2">
-                                        <ul><li class ="noticeLi">※ 고객님은 안전거래를 위해 현금 등으로 결제시 구매안전(에스크로) 서비스를 이용하실 수 있습니다.</li></ul>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <th style="margin-top: 10px;">결제수단 선택</th>
+                                <td>
+                                    <div class="radio-group" Style="margin: 13px 0;">
+                                        <input type="radio" id="card" name="selector"><label for="card" class="myLabel">신용카드</label>
+                                        <input type="radio" id="bank" name="selector"><label for="bank" class="myLabel">실시간 계좌이체</label>
+                                        <input type="radio" id="phone" name="selector"><label for="phone" class="myLabel">휴대폰</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="txt_notice" colspan="2">
+                                    <ul><li class ="noticeLi">※ 고객님은 안전거래를 위해 현금 등으로 결제시 구매안전(에스크로) 서비스를 이용하실 수 있습니다.</li></ul>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -167,13 +193,14 @@
                     <li>미성년자가 결제 시 법정대리인이 그 거래를 취소할 수 있습니다.</li>
                     <li>상품 미배송 시, 결제하신 수단으로 환불됩니다.</li>
                 </ul><br><br>
-             </div>
+            </div>
         </div>
     </div>
 </div>
 
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     var width = 500; //팝업의 너비
     var height = 600; //팝업의 높이
@@ -201,5 +228,27 @@
             top: (window.screen.height / 2) - (height / 2)
         });
     }
+
+    var sum = 0;
+
+    //최종 결제 금액을 계산하는 function
+    function doSum() {
+        $('.price').each(function () {
+            console.log($(this).text());
+            sum += parseInt($(this).text().replace(",", ""));
+        });
+        console.log("my Sum : " + sum);
+
+        $('#productsTotalPrice').text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+        $('#paper_settlement').text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+        $('#finalPrice').val(sum);
+
+    }
+
+    $(document).ready(function() {
+        doSum();
+    });
+
+
 </script>
 </html>

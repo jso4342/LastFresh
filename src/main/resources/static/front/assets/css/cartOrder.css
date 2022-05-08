@@ -83,8 +83,15 @@ input::-webkit-input-placeholder {
 }
 
 .rightBoxContainer{
-    padding-left:10px;
-    background-color: #999999;
+    display: flex;
+    padding-left: 25px;
+    padding-top: 53px;
+    text-align: left;
+}
+
+.finalPrice{
+    text-align: right;
+
 }
 
 .selectAll{
@@ -261,13 +268,19 @@ span#paper_goodsprice {
 }
 
 .order_goodslist .info_price .price {
-    display: block;
+
     font-weight: 600;
     font-size: 16px;
     color: #000;
     line-height: 24px;
     white-space: nowrap;
     text-align: right;
+}
+
+
+.myWon{
+    font-size: 16px;
+    font-weight: 600;
 }
 
 .pickupBtn {
@@ -308,9 +321,9 @@ span#paper_goodsprice {
     font-weight: 400;
 }
 
-input[type="button"] {
+input[type="button"].quantity {
     background: white;
-    color: black;
+    color: black !important;
     width: 22px;
     font-size: 22px;
     font-weight: 400;
@@ -377,18 +390,18 @@ input[type="button"] {
 #orderitem_money_info .lst{margin:17px 0 0 0;padding-top:15px;border-top:1px solid #eee}
 #orderitem_money_info .lst .tit{padding-top:2px}
 #orderitem_money_info .tit,
-#orderitem_money_info .lst .price .won,
-#orderitem_money_info .price{font:normal 16px/24px 'Noto Sans';vertical-align:top}
-#orderitem_money_info .lst .price .won{vertical-align:2px}
+#orderitem_money_info .lst .totalPrice .won,
+#orderitem_money_info .totalPrice{font:normal 16px/24px 'Noto Sans';vertical-align:top}
+#orderitem_money_info .lst .totalPrice .won{vertical-align:2px}
 #orderitem_money_info .tit{float:left;width:96px}
-#orderitem_money_info .price{float:right;width:144px;text-align:right}
+#orderitem_money_info .totalPrice{float:right;width:144px;text-align:right}
 
 #orderitem_money_info .sub{padding-top:8px}
 #orderitem_money_info .sub .tit,
-#orderitem_money_info .price .normal,
-#orderitem_money_info .sub .price{font-weight:normal;font-size:14px;color:#999;line-height:20px}
+#orderitem_money_info .totalPrice .normal,
+#orderitem_money_info .sub .totalPrice{font-weight:normal;font-size:14px;color:#999;line-height:20px}
 #orderitem_money_info .sub .tit{padding-left:16px;background:url(https://res.kurly.com/pc/service/order/2011/ico_sub_price_dot.svg) no-repeat 0 0;background-size:16px 20px}
-#orderitem_money_info .lst .price{font-weight:bold;font-size:22px;line-height:28px}
+#orderitem_money_info .lst .totalPrice{font-weight:bold;font-size:22px;line-height:28px}
 
 
 /* 주문서 - 확인사항 */
@@ -486,4 +499,10 @@ input#zipcode {
 
 .addBox{
     margin: 10px 0;
+}
+
+.won2{
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
 }
