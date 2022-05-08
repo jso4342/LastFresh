@@ -2,13 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
     <title>lastFreshMyPage_OrderHistory</title>
     <link rel="stylesheet" href="assets/css/myPageMenuBar.css">
     <link rel="stylesheet" href="assets/css/ReviewWrite.css">
@@ -34,6 +27,7 @@
     <div class="page_section section_write">
         <div class="head_aticle">
             <h2 class="tit">후기 작성</h2>
+            <a href="" class="link_back" role="button"><span class="screen_out"></span></a>
         </div>
         <div class="head_section layer_type">
             <span class="link">
@@ -56,7 +50,7 @@
                 </ul>
                 <button type="button" class="btn_ok">확인</button>
                 <button type="button" class="btn_close">
-                    <span class="screen_out">레이어 닫기</span>
+                    <span class="screen_out"></span>
                 </button>
             </div>
         </div>
@@ -124,6 +118,24 @@
     </div>
 </div>
 </body>
-</html>
-</body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('.link').each(function (i,btn) {
+        $(btn).on("click",function () {
+            $($(".layer").get(i)).show();
+        })
+    })
+
+    $('.btn_ok').each(function (i,ok) {
+        $(ok).on("click",function () {
+            $($(".layer").get(i)).hide();
+        })
+    })
+
+    $('.btn_close').each(function (i,close) {
+        $(close).on("click",function () {
+            $($(".layer").get(i)).hide();
+        })
+    })
+</script>
 </html>
