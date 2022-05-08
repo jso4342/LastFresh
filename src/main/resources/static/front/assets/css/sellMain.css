@@ -1,12 +1,15 @@
 /*반응형*/
 @media screen and (max-width:1000px) {
+    /* nav bar */
     #snb {
         float: left !important;
         width: 100% !important;
     }
+
     #snb .tit_snb{
         display: none;
     }
+
     #snb .list_menu li a {
         display: block !important;
         overflow: hidden !important;
@@ -34,13 +37,15 @@
         color: #DA291C !important;
     }
 
+
+    /* MainSell */
     .page_myPage.myPage_type1 .page_section {
         float: left !important;
         width: 100% !important;
         padding: 29px 19px;
     }
 
-    .order-list {
+    .order-list-wrapper.orderMain {
         display: none;
     }
 
@@ -83,8 +88,88 @@
     #snb .list_menu li {
         border-bottom: 1px solid #7c7c7c !important;
     }
+
+
+
+    /*MenuList*/
+    .sellHead_section.link_type button {
+        display: none;
+    }
+
+    .section_orderview .sellHead_section.sell-menuList-media .tit {
+        font-size: 44px;
+        color: #333;
+        letter-spacing: -.4px;
+        margin-top: 8px;
+    }
+
+    .blank_article{
+        display: none;
+    }
+
+    .menuTable {
+        width: 100%;
+    }
+
+    .menuTable .tHead .Thumb, .menuTable .tHead .method{
+        display: none;
+    }
+
+    .menuRegister-list .menuThumb, .menuRegister-list .menuMethod {
+        display: none;
+    }
+
+    .tHead {
+        font-size: 37px;
+    }
+
+    .colgroup-span-1 {
+        width: 326px !important;
+    }
+
+    .colgroup-span-2 {
+        width: 200px !important;
+    }
+
+    .colgroup-span-3 {
+        width: 200px !important;
+    }
+
+    .colgroup-span-4 {
+        width: auto !important;
+    }
+
+    .colgroup-span-5, .colgroup-span-6, .colgroup-span-7 {
+        display: none;
+    }
+
+    .menu-btn-wrapper {
+        display: none !important;
+    }
+
+    .menuRegister-list {
+        font-size: 33px;
+    }
+
+    span.media-info {
+        display: inline-block;
+        margin-top: 8px;
+        color: #ff786e;
+        font-size: 29px;
+    }
+
+    .sellHead_section.sellHead_section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-bottom: 2px solid #333;
+    }
+
 }
 
+.media-info {
+    display: none;
+}
 .order-list-wrapper-media {
     display: none;
 }
@@ -109,9 +194,10 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     color: #333;
     letter-spacing: -.5px;
 }
-#Type {
+
+.Type-wrapper {
     position: relative;
-    padding: 0 0 21px;
+    padding: 0 0 21px !important;
 }
 .section_orderview .head_section .tit {
     font-size: 20px;
