@@ -234,3 +234,49 @@ img, video, canvas {
 .page_aticle .tbl th, .page_aticle .tbl td {
     word-break: break-all;
 }
+@media screen and (max-width:1000px){
+    #snb {
+        float: left !important;
+        width: 100% !important;
+    }
+    #snb .tit_snb{
+        display: none;
+    }
+    #snb .list_menu li a {
+        display: block !important;
+        overflow: hidden !important;
+        padding: 28px 0 16px 20px !important;
+        background: #fff url(https://res.kurly.com/pc/ico/2008/ico_arrow_6x11.svg) no-repeat 97% 52% !important;
+        background-size: 14px 23px !important;
+        font-size: 34px !important;
+        color: #666 !important;
+        line-height: 37px !important;
+        letter-spacing: -.3px !important;
+        height: 98px !important;
+    }
+    #snb .list_menu li.on a, #snb .list_menu li a:hover {
+        background: #fafafa url(https://cdn.discordapp.com/attachments/969471931575320587/972087200621690880/590706d067c9b9b2.png) no-repeat 97% 52% !important;
+        background-size: 14px 23px !important;
+        font-weight: 700 !important;
+        color: #DA291C !important;
+    }
+    .link_back {
+        left: 0;
+        top: 0;
+        width: 150px;
+        height: 104px;
+        background: url(https://res.kurly.com/mobile/service/common/2006/ico_navi_back.svg?v=1) no-repeat 6px 81%;
+        background-size: 134px 141px;
+    }
+    .head_aticle {
+        display: flex;
+        font-size: 31px;
+        padding:0px !important;
+    }
+    .section_review .tab_menu {
+        overflow: inherit;
+    }
+    .section_review .list_before {
+        padding-top: 69px;
+    }
+}
