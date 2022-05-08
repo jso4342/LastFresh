@@ -36,7 +36,7 @@ ol, ul {
     border-bottom: 1px solid #f2f2f2;
 }
 #snb .list_menu li.on a, #snb .list_menu li a:hover {
-    background: #fafafa url(https://res.kurly.com/pc/ico/2008/ico_arrow_6x11_on.svg) no-repeat 174px 52%;
+    background: #fafafa url(https://cdn.discordapp.com/attachments/969471931575320587/972087200621690880/590706d067c9b9b2.png) no-repeat 174px 52%;
     background-size: 6px 11px;
     font-weight: 700;
     color: #DA291C;
@@ -56,4 +56,10 @@ a{
     background-color: transparent;
     text-decoration: none;
     color: inherit
+}
+/*반응형*/
+@media screen and (max-width:1000px) {
+    #snb .tit_snb{
+        display: none;
+    }
 }

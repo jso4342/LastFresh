@@ -43,10 +43,10 @@ button, html input[type=button], input[type=reset], input[type=submit] {
 }
 .section_orderview .link_type .link a {
     padding-right: 11px;
-    background: url(https://res.kurly.com/pc/ico/2011/ico_outlink.svg) no-repeat 100% 50%;
+    background: url(https://cdn.discordapp.com/attachments/969471931575320587/972087200621690880/590706d067c9b9b2.png) no-repeat 100% 50%;
     background-size: 6px 9px;
     font-size: 12px;
-    color: #5f0080;
+    color: #DA291C;
     line-height: 22px;
 }
 .orders_form {
@@ -137,13 +137,13 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     margin-top: 0;
 }
 #After {
-    border: 1px solid #512771;
-    background-color: #5f0080;
+    border: 1px solid #DA291C;
+    background-color: #DA291C;
     color: #fff;
 }
 .section_orderview .tbl_type1 .btn_cart {
-    border: 1px solid #5f0080;
-    color: #5f0080;
+    border: 1px solid #DA291C;
+    color: #DA291C;
 }
 .section_orderview .tbl_type1 .btn {
     display: block;
@@ -169,11 +169,12 @@ btn{
     overflow: hidden;
     padding-left: 12px;
 }
-#cartPutAll {
-    border: 1px solid #5f0080;
-    background-color: #fff;
-    color: #5f0080;
-}
+/*주문취소 가능시 변경스타일*/
+/*#cartPutAll {*/
+/*    border: 1px solid #5f0080;*/
+/*    background-color: #fff;*/
+/*    color: #5f0080;*/
+/*}*/
 .section_orderview .order_cancel .btn {
     float: left;
     width: 200px;
@@ -246,7 +247,7 @@ btn{
 .section_orderview .order_delivery .detail .search {
     float: right;
     margin-left: 13px;
-    color: #5f0080;
+    color: #DA291C;
     text-decoration: underline;
 }
 .section_orderview .head_section {
@@ -283,4 +284,18 @@ btn{
     color: #333;
     line-height: 24px;
     vertical-align: top;
+}
+
+/*반응형*/
+@media (max-width: 1000px) {
+    /*#viewOrderList{*/
+    /*    display: none !important;*/
+    /*}*/
+    #snb {
+        display: none;
+    }
+    .page_myPage.myPage_type1 .page_section {
+        float: right;
+        width: 100%;
+    }
 }
