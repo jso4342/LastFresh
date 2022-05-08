@@ -37,9 +37,9 @@
     background-color: #fff;
 }
 .section_review .tab_menu .on a {
-    border-bottom: 2px solid #5f0080;
+    border-bottom: 2px solid #DA291C;
     font-weight: 700;
-    color: #5f0080;
+    color: #DA291C;
 }
 .section_review .tab_menu a {
     display: block;
@@ -139,8 +139,8 @@ img, video, canvas {
     margin-top: -17px;
     width: 100px;
     height: 34px;
-    border: 1px solid #512771;
-    background-color: #5f0080;
+    border: 1px solid #DA291C;
+    background-color: #DA291C;
     font-size: 12px;
     color: #fff;
     line-height: 32px;
