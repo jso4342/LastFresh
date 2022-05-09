@@ -506,3 +506,201 @@ input#zipcode {
     font-weight: 500;
     color: #333;
 }
+.tax_absolute{
+    display: block;
+}
+
+.tax_absoluteMedia{
+    display: none;
+}
+.back-icon{
+    display: none;
+}
+.open-icon{
+    display: none;
+}
+@media screen and (max-width: 1000px) {
+    .back-icon{
+        display: block;
+    }
+    .open-icon{
+        display: block;
+    }
+    #wrapper {
+        width: 22em;
+    }
+    .back-icon{
+        margin: -11px 110px 0 -20px;
+    }
+    #title {
+        margin-top: 11px;
+        margin-bottom: 0 !important;
+        display: flex;
+    }
+    .order_goodslist .name {
+        height: 0%;
+        margin-top: 37px;
+        width: 532px;
+        padding-right: 0;
+    }
+    .order_goodslist .name .inner_name {
+        display: table-cell;
+        font-weight: 600;
+        font-size: 12px;
+        color: #000;
+        line-height: 24px;
+        vertical-align: middle;
+    }
+    .order-wrap{
+        display: flex;
+    }
+    .order_goodslist .thumb {
+        overflow: hidden;
+        float: left;
+        width: 189px;
+        height: 78px;
+        margin: 27px 3px 0 0;
+        background-color: #f4f4f4;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+        background-size: cover;
+    }
+    .order_goodslist .ea {
+        width: 100px;
+        padding-top: 52px;
+        font-size: 14px;
+        color: #333;
+        line-height: 24px;
+        text-align: center;
+        letter-spacing: -.22px;
+    }
+    .order_goodslist .info_price .price {
+        font-weight: 600;
+        font-size: 15px;
+        color: #000;
+        line-height: 24px;
+        white-space: nowrap;
+        text-align: right;
+    }
+    .order_goodslist .info_price {
+        display: table;
+        float: left;
+        width: 215px;
+        height: 100%;
+    }
+    .tit_section {
+        padding: 0;
+        font-weight: 600 !important;
+        font-size: 14px;
+        color: #333;
+        line-height: 29px;
+        clear: both;
+        margin-top: -3px;
+        width: 78px;
+    }
+
+    .list_product{
+        border-top: 1px solid #333;
+    }
+    .toggleBtn{
+        display:flex;
+        margin-top: 7px;
+    }
+    .open-icon{
+        padding: 2px 0 0 218px;
+    }
+    .user_form input[type="text"] {
+        width: 243px;
+        height: 44px;
+        padding: 12px 16px;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        background-color: #fff;
+        font-size: 14px;
+        color: #333;
+        letter-spacing: -0.5px;
+        outline: none;
+    }
+    .order_section .section_crux {
+        float: left;
+        width: 69px;
+        padding-top: 19px;
+        font-weight: bold;
+        font-size: 14px;
+        color: #333;
+        line-height: 24px;
+        letter-spacing: -0.32px;
+    }
+    input[type="button"].addressFinder {
+        cursor: pointer !important;
+        display: block !important;
+        width: 34% !important;
+        font-weight: 700 !important;
+        font-size: 12px !important;
+        line-height: 34px !important;
+        background: #fffaf9 !important;
+        border: solid 1px #DA291C !important;
+        height: auto !important;
+        padding: 2px !important;
+        margin-left: 10px !important;
+        color: #DA291C !important;
+    }
+    input#zipcode {
+        width: 157px;
+    }
+    .myLabel {
+        color: black;
+        display: inline-block;
+        cursor: pointer;
+        padding: 0px;
+        margin: 0px;
+        width: 85px;
+        text-align: center !important;
+        margin-right: -4px;
+        font-size: 10px;
+        font-weight: bolder;
+    }
+    .goodsinfo_table th {
+        width: 77px;
+        font-weight: 600;
+        font-size: 12px;
+        color: #333;
+        line-height: 24px;
+        letter-spacing: -0.32px;
+        vertical-align: top;
+    }
+    .tbl_left {
+        width: 329px;
+    }
+    .tax_absolute .inner_sticky {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 94%;
+        margin: -30px 36px 0 0;
+    }
+    .tax_absolute {
+        position: absolute;
+        height: 0;
+        width: 100% !important;
+        margin-top: 185px !important;
+        top: 167px;
+    }
+    input.btn_payment {
+        padding: 0.65em 5em;
+        border-radius: 3px;
+    }
+    .list_product{
+        margin-top: 9px;
+    }
+    .tax_absoluteMedia{
+        display: block;
+        margin-top: 68px;
+    }
+    .tax_absolute{
+        display: none;
+    }
+    .before{
+        display: none;
+    }
+}
