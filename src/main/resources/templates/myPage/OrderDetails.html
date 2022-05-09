@@ -24,7 +24,7 @@
           </ul>
         </div>
       </div>
-      <header id="header" class="header" style="top: 38px;">
+      <header id="header" class="header">
         <h1 class="logo">
           <span class="tit">주문내역 상세</span>
         </h1>
@@ -37,18 +37,13 @@
         <div class="head_aticle">
           <h2 class="tit">주문 내역 상세</h2>
         </div>
-        <div class="head_section link_type" id="Type">
+        <div class="box_type">
+        <div class="head_section link_type on" id="Type">
           <h3 class="tit">주문번호 9999999999</h3>
         </div>
         <form class="orders_form" name="frmOrdView" method="post">
           <input type="hidden" name="mode" />
-          <input
-            type="checkbox"
-            name="include"
-            checked="checked"
-            value=""
-            class="chk_cart"
-          />
+          <input type="checkbox" name="include" checked="checked" value="" class="chk_cart"/>
           <table class="tbl tbl_type1">
             <colgroup>
               <col style="width: 80px" />
@@ -59,18 +54,13 @@
             <tbody>
               <tr>
                 <td class="thumb">
-                  <a
-                    href="#"
-                    style="
+                  <a href="#" style="
                       background-image: url(//img-cf.kurly.com/shop/data/goods/1604379287477s0.jpg);
-                    "
-                  ></a>
+                    "></a>
                 </td>
                 <td class="info">
                   <div class="name">
-                    <a href="#" class="link"
-                      >[포크밸리] 한돈 대패 삼겹살 300g (냉동)</a
-                    >
+                    <a href="#" class="link">[포크밸리] 한돈 대패 삼겹살 300g (냉동)</a>
                   </div>
                   <div class="desc">
                     <span class="price">7,900원</span>
@@ -79,18 +69,8 @@
                 </td>
                 <td class="progress end">배송완료</td>
                 <td class="action">
-                  <a
-                    href="#none"
-                    onclick="#"
-                    class="btn btn_after ga_tracking_event"
-                    id="After"
-                    >후기쓰기</a
-                  >
-                  <button
-                    type="button"
-                    class="btn btn_cart ga_tracking_event"
-                    onclick="#"
-                  >
+                  <a href="#none" onclick="#" class="btn btn_after ga_tracking_event" id="After">후기쓰기</a>
+                  <button type="button" class="btn btn_cart ga_tracking_event" onclick="#">
                     장바구니 담기
                   </button>
                 </td>
@@ -98,7 +78,8 @@
             </tbody>
           </table>
         </form>
-        <div id="orderCancel" class="order_cancel">
+        </div>
+        <div id="orderCancel1" class="order_cancel">
           <span class="inner_cancel">
             <button type="button" class="btn btn_cancel off">
               전체 상품 주문 취소
@@ -108,7 +89,7 @@
             주문취소는 ‘배송준비중’ 이전 상태일 경우에만 가능합니다.
           </p>
         </div>
-        <div class="order_delivery">
+        <div class="order_delivery box_type">
           <h3 class="tit">배송조회</h3>
           <ul class="list_status">
             <li>
@@ -123,10 +104,11 @@
             </li>
           </ul>
         </div>
-        <div class="head_section">
+        <div class="box_type">
+        <div class="head_section on" id="Payment">
           <h3 class="tit">결제정보</h3>
         </div>
-        <table class="tbl tbl_type2 tbl_type3">
+        <table class="tbl tbl_type2 tbl_type3 PaymentShow">
           <colgroup>
             <col style="width: 160px" />
             <col style="width: auto" />
@@ -142,10 +124,12 @@
             </tr>
           </tbody>
         </table>
-        <div class="head_section">
+        </div>
+        <div class="box_type">
+        <div class="head_section on" id="OrderInform">
           <h3 class="tit">주문정보</h3>
         </div>
-        <table class="tbl tbl_type2">
+        <table class="tbl tbl_type2 OrderInformShow">
           <colgroup>
             <col style="width: 160px" />
             <col style="width: auto" />
@@ -169,11 +153,13 @@
             </tr>
           </tbody>
         </table>
+        </div>
 
-        <div class="head_section">
+        <div class="box_type">
+        <div class="head_section on" id="ShippingInform">
           <h3 class="tit">배송 정보</h3>
         </div>
-        <table class="tbl tbl_type2">
+        <table class="tbl tbl_type2 ShippingInformShow">
           <colgroup>
             <col style="width: 160px" />
             <col style="width: auto" />
@@ -197,7 +183,57 @@
             </tr>
           </tbody>
         </table>
+        </div>
+        <div id="orderCancel2" class="order_cancel">
+          <span class="inner_cancel">
+            <button type="button" class="btn btn_cancel off">
+              전체 상품 주문 취소
+            </button>
+          </span>
+          <p class="cancel_notice">
+            주문취소는 ‘배송준비중’ 이전 상태일 경우에만 가능합니다.
+          </p>
+        </div>
       </div>
     </div>
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $('#Type').each(function (i,btn) {
+      $(btn).on("click",function () {
+          $("#Type").toggleClass("on");
+          $(".orders_form").hide();
+          if($("#Type").hasClass("on")){
+            $(".orders_form").show();
+          }
+      })
+    })
+    $('#Payment').each(function (i,btn) {
+      $(btn).on("click",function () {
+        $("#Payment").toggleClass("on");
+        $(".PaymentShow").hide();
+        if($("#Payment").hasClass("on")){
+          $(".PaymentShow").show();
+        }
+      })
+    })
+    $('#OrderInform').each(function (i,btn) {
+      $(btn).on("click",function () {
+        $("#OrderInform").toggleClass("on");
+        $(".OrderInformShow").hide();
+        if($("#OrderInform").hasClass("on")){
+          $(".OrderInformShow").show();
+        }
+      })
+    })
+    $('#ShippingInform').each(function (i,btn) {
+      $(btn).on("click",function () {
+        $("#ShippingInform").toggleClass("on");
+        $(".ShippingInformShow").hide();
+        if($("#ShippingInform").hasClass("on")){
+          $(".ShippingInformShow").show();
+        }
+      })
+    })
+  </script>
 </html>
