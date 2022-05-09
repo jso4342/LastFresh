@@ -654,6 +654,10 @@ a:-webkit-any-link {
     border: 1px solid #DA291C;
     cursor: pointer;
 }
+
+.imgIcon{
+    width: 25px;
+}
 #cartPut .base_button2 {
     width: 432px;
     height: 56px;
