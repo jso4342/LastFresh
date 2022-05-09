@@ -182,13 +182,13 @@ input, select, textarea {
 	.container {
 		margin: 0 auto;
 		max-width: 100%;
-		width: 70em;
+		width: 62em;
 	}
 
 		@media screen and (max-width: 1680px) {
 
 			.container {
-				width: 70em;
+				width: 62em;
 			}
 
 		}
@@ -1456,7 +1456,6 @@ input, select, textarea {
 	form textarea {
 		-webkit-appearance: none;
 		display: block;
-		border: 0;
 		padding: 0.75em 1em;
 		font-size: 1em;
 		border-radius: 5px;
@@ -1470,7 +1469,7 @@ input, select, textarea {
 		form input[type=password]:focus,
 		form select:focus,
 		form textarea:focus {
-			box-shadow: inset 0px 0px 1px 1px #43bff0;
+			border: 1px solid #333;
 		}
 
 	form textarea {
@@ -2067,10 +2066,9 @@ input, select, textarea {
 
 	#header {
 		position: relative;
-		background: #ffffff;
-		padding: 0 0 3.4em 0;
+		padding: 0 0 3.5em 0;
 		text-align: center;
-		width: 70em;
+		width: 62em;
 		margin: 0 auto;
 	}
 
@@ -2271,7 +2269,7 @@ input, select, textarea {
 
 	#main {
 		position: relative;
-		padding: 4em 0 4em 0;
+		padding: 4em 0 3em 0;
 	}
 
 		#main:before {
@@ -2292,23 +2290,8 @@ input, select, textarea {
 
 /* Footer */
 
-	#footer {
-		position: relative;
-		color: #858484;
-		padding: 4em 0;
-	}
 
-		#footer:before {
-			content: '';
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			background: url("images/bg01.png");
-			background-size: 100% 100%;
-			z-index: 0;
-			opacity: 0.5;
-		}
+
 
 		#footer a {
 			color: #c5c4c4;
@@ -2759,7 +2742,8 @@ input, select, textarea {
 			}
 
 			footer {
-				margin: 2em 0 0 0;
+				margin: 0 auto;
+				text-align: center;
 			}
 
 		/* Box */
@@ -2907,8 +2891,6 @@ input, select, textarea {
 
 		/* Footer */
 
-			#footer {
-				padding: 40px 0 20px 0;
-			}
+
 
 	}
