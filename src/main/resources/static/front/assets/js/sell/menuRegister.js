@@ -377,17 +377,17 @@ let $RiderList = $('.menu-deliveryRider-wrapper');
 
 /*배달 불가능 클릭시*/
 function deliveryNoUsing() {
-    $RiderList.show();
+    let $RiderUsingBtn = $('input[name=sellProductDeliveryRider]');
+    console.log($RiderUsingBtn);
+    $RiderUsingBtn.prop('checked', false);
+    riderReset();
+    $RiderList.hide();
+    $deliveryList.hide()
 }
 
 /*배달 가능 클릭시*/
 function deliveryUsing() {
-    let $RiderUsingBtn = $('input[name=sellProductDeliveryRider]');
-    console.log($RiderUsingBtn);
-    $RiderUsingBtn.prop('checked', false);
-
-    $RiderList.hide();
-    $deliveryList.hide()
+    $RiderList.show();
 }
 
 
@@ -396,18 +396,21 @@ let $deliveryList = $('.sellAddress-delivery');
 
 /*라이더 사용*/
 function riderUsing() {
-    $deliveryList.show()
+    $deliveryList.show();
 }
 
-/*라이더 사용 X */
-function riderNoUsing() {
+function riderReset() {
     for (let i = 0; i < 3; i++){
         console.log(i+1);
         $(".sido" + (i+1) + " option").prop("selected", false);
         $(".sigugun" + (i+1) + " option").prop("selected", false);
         $(".dong" + (i+1) + " option").prop("selected", false);
     }
+}
 
+/*라이더 사용 X */
+function riderNoUsing() {
+    riderReset()
     $deliveryList.hide()
 }
 
