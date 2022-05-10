@@ -146,7 +146,7 @@
         cursor: pointer;
     }
 
-    .paginglist > li > label {
+    .paginglist > li: > label {
         background: #333;
     }
 
@@ -698,7 +698,7 @@
         overflow: hidden;
         position: absolute;
         z-index: 301;
-        left: 421px;
+        left: 45px;
         top: 192px;
         width: 213px;
 
@@ -863,7 +863,7 @@
 
     .secondBanner {
 
-      margin-top: 70px;
+     margin-bottom: 56em; margin-top: 70px;
     }
 
     #cartPut .cart_type3 .list_nopackage {
