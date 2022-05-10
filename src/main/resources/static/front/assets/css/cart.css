@@ -1,4 +1,6 @@
-/* 컬리 */
+
+
+    /* 컬리 */
 .price {
     float:right;
     margin-top: -31px;
@@ -237,4 +239,5 @@ button.btn.plus {
     text-align: center;
     outline: none;
 }
+
 
