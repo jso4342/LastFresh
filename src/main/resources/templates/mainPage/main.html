@@ -12,7 +12,71 @@
 	/*-----------반응형---------------------------------------------------*/
 	@media screen and (max-width:768px) {
 
+
 		/* ------------헤더 --------------*/
+		/* 헤더 */
+		section#headerMOBILE {
+			background: #DA291C;
+		}
+
+		img#logo2 {
+			width: 81px;
+			margin-top: -7px;
+		}
+
+		.pcHeader{
+			display:none;
+		}
+
+		.mobileHeader{
+			display:block !important;
+		}
+
+		div#userMenuMOBILE {
+			position: relative;
+		}
+
+		.cartMOBILE {
+			float: right;
+			padding-top: 9px;
+			width: 34px;
+			margin-left: 7px;
+		}
+
+		.myPageMOBILE{
+			float: right;
+			padding-top: 8px;
+			width: 36px;
+		}
+
+		ul.menuMOBILE {
+			position: absolute;
+			right: 16px;
+			top: 45px;
+		}
+
+		.myli{
+			display: inline-block !important;
+			margin-right: 26px;
+			font-weight: 500;
+			color: #666;
+		}
+
+		.myli:hover, .myli:focus{
+			color: #DA291C;
+			font-weight: 600;
+		}
+
+		span.tit {
+			color: #DA291C;
+			font-size: 22px;
+			font-weight: 400;
+		}
+
+		.redLink{
+			color: #DA291C;
+		}
+
 		/* ------------유저 메뉴-----------*/
 		#userMenu {margin-right: 30px;}
 
@@ -104,6 +168,7 @@
 			transform: translateY(-50%);
 			padding: 20px;
 			cursor: pointer;
+			display: none;
 		}
 
 		label.left {
@@ -122,11 +187,57 @@
 			background-repeat: no-repeat;
 		}
 
+		/*푸터 */
+		#myFooterMOBILE {
+			display: block !important;
+			background: #f4f4f4;
+			margin-top: 262px;
+			padding: 25px;
+			font-size: 13px;
+			font-weight: 400;
+			line-height: normal;
+		}
+
+		h2.tit_cc {
+			font-size: 13px;
+		}
+
+		.linkMobile{
+			display: inline-block !important;
+			font-weight: 600;
+			margin-right:15px;
+		}
+
+		div.footer_below p.txt{
+			font-size:10px;
+		}
+
+		.innerFooter{
+
+		}
+
+		#myFooter{
+			display:none;
+		}
+
+
+		/*슬라이더 배너 */
+
+		.slidebox img {
+			height: 400px;
+			object-fit: none;
+			max-width: 236%;
+
+		}
+
 		/* 페이징 스타일 */
 		.paginglist {
 			text-align: center;
 			padding: 30px 0;
 		}
+
+
+
 
 		.paginglist > li {
 			display: inline-block;
@@ -142,7 +253,11 @@
 			cursor: pointer;
 		}
 
-		.paginglist > li: > label {background: #333;}
+		.slidebox {
+			margin-top: -44px;
+		}
+
+		.paginglist > li > label {background: #333;}
 
 		[id="slide01"]:checked ~ .slidelist .slideitem {
 			transform: translateX(0);
@@ -1091,6 +1206,8 @@
 			margin-bottom: 10px; margin-top: 30px;
 		}
 
+
+
 	}
 
 
@@ -1110,7 +1227,7 @@
 	<div style="
 		 width: 100%;
 		 background: url(https://res.kurly.com/pc/service/common/1902/bg_1x9.png) repeat-x 0 100%;
-	">
+	" class="pcHeader">
 		<section id="header">
 			<!-- userMenu -->
 			<div id="userMenu">
@@ -1143,7 +1260,7 @@
 			<!-- Nav -->
 			<nav id="nav">
 				<ul style="float:left; margin-top:10px">
-					<li class="allCategory"><a onclick="send()" id="allCategory"><img onclick="send()" src="https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off_x2.png" class="categoryIcon">전체 카테고리</a></li>
+					<li class="allCategory" onclick="send()" ><a id="allCategory"><img src="https://res.kurly.com/pc/service/common/1908/ico_gnb_all_off_x2.png" class="categoryIcon">전체 카테고리</a></li>
 					<li><a href="#">신상품</a></li>
 					<li><a href="#">우리동네 픽업</a></li>
 					<li><a href="#">우리동네 배달</a></li>
@@ -1291,9 +1408,89 @@
 
 		</section>
 	</div>
+
+
+
+<!-- 모바일 -->
+	<div class="mobileHeader" style="display:none;">
+		<section id="headerMOBILE">
+			<!-- userMenu -->
+			<div id="userMenuMOBILE">
+				<ul class="menuMOBILE">
+					<li class="cartMOBILE"><a><img width="40px" src ="https://cdn.discordapp.com/attachments/969471931575320587/973289653627133992/2022-05-10_3.23.55.png"></a></li>
+					<li class="myPageMOBILE"><a><img width="40px" src ="https://cdn.discordapp.com/attachments/969471931575320587/973289654080139354/2022-05-10_3.22.50.png"></a></li>
+				</ul>
+
+			</div>
+			<!-- Logo -->
+			<div style="margin-top: -39px;"><p>&nbsp;</p></div>
+			<div style ="text-align: center;">
+
+				<a href="main.html"><img id="logo2" src ="https://cdn.discordapp.com/attachments/969471931575320587/973236493160173659/2022-05-09_11.54.16.png"></a>
+			</div>
+			<!-- Nav -->
+			<nav id="navMOBILE">
+				<ul style="float: left; padding: 11px 0; background: white; width: 100%;    border-bottom: solid 1px #ddd;">
+					<li class="allCategory myli" onclick="send()" style="margin-left:23px;"><a>전체 카테고리</a></li>
+					<li class="myli"><a href="#">신상품</a></li>
+					<li class="myli"><a href="#">픽업</a></li>
+					<li class="myli"><a href="#">배달</a></li>
+					<li class="myli"><a href="#">배송</a></li>
+				</ul>
+
+			</nav>
+
+			<hr>
+
+
+
+		</section>
+	</div>
+
+
+
 	<!-- 슬라이더 배너-->
 	<section id ="siderBanner">
 		<div class="slidebox">
+			<input type="radio" name="slide" id="slide01" checked>
+			<input type="radio" name="slide" id="slide02">
+			<input type="radio" name="slide" id="slide03">
+			<input type="radio" name="slide" id="slide04">
+			<ul class="slidelist">
+				<li class="slideitem">
+					<div>
+						<label for="slide04" class="left"></label>
+						<label for="slide02" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/9cac0ce1-b86c-467e-9d85-1239eb11de4e"></a>
+					</div>
+				</li>
+				<li class="slideitem">
+					<div>
+						<label for="slide01" class="left"></label>
+						<label for="slide03" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/ab2389bf-5bef-4886-b1f8-8696ddd309b3"></a>
+					</div>
+				</li>
+				<li class="slideitem">
+					<div>
+						<label for="slide02" class="left"></label>
+						<label for="slide04" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/5db631ad-2ea1-479c-a115-bed367a65c4c"></a>
+					</div>
+				</li>
+				<li class="slideitem">
+					<div>
+						<label for="slide03" class="left"></label>
+						<label for="slide01" class="right"></label>
+						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/72c67111-bbae-4a05-b03d-7274d5f0e0f5"></a>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+
+
+		<div class="slideboxMobile" style = "display:none;">
 			<input type="radio" name="slide" id="slide01" checked>
 			<input type="radio" name="slide" id="slide02">
 			<input type="radio" name="slide" id="slide03">
@@ -1606,6 +1803,55 @@
 				<p class="txt">라스트프레시에서 판매되는 모든 상품들은 라스트프레시에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품들 입니다.</p>
 				<p class="txt">마켓플레이스(오픈마켓) 상품의 경우 라스트프레시는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 라스트프레시는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.</p>
 				<em class="copy">© LASTFRESH CORP. ALL RIGHTS RESERVED</em>
+			</div>
+		</div>
+
+
+		<div id ="myFooterMOBILE" style="display:none;">
+			<div class="innerFooter">
+
+				<div class="inner_footer">
+					<div class="footer_cc">
+						<div>
+							<ul class="list">
+								<li class="linkMobile" style="margin-left: -20px;"><a href="#">라스트프레시 소개</a></li>
+								<li class="linkMobile"><a href="#">이용약관</a></li>
+								<li class="linkMobile"><a class="emph" href="#">개인정보처리방침</a></li>
+								<li class="linkMobile"><a href="#">이용안내</a></li>
+							</ul>
+						</div>
+						<h2 class="tit_cc">고객행복센터</h2>
+						<div class="cc_view cc_call">
+							<h3 style=" "><span class="tit">1234-1234</span></h3>
+							<dl class="list">
+								<dt>365고객센터 | 오전 7시 - 오후 7시</dt>
+							</dl>
+						</div>
+
+
+					</div>
+					<div class="company">
+
+						법인명 (상호) : 세미콜론 <span class="bar">I</span> 사업자등록번호 : 123-45-67890
+						<br>
+						통신판매업 <span class="bar">I</span> 개인정보보호책임자 : 심창환
+						<br>
+						주소 : 서울특별시 강남구 테헤란로  146, 현익빌딩 3층(역삼동)
+						<br>
+						마케팅제휴 및 광고 문의 : <a href="mailto:lastfresh@gmail.com" class="link redLink">lastfresh@gamil.com</a>
+						<br>
+						팩스: 070 - 1234 - 1234 <span class="bar">I</span> 이메일 : <a href="mailto:lastfresh@gmail.com" class="link redLink">lastfresh@gamil.com</a>
+						<br>
+						대량주문 문의 : <a href="mailto:lastfresh@gmail.com" class="link redLink">lastfresh@gmail.com</a>
+						<br>
+						<br>
+
+					</div>
+				</div>
+			</div>
+			<div class="footer_below">
+				<p class="txt">라스트프레시에서 판매되는 모든 상품들은 라스트프레시에 입점한 개별 판매자가 판매하는 마켓플레이스(오픈마켓) 상품들 입니다.마켓플레이스(오픈마켓) 상품의 경우 라스트프레시는 통신판매중개자로서 통신판매의 당사자가 아닙니다. 라스트프레시는 해당 상품의 주문, 품질, 교환/환불 등 의무와 책임을 부담하지 않습니다.</p>
+
 			</div>
 		</div>
 	</section>
