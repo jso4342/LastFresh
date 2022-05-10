@@ -260,8 +260,9 @@
     .mainNewBox {
         text-align: left;
         float: left;
-        margin-right: 1.4%;
+        margin-right: 4px;
         position: relative;
+        margin-left: 7px;
     }
 
     .mainNewBoxLast {
@@ -1114,14 +1115,22 @@
             display:none;
         }
 
+        .mainNew {
+            max-width: 430px;
+            transform: none !important;
+            transition: none;
+        }
+
         .mainNewBox {
             width: 170px;
             text-align: left;
             float: left;
             margin-right: 0%;
             position: relative;
-            margin-left: 13px;
+            margin-left: 28px;
             margin-bottom: 50px;
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .mainNewBoxLast {
@@ -1146,14 +1155,15 @@
 
         .mainNewImg:hover {
             object-fit: cover;
-            transition: all 0.3s ease-in-out 0s !important;
-            transform: scale(1.04);
+            transition: none !important;
+            transform: none;
         }
 
         div.mainNewTxt p, div.mainNewTxtLast p {
             padding: 0;
             margin: 0;
             font-size: 14px;
+            /*max-width: 171px;*/
         }
 
         .mainNewTxt {
