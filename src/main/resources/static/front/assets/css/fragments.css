@@ -4,6 +4,10 @@
     margin-right: 30px;
 }
 
+section.footer {
+    margin-bottom: 0;
+}
+
 .slice {
     color: #d8d8d8;
     font-size: 13px;
@@ -388,6 +392,7 @@ ol, ul {
         /* 헤더 */
         section#headerMOBILE {
             background: #DA291C;
+            /* position:fixed; */
         }
         img#logo2 {
             width: 81px;
