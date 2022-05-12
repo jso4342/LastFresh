@@ -21,6 +21,7 @@
         line-height: 37px !important;
         letter-spacing: -.3px !important;
         height: 98px !important;
+        text-decoration: none;
     }
 
     #snb .list_menu li a.menuClicked {
@@ -39,6 +40,7 @@
 
 
     /* MainSell */
+
     .page_myPage.myPage_type1 .page_section {
         float: left !important;
         width: 100% !important;
@@ -92,6 +94,11 @@
 
 
     /*MenuList*/
+
+    .sellMenuList tr td {
+        height: 100px
+    }
+
     .sellHead_section.link_type button {
         display: none;
     }
@@ -165,6 +172,14 @@
         border-bottom: 2px solid #333;
     }
 
+}
+
+.page_myPage.myPage_type1.sellMain{
+    height: 1300px;
+}
+
+.sellMenuList-wrapper {
+    height: 1200px;
 }
 
 .media-info {
@@ -505,15 +520,25 @@ btn{
 ol, ul {
     list-style-type: none;
 }
+
+.list_menu {
+    padding-left:unset;
+    list-style: none;
+}
+
 #snb .list_menu li {
     border-bottom: 1px solid #f2f2f2;
+    padding-left: unset;
 }
+
 #snb .list_menu li.on a, #snb .list_menu li a:hover {
     background: #fafafa url(https://res.kurly.com/pc/ico/2008/ico_arrow_6x11_on.svg) no-repeat 174px 52%;
     background-size: 6px 11px;
     font-weight: 700;
     color: #DA291C;
+    text-decoration: none;
 }
+
 #snb .list_menu li a {
     display: block;
     overflow: hidden;
@@ -524,7 +549,9 @@ ol, ul {
     color: #666;
     line-height: 20px;
     letter-spacing: -.3px;
+    text-decoration: none;
 }
+
 a{
     background-color: transparent;
     text-decoration: none;
@@ -608,7 +635,9 @@ div.shipping {
     background-color: #DA291C;
     border: 1px solid #DA291C;
     cursor: pointer;
+    padding: unset !important;
 }
+
 
 .section_orderview .sellHead_section {
     padding: 63px 0 22px;
@@ -625,18 +654,28 @@ div.shipping {
 }
 
 .menuTable th {
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    margin: unset;
+    padding: unset;
     padding-top: 20px;
 }
 
 .menuRegister-list td {
     text-align: center;
     border-bottom: 2px solid #33333336;
+    padding: unset;
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
 .menuTitle{
     text-align: left;
+}
+
+.menuTitle a {
+    color: black;
 }
 
 
@@ -652,6 +691,7 @@ div.shipping {
     cursor: pointer;
     color: #ffffffe0;
     box-shadow: 1px 1px 3px #da291cb3;
+    padding: unset;
 }
 
 .menu-btn-wrapper {
