@@ -485,13 +485,6 @@ a {
     color: inherit;
 }
 
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-
 .page_aticle .layout-pagination a:hover {
     background-color: #f7f7f7;
 }
