@@ -225,7 +225,17 @@
     /*    letter-spacing: -.3px !important;*/
     /*    height: 98px !important;*/
     /*}*/
+
+    .myPage_type1{
+        height: 0px !important;
+        padding-top: 32px !important;
+    }
+
     .pagediv {
+        display: none;
+    }
+
+    .layout-pagination {
         display: none;
     }
     .page_myPage.myPage_type1 .page_section {
