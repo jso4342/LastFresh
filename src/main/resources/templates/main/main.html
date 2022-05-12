@@ -4,12 +4,23 @@
 	<title>라스트프레시 | 메인페이지</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="../../static/front/assets/css/main.css">
-	<link rel="stylesheet" href="../../static/front/assets/css/mainPage.css">
-	<link rel="stylesheet" href="../../static/front/assets/css/fragments.css">
+	<link rel="stylesheet" href="/front/assets/css/main.css">
+	<link rel="stylesheet" href="/front/assets/css/fragments.css">
+	<link rel="stylesheet" href="/front/assets/css/main/mainLastFresh.css">
 </head>
+<style>
 
+	#navMOBILE ul{
+		padding: 10px 0 !important;
+	}
+
+	.myLi a{
+		color: #333;
+	}
+</style>
 <body class="homepage is-preload">
+<th:block th:insert="/fragments/header.html :: headFragment"/>
+
 <div id="page-wrapper">
 
 	<!-- header -->
@@ -33,21 +44,21 @@
 					<div>
 						<label for="slide01" class="left"></label>
 						<label for="slide03" class="right"></label>
-						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/ab2389bf-5bef-4886-b1f8-8696ddd309b3"></a>
+						<a><img src="https://cdn.discordapp.com/attachments/733016627054116960/973559551762780180/-_-001_15.png"></a>
 					</div>
 				</li>
 				<li class="slideitem">
 					<div>
 						<label for="slide02" class="left"></label>
 						<label for="slide04" class="right"></label>
-						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/5db631ad-2ea1-479c-a115-bed367a65c4c"></a>
+						<a><img src="https://cdn.discordapp.com/attachments/733016627054116960/973558700935618610/-_-001_12.png"></a>
 					</div>
 				</li>
 				<li class="slideitem">
 					<div>
 						<label for="slide03" class="left"></label>
 						<label for="slide01" class="right"></label>
-						<a><img src="https://img-cf.kurly.com/banner/main/pc/img/72c67111-bbae-4a05-b03d-7274d5f0e0f5"></a>
+						<a><img src="https://cdn.discordapp.com/attachments/733016627054116960/973552860795133992/-_-001_5.png"></a>
 					</div>
 				</li>
 			</ul>
@@ -61,16 +72,16 @@
 			<div class ="newProduct">
 				<div class ="wrapper">
 					<a href="#" style="text-decoration: none;"><h2 class="mainTitle">새로 들어온 상품</h2>
-					<img class="titleBtn" src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
+						<img class="titleBtn" src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
 				</div>
 				<!-- 신상품 목록 -->
 				<div class="mainNew">
 					<div class="mainNewBox">
 						<a class="imgBox">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
-						    <img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-                        </a>
-							<div class="mainNewTxt">
+							<img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
+						</a>
+						<div class="mainNewTxt">
 							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아] 군만두</p></a>
 							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
 								<span style="color:#FA622F;">15%</span>
@@ -107,7 +118,7 @@
 						</div>
 					</div>
 
-					<div class="mainNewBox" style="margin:0;">
+					<div class="mainNewBox mainNewBox2" style="margin:0;">
 						<a class="imgBox">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
 							<img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
@@ -126,7 +137,7 @@
 
 			<!-- 미니 배너 -->
 			<div class="miniBanner">
-				<img style="width: 56em;" src="https://img-cf.kurly.com/banner/random-band/pc/img/488845bf-5797-431f-9464-b5339fb612ec">
+				<img style="width: 56em;" src="https://cdn.discordapp.com/attachments/733016627054116960/973561296752623627/-001_7.png">
 			</div>
 
 			<!-- 오늘 마감 -->
@@ -180,14 +191,14 @@
 						<a class ="newATag" href="#"><p class="mainLastTxtPrice">
 							<span style="color:#FA622F;">15%</span>
 							&nbsp;10,880원
-						<span class="mainNewTxtOriginPrice">12,800원</span></p></a>
+							<span class="mainNewTxtOriginPrice">12,800원</span></p></a>
 					</div>
 				</div>
 			</div>
 
 			<!-- 미니 배너 -->
 			<div class="miniBanner">
-				<img class="secondBanner" src="https://img-cf.kurly.com/banner/random-band/pc/img/80bdeef9-425c-4dfe-9a4e-dad6be7ac321">
+				<img class="secondBanner" src="https://cdn.discordapp.com/attachments/733016627054116960/973566264649863219/-001_10.png">
 			</div>
 
 			<!-- 후기 많은 순 -->
@@ -240,7 +251,7 @@
 						</div>
 					</div>
 
-					<div class="mainNewBox" style="margin:0;">
+					<div class="mainNewBox mainNewBox2" style="margin:0;">
 						<a class="imgBox">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
 							<img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
@@ -320,69 +331,10 @@
 	</div>
 </div>
 
-<!-- Scripts -->
+<th:block th:insert="/fragments/footer.html :: footFragment"/>
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-<script>
-	var check = false;
-
-	const $category = $('.gnb_menu li');
-
-	function send(){
-		if(check == false) {
-			$('.gnb_sub').show();
-		/*	$('#allCategory').css({
-				"color" : "#DA291C",
-				"font-weight" : "600"
-			});*/
-			check = true;
-		}else {
-			$('.gnb_sub').hide();
-			/*$('#allCategory').css({
-				"color" : "#333",
-				"font-weight" : "500"
-			});*/
-			check = false;
-		}
-	}
-
-	$.each($category, function(index, item){
-		$(item).mouseover(function(){
-			$category.addClass("current");
-		})
-	});
-
-
-
-	var cart = $(".cart_option");
-	var button = $(".cancel");
-	$(".innerLatChanceCart").click(function(){
-		$(cart).removeClass("off");
-		$(cart).css("opacity", "1");
-		$(".bg_loading").css("display", "block");
-	});
-
-	$(".innerCart").click(function(){
-		$(cart).removeClass("off");
-		$(cart).css("opacity", "1");
-		$(".bg_loading").css("display", "block");
-	});
-
-	$(button).click(function(){
-		$(cart).addClass("off");
-		$(cart).css("opacity", "0");
-		$(".bg_loading").css("display", "none");
-	});
-
-
-
-
-	$(document).ready(function() {
-		$(cart).addClass("off");
-		$(cart).css("opacity", "0");
-		$(".bg_loading").css("display", "none");
-	});
-
-</script>
 </body>
+<!-- Scripts -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+<script src="/front/assets/js/main/main.js"></script>
 </html>

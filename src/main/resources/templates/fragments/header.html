@@ -63,7 +63,7 @@
     <div id="gnb">
         <div class="gnb_sub" style="display: none; width: 170px;">
             <div class="inner_sub">
-                <ul data-default="219" data-min="219" data-max="731" class="gnb_menu" style="height: 440px;">
+                <ul data-default="219" data-min="219" data-max="731" class="gnb_menu cate" style="height: 440px;">
                     <li class>
                         <a class="menu">
                          <span class="ico">
@@ -209,7 +209,7 @@
             <!-- Nav -->
             <nav id="navMOBILE">
                 <ul style="float: left; padding: 11px 0; background: white; width: 100%;    border-bottom: solid 1px #ddd;">
-                    <li class="allCategory myli" onclick="send()" style="margin-left:23px;"><a>전체 카테고리</a></li>
+                    <li class="allCategory myli" onclick="send()" style="margin-left:23px;"><a id="catecate" >전체 카테고리</a></li>
                     <li class="myli"><a href="#" class="aa">신상품</a></li>
                     <li class="myli"><a href="#" class="aa">픽업</a></li>
                     <li class="myli"><a href="#" class="aa">배달</a></li>
@@ -234,24 +234,24 @@
 
         const $category = $('.gnb_menu li');
 
+
         function send(){
             if(check == false) {
                 $('.gnb_sub').show();
-                /*	$('#allCategory').css({
+                	$('#catecate').css({
                         "color" : "#DA291C",
                         "font-weight" : "600"
-                    });*/
+                    });
                 check = true;
             }else {
                 $('.gnb_sub').hide();
-                /*$('#allCategory').css({
+                $('#catecate').css({
                     "color" : "#333",
                     "font-weight" : "500"
-                });*/
+                });
                 check = false;
             }
         }
-
         $.each($category, function(index, item){
             $(item).mouseover(function(){
                 $category.addClass("current");
