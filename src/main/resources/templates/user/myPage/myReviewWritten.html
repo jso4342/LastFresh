@@ -3,12 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <title>라스트프레시 | 작성한 후기</title>
-    <link rel="stylesheet" href="/front/assets/css/main/user/myPageMenuBar.css" />
-    <link rel="stylesheet" href="/front/assets/css/main/user/myReviewWritten.css" />
+    <link rel="stylesheet" href="/front/assets/css/user/myPageMenuBar.css" />
+    <link rel="stylesheet" href="/front/assets/css/user/myReviewWritten.css" />
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
   </head>
+  <style>
+    .myPage_type1{
+      height: 981px;
+    }
+    @media screen and (max-width: 1000px) {
+      .myPage_type1{
+        height: 0px;
+      }
+    }
+  </style>
   <body>
-  <th:block th:insert="/fragments/header.html :: headWithoutFragment"/>
+  <th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
     <div class="page_myPage myPage_type1">
       <div id="snb" class="snb_my">
         <h2 class="tit_snb">마이페이지</h2>
@@ -115,6 +125,8 @@
         </div>
       </div>
     </div>
-  <th:block th:insert="/fragments/header.html :: footWithoutFragment"/>
+  <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/front/assets/js/user/myPageListMenuSelect.js"></script>
 </html>

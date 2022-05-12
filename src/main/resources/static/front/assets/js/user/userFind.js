@@ -1,6 +1,6 @@
 function showemaildiv() {
     $('.email_box').show();
-    $('.email_verification').css("color","#DA291C");
+    $('.email_verification').css("color","#da291c");
     $('.phone_box').hide();
     $('.hp_verification').css("color","#333");
     $('.hp_verification').css("box-shadow","none");
