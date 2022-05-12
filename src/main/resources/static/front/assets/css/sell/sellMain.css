@@ -41,10 +41,6 @@
 
     /* MainSell */
 
-    .page_myPage.myPage_type1.sellMain{
-        height: 1300px;
-    }
-
     .page_myPage.myPage_type1 .page_section {
         float: left !important;
         width: 100% !important;
@@ -98,6 +94,7 @@
 
 
     /*MenuList*/
+
     .sellMenuList tr td {
         height: 100px
     }
@@ -175,6 +172,14 @@
         border-bottom: 2px solid #333;
     }
 
+}
+
+.page_myPage.myPage_type1.sellMain{
+    height: 1300px;
+}
+
+.sellMenuList-wrapper {
+    height: 1200px;
 }
 
 .media-info {
@@ -667,6 +672,10 @@ div.shipping {
 
 .menuTitle{
     text-align: left;
+}
+
+.menuTitle a {
+    color: black;
 }
 
 
