@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="headFragment">
-
+    <link th:href="@{/front/assets/css/main.css}" rel="stylesheet" />
     <div style="
              width: 100%;
              background: url(https://res.kurly.com/pc/service/common/1902/bg_1x9.png) repeat-x 0 100%;
@@ -224,7 +224,47 @@
         </section>
     </div>
 
-</header>
+    </header>
+    <script th:inline="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:inline="javascript">
+
+        /*<![CDATA[*/
+
+        var check = false;
+
+        const $category = $('.gnb_menu li');
+
+        function send(){
+            if(check == false) {
+                $('.gnb_sub').show();
+                /*	$('#allCategory').css({
+                        "color" : "#DA291C",
+                        "font-weight" : "600"
+                    });*/
+                check = true;
+            }else {
+                $('.gnb_sub').hide();
+                /*$('#allCategory').css({
+                    "color" : "#333",
+                    "font-weight" : "500"
+                });*/
+                check = false;
+            }
+        }
+
+        $.each($category, function(index, item){
+            $(item).mouseover(function(){
+                $category.addClass("current");
+            })
+        });
+
+
+
+        /*]]>*/
+
+    </script>
+
+
 
 </th:block>
 </html>

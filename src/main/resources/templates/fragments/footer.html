@@ -1,14 +1,12 @@
- <!DOCTYPE html>
-    <html xmlns:th="http://www.thymeleaf.org">
-    <th:block th:fragment="footFragment">
-
-
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<th:block th:fragment="footFragment">
+    <link th:href="@{/front/assets/css/main.css}" rel="stylesheet" />
     <!-- aside -->
     <a href="#top" id="pageTop" class="on" style="opacity: 1; bottom: 15px;">맨 위로가기</a>
 
     <!-- Footer -->
-  <hr style="border-color: #f8f9fa;
+    <hr style="border-color: #f8f9fa;
         margin: 0;">
 
 
@@ -28,7 +26,7 @@
                                 <dd>오전 7시 - 오후 7시</dd>
                             </dl>
                         </div>
-                      <div class="cc_view cc_kakao">
+                        <div class="cc_view cc_kakao">
                             <h3><a class="tit" href="#none">카카오톡 문의</a></h3>
                             <dl class="list">
                                 <dt>365고객센터</dt>
@@ -118,9 +116,5 @@
     </section>
 
 
-
-
-
-
-    </th:block>
- </html>
+</th:block>
+</html>
