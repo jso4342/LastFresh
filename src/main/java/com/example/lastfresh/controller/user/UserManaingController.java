@@ -11,12 +11,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @Slf4j
 @RequestMapping("/user/*")
+//void는 똑같은 경로로 리턴
 public class UserManaingController {
 
     @GetMapping("/manage/userJoin")
     public void userJoin(){};
 
     @GetMapping("/manage/userLogin")
-    public void userLoin(){};
+    public void userLogin(){};
 
+    @GetMapping("/manage/JoinChoice")
+    public void JoinChoice(){};
+
+    @GetMapping("/manage/useFindId")
+    public void useFindId(){};
+
+    @GetMapping("/manage/userFindPw")
+    public void userFindPw(){};
+
+    @GetMapping("/manage/userNewPw")
+    public void userNewPw(){};
 }
