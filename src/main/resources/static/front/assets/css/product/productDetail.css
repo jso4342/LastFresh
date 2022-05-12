@@ -900,7 +900,7 @@ strong {
 }
 
 .goods-view-infomation {
-    margin-top: 630px;
+    margin-top: 818px;
 }
 
 #goods-infomation, #goods-review, #goods-qna {
@@ -920,7 +920,7 @@ strong {
 .goods-view-tab.fixed {
     position: sticky;
     left: 0;
-    top: 55px;
+    top: -2px;
     width: 100%;
     min-width: 1010px;
     padding-right: 40px;
@@ -1391,4 +1391,8 @@ a {
     background-color: transparent;
     text-decoration: none;
     color: inherit;
+}
+
+.innerFooter {
+    width: 80em !important;
 }

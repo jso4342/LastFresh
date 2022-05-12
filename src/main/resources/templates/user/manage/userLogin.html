@@ -5,11 +5,13 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>라스트프레시 | 로그인</title>
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
     <link rel="stylesheet" href="/front/assets/css/user/userLogin.css">
+    <title>라스트프레시 | 로그인</title>
+
 </head>
 <body>
+
 <th:block th:insert="/fragments/header.html :: headFragment"/>
 <div id="main">
     <div id="content">
@@ -22,13 +24,13 @@
                 <div class="write_view login_view">
                     <form>
 
-                        <input class="input" value="" type="text" name="m_id" size="20" tabindex="1" value="" placeholder="아이디를 입력해주세요">
+                        <input class="input" value="" type="text" name="m_id" size="20" tabindex="1" placeholder="아이디를 입력해주세요">
                         <input class="input" type="password" name="password" size="20" tabindex="2" placeholder="비밀번호를 입력해주세요">
                         <div class="checkbox_save">
                             <label class="label_checkbox checked">
                                 <input type="checkbox" id="chk_security" name="chk_security" value="y" checked="checked"
                                        onchange="if( this.checked){$(this).parent().addClass('checked')}else{$(this).parent().removeClass('checked')} ">
-                                <!--보안접속-->
+                                보안접속
                             </label>
 
                             <div class="login_search">

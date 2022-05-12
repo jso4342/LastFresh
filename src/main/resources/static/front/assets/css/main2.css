@@ -7,6 +7,170 @@
 	License: pixelarity.com/license
 */
 
+/* 헤더 반응형 */
+@media screen and (max-width:1000px) {
+	.media_catagory{
+		position: absolute;
+		top: 263px;
+		z-index: 300;
+		left: 0px;
+		height: 1000px;
+		width: 350px;
+		background-color: #f9f9f9;
+		border: 1px solid #c2c2c2;
+		border-top: none;
+	}
+
+	li a.menu  span.tit{
+		color: #333333;
+		font-size: 40px;
+		padding-left: 20px;
+	}
+
+	li a.menu img{
+		width: 73px;
+	}
+	.header-wrapper {
+		display: none;
+	}
+
+	.header-wrapper-media {
+		display: flex !important;
+		flex-direction: column;
+		width: 1050px;
+	}
+
+	.upper-gnb {
+		width: 100%;
+		height: 150px;
+		display: flex;
+		flex-direction: row;
+	}
+
+	.right-side-bar {
+		display: flex;
+	}
+
+	.logo-wrapper {
+		width: 100%;
+		background-color: #da291c;
+		text-align: center;
+		line-height: 16;
+	}
+
+	.media-basket-img, .media-my-img {
+		width: 66px;
+		top: 37px;
+		position: absolute;
+		right: -56px;
+	}
+
+	.media-my-img {
+		right: -32px;
+	}
+
+	.media-basket-img {
+		right: 57px;
+	}
+
+	.media-log-img {
+		width: 220px;
+		text-align: center;
+	}
+
+	#navMOBILE-media {
+		font-size: 38px;
+	}
+
+	#navMOBILE-media ul {
+		display: flex;
+		justify-content: space-around;
+		padding: 37px 0 !important;
+		border-bottom: solid 3px #ddd !important;
+		width: 1050px;
+	}
+
+	#navMOBILE-media ul li {
+		list-style-type: none;
+		float: left;
+	}
+
+	/*footer*/
+	#pageTop {
+		width: 148px !important;
+		height: 148px !important;
+		background-size: 141px 141px !important;
+	}
+
+	/*푸터 미디어쿼리 반응형*/
+	#myFooterMOBILE {
+		display: block !important;
+	}
+	#myFooter {
+		display: none !important;
+	}
+	.MBH {
+		width: 1050px;
+		display: flex !important;
+	}
+	#myFooterMOBILE {
+		margin-top: 53px;
+		background-color: #f4f4f4;
+		color: #999;
+		width: 1050px;
+	}
+	.innerFooter {
+		padding-top: 39px !important;
+		border-left-width: 0px;
+		margin: 0;
+		width: 1050px;
+		padding-left: 0px;
+		width: 100%;
+	}
+	.footer_cc {
+		margin-top: 19px;
+	}
+	ul.list {
+		display: flex;
+		font-size: 33px;
+		justify-content: space-between;
+		color: #DA291C;
+		padding: 0px 38px 0 38px;
+    }
+	.tit_cc {
+		font-size: 14px;
+		color: black;
+		padding-left: 39px;
+	}
+	.cc_view.cc_call {
+		padding-left: 38px;
+		padding-bottom: 56px;
+	}
+	.tit {
+		font-size: 47px;
+		font-weight: 500;
+		color: #DA291C;
+	}
+	.company {
+		font-size: 13px !important;
+		line-height: 24px !important;
+		padding-left: 39px !important;
+	}
+	p.txt {
+		padding: 0px 25px 107px 48px !important;
+		font-size: 10px !important;
+	}
+	dl.list {
+		font-size: 14px;
+	}
+
+}
+
+.header-wrapper-media {
+    display: none;
+}
+
+
 /* Row */
 
 .innerFooter {
@@ -59,6 +223,9 @@ a.link {
 	border-top: solid 1px #dddddd;
 	height: 1px;
 }
+
+
+
 #gnb .gnb_sub .inner_sub {
 	width: 99% !important;
 }
