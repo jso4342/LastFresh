@@ -3,8 +3,25 @@
 <th:block th:fragment="headWithoutFragment">
     <link th:href="@{/front/assets/css/main2.css}" rel="stylesheet" />
 
-
-    <div style="
+    <div class="header-wrapper-media">
+        <div class="upper-gnb">
+           <div class="logo-wrapper">
+               <img class="media-log-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973236493160173659/2022-05-09_11.54.16.png" alt="">
+               <img class="media-basket-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973289654080139354/2022-05-10_3.22.50.png" alt="">
+               <img class="media-my-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973289653627133992/2022-05-10_3.23.55.png" alt="">
+           </div>
+        </div>
+        <nav id="navMOBILE-media">
+            <ul style="float: left; padding: 11px 0; background: white; width: 100%;    border-bottom: solid 1px #ddd;">
+                <li class="allCategory myli" onclick="send()" style="margin-left:23px;"><a>전체 카테고리</a></li>
+                <li class="myli"><a href="#" class="aa">신상품</a></li>
+                <li class="myli"><a href="#" class="aa">픽업</a></li>
+                <li class="myli"><a href="#" class="aa">배달</a></li>
+                <li class="myli"><a href="#" class="aa">배송</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="header-wrapper" style="
     font-family: 'Noto Sans KR', sans-serif;
     font-weight: 300;
     color: #999999;
