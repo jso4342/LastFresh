@@ -10,13 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/mainPage/*")
+@RequestMapping("/main/*")
 public class MainPageController {
 
 
-    @GetMapping("/order")
-    public void order(){}
+    @GetMapping("/main")
+    public void main(){}
 
+    @GetMapping("/mainTerm")
+    public void mainTerm(){}
+
+
+    @GetMapping("/mainHowToUser")
+    public void mainHowToUser(){}
 
 
 

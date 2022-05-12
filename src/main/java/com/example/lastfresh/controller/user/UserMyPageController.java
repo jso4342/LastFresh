@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @Slf4j
-@RequestMapping("/myPage/*")
+@RequestMapping("/user/myPage/*")
 public class UserMyPageController {
 
     @GetMapping("/myChangeInfo")
@@ -20,6 +20,9 @@ public class UserMyPageController {
 
     @GetMapping("/myOrder")
     public void myOrder(){}
+
+    @GetMapping("/myOrderDetail")
+    public void myOrderDetail(){}
 
     @GetMapping("/myReviewUnwritten")
     public void myReviewUnwritten(){}
