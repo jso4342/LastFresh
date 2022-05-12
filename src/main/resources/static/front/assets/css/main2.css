@@ -9,6 +9,27 @@
 
 /* 헤더 반응형 */
 @media screen and (max-width:1000px) {
+	.media_catagory{
+		position: absolute;
+		top: 263px;
+		z-index: 300;
+		left: 0px;
+		height: 1000px;
+		width: 350px;
+		background-color: #f9f9f9;
+		border: 1px solid #c2c2c2;
+		border-top: none;
+	}
+
+	li a.menu  span.tit{
+		color: #333333;
+		font-size: 40px;
+		padding-left: 20px;
+	}
+
+	li a.menu img{
+		width: 73px;
+	}
 	.header-wrapper {
 		display: none;
 	}
@@ -142,6 +163,7 @@
 	dl.list {
 		font-size: 14px;
 	}
+
 }
 
 .header-wrapper-media {
@@ -201,6 +223,9 @@ a.link {
 	border-top: solid 1px #dddddd;
 	height: 1px;
 }
+
+
+
 #gnb .gnb_sub .inner_sub {
 	width: 99% !important;
 }
