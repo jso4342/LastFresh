@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/front/assets/css/fragments.css">
     <title>라스트프레시 | 회원가입 구분</title>
 </head>
 <style>
@@ -12,6 +13,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-color: #f1f1f1;
+        height: 830px;
     }
 
     .toggleBtn {
@@ -137,9 +140,9 @@
         font-weight: 700;
         margin-top: 100px;
     }
-    body{
-        background-color: #f1f1f1;
-    }
+    /*body{*/
+    /*    background-color: #f1f1f1;*/
+    /*}*/
     ul{
         margin-top: 50px;
     }
@@ -231,7 +234,7 @@
     }
 </style>
 <body>
-
+<th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
 <div class="data_method">
     <div class="toggleBtn">
         <h2 class="tit_section" id="titFocusMethod">회원가입 구분</h2>
@@ -284,7 +287,7 @@
         </table>
     </div>
 </div>
-
+<th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
