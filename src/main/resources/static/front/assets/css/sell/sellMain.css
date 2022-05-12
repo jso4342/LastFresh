@@ -679,7 +679,7 @@ div.shipping {
 }
 
 .menuTitle a {
-    color: black;
+    color: black !important;
 }
 
 
