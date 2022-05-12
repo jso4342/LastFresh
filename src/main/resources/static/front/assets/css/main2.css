@@ -9,6 +9,11 @@
 
 /* Row */
 
+.innerFooter {
+	width: 64em;
+	margin: 0 auto;
+}
+
 .customer{
 	margin-top: -5px;
 }
