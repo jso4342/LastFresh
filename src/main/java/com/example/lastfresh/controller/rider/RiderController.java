@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/rider/*")
 public class RiderController {
 
+    @GetMapping("/riderList")
+    public void riderList(){}
 
+    @GetMapping("/riderMy")
+    public void riderMy(){}
 
 }

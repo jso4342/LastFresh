@@ -11,4 +11,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/product/*")
 public class ProductController {
 
+    @GetMapping("/proDelivery")
+    public void proDelivery(){}
+
+    @GetMapping("/proDetail")
+    public void proDetail(){}
+
+    @GetMapping("/proNew")
+    public void proNew(){}
+
+    @GetMapping("/proPickup")
+    public void proPickup(){}
+
+    @GetMapping("/proShipping")
+    public void proShipping(){}
 }
