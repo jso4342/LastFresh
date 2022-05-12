@@ -1,3 +1,8 @@
+.innerFooter {
+    width: 79em !important;
+
+}
+
 html, body {
     height: 100%;
 }
@@ -192,7 +197,7 @@ body {
 }
 
 #goodsList .list_goods .thumb .btn_cart {
-    background: url(../../images/장바구니.png) no-repeat 50% 50%;
+    background: url(/front/images/장바구니.png) no-repeat 50% 50%;
     background-size: 45px 45px;
 }
 
@@ -483,6 +488,10 @@ a {
     background-color: transparent;
     text-decoration: none;
     color: inherit;
+}
+
+.innerFooter {
+    width: 79em; !important;
 }
 
 .page_aticle .layout-pagination a:hover {
@@ -950,3 +959,4 @@ button {
     cursor: pointer;
     padding: 10px;
 }
+
