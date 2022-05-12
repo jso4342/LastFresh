@@ -1392,3 +1392,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
+
+.innerFooter {
+    width: 80em !important;
+}
