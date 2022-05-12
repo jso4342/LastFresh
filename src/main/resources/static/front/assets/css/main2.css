@@ -80,6 +80,19 @@
 		height: 148px !important;
 		background-size: 141px 141px !important;
 	}
+
+	.footer.all {
+		display: none;
+	}
+
+	section.footer-media {
+		display: flex !important;
+	}
+
+}
+
+section.footer-media {
+	display: none;
 }
 
 .header-wrapper-media {
