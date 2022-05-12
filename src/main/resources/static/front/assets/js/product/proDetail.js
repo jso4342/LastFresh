@@ -1,116 +1,106 @@
-// 2021-05-13 �곹뭹�곸꽭 �� 怨좎젙 泥섎━
-window.addEventListener('load', function (){
-    var $tab = document.querySelector('.goods-view-tab');
-    if($tab){
-        $tab.addEventListener('click', setTabAnchor);
-        window.addEventListener('scroll', tabFixed);
+
+
+
+var sell_price;
+var amount;
+
+function init () {
+    sell_price = document.form.sell_price.value;
+    amount = document.form.amount.value;
+    $("input[name=sum]").val(sell_price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+    //  document.form.sum.value = sell_price;
+
+    change();
+}
+
+function add () {
+    console.log("들어옴1")
+    hm = document.form.amount;
+    sum = document.form.sum;
+    hm.value ++ ;
+    $('#finalPrice').val(sum);
+    $("input[name=sum]").val((parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+    //  sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    $('#finalPrice').val(parseInt(hm.value) * sell_price);
+
+    doSum();
+
+}
+
+function del () {
+    console.log("들어옴2")
+    hm = document.form.amount;
+    sum = document.form.sum;
+    if (hm.value > 1) {
+        hm.value -- ;
+        $("input[name=sum]").val((parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+        //    sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        $('#finalPrice').val(parseInt(hm.value) * sell_price);
+
+        doSum();
+
     }
+}
+
+function change () {
+    hm = document.form.amount;
+    sum = document.form.sum;
+
+    if (hm.value < 0) {
+        hm.value = 0;
+    }
+}
+
+
+var mySum = 0;
+// 결제 금액
+function doSum() {
+
+    $('input[name="sum"]').each(function () {
+        console.log("val : " + $(this).text());
+        mySum += parseInt($(this).val().replace(",", ""));
+
+        console.log("sum : " + mySum);
+
+    });
+
+    /* $('#sumOrderProduct').text(mySum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+     $('#sumProduct').text(mySum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+     $('#finalPrice').val(mySum);*/
+    $('#che').val(mySum);
+    //$('#finalPrice').value(sum);
+    mySum = 0;
+}
+
+// 후기
+const $btn = $(".tr_line");
+const $groups = $(".review_view");
+var check = false;
+$.each($btn, function(index, item){
+    $(item).click(function(){
+        if(check == false){
+            $($groups[index]).css("display", "block");
+            check = true;
+
+        }else{
+            $($groups[index]).css("display", "none");
+            check = false;
+        };
+    })
+});
+
+const $infomation = $("#infomation");
+const $review = $("#review")
+const $a1 = $("#infomation_a");
+const $a2 = $("#review_a");
+
+console.log($a1);
+console.log($a2);
+$infomation.click(function (){
+    $a1.addClass("__active");
+    $a2.removeClass("__active");
 })
-
-//Fixed product detail Tab
-function tabFixed(){
-    var $gnb = document.querySelector('#gnb.gnb_stop');
-    var $layout = document.getElementById('goods-view-infomation'); //湲곗���
-
-    if(!$layout || !$gnb) {
-        return;
-    }
-
-    //Calculate ScrollTop
-    var scrollTop = window.pageYOffset + $gnb.clientHeight;
-    var $layoutTop = $($layout, window).offset().top;
-
-    if(scrollTop > $layoutTop){
-        setTapPosition();
-    }else{
-        setOriginPosition();
-    }
-}
-
-//Fixing tabs naturally
-function setTapPosition(){
-    var $tab = document.querySelector('.goods-view-tab');
-    var $layoutDesc = document.getElementById('goods-description');
-
-    var isExistClass = $tab.classList.contains('fixed') || $layoutDesc.classList.contains('fixed_tab');
-    if(isExistClass){
-        return;
-    }
-
-    $layoutDesc.classList.add('fixed_tab');
-    $tab.classList.add('fixed');
-}
-
-//Tab back to its original position
-function setOriginPosition() {
-    var $gnb = document.querySelector('#gnb.gnb_stop');
-    var $tab = document.querySelector('.goods-view-tab');
-    var $layoutDesc = document.getElementById('goods-description');
-    $tab.removeAttribute('style');
-    $gnb.removeAttribute('style');
-    $tab.classList.remove('fixed');
-
-    if($layoutDesc.classList.contains('fixed_tab')){
-        $layoutDesc.classList.remove('fixed_tab');
-    }
-}
-
-var selectedAnchor = '';
-function setTabAnchor(e){
-    e.preventDefault();
-    var hash = e.target.closest('a').getAttribute('href');
-
-    // KMF-369 hash媛� null �쇨꼍�� error媛� 諛쒖깮�섏뼱 �꾨옒 script媛� �뺤긽�묐룞 �섏� �딅뒗 �댁뒋媛� �뺤씤�섏뼱 �댁뒋 �섏젙
-    if(hash === selectedAnchor || hash === null) {
-        return false;
-    }
-    selectedAnchor = hash;
-
-    var $beforeItem = document.querySelector('.goods-view-infomation-tab-anchor.__active');
-
-    $beforeItem.classList.remove('__active');
-    e.target.closest('a').classList.add('__active');
-
-    setScroll(hash);
-    setAmplitude(hash);
-}
-
-function setScroll(hash) {
-    console.log("스크롤")
-    var $container = $(hash);
-    var gnbHeight = document.querySelector('#gnb').clientHeight;
-    var tab = document.querySelector('.goods-view-tab');
-    var scrollPosition = $container.offset().top - gnbHeight;
-
-    if (!tab.classList.contains('fixed')) {
-
-        scrollPosition -= tab.clientHeight;
-    }
-    $('html, body').animate({
-        scrollTop: scrollPosition
-    }, 500);
-
-    console.log("스크롤2")
-}
-
-// KM-1483 Amplitude �곕룞
-function setAmplitude(hash){
-    var _event_name;
-    switch(hash){
-        case '#goods-description':
-            _event_name = 'select_product_detail_description_subtab';
-            break;
-        case '#goods-infomation':
-            _event_name = 'select_product_detail_info_subtab';
-            break;
-        case '#goods-review':
-            _event_name = 'select_product_detail_review_subtab';
-            break;
-        case '#goods-qna':
-            _event_name = 'select_product_detail_inquiry_subtab';
-            break;
-        default :
-            break;
-    }
-    KurlyTracker.setAction(_event_name).sendData();
-}
+$review.click(function (){
+    $a2.addClass("__active");
+    $a1.removeClass("__active");
+})

@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>라스트프레시 | 라이더</title>
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="../../static/riderFront/assets/css/main.css">
+    <link rel="stylesheet" href="static/riderFront/assets/css/rider.css">
+    <link rel="stylesheet" href="/front/assets/css/fragments.css">
 </head>
 <body>
+<th:block th:insert="/fragments/header.html :: headFragment"/>
 <!-- 전체 Wrapper -->
 <div class="sell-wrapper">
 
@@ -74,6 +76,13 @@
             <!-- 접수 대기 목록이 있을 시-->
             <div class="order-content" >
                 <!-- ajax로 가져올 데이터 접수 대기 -->
+                <div class="areabutton">
+                    <img src="../../static/front/assets/css/images/위치아이콘.png" class="imgIcon">
+                    지역을 선택해주세요
+                </div>
+                <div class="bg_loading" id="bgLoading" style="display: none;">
+                    <div class="loading_show"></div>
+                </div>
                 <div class="order-list-wrapper">
                     <hr>
                     <div class="order-list myDeliveryInfo">
@@ -325,8 +334,32 @@
             </div>
         </div>
     </div>
+    <div id="cartPut">
+        <div class="cart_option1 cartList cart_type3 off" style="opacity: 0;">
+            <div class="region_select modal">
+                <select id="sido" name="sido" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
+                    <option value="" >'시/도'를 선택해주세요</option>
+                </select>
+                <select id="sigugun" name="sigugun" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
+                    <option value="" >'시/군/구'를 선택해주세요</option>
+                </select>
+                <select id="dong" name="dong" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
+                    <option value="">'동'을 선택해주세요</option>
+                </select>
+                <div>
+                    <!---->
+                    <div class="cart_modal_footer">
+                        <button type="button" class="base_button1 cancel1 half"> 확인 </button>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<th:block th:insert="/fragments/footer.html :: footFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../../static/riderFront/assets/js/rider/rider.js"></script>
+<script src="/static/riderFront/assets/js/rider/rider.js"></script>
+<script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
 </html>

@@ -245,11 +245,6 @@ img, video, canvas {
     text-align: center;
 }
 
-a {
-    background-color: transparent;
-    text-decoration: none;
-    color: inherit;
-}
 
 #sectionView .thumb {
     float: left;
@@ -667,6 +662,8 @@ form {
     text-align: right;
 }
 
+
+
 #cartPut .cart_option .total .ico {
     display: inline-block;
     width: 38px;
@@ -885,8 +882,9 @@ strong {
 #cartPut .cart_option .total .num {
     padding-left: 8px;
     font-weight: 800;
-    font-size: 32px;
+    font-size: 28px;
     line-height: 32px;
+    border: none;
 }
 
 #cartPut .cart_option .total .won {
@@ -902,11 +900,7 @@ strong {
 }
 
 .goods-view-infomation {
-    margin-top: 50px;
-}
-
-.goods-view-infomation {
-    margin-top: 50px;
+    margin-top: 630px;
 }
 
 #goods-infomation, #goods-review, #goods-qna {
@@ -915,7 +909,7 @@ strong {
 }
 
 .goods-view-infomation-content {
-    padding-top: 40px;
+    padding-top: 100px;
     min-height: 500px;
     margin-bottom: 50px;
 }
@@ -923,12 +917,21 @@ strong {
 #goods-review {
     min-height: 850px;
 }
+.goods-view-tab.fixed {
+    position: sticky;
+    left: 0;
+    top: 55px;
+    width: 100%;
+    min-width: 1010px;
+    padding-right: 40px;
+    z-index: 299;
+    box-sizing: border-box;
+}
 
 .goods-view-infomation-tab-group {
     display: flex;
-    flex-direction: row;
-    width: 1010px;
-    margin: 0 auto;
+    width: 1100px;
+    margin: -41px;
 }
 
 .goods-view-infomation-tab {
@@ -943,7 +946,7 @@ strong {
 
 .goods-view-infomation-tab-anchor.__active {
     background-color: #fff;
-    color: #5f0080;
+    color: #DA291C;
     border-bottom: 0;
 }
 
@@ -965,11 +968,7 @@ strong {
     border-left: none;
 }
 
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
+
 
 .goods_wrap {
     width: 1010px;
@@ -1374,4 +1373,22 @@ script {
 
 a:active, a:hover {
     outline: 0;
+}
+
+.priceNum {
+    font-weight: 500;
+    color: #333;
+    font-size: 16px !important;
+    border: none !important;
+    float: left;
+    line-height: 18px;
+    padding-left: 24px !important;
+    padding-top: 8px !important;
+    text-align: right;
+}
+
+a {
+    background-color: transparent;
+    text-decoration: none;
+    color: inherit;
 }
