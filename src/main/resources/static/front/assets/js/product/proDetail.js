@@ -14,7 +14,6 @@ function init () {
 }
 
 function add () {
-    console.log("들어옴1")
     hm = document.form.amount;
     sum = document.form.sum;
     hm.value ++ ;
@@ -28,7 +27,6 @@ function add () {
 }
 
 function del () {
-    console.log("들어옴2")
     hm = document.form.amount;
     sum = document.form.sum;
     if (hm.value > 1) {
@@ -55,7 +53,7 @@ function change () {
 var mySum = 0;
 // 결제 금액
 function doSum() {
-
+    console.log("들어옴")
     $('input[name="sum"]').each(function () {
         console.log("val : " + $(this).text());
         mySum += parseInt($(this).val().replace(",", ""));
