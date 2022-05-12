@@ -1,12 +1,14 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/front/assets/css/fragments.css">
     <title>라스트프레시 | 회원가입</title>
 </head>
+
 <style>
 
 
@@ -293,7 +295,7 @@
         color: inherit;
     }
 
-    /*이용약관.ㅁㅁㄴㅇㅁ*/
+
     div.layer_agreement {
         display: none;
         margin-top: -299.5px;
@@ -553,7 +555,9 @@
     }
 
 </style>
+
 <body>
+<th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
 <div class="body">
     <div class="title_page">
         <h2 class="title">회원가입</h2>
@@ -860,7 +864,7 @@
         가입하기
     </button>
 </div>
-
+<th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
