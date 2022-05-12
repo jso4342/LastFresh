@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/front/assets/css/main/user/myPageMenuBar.css">
 </head>
 <body>
-<th:block th:insert="/fragments/header.html :: headFragment"/>
+<th:block th:insert="/fragments/header.html :: headWithoutFragment"/>
 <div class="page_myPage myPage_type1">
     <div id="snb" class="snb_my">
         <h2 class="tit_snb">마이페이지</h2>
@@ -458,6 +458,6 @@
 
     </div>
 </div>
-<th:block th:insert="/fragments/footer.html :: footFragment"/>
+<th:block th:insert="/fragments/header.html :: footWithoutFragment"/>
 </body>
 </html>

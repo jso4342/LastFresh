@@ -12,5 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/myPage/*")
 public class UserMyPageController {
 
+    @GetMapping("/myChangeInfo")
+    public void myChangeInfo(){}
+
+    @GetMapping("/myCheckPw")
+    public void myCheckPw(){}
+
+    @GetMapping("/myOrder")
+    public void myOrder(){}
+
+    @GetMapping("/myReviewUnwritten")
+    public void myReviewUnwritten(){}
+
+    @GetMapping("/myReviewWrite")
+    public void myReviewWrite(){}
+
+    @GetMapping("/myReviewWritten")
+    public void myReviewWritten(){}
 
 }
