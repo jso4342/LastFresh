@@ -1,3 +1,8 @@
+.innerFooter {
+    width: 79em !important;
+
+}
+
 html, body {
     height: 100%;
 }
@@ -192,7 +197,7 @@ body {
 }
 
 #goodsList .list_goods .thumb .btn_cart {
-    background: url(../../images/장바구니.png) no-repeat 50% 50%;
+    background: url(/front/images/장바구니.png) no-repeat 50% 50%;
     background-size: 45px 45px;
 }
 
@@ -485,12 +490,9 @@ a {
     color: inherit;
 }
 
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
+.innerFooter {
+    width: 79em; !important;
 }
-
 
 .page_aticle .layout-pagination a:hover {
     background-color: #f7f7f7;
@@ -567,11 +569,11 @@ a:-webkit-any-link {
 
 /* 장바구니 모달창*/
 
-#cartPut .cart_result, #cartPut .cart_option.off, #cartPut .cart_option1.off, #cartPut .cart_option .tit_cart, #cartPut .cart_option .box_select, #cartPut .cart_option .bar_open, #cartPut .cart_option .view_function {
+.cartPut .cart_result, .cartPut .cart_option.off, .cartPut .cart_option1.off, .cartPut .cart_option .tit_cart, .cartPut .cart_option .box_select, .cartPut .cart_option .bar_open, .cartPut .cart_option .view_function {
     display: none;
 }
 
-#cartPut .cart_type3 {
+.cartPut .cart_type3 {
     position: fixed;
     z-index: 9999;
     left: 50%;
@@ -586,11 +588,11 @@ a:-webkit-any-link {
     transform: translate(0,-50%);
 }
 
-#cartPut .cart_option {
+.cartPut .cart_option {
     background-color: #fff;
 }
 
-#cartPut * {
+.cartPut * {
     font-family: noto sans;
     color: #333;
     letter-spacing: 0;
@@ -600,11 +602,11 @@ a:-webkit-any-link {
     padding: 12px;
 }
 
-#cartPut .cart_type3 .inner_option {
+.cartPut .cart_type3 .inner_option {
     padding: 0 30px;
 }
 
-#cartPut .cart_type3 .btn_close1 {
+.cartPut .cart_type3 .btn_close1 {
     display: none;
 }
 
@@ -614,21 +616,21 @@ a:-webkit-any-link {
     padding: 20px 0 30px;
 }
 
-#cartPut .cart_type3 .base_button.half {
+.cartPut .cart_type3 .base_button.half {
     width: 50%;
 }
-#cartPut .cart_type3 .base_button1.half {
+.cartPut .cart_type3 .base_button1.half {
     width: 97%;
     margin-left: 8px;
     margin-top: 6px;
 }
-#cartPut .cart_type3 .base_button2.half {
+.cartPut .cart_type3 .base_button2.half {
     width: 97%;
     margin-left: 8px;
     margin-top: 6px;
 }
 
-#cartPut .base_button {
+.cartPut .base_button {
     width: 432px;
     height: 56px;
     border: none;
@@ -641,7 +643,7 @@ a:-webkit-any-link {
     border: 1px solid #DA291C;
     cursor: pointer;
 }
-#cartPut .base_button1 {
+.cartPut .base_button1 {
     width: 432px;
     height: 56px;
     border: none;
@@ -658,7 +660,7 @@ a:-webkit-any-link {
 .imgIcon{
     width: 25px;
 }
-#cartPut .base_button2 {
+.cartPut .base_button2 {
     width: 432px;
     height: 56px;
     border: none;
@@ -680,20 +682,20 @@ button {
     outline: none;
 }
 
-#cartPut .cart_type3 .list_goods {
+.cartPut .cart_type3 .list_goods {
     width: 380px;
 }
 
-#cartPut .cart_type3 .total {
+.cartPut .cart_type3 .total {
     padding-top: 20px;
 }
 
-#cartPut .cart_type3 .list_nopackage {
+.cartPut .cart_type3 .list_nopackage {
     padding-top: 30px;
     min-height: 148px;
 }
 
-#cartPut .cart_type3 .list {
+.cartPut .cart_type3 .list {
     overflow: hidden;
     overflow-y: auto;
     width: 400px;
@@ -701,16 +703,16 @@ button {
     min-height: 120px;
 }
 
-#cartPut .cart_option .list {
+.cartPut .cart_option .list {
     overflow: hidden;
     padding-bottom: 1px;
 }
 
-#cartPut .cart_type3 .list_nopackage li {
+.cartPut .cart_type3 .list_nopackage li {
     border: 0;
 }
 
-#cartPut .cart_type3 .list li {
+.cartPut .cart_type3 .list li {
     width: 380px;
     padding: 11px 0;
     border-bottom: 1px solid #f4f4f4;
@@ -718,32 +720,32 @@ button {
 
 
 
-#cartPut .cart_option .list .btn_position {
+.cartPut .cart_option .list .btn_position {
     display: block;
     position: relative;
 }
 
-#cartPut .cart_type3 .list .name {
+.cartPut .cart_type3 .list .name {
     font-size: 14px;
     letter-spacing: 0;
 }
 
-#cartPut .cart_option .list .name {
+.cartPut .cart_option .list .name {
     display: block;
     font-size: 12px;
     line-height: 20px;
     letter-spacing: -.6px;
 }
 
-#cartPut .cart_type3 .list .option {
+.cartPut .cart_type3 .list .option {
     padding-top: 7px;
 }
 
-#cartPut .cart_option .list .option {
+.cartPut .cart_option .list .option {
     overflow: hidden;
 }
 
-#cartPut .cart_option .list .btn_del {
+.cartPut .cart_option .list .btn_del {
     overflow: hidden;
     position: absolute;
     right: 0;
@@ -760,7 +762,7 @@ button {
 
 
 
-#cartPut .cart_option .list .count {
+.cartPut .cart_option .list .count {
     overflow: hidden;
     float: left;
     width: 88px;
@@ -769,28 +771,28 @@ button {
     border-radius: 3px;
 }
 
-#cartPut .cart_type3 .list .price {
+.cartPut .cart_type3 .list .price {
     float: left;
     padding: 7px 0 0;
     font-size: 14px;
     letter-spacing: 0;
 }
 
-#cartPut .cart_option .list .price {
+.cartPut .cart_option .list .price {
     font-weight: 700;
     text-align: right;
 }
 
-#cartPut .cart_option .list .down.on {
+.cartPut .cart_option .list .down.on {
     background-image: url(https://res.kurly.com/pc/ico/2010/ico_minus_on.svg);
 }
 
-#cartPut .cart_option .list .down {
+.cartPut .cart_option .list .down {
     background: #fff url(https://res.kurly.com/pc/ico/2010/ico_minus.svg) no-repeat 50% 50%;
     background-size: 30px 30px;
 }
 
-#cartPut .cart_option .list .btn {
+.cartPut .cart_option .list .btn {
     overflow: hidden;
     float: left;
     width: 28px;
@@ -801,7 +803,7 @@ button {
     text-indent: -9999px;
 }
 
-#cartPut .cart_option .list .inp {
+.cartPut .cart_option .list .inp {
     float: left;
     width: 30px;
     height: 30px;
@@ -815,32 +817,32 @@ button {
     text-align: center;
 }
 
-#cartPut .cart_option .list .up.on {
+.cartPut .cart_option .list .up.on {
     background-image: url(https://res.kurly.com/pc/ico/2010/ico_plus_on.svg);
 }
 
-#cartPut .cart_option .list .up {
+.cartPut .cart_option .list .up {
     float: right;
     margin-left: -1px;
     background: #fff url(https://res.kurly.com/pc/ico/2010/ico_plus.svg) no-repeat 50% 50%;
     background-size: 30px 30px;
 }
 
-#cartPut .cart_type3 .list .dc_price {
+.cartPut .cart_type3 .list .dc_price {
     padding-right: 4px;
     font-weight: 800;
 }
 
-#cartPut .cart_option .total .price {
+.cartPut .cart_option .total .price {
     overflow: hidden;
     text-align: right;
 }
 
-#cartPut .cart_type3 .total .txt_point {
+.cartPut .cart_type3 .total .txt_point {
     padding-top: 6px;
 }
 
-#cartPut .cart_option .total .txt_point {
+.cartPut .cart_option .total .txt_point {
     display: block;
     padding-top: 14px;
     font-size: 14px;
@@ -849,7 +851,7 @@ button {
     text-align: right;
 }
 
-#cartPut .cart_type3 .total .tit {
+.cartPut .cart_type3 .total .tit {
     float: left;
     font-size: 16px;
     line-height: 24px;
@@ -857,32 +859,32 @@ button {
     vertical-align: 0;
 }
 
-#cartPut .cart_option .total .tit {
+.cartPut .cart_option .total .tit {
     font-weight: 700;
     font-size: 13px;
     line-height: 20px;
     vertical-align: 2px;
 }
 
-#cartPut .cart_type3 .total .sum {
+.cartPut .cart_type3 .total .sum {
     float: right;
     margin-top: -1px;
 }
 
-#cartPut .cart_type3 .total .num {
+.cartPut .cart_type3 .total .num {
     font-size: 24px;
     line-height: 24px;
     letter-spacing: -1px;
 }
 
-#cartPut .cart_option .total .num {
+.cartPut .cart_option .total .num {
     padding-left: 8px;
     font-weight: 800;
     font-size: 32px;
     line-height: 32px;
 }
 
-#cartPut .cart_type3 .total .won {
+.cartPut .cart_type3 .total .won {
     padding-left: 0;
     font-size: 16px;
     line-height: 24px;
@@ -890,7 +892,7 @@ button {
     vertical-align: 3px;
 }
 
-#cartPut .cart_option .total .won {
+.cartPut .cart_option .total .won {
     padding-left: 2px;
     font-size: 20px;
     font-weight: 700;
@@ -898,17 +900,17 @@ button {
     vertical-align: -1px;
 }
 
-#cartPut .base_button.cancel {
+.cartPut .base_button.cancel {
     color: #333;
     background-color: #fff;
     border: 1px solid #ddd;
 }
-#cartPut .base_button1.cancel2 {
+.cartPut .base_button1.cancel2 {
     color: #333;
     background-color: #fff;
     border: 1px solid #ddd;
 }
-#cartPut .base_button2.cancel {
+.cartPut .base_button2.cancel {
     color: #333;
     background-color: #fff;
     border: 1px solid #ddd;
@@ -937,11 +939,11 @@ button {
     background-size: 16px 16px;
 }
 
-#cartPut .cart_type3 .list .btn_position {
+.cartPut .cart_type3 .list .btn_position {
     display: none;
 }
 
-#cartPut .cart_type3 .list .count {
+.cartPut .cart_type3 .list .count {
     float: right;
 }
 
@@ -957,3 +959,4 @@ button {
     cursor: pointer;
     padding: 10px;
 }
+

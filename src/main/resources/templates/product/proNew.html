@@ -9,10 +9,10 @@
 </head>
 
 <body class="goods-goods_list ">
-<!--<th:block th:insert="/fragments/header.html :: headFragment"/>-->
+<!--<th:block th:insert="/fragments/header.html :: headWithoutFragment"/>-->
+<th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
     <div id="wrap" class="layout-main-wrapper">
         <div id="container">
-            <div id="header"></div>
             <div id="main">
                 <div id="content">
                     <div class="page_aticle">
@@ -30,7 +30,7 @@
                         <div id="goodsList" class="page_section section_goodslist">
                             <div class="list_ability">
                                 <div class="areabutton">
-                                    <img src="../../static/front/assets/css/images/위치아이콘.png" class="imgIcon">
+                                    <img src="/front/assets/css/images/위치아이콘.png" class="imgIcon">
                                     지역을 선택해주세요
                                 </div>
                                 <div class="sort_menu">
@@ -283,7 +283,7 @@
             </div>
         </div>
     </div>
-    <div id="cartPut">
+    <div class="cartPut">
         <div class="cart_option cartList cart_type3 off" style="opacity: 0;">
             <div class="inner_option">
                 <button type="button" class="btn_close1" >레이어닫기</button>
@@ -342,9 +342,32 @@
             </div>
         </div>
     </div>
-<!--<th:block th:insert="/fragments/footer.html :: footFragment"/>-->
+<div class="cartPut"> <!-- 아이디 수정해주세요 : CSS 주의-->
+    <div class="cart_option1 cartList cart_type3 off" style="opacity: 0;">
+        <div class="region_select modal">
+            <select id="sido" name="sido" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
+                <option value="" >'시/도'를 선택해주세요</option>
+            </select>
+            <select id="sigugun" name="sigugun" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
+                <option value="" >'시/군/구'를 선택해주세요</option>
+            </select>
+            <select id="dong" name="dong" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
+                <option value="">'동'을 선택해주세요</option>
+            </select>
+            <div>
+                <!---->
+                <div class="cart_modal_footer">
+                    <button type="button" class="base_button1 cancel1 half"> 확인 </button>
+                </div>
+                <!---->
+            </div>
+        </div>
+    </div>
+</div>
+<!--<th:block th:insert="/fragments/header.html :: footWithoutFragment"/>-->
+<th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
-
+<script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/product/product.js"></script>
 </html>
