@@ -19,6 +19,7 @@ public class SellController {
     @GetMapping("/sellMenuList")
     public void sellMenuList(){}
 
-    @GetMapping("/sellMenuRezzegister(){}
+    @GetMapping("/sellMenuRegister")
+    public void sellMenuRegister(){}
 
 }
