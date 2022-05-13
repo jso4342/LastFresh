@@ -74,13 +74,18 @@
         border-collapse: collapse;
         border-spacing: 0;
     }
+    table.tbl_comm th{
+        padding :unset;
+    }
 
     table {
         border-collapse: collapse;
         border-spacing: 0;
         text-indent: initial;
     }
-
+    p.sub{
+        margin: unset;
+    }
     tbody {
         display: table-row-group;
         vertical-align: middle;
@@ -160,7 +165,7 @@
         background-color: #fff;
         color: #DA291C;
         display: inline-block;
-        width: 120px;
+        width: 98px;
         margin-left: 5px;
         vertical-align: top;
         height: 44px;
@@ -405,7 +410,7 @@
     }
     button.btn_join{
         width: 240px;
-        height: 56px;
+        height: 70px;
         font-size: 16px;
         line-height: 54px;
         display: inline-block;
@@ -417,6 +422,7 @@
         border: 1px solid #DA291C;
         background-color: #DA291C;
         color: #fff;
+        margin-bottom: 90px;
     }
 
     .box_tbl::-webkit-scrollbar {
@@ -506,8 +512,15 @@
         div.body{
             width: 420px;
         }
-        table.tbl_comm{
+        table.tbl_comm {
             width: 420px;
+        }
+        table.tbl_comm th{
+            padding: 10px 10px 0px 26px;
+            margin: unset;
+        }
+        table.tbl_comm tr{
+            border: none;
         }
         div.title_page {
             width: 420px;

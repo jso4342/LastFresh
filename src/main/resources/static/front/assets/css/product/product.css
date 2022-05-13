@@ -592,6 +592,15 @@ a {
     background-color: #fff;
 }
 
+#gnb .gnb_sub {
+    overflow: hidden !important;
+    position: absolute !important;
+    z-index: 301!important;
+    left: 744px!important;
+    top: 190px!important;
+    width: 139px!important;
+}
+
 .cartPut * {
     font-family: noto sans;
     color: #333;

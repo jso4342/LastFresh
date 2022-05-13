@@ -10,13 +10,21 @@
     <link rel="stylesheet" href="/front/assets/css/user/cart.css">
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
 </head>
+<style>
+
+    div#wrapper {
+        height: 1600px;
+        overflow: scroll;
+    }
+
+</style>
 <body>
 <th:block th:insert="/fragments/header.html :: headFragment"/>
 
 <div id="page-wrapper">
     <div id="wrapper">
         <!-- 타이틀 -->
-        <div id="title"><h2 style="font-weight: 500;">장바구니</h2></div>
+        <div id="title"><h2 style="font-weight: 500;" class="myCart">장바구니</h2></div>
 
         <!-- 박스 -->
         <form name="form" method="get">

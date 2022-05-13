@@ -23,6 +23,7 @@
 }
 
 
+
 .btn_delete {
     width: 30px;
     height: 30px;
@@ -564,6 +565,20 @@ button.btn.plus {
         border-top: solid 1px #f4f4f4;
         height: 1px;
         /* margin: 2.5em 0 2.5em 0; */
+    }
+
+
+    .myCart{
+        font-weight: 500 !important;
+        margin-top: -43px !important;
+        margin-bottom: 31px !important;
+        margin-left: 172px !important;
+    }
+
+    nav#navMOBILE {
+
+    border-bottom: solid 16px #ddd !important;
+
     }
 
 }

@@ -4,12 +4,23 @@
 	<title>라스트프레시 | 메인페이지</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="../../static/front/assets/css/main.css">
-	<link rel="stylesheet" href="../../static/front/assets/css/mainPage.css">
-	<link rel="stylesheet" href="../../static/front/assets/css/fragments.css">
+	<link rel="stylesheet" href="/front/assets/css/main.css">
+	<link rel="stylesheet" href="/front/assets/css/fragments.css">
+	<link rel="stylesheet" href="/front/assets/css/main/mainLastFresh.css">
 </head>
+<style>
 
+	#navMOBILE ul{
+		padding: 10px 0 !important;
+	}
+
+	.myLi a{
+		color: #333;
+	}
+</style>
 <body class="homepage is-preload">
+<th:block th:insert="/fragments/header.html :: headFragment"/>
+
 <div id="page-wrapper">
 
 	<!-- header -->
@@ -61,16 +72,16 @@
 			<div class ="newProduct">
 				<div class ="wrapper">
 					<a href="#" style="text-decoration: none;"><h2 class="mainTitle">새로 들어온 상품</h2>
-					<img class="titleBtn" src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
+						<img class="titleBtn" src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
 				</div>
 				<!-- 신상품 목록 -->
 				<div class="mainNew">
 					<div class="mainNewBox">
 						<a class="imgBox">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
-						    <img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-                        </a>
-							<div class="mainNewTxt">
+							<img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
+						</a>
+						<div class="mainNewTxt">
 							<a class ="newATag" href="#"><p class="mainNewTxtTitle">[네니아] 군만두</p></a>
 							<a class ="newATag" href="#"><p class="mainNewTxtPrice">
 								<span style="color:#FA622F;">15%</span>
@@ -107,7 +118,9 @@
 						</div>
 					</div>
 
-					<div class="mainNewBox">
+
+					<div class="mainNewBox mainNewBox2" style="margin:0;">
+
 						<a class="imgBox">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
 							<img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
@@ -124,7 +137,7 @@
 				</div>
 			</div>
 
-			<!-- 미니 배너 -->
+			<!-- 미니 배너  -->
 			<div class="miniBanner">
 				<img style="width: 56em;" src="https://cdn.discordapp.com/attachments/733016627054116960/973561296752623627/-001_7.png">
 			</div>
@@ -180,7 +193,7 @@
 						<a class ="newATag" href="#"><p class="mainLastTxtPrice">
 							<span style="color:#FA622F;">15%</span>
 							&nbsp;10,880원
-						<span class="mainNewTxtOriginPrice">12,800원</span></p></a>
+							<span class="mainNewTxtOriginPrice">12,800원</span></p></a>
 					</div>
 				</div>
 			</div>
@@ -240,7 +253,9 @@
 						</div>
 					</div>
 
-					<div class="mainNewBox">
+
+					<div class="mainNewBox mainNewBox2" style="margin:0;">
+
 						<a class="imgBox">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
 							<img class="innerCart" src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
@@ -294,7 +309,7 @@
 									<button type="button" class="btn up on">수량내리기</button>
 								</span>
 								<span class="price">
-									<span class="dc_price">15,900원</span>
+									<span class="dc_price">15,200원</span>
 								</span>
 							</div>
 						</li>
@@ -320,101 +335,9 @@
 	</div>
 </div>
 
-<!-- Scripts -->
-
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
-<script>
-	var check = false;
-
-	const $category = $('.gnb_menu li');
-
-	function send(){
-		if(check == false) {
-			$('.gnb_sub').show();
-		/*	$('#allCategory').css({
-				"color" : "#DA291C",
-				"font-weight" : "600"
-			});*/
-			check = true;
-		}else {
-			$('.gnb_sub').hide();
-			/*$('#allCategory').css({
-				"color" : "#333",
-				"font-weight" : "500"
-			});*/
-			check = false;
-		}
-	}
-
-	$.each($category, function(index, item){
-		$(item).mouseover(function(){
-			$category.addClass("current");
-		})
-	});
-
-
-
-	var cart = $(".cart_option");
-	var button = $(".cancel");
-	$(".innerLatChanceCart").click(function(){
-		$(cart).removeClass("off");
-		$(cart).css("opacity", "1");
-		$(".bg_loading").css("display", "block");
-	});
-
-	$(".innerCart").click(function(){
-		$(cart).removeClass("off");
-		$(cart).css("opacity", "1");
-		$(".bg_loading").css("display", "block");
-	});
-
-	$(button).click(function(){
-		$(cart).addClass("off");
-		$(cart).css("opacity", "0");
-		$(".bg_loading").css("display", "none");
-	});
-
-
-
-
-	$(document).ready(function() {
-		$(cart).addClass("off");
-		$(cart).css("opacity", "0");
-		$(".bg_loading").css("display", "none");
-	});
-</script>
-<script>
-	let startView = 0;
-	let click = false;
-
-	$('.mainNewBox').eq(0).on('touchstart', function(e){
-		startView =e.touches[0].clientX;
-		click = true;
-	});
-
-	$('.mainNewBox').eq(0).on('touchmove', function(e){
-		if (click === true) {
-			$('.mainNew').css('transform', `translateX( ${e.touches[0].clientX - startView}px )`)
-		}
-	});
-
-	$('.mainNewBox').eq(0).on('touchend', function(e){
-		click = false;
-
-		if (e.changedTouches[0].clientX - startView < -174){
-			$('.mainNew')
-					.css('transition', 'all 0.5s')
-					.css('transform', 'translateX(-174px)');
-		} else {
-			$('.mainNew')
-					.css('transition', 'all 0.5s')
-					.css('transform', 'translateX(0px)');
-	}
-		setTimeout(()=>{
-			$('.mainNew').css('transform', 'none');
-		},500)
-	});
-
-</script>
+<th:block th:insert="/fragments/footer.html :: footFragment"/>
 </body>
+<!-- Scripts -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js" ></script>
+<script src="/front/assets/js/main/main.js"></script>
 </html>
