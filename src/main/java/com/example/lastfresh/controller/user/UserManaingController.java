@@ -20,8 +20,8 @@ public class UserManaingController {
     @GetMapping("/manage/userLogin")
     public void userLogin(){};
 
-    @GetMapping("/manage/JoinChoice")
-    public void JoinChoice(){};
+    @GetMapping("/manage/userSelect")
+    public void userSelect(){};
 
     @GetMapping("/manage/useFindId")
     public void useFindId(){};

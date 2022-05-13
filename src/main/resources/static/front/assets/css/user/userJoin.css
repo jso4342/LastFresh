@@ -1,3 +1,8 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+
 *, *:after, *:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -60,13 +65,18 @@ table.tbl_comm {
     border-collapse: collapse;
     border-spacing: 0;
 }
+table.tbl_comm th{
+    padding :unset;
+}
 
 table {
     border-collapse: collapse;
     border-spacing: 0;
     text-indent: initial;
 }
-
+p.sub{
+    margin: unset;
+}
 tbody {
     display: table-row-group;
     vertical-align: middle;
@@ -146,7 +156,7 @@ a.btn_check {
     background-color: #fff;
     color: #DA291C;
     display: inline-block;
-    width: 120px;
+    width: 98px;
     margin-left: 5px;
     vertical-align: top;
     height: 44px;
@@ -281,7 +291,7 @@ a {
     color: inherit;
 }
 
-/*이용약관.ㅁㅁㄴㅇㅁ*/
+
 div.layer_agreement {
     display: none;
     margin-top: -299.5px;
@@ -391,7 +401,7 @@ div.form_footer{
 }
 button.btn_join{
     width: 240px;
-    height: 56px;
+    height: 70px;
     font-size: 16px;
     line-height: 54px;
     display: inline-block;
@@ -403,6 +413,7 @@ button.btn_join{
     border: 1px solid #DA291C;
     background-color: #DA291C;
     color: #fff;
+    margin-bottom: 90px;
 }
 
 .box_tbl::-webkit-scrollbar {
@@ -492,13 +503,20 @@ td.emph{
     div.body{
         width: 420px;
     }
-    table.tbl_comm{
+    table.tbl_comm {
         width: 420px;
+    }
+    table.tbl_comm th{
+        padding: 10px 10px 0px 26px;
+        margin: unset;
+    }
+    table.tbl_comm tr{
+        border: none;
     }
     div.title_page {
         width: 420px;
     }
-    .tbl_comm tr{
+    tr{
         display: grid;
     }
 
@@ -539,3 +557,4 @@ td.emph{
     }
 
 }
+
