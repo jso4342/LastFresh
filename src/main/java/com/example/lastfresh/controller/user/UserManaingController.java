@@ -23,7 +23,7 @@ public class UserManaingController {
     @GetMapping("/manage/userSelect")
     public void userSelect(){};
 
-    @GetMapping("/manage/useFindId")
+    @GetMapping("/manage/userFindId")
     public void useFindId(){};
 
     @GetMapping("/manage/userFindPw")
