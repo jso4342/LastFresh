@@ -94,6 +94,9 @@
 
 
     /*MenuList*/
+    .menuTable th {
+        font-size: 38px !important;
+    }
 
     .sellMenuList tr td {
         height: 100px
