@@ -44,20 +44,20 @@
                         카테고리
                     </label>
                     <div class="input-group sell-category">
-                        <select id="category" name="category">
+                        <select id="category" name="sellProductCategory">
                             <option value="">카테고리 선택</option>
-                            <option name="sellProductCategory" value="과일/채소">과일/채소</option>
-                            <option name="sellProductCategory" value="육류">육류</option>
-                            <option name="sellProductCategory" value="수산물">수산물</option>
-                            <option name="sellProductCategory" value="반찬">반찬</option>
-                            <option name="sellProductCategory" value="간식">간식/음료</option>
-                            <option name="sellProductCategory" value="건강">건강</option>
-                            <option name="sellProductCategory" value="한식">한식</option>
-                            <option name="sellProductCategory" value="일식">일식</option>
-                            <option name="sellProductCategory" value="중식">중식</option>
-                            <option name="sellProductCategory" value="양식">양식</option>
-                            <option name="sellProductCategory" value="카페">카페</option>
-                            <option name="sellProductCategory" value="기타">기타</option>
+                            <option value="과일/채소">과일/채소</option>
+                            <option value="육류">육류</option>
+                            <option value="수산물">수산물</option>
+                            <option value="반찬">반찬</option>
+                            <option value="간식">간식/음료</option>
+                            <option value="건강">건강</option>
+                            <option value="한식">한식</option>
+                            <option value="일식">일식</option>
+                            <option value="중식">중식</option>
+                            <option value="양식">양식</option>
+                            <option value="카페">카페</option>
+                            <option value="기타">기타</option>
                         </select>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                     <div class="menu-price-wrapper">
                         <label for="sellProductExpireDay">판매 기간</label>
                         <div class="input-group sell-date">
-                            <input type="date" name="sellProductExpireDay " id="sellProductExpireDay">
+                            <input type="date" name="sellProductExpireDay" id="sellProductExpireDay">
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                     </div>
@@ -170,19 +170,18 @@
                         <div class="input-group sell-delivery">
                             <input type="radio" name="sellProductDelivery" id="sellProductDelivery-true" value="true">
                             <label for="sellProductDelivery-true" onclick="deliveryUsing()">배달 가능</label>
-                            <input type="radio" name="sellProductDelivery" id="sellProductDelivery-false" value="false">
+                            <input type="radio" name="sellProductDelivery" id="sellProductDelivery-false" value="0">
                             <label for="sellProductDelivery-false" onclick="deliveryNoUsing()">배달 불가능</label>
                         </div>
                     </div>
-
                     <div class="menu-deliveryRider-wrapper">
                         <div class="sell-deliveryRider-title">
                             라스트 라이더 이용 유무
                         </div>
                         <div class="input-group sell-deliveryRider">
-                            <input type="radio" name="sellProductDeliveryRider" id="sellProductDeliveryRider-true" value="true">
+                            <input type="radio" name="sellProductDelivery" id="sellProductDeliveryRider-true" value="1">
                             <label for="sellProductDeliveryRider-true" onclick="riderUsing()">라이더 이용</label>
-                            <input type="radio" name="sellProductDeliveryRider" id="sellProductDeliveryRider-false" value="false">
+                            <input type="radio" name="sellProductDelivery" id="sellProductDeliveryRider-false" value="2">
                             <label for="sellProductDeliveryRider-false" onclick="riderNoUsing()">라이더 미이용</label>
                         </div>
                     </div>
@@ -194,46 +193,49 @@
                             </div>
                             <div class="content3" style="padding-bottom: 10px;">
                                 <div class="input-group sell-delivery-address">
-                                    <label for="sellProductDeliveryAddress1">
+                                    <label for="sellProductDeliveryAddress1_1">
                                         배달지1
                                     </label>
-                                    <select name="sellProductDeliveryAddress1" class="sido1 address">
+                                    <select id="sellProductDeliveryAddress1_1" name="sellProductDeliveryAddress1_1" class="sido1 address">
                                         <option value="">선택</option>
                                     </select>
-                                    <select name="sellProductDeliveryAddress1" class="sigugun1 address">
+                                    <select name="sellProductDeliveryAddress1_2" class="sigugun1 address">
                                         <option value="">선택</option>
                                     </select>
-                                    <select name="sellProductDeliveryAddress1" class="dong1 address">
+                                    <select name="sellProductDeliveryAddress1_3" class="dong1 address">
                                         <option value="">선택</option>
                                     </select>
+                                    <input type="hidden" name="sellProductDeliveryAddress1">
                                 </div>
                                 <div class="input-group sell-delivery-address">
-                                    <label for="sellProductDeliveryAddress2">
+                                    <label for="sellProductDeliveryAddress2_1">
                                         배달지2
                                     </label>
-                                    <select name="sellProductDeliveryAddress2" class="sido2 address">
+                                    <select id="sellProductDeliveryAddress2_1" name="sellProductDeliveryAddress2_1" class="sido2 address">
                                         <option value="">선택</option>
                                     </select>
-                                    <select name="sellProductDeliveryAddress2" class="sigugun2 address">
+                                    <select name="sellProductDeliveryAddress2_2" class="sigugun2 address">
                                         <option value="">선택</option>
                                     </select>
-                                    <select name="sellProductDeliveryAddress2" class="dong2 address">
+                                    <select name="sellProductDeliveryAddress2_3" class="dong2 address">
                                         <option value="">선택</option>
                                     </select>
+                                    <input type="hidden" name="sellProductDeliveryAddress2">
                                 </div>
                                 <div class="input-group sell-delivery-address">
-                                    <label for="sellProductDeliveryAddress3">
+                                    <label for="sellProductDeliveryAddress3_1">
                                         배달지3
                                     </label>
-                                    <select name="sellProductDeliveryAddress3" class="sido3 address">
+                                    <select id="sellProductDeliveryAddress3_1" name="sellProductDeliveryAddress3_1" class="sido3 address">
                                         <option value="">선택</option>
                                     </select>
-                                    <select name="sellProductDeliveryAddress3" class="sigugun3 address">
+                                    <select name="sellProductDeliveryAddress3_2" class="sigugun3 address">
                                         <option value="">선택</option>
                                     </select>
-                                    <select name="sellProductDeliveryAddress3" class="dong3 address">
+                                    <select name="sellProductDeliveryAddress3_3" class="dong3 address">
                                         <option value="">선택</option>
                                     </select>
+                                    <input type="hidden" name="sellProductDeliveryAddress3">
                                 </div>
                             </div>
                         </div>
@@ -379,7 +381,7 @@
     </div>
 </div>
 <div class="bottomBar">
-    <div class="menu-final-register bottomBar-btn">
+    <div class="menu-final-register bottomBar-btn" onclick="menuRegister()">
         등록 하기
     </div>
     <div class="menu-final-cancel bottomBar-cancel-btn">

@@ -18,31 +18,45 @@ public class ProductVO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "SELL_PRODUCT_NUM")
     private Long sellProductNum;
+
     @Column(name = "SELL_PRODUCT_CATEGORY")
     private Long sellProductCategory;
+
     @Column(name = "SELL_PRODUCT_NAME")
     private String sellProductName;
+
     @Column(name = "SELL_PRODUCT_ORIGIN_PRICE")
     private Long sellProductOriginPrice;
+
     @Column(name = "SELL_PRODUCT_DISCOUNT_PRICE")
     private Long sellProductDiscountPrice;
+
     @Column(name = "SELL_PRODUCT_EXPIRE_DATE")
     private Date sellProductExpireDay;
+
     @Column(name = "SELL_PRODUCT_STOCK")
     private long sellProductStock;
+    /* 0판매가능, -1 판매 불가 */
+
     @Column(name = "SELL_PRODUCT_STATUS")
-    private String sellProductStatus;
+    private String sellProductStatus = "0";
+
     @Column(name = "SELL_PRODUCT_PICKUP")
     private String sellProductPickup;
+
     @Column(name = "SELL_PRODUCT_DELIVERY_METHOD")
     /*0배달x, 1프레쉬라이더, 2자가라이더*/
     private String sellProductDelivery;
+
     @Column(name = "SELL_PRODUCT_DELIVERY_ADDRESS1")
     private String sellProductDeliveryAddress1;
+
     @Column(name = "SELL_PRODUCT_DELIVERY_ADDRESS2")
     private String sellProductDeliveryAddress2;
+
     @Column(name = "SELL_PRODUCT_DELIVERY_ADDRESS3")
     private String sellProductDeliveryAddress3;
+
     @Column(name = "SELL_PRODUCT_SHIPPING_METHOD")
     /*0배달x, 1프레쉬라이더, 2자가라이더*/
     private String sellProductShipping;

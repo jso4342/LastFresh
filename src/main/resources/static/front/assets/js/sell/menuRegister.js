@@ -426,3 +426,26 @@ function shippingUsing() {
 function shippingNoUsing() {
     $shippingRiderList.hide()
 }
+
+/* 메뉴 등록 */
+function menuRegister() {
+    console.log($('input[type=date]').val());
+}
+
+function deliverySum() {
+    let $delivery1_1 = $('input[name=sellProductDeliveryAddress1_1]');
+    let $delivery1_2 = $('input[name=sellProductDeliveryAddress1_2]');
+    let $delivery1_3 = $('input[name=sellProductDeliveryAddress1_3]');
+
+    let $delivery2_1 = $('input[name=sellProductDeliveryAddress2_1]');
+    let $delivery2_2 = $('input[name=sellProductDeliveryAddress2_2]');
+    let $delivery2_3 = $('input[name=sellProductDeliveryAddress2_3]');
+
+    let $delivery3_1 = $('input[name=sellProductDeliveryAddress3_1]');
+    let $delivery3_2 = $('input[name=sellProductDeliveryAddress3_2]');
+    let $delivery3_3 = $('input[name=sellProductDeliveryAddress3_3]');
+
+    let delivery1 =
+    let delivery2 =
+    let delivery3 =
+}
