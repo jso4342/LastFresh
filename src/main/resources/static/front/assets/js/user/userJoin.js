@@ -36,7 +36,7 @@ $('.link_btn_agree').each(function (i,btn) {
 })
 
 $('.btn_ok').each(function (i,ok) {
-    $(오케이).on("click",function () {
+    $(ok).on("click",function () {
         $($(".modal").get(i)).hide();
     })
 })
