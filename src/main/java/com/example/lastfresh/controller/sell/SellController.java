@@ -1,5 +1,6 @@
 package com.example.lastfresh.controller.sell;
 
+import com.example.lastfresh.domain.dto.ImageDTO;
 import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.service.owner.OwnerService;
@@ -12,6 +13,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -41,50 +44,62 @@ public class SellController {
     public void sellMenuRegister(){}
 
     @PostMapping("/sellMenuRegister")
-    public RedirectView register(ProductVO productVO){
+    public RedirectView register(ProductVO productVO, HttpServletRequest request){
         log.info("-----------------------------------------------------");
         log.info("등록 들어옴");
         log.info("DTO : " + productVO);
         log.info("-----------------------------------------------------");
 
-        ownerService.register(productVO);
+//        HttpSession session = request.getSession();
+//        session.setAttribute();
+//        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
+
+        ownerService.register(productVO, 6L);
 
         return new RedirectView("sellMenuList");
     }
 
+//    @PostMapping("/sellMenuRegister")
+//    public RedirectView register(ProductVO productVO, HttpServletRequest request){
+//        log.info("-----------------------------------------------------");
+//        log.info("등록 들어옴");
+//        log.info("DTO : " + productVO);
+//        log.info("-----------------------------------------------------");
+//
+////        HttpSession session = request.getSession();
+////        session.setAttribute();
+////        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
+//
+//        ownerService.register(productVO, 0L);
+//
+//        return new RedirectView("sellMenuList");
+//    }
+
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
-    public void uploadAjaxPost(MultipartFile[] uploadFile){
+    public ImageDTO uploadAjaxPost(MultipartFile[] uploadFile) throws IOException {
         String uploadFolder = "C:/upload";
 //        UUID(Universally unique identifier) : 범용 고유 식별자
 //        네트워크 상에서 각각의 개체들을 식별하기 위하여 사용되었다.
 //        중복될 가능성이 거의 없다고 인정되기 때문에 많이 사용된다.
 //        UUID의 개수는 10의 38승입니다.
 
-        UUID uuid = UUID.randomUUID();
-        String uploadFileName1 = null;
-        String uploadFileName2 = null;
-
-        String uploadFolderPath = getPath();
+        String uploadFolderPath = this.getPath();
         File uploadPath = new File(uploadFolder, uploadFolderPath);
         if(!uploadPath.exists()){
             uploadPath.mkdirs();
         }
 
-        uploadFileName1 = uuid.toString() + "_" + uploadFile[0].getOriginalFilename();
-        uploadFileName2 = uuid.toString() + "_" + uploadFile[1].getOriginalFilename();
+        UUID uuid = UUID.randomUUID();
+        String uploadFileName1 = uuid.toString() + "_" + uploadFile[0].getOriginalFilename();
+        String uploadFileName2 = uuid.toString() + "_" + uploadFile[1].getOriginalFilename();
 
-        ProductVO productVO = new ProductVO();
-        log.info("-----------------------------------------------------");
-        log.info(uploadFileName1);
-        log.info(uploadFileName2);
-        log.info(uuid.toString());
-        log.info(uploadFolderPath);
-        log.info("-----------------------------------------------------");
-        productVO.setSellProductThumbnail(uploadFileName1);
-        productVO.setSellProductImage(uploadFileName2);
-        productVO.setSellProductImageUuid(uuid.toString());
-        productVO.setSellProductImageUploadPath(uploadFolderPath);
+        ImageDTO imgDTO = new ImageDTO();
+        imgDTO.setSellProductThumbnail(uploadFileName1);
+        imgDTO.setSellProductImage(uploadFileName2);
+        imgDTO.setSellProductImageUuid(uuid.toString());
+        imgDTO.setSellProductImageUploadPath(uploadFolderPath);
+        log.info(imgDTO.toString());
 
         //저장할 경로와 파일의 이름을 File객체에 담는다.
         File saveFile1 = new File(uploadPath, uploadFileName1);
@@ -94,9 +109,11 @@ public class SellController {
             //설정한 경로에 해당 파일을 업로드한다.
             uploadFile[0].transferTo(saveFile1);
             uploadFile[1].transferTo(saveFile2);
+            return imgDTO;
 
         } catch (IOException e) {
             log.error(e.getMessage());
+            throw new IOException("서버 오류입니다. 다시 시도해주세요.");
         }
     }
 

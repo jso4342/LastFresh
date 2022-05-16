@@ -1,17 +1,21 @@
 package com.example.lastfresh.domain.dto;
 
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.Date;
 
-@ToString()
+@ToString
 @Getter
+@Setter
 public class ProductDTO {
     private Long sellProductCategory;
 
@@ -21,7 +25,8 @@ public class ProductDTO {
 
     private Long sellProductDiscountPrice;
 
-    private Date sellProductExpireDay;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate sellProductExpireDay;
 
     private Long sellProductStock;
 
@@ -46,4 +51,12 @@ public class ProductDTO {
     private String sellProductDescription;
 
     private String sellProductPhoneNum;
+
+    private String sellProductThumbnail;
+
+    private String sellProductImage;
+
+    private String sellProductImageUploadPath;
+
+    private String sellProductImageUuid;
 }

@@ -1,12 +1,17 @@
 /* 파일 첨부 시 업로드 */
 $("input[type='file']").change(function(e){
     let inputFile = $("input[name='sellProductImageInput']");
-    // let files1 = inputFile[0].files;
-    // let files2 = inputFile[1].files;
-    // console.log(files1);
-    // console.log(files2);
-    // console.log(files1[0].name);
-    // console.log(files2[0].name);
+    let files1 = inputFile[0].files;
+    let files2 = inputFile[1].files;
+
+    if(files2.length == 0 || files1.length == 0) {
+        return;
+    }
+
+    if (!checkFile(files1[0].name) || !checkFile(files2[0].name)) {
+        alert("이미지 파일만 넣어 주세요")
+        return;
+    }
 
     let formData = new FormData();
 
@@ -27,15 +32,31 @@ $("input[type='file']").change(function(e){
         // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
         processData: false,
         contentType: false,
-        success: function(){
-
+        success: function(data){
+            $('input[name=sellProductThumbnail]').val(data.sellProductThumbnail);
+            $('input[name=sellProductImage]').val(data.sellProductImage);
+            $('input[name=sellProductImageUploadPath]').val(data.sellProductImageUploadPath);
+            $('input[name=sellProductImageUuid]').val(data.sellProductImageUuid);
+        },
+        error: function (request,status,error) {
+            alert(request.responseText);
         }
     });
 });
 
+function checkFile(fileName){
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+
+    if(regex.test(fileName)){
+        return false;
+    }
+
+    return true;
+}
+
 /* 파일 형식 및 사이즈 체크*/
 function checkFile(fileName, fileSize){
-    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
     let maxSize = 1024 * 1024 * 40;
 
     if(regex.test(fileName)){
@@ -226,7 +247,6 @@ $(document).ready(function(){
         var sigugun = $('.sigugun3 option:selected').val();
         var dong = $('.dong3 option:selected').val();
         var dongCode = sido + sigugun + dong + '00';
-
     });
 });
 
@@ -493,35 +513,32 @@ function shippingNoUsing() {
 
 /* 메뉴 등록 */
 function menuRegister() {
-
-
-    console.log($('input[type=date]').val());
-
-
     deliverySum();
-    console.log($('input[name=sellProductDeliveryAddress1]'));
-    console.log($('input[name=sellProductDeliveryAddress2]'));
-    console.log($('input[name=sellProductDeliveryAddress3]'));
+    console.log($('input[name=sellProductDeliveryAddress1]').val());
+    console.log($('input[name=sellProductDeliveryAddress2]').val());
+    console.log($('input[name=sellProductDeliveryAddress3]').val());
 
-    $('#menu-register-form').submit();
+    console.log($('.page_section').height());
+    // $('#menu-register-form').submit();
 }
 
 function deliverySum() {
-    let $delivery1_1 = $('input[name=sellProductDeliveryAddress1_1]');
-    let $delivery1_2 = $('input[name=sellProductDeliveryAddress1_2]');
-    let $delivery1_3 = $('input[name=sellProductDeliveryAddress1_3]');
 
-    let $delivery2_1 = $('input[name=sellProductDeliveryAddress2_1]');
-    let $delivery2_2 = $('input[name=sellProductDeliveryAddress2_2]');
-    let $delivery2_3 = $('input[name=sellProductDeliveryAddress2_3]');
+    let $delivery1_1 = $('select[name=sellProductDeliveryAddress1_1] option:checked');
+    let $delivery1_2 = $('select[name=sellProductDeliveryAddress1_2] option:checked');
+    let $delivery1_3 = $('select[name=sellProductDeliveryAddress1_3] option:checked');
 
-    let $delivery3_1 = $('input[name=sellProductDeliveryAddress3_1]');
-    let $delivery3_2 = $('input[name=sellProductDeliveryAddress3_2]');
-    let $delivery3_3 = $('input[name=sellProductDeliveryAddress3_3]');
+    let $delivery2_1 = $('select[name=sellProductDeliveryAddress2_1] option:checked');
+    let $delivery2_2 = $('select[name=sellProductDeliveryAddress2_2] option:checked');
+    let $delivery2_3 = $('select[name=sellProductDeliveryAddress2_3] option:checked');
 
-    let str1 = $delivery1_1.val() + " " + $delivery1_2 + " " + $delivery1_3;
-    let str2 = $delivery2_1.val() + " " + $delivery2_2 + " " + $delivery2_3;
-    let str3 = $delivery3_1.val() + " " + $delivery3_2 + " " + $delivery3_3;
+    let $delivery3_1 = $('select[name=sellProductDeliveryAddress3_1] option:checked');
+    let $delivery3_2 = $('select[name=sellProductDeliveryAddress3_2] option:checked');
+    let $delivery3_3 = $('select[name=sellProductDeliveryAddress3_3] option:checked');
+
+    let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();  
+    let str2 = $delivery2_1.text() + " " + $delivery2_2.text() + " " + $delivery2_3.text();
+    let str3 = $delivery3_1.text() + " " + $delivery3_2.text() + " " + $delivery3_3.text();
 
     let delivery1 = $('input[name=sellProductDeliveryAddress1]');
     let delivery2 = $('input[name=sellProductDeliveryAddress2]');

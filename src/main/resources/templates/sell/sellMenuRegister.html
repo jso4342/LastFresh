@@ -321,7 +321,7 @@
                         <div class="menu-register-info sellProductPhoneNum">
                             <div class="menu-phoneNum-wrapper">
                                 <div class="input-group sell-phoneNum">
-                                    <input type="text" class="sellProductPhoneNum" id="sellProductPhoneNum">
+                                    <input type="text" name="sellProductPhoneNum" class="sellProductPhoneNum" id="sellProductPhoneNum">
                                 </div>
                             </div>
                         </div>
@@ -330,8 +330,6 @@
                         <p>번호는 -(하이푼) 없이 작성해 주세요</p>
                     </div>
                 </div>
-
-
             </div>
 
             <!-- 상품 이미지 (대표 이미지, 상품 상세 정보 이미지)-->
@@ -375,6 +373,10 @@
                 </div>
             </div>
 
+            <input type="hidden" name="sellProductThumbnail">
+            <input type="hidden" name="sellProductImage">
+            <input type="hidden" name="sellProductImageUploadPath">
+            <input type="hidden" name="sellProductImageUuid">
         </form>
         <div class="blank_article">
         </div>
