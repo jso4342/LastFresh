@@ -1,3 +1,79 @@
+/* 파일 첨부 시 업로드 */
+$("input[type='file']").change(function(e){
+    let inputFile = $("input[name='sellProductImageInput']");
+    let files1 = inputFile[0].files;
+    let files2 = inputFile[1].files;
+
+    if(files2.length == 0 || files1.length == 0) {
+        return;
+    }
+
+    if (!checkFile(files1[0].name) || !checkFile(files2[0].name)) {
+        alert("이미지 파일만 넣어 주세요")
+        return;
+    }
+
+    let formData = new FormData();
+
+    console.log("파일 첨부 시")
+
+    for(let i = 0; i < 2; i++){
+        // if(!checkFile(inputFile[i].files[0].name, inputFile[i].files[0].size)){
+        //     continue;
+        // }
+        console.log(inputFile[i].files[0])
+        formData.append("uploadFile", inputFile[i].files[0]);
+    }
+
+    $.ajax({
+        url: "/sell/uploadAjaxAction",
+        data: formData,
+        type: "POST",
+        // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
+        processData: false,
+        contentType: false,
+        success: function(data){
+            $('input[name=sellProductThumbnail]').val(data.sellProductThumbnail);
+            $('input[name=sellProductImage]').val(data.sellProductImage);
+            $('input[name=sellProductImageUploadPath]').val(data.sellProductImageUploadPath);
+            $('input[name=sellProductImageUuid]').val(data.sellProductImageUuid);
+        },
+        error: function (request,status,error) {
+            alert(request.responseText);
+        }
+    });
+});
+
+function checkFile(fileName){
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+
+    if(regex.test(fileName)){
+        return false;
+    }
+
+    return true;
+}
+
+/* 파일 형식 및 사이즈 체크*/
+function checkFile(fileName, fileSize){
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz|txt)$");
+    let maxSize = 1024 * 1024 * 40;
+
+    if(regex.test(fileName)){
+        alert("업로드할 수 없는 파일의 형식입니다.");
+        return false;
+    }
+
+    if(fileSize > maxSize){
+        alert("파일 사이즈 초과");
+        return false;
+    }
+    return true;
+}
+
+
+
+
 let $sideSnb = $('.inner_snb li a');
 
 $.each($sideSnb, function (i, e) {
@@ -171,7 +247,6 @@ $(document).ready(function(){
         var sigugun = $('.sigugun3 option:selected').val();
         var dong = $('.dong3 option:selected').val();
         var dongCode = sido + sigugun + dong + '00';
-
     });
 });
 
@@ -374,19 +449,28 @@ function chk_file_type(obj) {
 
 /* 라이더 사용 유무 창*/
 let $RiderList = $('.menu-deliveryRider-wrapper');
+let $label1 = $('label[for=sellProductDelivery-false]');
+let $label2 = $('label[for=sellProductDelivery-true]');
 
 /*배달 불가능 클릭시*/
 function deliveryNoUsing() {
     let $RiderUsingBtn = $('input[name=sellProductDeliveryRider]');
-    console.log($RiderUsingBtn);
+
+    $label1.css('border-bottom', '4px solid #DA291C');
+    $label2.css('border-bottom', '1px solid #e0e4e6');
+
     $RiderUsingBtn.prop('checked', false);
+
     riderReset();
+
     $RiderList.hide();
     $deliveryList.hide()
 }
 
 /*배달 가능 클릭시*/
 function deliveryUsing() {
+    $label1.css('border-bottom', '1px solid #e0e4e6');
+    $label2.css('border-bottom', '4px solid #DA291C');
     $RiderList.show();
 }
 
@@ -416,13 +500,142 @@ function riderNoUsing() {
 
 
 let $shippingRiderList = $('.menu-shippingRider-wrapper');
+let $label3 = $('label[for=sellProductShipping-false]');
+let $label4 = $('label[for=sellProductShipping-true]');
 
 /*배송 가능 시*/
 function shippingUsing() {
+    $label3.css('border-bottom', '1px solid #e0e4e6');
+    $label4.css('border-bottom', '4px solid #DA291C');
     $shippingRiderList.show()
 }
 
 /*배송 불가능 시*/
 function shippingNoUsing() {
+    $label3.css('border-bottom', '4px solid #DA291C');
+    $label4.css('border-bottom', '1px solid #e0e4e6');
     $shippingRiderList.hide()
 }
+
+/* 메뉴 등록 */
+function menuRegister() {
+    deliverySum();
+
+    let $category = $('select[name=sellProductCategory] option:checked');
+    if($category.val() == "" || $category.val() == null) {
+        alert("카테고리를 선택 해주세요");
+        return;
+    }
+
+    if(!validateInput("sellProductName", "상품명을 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductOriginPrice", "정상 판매가를 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductDiscountPrice", "할인 판매가를 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductExpireDay", "판매 기간를 선택 해주세요")) {
+        return;
+    }
+    
+    if(!validateInput("sellProductStock", "재고 수량을 입력 해주세요")) {
+        return;
+    }
+
+    let $sellProductPickup = $('input[name=sellProductPickup]:checked');
+    if($sellProductPickup.val() == "" || $sellProductPickup.val() == null) {
+        alert("픽업 유무 선택 해주세요");
+        return;
+    }
+
+    let $sellProductDelivery = $('input[name=sellProductDelivery]:checked');
+    if($sellProductDelivery.val() == "" || $sellProductDelivery.val() == null) {
+        alert("라이더 이용 유무 선택 해주세요");
+        return;
+    }
+
+    let $sellProductShipping = $('input[name=sellProductShipping]:checked');
+    if($sellProductShipping.val() == "" || $sellProductShipping.val() == null) {
+        alert("라이더 이용 유무 선택 해주세요");
+        return;
+    }
+
+    if(!validateInput("sellProductAddressPostNum", "주소를 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductAddress", "주소를 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductAddressDetail", "상세 주소를 입력 해주세요")) {
+        return;
+    }
+    
+    if(!validateInput("sellProductDescription", "상품 설명를 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductPhoneNum", "핸드폰 번호를 입력 해주세요")) {
+        return;
+    }
+
+    if(!validateInput("sellProductImageInput", "대표 이미지를 첨부 해주세요")) {
+        return;
+    }
+
+    $('#menu-register-form').submit();
+}
+
+function validateInput(name, wordding) {
+    let $name = $('input[name=' + name + ']');
+    console.log($name)
+    console.log($name.val())
+    if($name.val() == "" || $name.val() == null) {
+        alert(wordding);
+        return false;
+    }
+    return true;
+}
+
+
+/* 배달 시 군 동 합치기*/
+function deliverySum() {
+    let $delivery1_1 = $('select[name=sellProductDeliveryAddress1_1] option:checked');
+    let $delivery1_2 = $('select[name=sellProductDeliveryAddress1_2] option:checked');
+    let $delivery1_3 = $('select[name=sellProductDeliveryAddress1_3] option:checked');
+
+    let $delivery2_1 = $('select[name=sellProductDeliveryAddress2_1] option:checked');
+    let $delivery2_2 = $('select[name=sellProductDeliveryAddress2_2] option:checked');
+    let $delivery2_3 = $('select[name=sellProductDeliveryAddress2_3] option:checked');
+
+    let $delivery3_1 = $('select[name=sellProductDeliveryAddress3_1] option:checked');
+    let $delivery3_2 = $('select[name=sellProductDeliveryAddress3_2] option:checked');
+    let $delivery3_3 = $('select[name=sellProductDeliveryAddress3_3] option:checked');
+
+    let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();  
+    let str2 = $delivery2_1.text() + " " + $delivery2_2.text() + " " + $delivery2_3.text();
+    let str3 = $delivery3_1.text() + " " + $delivery3_2.text() + " " + $delivery3_3.text();
+
+    let delivery1 = $('input[name=sellProductDeliveryAddress1]');
+    let delivery2 = $('input[name=sellProductDeliveryAddress2]');
+    let delivery3 = $('input[name=sellProductDeliveryAddress3]');
+
+    delivery1.val(str1);
+    delivery2.val(str2);
+    delivery3.val(str3);
+}
+
+
+/*div 높이 변화시, 전체 높이 변경*/
+let $pageDiv = $('.page_section');
+
+$pageDiv.change(function () {
+    let height = $('.page_section').height() + 100;
+    $('.sellMenuRegister').css("height", height);
+});
