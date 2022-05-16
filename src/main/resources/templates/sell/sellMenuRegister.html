@@ -30,7 +30,7 @@
     </div>
 
     <div class="page_section section_orderview menu-register-section">
-        <form id="menu-register-form" action="">
+        <form id="menu-register-form" method="post" action="/sell/sellMenuRegister" enctype="multipart/form-data">
 
             <!-- 상품 등록 안내-->
             <div class="menu-register-wrapper">
@@ -46,18 +46,18 @@
                     <div class="input-group sell-category">
                         <select id="category" name="sellProductCategory">
                             <option value="">카테고리 선택</option>
-                            <option value="과일/채소">과일/채소</option>
-                            <option value="육류">육류</option>
-                            <option value="수산물">수산물</option>
-                            <option value="반찬">반찬</option>
-                            <option value="간식">간식/음료</option>
-                            <option value="건강">건강</option>
-                            <option value="한식">한식</option>
-                            <option value="일식">일식</option>
-                            <option value="중식">중식</option>
-                            <option value="양식">양식</option>
-                            <option value="카페">카페</option>
-                            <option value="기타">기타</option>
+                            <option value="1">과일/채소</option>
+                            <option value="2">육류</option>
+                            <option value="3">수산물</option>
+                            <option value="4">반찬</option>
+                            <option value="5">간식/음료</option>
+                            <option value="6">건강</option>
+                            <option value="7">한식</option>
+                            <option value="8">일식</option>
+                            <option value="9">중식</option>
+                            <option value="10">양식</option>
+                            <option value="11">카페</option>
+                            <option value="12">기타</option>
                         </select>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
 
                 <div class="menu-register-info sellProductPickup">
                     <div class="menu-pickUp-wrapper">
-                        <div class="input-group sell-pickUp">
+                        <div class="input-group sell-pickUp rider-radio-input">
                             <input type="radio" name="sellProductPickup" id="sellProductPickup-true" value="true">
                             <label for="sellProductPickup-true">픽업 가능</label>
                             <input type="radio" name="sellProductPickup" id="sellProductPickup-false" value="false">
@@ -178,7 +178,7 @@
                         <div class="sell-deliveryRider-title">
                             라스트 라이더 이용 유무
                         </div>
-                        <div class="input-group sell-deliveryRider">
+                        <div class="input-group  sell-deliveryRider rider-radio-input">
                             <input type="radio" name="sellProductDelivery" id="sellProductDeliveryRider-true" value="1">
                             <label for="sellProductDeliveryRider-true" onclick="riderUsing()">라이더 이용</label>
                             <input type="radio" name="sellProductDelivery" id="sellProductDeliveryRider-false" value="2">
@@ -251,7 +251,7 @@
 
                 <div class="menu-register-info sellProductShipping">
                     <div class="menu-shipping-wrapper">
-                        <div class="input-group sell-shipping">
+                        <div class="input-group sell-shipping rider-radio-input">
                             <input type="radio" name="sellProductShipping" id="sellProductShipping-true" value="true">
                             <label for="sellProductShipping-true" onclick="shippingUsing()">배송 가능</label>
                             <input type="radio" name="sellProductShipping" id="sellProductShipping-false" value="false">
@@ -263,7 +263,7 @@
                         <div class="sell-deliveryRider-title">
                             라스트 라이더 이용 유무
                         </div>
-                        <div class="input-group sell-deliveryRider">
+                        <div class="input-group sell-deliveryRider rider-radio-input">
                             <input type="radio" name="sellProductShippingRider" id="sellProductShippingRider-true" value="true">
                             <label for="sellProductShippingRider-true">라이더 이용</label>
                             <input type="radio" name="sellProductShippingRider" id="sellProductShippingRider-false" value="false">
@@ -352,7 +352,7 @@
                             <input type="button" onclick="cancelFile('sellProductThumbnail')" value="첨부 삭제">
                         </div>
                         <div class="input-group sell-img">
-                            <input type="file" name="sellProductThumbnail" id="sellProductThumbnail" accept='image/jpeg,image/gif,image/png' onchange='chk_file_type(this)'>
+                            <input type="file" name="sellProductImageInput" id="sellProductThumbnail" accept='image/jpeg,image/gif,image/png' onchange='chk_file_type(this)'>
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                     </div>
@@ -368,7 +368,7 @@
                             <input type="button" onclick="cancelFile('sellProductImage')" value="첨부 삭제">
                         </div>
                         <div class="input-group sell-img">
-                            <input type="file" name="sellProductImage" id="sellProductImage"  onchange='chk_file_type(this)'>
+                            <input type="file" name="sellProductImageInput" id="sellProductImage"  onchange='chk_file_type(this)'>
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                     </div>
@@ -384,7 +384,7 @@
     <div class="menu-final-register bottomBar-btn" onclick="menuRegister()">
         등록 하기
     </div>
-    <div class="menu-final-cancel bottomBar-cancel-btn">
+    <div class="menu-final-cancel bottomBar-cancel-btn" onclick="history.back()">
         취소
     </div>
 </div>

@@ -1,3 +1,58 @@
+/* 파일 첨부 시 업로드 */
+$("input[type='file']").change(function(e){
+    let inputFile = $("input[name='sellProductImageInput']");
+    // let files1 = inputFile[0].files;
+    // let files2 = inputFile[1].files;
+    // console.log(files1);
+    // console.log(files2);
+    // console.log(files1[0].name);
+    // console.log(files2[0].name);
+
+    let formData = new FormData();
+
+    console.log("파일 첨부 시")
+
+    for(let i = 0; i < 2; i++){
+        // if(!checkFile(inputFile[i].files[0].name, inputFile[i].files[0].size)){
+        //     continue;
+        // }
+        console.log(inputFile[i].files[0])
+        formData.append("uploadFile", inputFile[i].files[0]);
+    }
+
+    $.ajax({
+        url: "/sell/uploadAjaxAction",
+        data: formData,
+        type: "POST",
+        // 현재 설정된 헤더 설정을 기본 방식으로 변경하지 못하도록 false로 설정
+        processData: false,
+        contentType: false,
+        success: function(){
+
+        }
+    });
+});
+
+/* 파일 형식 및 사이즈 체크*/
+function checkFile(fileName, fileSize){
+    let regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+    let maxSize = 1024 * 1024 * 40;
+
+    if(regex.test(fileName)){
+        alert("업로드할 수 없는 파일의 형식입니다.");
+        return false;
+    }
+
+    if(fileSize > maxSize){
+        alert("파일 사이즈 초과");
+        return false;
+    }
+    return true;
+}
+
+
+
+
 let $sideSnb = $('.inner_snb li a');
 
 $.each($sideSnb, function (i, e) {
@@ -374,19 +429,28 @@ function chk_file_type(obj) {
 
 /* 라이더 사용 유무 창*/
 let $RiderList = $('.menu-deliveryRider-wrapper');
+let $label1 = $('label[for=sellProductDelivery-false]');
+let $label2 = $('label[for=sellProductDelivery-true]');
 
 /*배달 불가능 클릭시*/
 function deliveryNoUsing() {
     let $RiderUsingBtn = $('input[name=sellProductDeliveryRider]');
-    console.log($RiderUsingBtn);
+
+    $label1.css('border-bottom', '4px solid #DA291C');
+    $label2.css('border-bottom', '1px solid #e0e4e6');
+
     $RiderUsingBtn.prop('checked', false);
+
     riderReset();
+
     $RiderList.hide();
     $deliveryList.hide()
 }
 
 /*배달 가능 클릭시*/
 function deliveryUsing() {
+    $label1.css('border-bottom', '1px solid #e0e4e6');
+    $label2.css('border-bottom', '4px solid #DA291C');
     $RiderList.show();
 }
 
@@ -429,7 +493,17 @@ function shippingNoUsing() {
 
 /* 메뉴 등록 */
 function menuRegister() {
+
+
     console.log($('input[type=date]').val());
+
+
+    deliverySum();
+    console.log($('input[name=sellProductDeliveryAddress1]'));
+    console.log($('input[name=sellProductDeliveryAddress2]'));
+    console.log($('input[name=sellProductDeliveryAddress3]'));
+
+    $('#menu-register-form').submit();
 }
 
 function deliverySum() {
@@ -445,7 +519,15 @@ function deliverySum() {
     let $delivery3_2 = $('input[name=sellProductDeliveryAddress3_2]');
     let $delivery3_3 = $('input[name=sellProductDeliveryAddress3_3]');
 
-    let delivery1 =
-    let delivery2 =
-    let delivery3 =
+    let str1 = $delivery1_1.val() + " " + $delivery1_2 + " " + $delivery1_3;
+    let str2 = $delivery2_1.val() + " " + $delivery2_2 + " " + $delivery2_3;
+    let str3 = $delivery3_1.val() + " " + $delivery3_2 + " " + $delivery3_3;
+
+    let delivery1 = $('input[name=sellProductDeliveryAddress1]');
+    let delivery2 = $('input[name=sellProductDeliveryAddress2]');
+    let delivery3 = $('input[name=sellProductDeliveryAddress3]');
+
+    delivery1.val(str1);
+    delivery2.val(str2);
+    delivery3.val(str3);
 }

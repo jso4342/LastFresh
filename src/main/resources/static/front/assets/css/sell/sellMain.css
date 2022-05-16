@@ -952,7 +952,7 @@ div.shipping {
     color: #333;
 }
 
-.input-group input[type=radio]:checked+label {
+.rider-radio-input input[type=radio]:checked+label {
     background-color: #DA291C;
     color: #fff;
 }
