@@ -1,15 +1,13 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "TBL_USER")
 @Getter
+@Setter
 @ToString
 @NoArgsConstructor
 public class UserVO {

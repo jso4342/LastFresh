@@ -1,4 +1,22 @@
+// 주소 찾기(Daum API)
+function find() {
+    new daum.Postcode({
+        oncomplete: function(data) {
+            var addr = ''; // 주소 변수
+            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                addr = data.roadAddress;
+            } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                addr = data.jibunAddress;
+            }
 
+            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+            document.getElementById('userAddressPostNum').value = data.zonecode;
+            document.getElementById("userAddress").value = addr;
+            // 커서를 상세주소 필드로 이동한다.
+            document.getElementById("userAddressDetail").focus();
+        }
+    }).open();
+}
 
 // const modal = document.querySelector('.modal');
 // const btnOpenPopup = document.querySelector('.link_btn_agree');
@@ -18,7 +36,7 @@ $('.link_btn_agree').each(function (i,btn) {
 })
 
 $('.btn_ok').each(function (i,ok) {
-    $(ok).on("click",function () {
+    $(오케이).on("click",function () {
         $($(".modal").get(i)).hide();
     })
 })
@@ -57,3 +75,10 @@ $(document).ready(function() {
         else $("#allCheck").prop("checked", true);
     });
 });
+//a태그 링크 없애기
+$("#addressButton").removeAttr("href")
+
+
+function sendJoin() {
+    joinForm.submit();
+}
