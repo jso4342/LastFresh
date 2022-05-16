@@ -202,8 +202,95 @@ input.input_info {
 div.accept_wrapper {
     margin-top: 18px;
     margin-bottom: 18px;
-
 }
+
+.authentication_number{
+    display: none;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.authentication_number .css-1blp8ou{
+    margin-right: 7px;
+}
+
+#findId_css{
+    border: none;
+}
+
+.authentication_number .css-1blp8ou .input_info{
+    height: 52px;
+    width: 110%;
+}
+
+.authentication_number .accept_wrapper{
+    margin-right: 9px;
+    margin-top: 22px;
+}
+
+.authentication_number .accept_wrapper .phone_box{
+    width: 97%;
+    margin-left: 18px;
+}
+
+.authentication_number .accept_wrapper .email_box{
+    width: 90%;
+    margin-left: 26px;
+}
+
+#certified{
+    width: 235px;
+}
+
+p.accept_button {
+    background-color: #ddd;
+    cursor: default;
+    display: block;
+    padding: 0 10px;
+    text-align: center;
+    overflow: hidden;
+    width: 100%;
+    height: 52px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #DA291C;
+    border: 0 none;
+    margin-bottom: 0em;
+    font-weight: 450;
+}
+
+
+
+p span.accept_text{
+    margin-top: 8px;
+}
+
+p{
+    appearance: auto;
+    writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: buttontext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    box-sizing: border-box;
+    margin: 0em;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    /* border-color: buttonborder; */
+    border-image: initial;
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+    font: inherit;
+}
+
 
 button.accept_button {
     background-color: #ddd;

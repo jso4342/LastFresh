@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>라스트프레시 | 비밀번호 찾기</title>
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
-    <link rel="stylesheet" href="/front/assets/css/user/userFindPw.css">
+    <link rel="stylesheet" href="/front/assets/css/user/userFindId.css">
 </head>
 <body>
 <th:block th:insert="/fragments/header.html :: headFragment"/>
@@ -40,17 +40,47 @@
                                                       class="input_info"></div>
                 </div>
             </div>
-
-
-            <div class="accept_wrapper">
-                <button class="accept_button email_box"  type="submit" disabled="" radius="4">
-                    <span class="accept_text">확인</span>
-                </button>
+            <div class="authentication_number">
+                <div class="css-1blp8ou el059co3" id="el059co3" style="display: none">
+                    <div class="input_wrapper" id="certified">
+                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
+                    </div>
+                </div>
+                <div class="css-1blp8ou el059co3" id="el059co4" style="display: none">
+                    <div class="input_wrapper" id="certified1">
+                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
+                    </div>
+                </div>
+                <div class="accept_wrapper check1" onclick="send()">
+                    <p class="accept_button email_box" type="submit" disabled="" radius="4">
+                        <span class="accept_text">확인</span>
+                    </p>
+                </div>
+                <div class="accept_wrapper check" onclick="send1()">
+                    <p class="accept_button phone_box" type="button" disabled="" radius="4">
+                        <span class="accept_text">확인</span>
+                    </p>
+                </div>
             </div>
-            <div class="accept_wrapper">
-                <button class="accept_button phone_box" type="submit" disabled="" radius="4">
+            <div class="css-1blp8ou el059co3">
+                <div class="input_wrapper" id="findId" style="display: none">
+                    <input type="tel" data-testid="input-box" id="findId_css" name="phone" value="!hrhrw123" placeholder="" class="input_info">
+                </div>
+            </div>
+            <div class="css-1blp8ou el059co3">
+                <div class="input_wrapper" id="findId1" style="display: none">
+                    <input type="tel" data-testid="input-box" id="findId_css" name="phone" value="!fhwegwer123" placeholder="" class="input_info">
+                </div>
+            </div>
+            <div class="accept_wrapper" id="emailCheck" onclick="find()"style="display: block">
+                <p class="accept_button email_box"  type="submit" disabled="" radius="4">
+                    <span class="accept_text">확인</span>
+                </p>
+            </div>
+            <div class="accept_wrapper" id="phoneCheck" onclick="find1()" style="display: block">
+                <p class="accept_button phone_box" type="submit" disabled="" radius="4">
                     <span class="accept_text">인증번호 받기</span>
-                </button>
+                </p>
             </div>
 
         </form>

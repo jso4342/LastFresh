@@ -20,37 +20,69 @@
         </div>
         <form class="sendInfo">
             <div class="css-1blp8ou el059co3">
-                <div class="Id_box"><label for="id" class="Id_label">이름</label>
-                    <div class="input_wrapper"><input type="text" data-testid="input-box" id="id" name="id"
-                                                      value="" placeholder="이름을 입력해 주세요"
-                                                      class="input_info"></div>
+                <div class="Id_box">
+                    <label for="id" class="Id_label">이름</label>
+                    <div class="input_wrapper">
+                        <input type="text" data-testid="input-box" id="id" name="id" value="" placeholder="이름을 입력해 주세요" class="input_info">
+                    </div>
                 </div>
             </div>
             <div class="css-1blp8ou el059co3">
-                <div class="Id_box phone_box"><label for="phone" class="Id_label">휴대폰 번호</label>
-                    <div class="input_wrapper"><input type="tel" data-testid="input-box" id="phone" name="phone"
-                                                      value="" placeholder="휴대폰 번호를 입력해 주세요"
-                                                      class="input_info"></div>
+                <div class="Id_box phone_box">
+                    <label for="phone" class="Id_label">휴대폰 번호</label>
+                    <div class="input_wrapper">
+                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="휴대폰 번호를 입력해 주세요" class="input_info">
+                    </div>
                 </div>
             </div>
             <div class="css-1blp8ou el059co3">
-                <div class="email_box" style="padding-bottom: 12px"><label for="phone" class="Id_label">이메일</label>
-                    <div class="input_wrapper"><input type="tel" data-testid="input-box"
-                                                      value="" placeholder="이메일을 입력하세요"
-                                                      class="input_info"></div>
+                <div class="email_box" style="padding-bottom: 12px">
+                    <label for="phone" class="Id_label">이메일</label>
+                    <div class="input_wrapper">
+                        <input type="tel" data-testid="input-box" value="" placeholder="이메일을 입력하세요" class="input_info"></div>
                 </div>
             </div>
-
-
-            <div class="accept_wrapper">
-                <button class="accept_button email_box"  type="submit" disabled="" radius="4">
+            <div class="authentication_number">
+                <div class="css-1blp8ou el059co3" id="el059co3" style="display: none">
+                    <div class="input_wrapper" id="certified">
+                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
+                    </div>
+                </div>
+                <div class="css-1blp8ou el059co3" id="el059co4" style="display: none">
+                    <div class="input_wrapper" id="certified1">
+                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
+                    </div>
+                </div>
+                <div class="accept_wrapper check1" onclick="send()">
+                    <p class="accept_button email_box" type="submit" disabled="" radius="4">
+                        <span class="accept_text">확인</span>
+                    </p>
+                </div>
+                <div class="accept_wrapper check" onclick="send1()">
+                    <p class="accept_button phone_box" type="button" disabled="" radius="4">
+                        <span class="accept_text">확인</span>
+                    </p>
+                </div>
+            </div>
+            <div class="css-1blp8ou el059co3">
+                <div class="input_wrapper" id="findId" style="display: none">
+                    <input type="tel" data-testid="input-box" id="findId_css" name="phone" value="dge04200" placeholder="" class="input_info">
+                </div>
+            </div>
+            <div class="css-1blp8ou el059co3">
+                <div class="input_wrapper" id="findId1" style="display: none">
+                    <input type="tel" data-testid="input-box" id="findId_css" name="phone" value="dge04200" placeholder="" class="input_info">
+                </div>
+            </div>
+            <div class="accept_wrapper" id="emailCheck" onclick="find()"style="display: block">
+                <p class="accept_button email_box"  type="submit" disabled="" radius="4">
                     <span class="accept_text">확인</span>
-                </button>
+                </p>
             </div>
-            <div class="accept_wrapper">
-                <button class="accept_button phone_box" type="submit" disabled="" radius="4">
+            <div class="accept_wrapper" id="phoneCheck" onclick="find1()" style="display: block">
+                <p class="accept_button phone_box" type="submit" disabled="" radius="4">
                     <span class="accept_text">인증번호 받기</span>
-                </button>
+                </p>
             </div>
 
         </form>
