@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@NoArgsConstructor
+//@NoArgsConstructor
 public class UserVO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +37,19 @@ public class UserVO {
     @Column(name = "USER_STATUS")
     private String userStatus;
 
+
+    public void updateAll(String userPw, String userName, String userEmail, String userAddress, String userAddressDetail, String userAddressPostNum, String userPhone, String userKakao, String userStatus){
+        this.userPw = userPw;
+        this.userName = userName;
+        this.userEmail = userEmail;
+        this.userAddress = userAddress;
+        this.userAddressDetail = userAddressDetail;
+        this.userAddressPostNum = userAddressPostNum;
+        this.userPhone = userPhone;
+        this.userKakao = userKakao;
+        this.userStatus = userStatus;
+    }
+
     @Builder
     public UserVO(Long userNum, String userId, String userPw, String userName, String userEmail, String userAddress, String userAddressDetail, String userAddressPostNum, String userPhone, String userKakao, String userStatus) {
         this.userNum = userNum;
@@ -51,4 +64,5 @@ public class UserVO {
         this.userKakao = userKakao;
         this.userStatus = userStatus;
     }
+    public UserVO() {;}
 }
