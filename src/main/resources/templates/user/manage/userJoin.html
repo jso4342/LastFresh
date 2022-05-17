@@ -80,8 +80,11 @@
                     <span class="icon">*</span>
                 </th>
                 <td>
-                    <input id="userPhone" name="userPhone" class="id" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
-                    <a class="btn_check" href="">인증번호 받기</a>
+                    <input id="userPhone" name="userPhone"  class="id" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
+                    <a type="button" class="btn_check" id="phoneCheckButton" onclick="sendCN()">인증번호 받기</a>
+
+                    <input id="checkCN" name="userPhone"  class="id" type="text" value maxlength="16" placeholder="인증번호 입력">
+                    <a type="button" class="btn_check" id="phoneCheck" onclick="checkCode()" >확인</a>
                 </td>
             </tr>
             <tr>
@@ -384,4 +387,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/user/userJoin.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>
