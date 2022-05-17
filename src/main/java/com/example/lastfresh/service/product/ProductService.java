@@ -41,7 +41,6 @@ public class ProductService{
         return content;
     }
 
-
     //마감 상품 목록
     @Query("select products from ProductVO products where products.sellProductExpireDay= current_date ")
     public List<ProductVO> getListBySale() {
@@ -54,11 +53,15 @@ public class ProductService{
         List<ProductVO> content = page.getContent(); //조회된 데이터
         return content;
     }
+
     //후기 많은 상품 목록(myBatis로 구현됨)
     public  List<ProductVO> getListByReview(){
         List<ProductVO> products=productDAO.getListByReview();
         return products;
     }
+
+    //이미지
+    public  List<ProductVO> getImages(Long pno){ return productDAO.getImages(pno);}
 
 }
 

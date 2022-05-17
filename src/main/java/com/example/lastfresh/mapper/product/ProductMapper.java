@@ -21,5 +21,7 @@ public interface ProductMapper {
 
 //    후기 많은 상품 목록 가져오기
       public List<ProductVO> getListByReview();
+    //이미지
+    public  List<ProductVO> getImages(Long pno);
 }
 
