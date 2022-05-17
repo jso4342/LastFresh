@@ -14,6 +14,9 @@ public class ProductDAO {
     private final ProductMapper productMapper;
     public List<ProductVO> getList() {return productMapper.getList();}
     public int getTotal() {return productMapper.getTotal();}
+
+    //    마감 세일 상품 목록 가져오기
+    public  List<ProductVO> getListByReview(){return productMapper.getListByReview();};
 //    public  get( ) {}
 //    public void updateReplyCount() {}
 }

@@ -18,5 +18,8 @@ public interface ProductMapper {
 //
 //    //    게시글에 작성된 댓글 수 수정
 //    public void updateReplyCount( );
+
+//    후기 많은 상품 목록 가져오기
+      public List<ProductVO> getListByReview();
 }
 

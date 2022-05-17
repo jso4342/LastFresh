@@ -54,7 +54,7 @@ public class SellController {
 //        session.setAttribute();
 //        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
 
-        ownerService.register(productVO, 6L);
+        ownerService.register(productVO, 3L);
 
         return new RedirectView("sellMenuList");
     }

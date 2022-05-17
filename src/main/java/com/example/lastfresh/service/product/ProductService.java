@@ -20,7 +20,7 @@ import java.util.List;
 @Slf4j
 public class ProductService{
     private final ProductRepository productRepository;
-
+    private final ProductDAO productDAO;
     //상품 목록
     public List<ProductVO> getList() {
         List<ProductVO> products = productRepository.findAll();
@@ -54,5 +54,11 @@ public class ProductService{
         List<ProductVO> content = page.getContent(); //조회된 데이터
         return content;
     }
+    //후기 많은 상품 목록(myBatis로 구현됨)
+    public  List<ProductVO> getListByReview(){
+        List<ProductVO> products=productDAO.getListByReview();
+        return products;
+    }
 
 }
+
