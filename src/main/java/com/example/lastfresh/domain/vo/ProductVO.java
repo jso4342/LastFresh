@@ -9,7 +9,9 @@ import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Entity
@@ -94,6 +96,10 @@ public class ProductVO {
     @ManyToOne // 다대일
     @JoinColumn(name = "USER_NUM")
     private UserVO userVO;
+
+    @OneToMany // 일대다
+    @JoinColumn(name = "BAKSET_NUM")
+        List<BasketVO> baskets = new ArrayList<>();
 
 //    void test() {
 //        this.sellProductExpireDay.isBefore(LocalDate.now());

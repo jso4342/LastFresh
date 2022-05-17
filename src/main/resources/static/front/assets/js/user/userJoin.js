@@ -1,3 +1,54 @@
+//a태그 링크 없애기
+$("#addressButton").removeAttr("href")
+$("#phoneCheckButton").removeAttr("href")
+
+
+//휴대폰인증
+$('#phoneCheckButton').click(function(){
+    let userPhone = $('#userPhone').val();
+    Swal.fire('인증번호 발송 완료!')
+
+
+    $.ajax({
+        type: "GET",
+        url: "/user/manage/phoneCheck",
+        data: {
+            "userPhone" : userPhone
+        },
+        success: function(res){
+            $('#phoneCheck').click(function(){
+                if($.trim(res) ==$('#checkCN').val()){
+                    Swal.fire(
+                        '인증성공!',
+                        '휴대폰 인증이 정상적으로 완료되었습니다.',
+                        'success'
+                    )
+
+                    $.ajax({
+                        type: "GET",
+                        url: "/update/phone",
+                        data: {
+                            "userPhone" : $('#userPhone').val()
+                        }
+                    })
+                    document.location.href="/user/manage/userJoin";
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: '인증오류',
+                        text: '인증번호가 올바르지 않습니다!',
+                        footer: '<a href="/user/manage/userJoin">다음에 인증하기</a>'
+                    })
+                }
+            })
+
+
+        }
+    })
+});
+
+
+
 // 주소 찾기(Daum API)
 function find() {
     new daum.Postcode({
@@ -27,7 +78,7 @@ function find() {
 //     modal.style.display='none';
 // });
 /*상혁씨 코드*/
-//
+
 
 $('.link_btn_agree').each(function (i,btn) {
     $(btn).on("click",function () {
@@ -75,8 +126,7 @@ $(document).ready(function() {
         else $("#allCheck").prop("checked", true);
     });
 });
-//a태그 링크 없애기
-$("#addressButton").removeAttr("href")
+
 
 
 function sendJoin() {

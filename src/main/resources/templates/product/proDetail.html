@@ -42,20 +42,20 @@
                             </div>
                         </div>
                     </div>
-                    <div id="sectionView">
+                    <div id="sectionView" th:object="${proDetail}">
                         <div class="inner_view">
                             <div class="thumb" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1649919206335y0.jpg);">
                                 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAHnCAQAAADpr9U2AAABeUlEQVR42u3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALg0lPQAATTM2xoAAAAASUVORK5CYII=" alt="상품 대표 이미지" class="bg">
                             </div>
                             <p class="goods_name">
-                                <strong class="name">[프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)</strong>
-                                <span class="short_desc">푸짐하게 즐기는 대용량 동태탕</span>
+                                <strong class="name" th:text="*{sellProductName}"></strong>
+                                <!--                                <span class="short_desc">푸짐하게 즐기는 대용량 동태탕</span>-->
                             </p>
                             <!---->
                             <p class="goods_price">
                                     <span class="position">
                                         <span class="dc">
-                                            <span class="dc_price">
+                                            <span class="dc_price" th:text="|${#numbers.formatInteger(proDetail.sellProductDiscountPrice, 0, 'COMMA')}원|">
                                                 "15,900"
                                                 <span class="won">원</span>
                                             </span>
@@ -65,8 +65,7 @@
                                     </span>
                                 <!---->
                                 <span>
-
-                                    </span>
+                                </span>
                                 <!---->
                                 <!---->
                                 <!---->
@@ -78,16 +77,16 @@
                                 <!---->
                                 <dl class="list fst">
                                     <dt class="tit">매장</dt>
-                                    <dd class="desc">동영이네 동태탕</dd>
+                                    <dd class="desc" th:text="*{sellProductDescription}">동영이네 동태탕</dd>
                                 </dl>
                                 <dl class="list">
                                     <dt class="tit">주소</dt>
-                                    <dd class="desc">서울특별시 구로구 구로동로26길 51-7</dd>
+                                    <dd class="desc"　th:text="*{sellProductDeliveryAddress1}">서울특별시 구로구 구로동로26길 51-7</dd>
                                 </dl>
                                 <dl class="list">
                                     <dt class="tit">배송구분</dt>
                                     <!---->
-                                    <dd class="desc"> 배달/배송 </dd>
+                                    <dd class="desc" > 배달/배송 </dd>
                                 </dl>
                                 <!---->
 
@@ -500,9 +499,9 @@
             </div>
         </div>
     </div>
-            <div id="layerDSR"></div>
-            <div id="footer"></div>
-        </div>
+    <div id="layerDSR"></div>
+    <div id="footer"></div>
+</div>
 <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

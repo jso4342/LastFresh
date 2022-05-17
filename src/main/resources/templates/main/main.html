@@ -81,8 +81,7 @@
 						<div class="mainNewBox" th:object="${product}">
 							<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
 							<a class="imgBox">
-								<img class="mainNewImg"
-									 src='https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg'>
+								<div class="mainPicture"><!--사진--></div>
 								<img class="innerCart"
 									 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
 							</a>
@@ -99,6 +98,9 @@
 								<p class="mainNewTxtOriginPrice"
 								   th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></p>
 							</div>
+							<input type="hidden" th:value="*{sellProductImageUploadPath}"/>
+							<input type="hidden" th:value="*{sellProductImageUuid}"/>
+							<input type="hidden" th:value="*{sellProductThumbnail}"/>
 						</div>
 					</div>
 				</div>
@@ -120,7 +122,7 @@
 				</div>
 
 				<!-- 오늘 마감 상품 목록 -->
-				<div class="wrapperMain"th:each="product:${saleList}">
+				<div class="wrapperMain "th:each="product:${saleList}">
 					<div class="mainLastBox" th:object="${product}">
 						<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
 						<a class="imgLastChanceBox imgAll">
@@ -268,34 +270,43 @@
 	let date = today.getDate();  // 날짜
 	let calender = "~" + year + "/" + month + "/" + date
 	document.getElementById("lastChanceDate").innerHTML = calender
+	console.log("calender",calender)
 
-	//세일 퍼센트
 	let wrapperMain=$(".wrapperMain");
+
+	// 상품 사진 띄우기
 	$.each(wrapperMain, function(item){
-		let originalPrice=parseInt($(this.sellProductOriginPrice));
-		let salePrice=parseInt($(this.sellProductDiscountPrice));
-		let percent= ((originalPrice-salePrice) % originalPrice)*100
-		console.log(typeof percent)
+			let pno = $(this).find(".pno").val();
+			console.log(pno)
+			$.ajax({
+				type: "POST",
+				url: "/main/getAttachList",
+				data: {pno: pno},
+				success: function(result){
+					alert(result);
+				}
+			});
 
-		$(this).find('span#percentProduct').innerHTML = percent
-	})
-	// 사진 띄우기
-	$(".imgAll").change(function(e){
-		let file = e.target.files[0];
-		let img = $(this).find("img.mainNewImg");
-		let reader = new FileReader();
-		reader.readAsDataURL(file);
+		(function () {
+			$.getJSON("/main/getAttachList", {pno: pno}, function (productList) {
+				console.log("productList",productList)
+				if (productList.length == 0) {
+					$("div.mainPicture").text("사진이 없습니다.");
+					return;
+				}
 
-		reader.onload = function(e){
-			if(e.target.result.indexOf("image") != -1){
-				img.attr("src", e.target.result);
+				let str = "";
+				$.each(productList, function (i, attach) {
+					let fileCallPath = attach.sellProductImageUploadPath + "/" + attach.sellProductImageUuid + "_" + attach.sellProductThumbnail;
+					str += "<img class=\"mainNewImg\" src='/main/display?sellProductThumbnail=" + fileCallPath +"'>";
+					console.log("이미지",fileCallPath);
+				});
 
-			}else{
-				img.attr("src", contextPath+"/images/expert/solo/비어서빈파일.png");
-				img.css("width", "100px");
-				img.css("height", "100px");
-			}
-		}
+				$("div.mainPicture").html(str);
+			})
+		}());
 	});
+
+
 </script>
 </html>
