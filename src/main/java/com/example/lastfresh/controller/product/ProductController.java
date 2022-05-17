@@ -1,6 +1,8 @@
 package com.example.lastfresh.controller.product;
 
 
+import com.example.lastfresh.domain.dto.ProductPageDTO;
+import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,15 +24,14 @@ public class ProductController {
     }
 
     @GetMapping("/proDetail")
-    public void proDetail() {
+    public void proDetail(Long sellProductNum, Model model){
+        model.addAttribute("proDetail", productService.get(sellProductNum));
     }
 
     @GetMapping("/proNew")
-    public void list(Model model) {
-        log.info("----------------------------------------------------------------------");
-        log.info("list");
-        log.info("----------------------------------------------------------------------");
-        model.addAttribute("list", productService.getList());
+    public void list(CriteriaProduct criteriaProduct, Model model) {
+        model.addAttribute("list", productService.getList(criteriaProduct));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal()));
     }
 
     @GetMapping("/proPickup")
