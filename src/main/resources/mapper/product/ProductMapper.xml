@@ -29,6 +29,12 @@
         order by review_count desc limit 4;
     </select>
 
+    <select id="getImages" resultType="productVO">
+        SELECT SELL_PRODUCT_THUMBNAIL, SELL_PRODUCT_IMAGE, SELL_PRODUCT_IMAGE_UPLOAD_PATH, SELL_PRODUCT_IMAGE_UUID
+        FROM tbl_sell_product
+       where SELL_PRODUCT_NUM= #{SELL_PRODUCT_NUM};
+    </select>
+
 <!--    <update id="updateReplyCount">-->
 <!--    </update>-->
 </mapper>
