@@ -3,6 +3,7 @@ package com.example.lastfresh.service.product;
 import com.example.lastfresh.domain.dao.product.AttachDAO;
 import com.example.lastfresh.domain.dao.product.ProductDAO;
 import com.example.lastfresh.domain.repository.ProductRepository;
+import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,9 +23,18 @@ public class ProductService{
     private final ProductRepository productRepository;
     private final ProductDAO productDAO;
     //상품 목록
-    public List<ProductVO> getList() {
-        List<ProductVO> products = productRepository.findAll();
-        return products;
+    public List<ProductVO> getList(CriteriaProduct criteriaProduct) {
+        return productDAO.getList(criteriaProduct);
+//        List<ProductVO> products = productRepository.findAll();
+//        return products;
+    }
+    // 특정 게시글 가져오기
+    public ProductVO get(Long sellProductNum) {
+        return productDAO.get(sellProductNum);
+    }
+    // 상품 전체 갯수
+    public int getTotal() {
+        return productDAO.getTotal();
     }
 
 
