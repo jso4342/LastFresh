@@ -76,8 +76,8 @@
 							 src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
 				</div>
 				<!-- 신상품 목록 -->
-				<div style="display: flex; justify-content: space-around;">
-					<div class="mainNew" th:each="product:${newList}">
+				<div style="display: flex; justify-content: space-around !important;">
+					<div class="mainNew wrapperMain" th:each="product:${newList}">
 						<div class="mainNewBox" th:object="${product}">
 							<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
 							<a class="imgBox">
@@ -91,8 +91,8 @@
 																				  th:text="*{sellProductName}"></p></a>
 								<a class="newATag" th:href="*{sellProductNum}">
 									<div style="display: flex">
-										<span style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 17px;">15%</span>
-										<p class="mainNewTxtPrice"
+										<span id="percentProduct" style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 17px;"></span>
+										<p class="mainNewTxtPrice newPrice"
 										   th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
 									</div>
 								</a>
@@ -120,10 +120,10 @@
 				</div>
 
 				<!-- 오늘 마감 상품 목록 -->
-				<div th:each="product:${saleList}">
+				<div class="wrapperMain"th:each="product:${saleList}">
 					<div class="mainLastBox" th:object="${product}">
 						<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
-						<a class="imgLastChanceBox">
+						<a class="imgLastChanceBox imgAll">
 							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1637927974776l0.jpg">
 							<img class="innerLatChanceCart"
 								 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
@@ -142,9 +142,11 @@
 							</a>
 							<a class="newATag" th:href="*{sellProductNum}">
 								<div style="display: flex;justify-content: space-evenly;width: 230px;margin-left: -13px;">
-									<span style="color:#FA622F;">15%</span>
-									<p class="mainLastTxtPrice" th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
-									<span class="mainNewTxtOriginPrice" th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
+									<span id="percentProduct" style="color:#FA622F;"></span>
+									<p class="mainLastTxtPrice newPrice"
+									   th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
+									<span class="mainNewTxtOriginPrice"
+										  th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
 								</div>
 							</a>
 						</div>
@@ -163,76 +165,31 @@
 					</div>
 
 					<!-- 신상품 목록 -->
-					<div class="mainNew">
-						<div class="mainNewBox">
-							<a class="imgBox">
-								<img class="mainNewImg"
-									 src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
-								<img class="innerCart"
-									 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-							</a>
-							<div class="mainNewTxt">
-								<a class="newATag" href="#"><p class="mainNewTxtTitle">[네니아] 군만두</p></a>
-								<a class="newATag" href="#"><p class="mainNewTxtPrice">
-									<span style="color:#FA622F;">15%</span>
-									&nbsp;10,880원</p></a>
-								<p class="mainNewTxtOriginPrice">12,800원</p>
+					<div style="display: flex; justify-content: space-around !important;">
+						<div class="mainNew wrapperMain" th:each="product:${bestReviewList}">
+							<div class="mainNewBox" th:object="${product}">
+								<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
+								<a class="imgBox">
+									<img class="mainNewImg"
+										 src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+									<img class="innerCart"
+										 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
+								</a>
+								<div class="mainNewTxt">
+									<a class="newATag" th:href="*{sellProductNum}">
+										<p class="mainNewTxtTitle" th:text="*{sellProductName}"></p></a>
+									<a class="newATag" th:href="*{sellProductNum}">
+										<div style="display: flex">
+											<span id="percentProduct" style="color:#FA622F;"></span>
+											<p class="mainNewTxtPrice newPrice"
+											   th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
+										</div>
+									</a>
+									<p class="mainNewTxtOriginPrice"
+									   th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></p>
+								</div>
 							</div>
 						</div>
-
-						<div class="mainNewBox">
-							<a class="imgBox">
-								<img class="mainNewImg"
-									 src="https://img-cf.kurly.com/shop/data/goods/1618293835769l0.jpg">
-								<img class="innerCart"
-									 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-							</a>
-							<div class="mainNewTxt">
-								<a class="newATag" href="#"><p class="mainNewTxtTitle">[OXO] 치킨 스톡
-									튜브</p></a>
-								<a class="newATag" href="#"><p class="mainNewTxtPrice">
-									<span style="color:#FA622F;">20%</span>
-									&nbsp;4,080원</p></a>
-								<p class="mainNewTxtOriginPrice">5,100원</p>
-							</div>
-						</div>
-
-						<div class="mainNewBox">
-							<a class="imgBox">
-								<img class="mainNewImg"
-									 src="https://img-cf.kurly.com/shop/data/goods/1637927974776l0.jpg">
-								<img class="innerCart"
-									 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-							</a>
-							<div class="mainNewTxt">
-								<a class="newATag" href="#"><p class="mainNewTxtTitle">[남도우애] 무항생제 1++
-									한우 채끝 구이용 200g
-									(냉장)</p></a>
-								<a class="newATag" href="#"><p class="mainNewTxtPrice">
-									<span style="color:#FA622F;">30%</span>
-									&nbsp;27,930원</p></a>
-								<p class="mainNewTxtOriginPrice">39,900원</p>
-							</div>
-						</div>
-
-
-						<div class="mainNewBox mainNewBox2" style="margin:0;">
-
-							<a class="imgBox">
-								<img class="mainNewImg"
-									 src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
-								<img class="innerCart"
-									 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-							</a>
-							<div class="mainNewTxt">
-								<a class="newATag" href="#"><p class="mainNewTxtTitle">[네니아]군만두</p></a>
-								<a class="newATag" href="#"><p class="mainNewTxtPrice">
-									<span style="color:#FA622F;">15%</span>
-									&nbsp;10,880원</p></a>
-								<p class="mainNewTxtOriginPrice">12,800원</p>
-							</div>
-						</div>
-						<div><p>&nbsp;</p></div>
 					</div>
 				</div>
 			</div>
@@ -306,37 +263,39 @@
 <script src="/front/assets/js/main/main.js"></script>
 <script th:inline="javascript">
 	let today = new Date();
-
 	let year = today.getFullYear(); // 년도
 	let month = today.getMonth() + 1;  // 월
 	let date = today.getDate();  // 날짜
 	let calender = "~" + year + "/" + month + "/" + date
-	console.log(calender)
 	document.getElementById("lastChanceDate").innerHTML = calender
 
-	// $(document).ready(function(){
-	//     (function(){
-	//         $.getJSON("/board/getAttachList", {bno: bno}, function(attachList){
-	//             if(attachList.length == 0){$("p#msg").text("첨부파일이 없습니다."); return;}
-	//
-	//             let str = "";
-	//
-	//             $.each(attachList, function(i, attach){
-	//                 if(!attach.image){
-	//                     let fileCallPath = attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName;
-	//                     str += "<li><a href='/upload/download?fileName=" + fileCallPath + "'><img src='/images/attach.png' width='100px' height='100px'>" + attach.fileName + "</a>";
-	//                     str += "</li>";
-	//                 }else{
-	//                     let fileCallPath = attach.uploadPath + "/s_" + attach.uuid + "_" + attach.fileName;
-	//                     let originCallPath = attach.uploadPath + "/" + attach.uuid + "_" + attach.fileName;
-	//                     str += "<li><a href=\"javascript:showImage(\'" + originCallPath + "\')\"><img src='/upload/display?fileName=" + fileCallPath + "' width='100px' height='100px'>" + attach.fileName + "</a>";
-	//                     str += "</li>";
-	//                 }
-	//             });
-	//
-	//             $(".uploadResult ul").html(str);
-	//         })
-	//     }());
-	// });
+	//세일 퍼센트
+	let wrapperMain=$(".wrapperMain");
+	$.each(wrapperMain, function(item){
+		let originalPrice=parseInt($(this.sellProductOriginPrice));
+		let salePrice=parseInt($(this.sellProductDiscountPrice));
+		let percent= ((originalPrice-salePrice) % originalPrice)*100
+		console.log(typeof percent)
+
+		$(this).find('span#percentProduct').innerHTML = percent
+	})
+	// 사진 띄우기
+	$(".imgAll").change(function(e){
+		let file = e.target.files[0];
+		let img = $(this).find("img.mainNewImg");
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+
+		reader.onload = function(e){
+			if(e.target.result.indexOf("image") != -1){
+				img.attr("src", e.target.result);
+
+			}else{
+				img.attr("src", contextPath+"/images/expert/solo/비어서빈파일.png");
+				img.css("width", "100px");
+				img.css("height", "100px");
+			}
+		}
+	});
 </script>
 </html>

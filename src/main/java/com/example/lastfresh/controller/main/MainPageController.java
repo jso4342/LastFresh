@@ -23,11 +23,11 @@ import java.io.IOException;
 @RequestMapping("/main/*")
 public class MainPageController {
     private final ProductService productService;
-
     @GetMapping("/main")
     public void main(Model model){
         model.addAttribute("newList", productService.getListByNew());
         model.addAttribute("saleList", productService.getListBySale());
+        model.addAttribute("bestReviewList", productService.getListByReview());
     }
     @GetMapping("/display")
     @ResponseBody
