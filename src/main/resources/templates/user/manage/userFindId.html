@@ -45,12 +45,12 @@
             <div class="authentication_number">
                 <div class="css-1blp8ou el059co3" id="el059co3" style="display: none">
                     <div class="input_wrapper" id="certified">
-                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
+                        <input type="tel" data-testid="input-box" id="inputCertifiedNumber" name="phone" value="" placeholder="인증번호 입력" class="input_info">
                     </div>
                 </div>
                 <div class="css-1blp8ou el059co3" id="el059co4" style="display: none">
                     <div class="input_wrapper" id="certified1">
-                        <input type="tel" data-testid="input-box" id="phone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
+                        <input type="tel" data-testid="input-box" id="inputCertifiedPhone" name="phone" value="" placeholder="인증번호 입력" class="input_info">
                     </div>
                 </div>
                 <div class="accept_wrapper check1" onclick="send()">
@@ -58,7 +58,7 @@
                         <span class="accept_text">확인</span>
                     </p>
                 </div>
-                <div class="accept_wrapper check" onclick="send1()">
+                <div class="accept_wrapper check" id="check" onclick="send1()">
                     <p class="accept_button phone_box" type="button" disabled="" radius="4">
                         <span class="accept_text">확인</span>
                     </p>
@@ -66,12 +66,13 @@
             </div>
             <div class="css-1blp8ou el059co3">
                 <div class="input_wrapper" id="findId" style="display: none">
-                    <input type="tel" data-testid="input-box" id="findId_css" name="phone" value="dge04200" placeholder="" class="input_info">
+                    <input type="tel" data-testid="input-box" id="findId_css1" value="dge04200" placeholder="" class="input_info">
                 </div>
             </div>
             <div class="css-1blp8ou el059co3">
                 <div class="input_wrapper" id="findId1" style="display: none">
-                    <input type="tel" data-testid="input-box" id="findId_css" name="phone" value="dge04200" placeholder="" class="input_info">
+                    <p type="tel" data-testid="input-box"  id="findId_css" class="input_info">
+                    </p>
                 </div>
             </div>
             <div class="accept_wrapper" id="emailCheck" onclick="find()"style="display: block">
@@ -92,7 +93,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/user/userFind.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>
 
 
