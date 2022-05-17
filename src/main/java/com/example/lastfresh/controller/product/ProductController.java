@@ -18,13 +18,15 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/proDelivery")
-    public void proDelivery(){}
+    public void proDelivery() {
+    }
 
     @GetMapping("/proDetail")
-    public void proDetail(){}
+    public void proDetail() {
+    }
 
     @GetMapping("/proNew")
-    public void list(Model model){
+    public void list(Model model) {
         log.info("----------------------------------------------------------------------");
         log.info("list");
         log.info("----------------------------------------------------------------------");
@@ -32,12 +34,14 @@ public class ProductController {
     }
 
     @GetMapping("/proPickup")
-    public void proPickup(){}
+    public void proPickup() {
+    }
 
     @GetMapping("/proShipping")
-    public void proShipping(){}
+    public void proShipping() {
+    }
 
-//    private final ProductService productService;
+    //    private final ProductService productService;
 //    @GetMapping("/proNew")
 //    public void list(Model model){
 //        log.info("----------------------------------------------------------------------");
