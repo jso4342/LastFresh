@@ -8,10 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
+
 /*유저 아이디찾기, 비밀번호찾기, 비밀번호 재설정, 회원가입, 로그인*/
 
 @Controller
@@ -55,6 +55,34 @@ public class UserManaingController {
         return "0";
 
     }
+    //휴대폰인증
+    @GetMapping("/manage/phoneCheck")
+    public @ResponseBody
+    String sendSMS(String userPhone) {
+
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+
+        System.out.println("수신자 번호 : " + userPhone);
+        System.out.println("인증번호 : " + numStr);
+        userService.certifiedPhoneNumber(userPhone,numStr);
+        return numStr;
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     //단순페이지 이동
     @GetMapping("/manage/userFindId")
