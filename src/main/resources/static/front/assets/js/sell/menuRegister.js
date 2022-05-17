@@ -637,5 +637,6 @@ let $pageDiv = $('.page_section');
 
 $pageDiv.change(function () {
     let height = $('.page_section').height() + 100;
+
     $('.sellMenuRegister').css("height", height);
 });

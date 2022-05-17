@@ -1,27 +1,27 @@
 package com.example.lastfresh.controller.sell;
 
 import com.example.lastfresh.domain.dto.ImageDTO;
-import com.example.lastfresh.domain.dto.ProductDTO;
+import com.example.lastfresh.domain.dto.PageDTO;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.service.owner.OwnerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import net.coobird.thumbnailator.Thumbnailator;
+import org.hibernate.Criteria;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.awt.print.Pageable;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -37,11 +37,17 @@ public class SellController {
     @GetMapping("/sellMain")
     public void sellMain(){}
 
-    @GetMapping("/sellMenuList")
-    public void sellMenuList(){}
+//    @GetMapping("/sellMenuList")
+//    public void sellMenuList(Pageable pageable, Model model){
+//        PageDTO<ProductVO> productVOs = ownerService.getProductVOs(pageable, 6L);
+//        model.addAttribute("productList", productVOs);
+//    }
 
-    @GetMapping("/sellMenuRegister")
-    public void sellMenuRegister(){}
+    @GetMapping("/sellMenuList")
+    public void sellMenuList(Criteria criteria, Model model){
+//        model.addAttribute("list", boardService.getList(criteria));
+//        model.addAttribute("pageDTO", new PageDTO(criteria, boardService.getTotal(criteria)));
+    }
 
     @PostMapping("/sellMenuRegister")
     public RedirectView register(ProductVO productVO, HttpServletRequest request){
