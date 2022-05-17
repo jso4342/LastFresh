@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lastfresh.mapper.owner.OwnerProductMapper">
 <!--    <select id="getList" resultType="">-->
+<!--        SELECT SELL_PRODUCT_NUM, USER_NUM, SELL_PRODUCT_CATEGORY, SELL_PRODUCT_NAME,-->
+<!--        SELL_PRODUCT_ORIGIN_PRICE, SELL_PRODUCT_DISCOUNT_PRICE, SELL_PRODUCT_EXPIRE_DATE,-->
+<!--        SELL_PRODUCT_STOCK, SELL_PRODUCT_STATUS, SELL_PRODUCT_PICKUP, SELL_PRODUCT_DELIVERY_METHOD,-->
+<!--        SELL_PRODUCT_DELIVERY_ADDRESS1, SELL_PRODUCT_DELIVERY_ADDRESS2,-->
+<!--        SELL_PRODUCT_DELIVERY_ADDRESS3, SELL_PRODUCT_SHIPPING_METHOD, SELL_PRODUCT_ADDRESS,-->
+<!--        SELL_PRODUCT_ADDRESS_DETAIL, SELL_PRODUCT_ADDRESS_POST_NUM, SELL_PRODUCT_DESCRIPTION,-->
+<!--        SELL_PRODUCT_PHONE, SELL_PRODUCT_THUMBNAIL, SELL_PRODUCT_IMAGE,-->
+<!--        SELL_PRODUCT_IMAGE_UPLOAD_PATH, SELL_PRODUCT_IMAGE_UUID-->
+<!--        FROM tbl_sell_product;-->
 <!--    </select>-->
 
 <!--    <insert id="insert">-->

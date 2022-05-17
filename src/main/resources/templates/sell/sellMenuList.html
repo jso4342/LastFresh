@@ -17,10 +17,10 @@
         <div class="inner_snb">
             <ul class="list_menu">
                 <li>
-                    <a  class="menuClicked" href="#">판매 내역</a>
+                    <a href="/sell/sellMain">판매 내역</a>
                 </li>
                 <li>
-                    <a href="#">상품 목록</a>
+                    <a class="menuClicked" href="/sell/sellMenuList">상품 목록</a>
                 </li>
                 <li>
                     <a href="#">개인 정보 수정</a>
@@ -62,48 +62,49 @@
                         </tr>
                         </thead>
                         <tbody class="menuRegister-list">
-                        <tr>
-                            <td class="menuThumb">
-                                <img src="https://cdn.discordapp.com/attachments/969471931575320587/970916819336589322/unknown.png" alt="">
-                            </td>
-                            <td class="menuMethod">
-                                <div class="order-method-wrapper">
-                                    <div class="order-method pickUp">
-                                        포장
+                        <th:block th:each="product:${list}">
+                            <tr>
+                                <td class="menuThumb">
+                                    <img src="https://cdn.discordapp.com/attachments/969471931575320587/970916819336589322/unknown.png" alt="">
+                                </td>
+                                <td class="menuMethod">
+                                    <div class="order-method-wrapper">
+                                        <div class="order-method pickUp">
+                                            포장
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="menuTitle">
-                                    <a href="#" class="link">[포크밸리] 한돈 대패 삼겹살 300g (냉동)</a>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="menuSellPrice">
-                                    <span class="price" th:text="|${#numbers.formatInteger(10900, 0, 'COMMA')}원|"></span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="menuQuantity">
-                                    <span> 2개 </span>
-                                </div>
-                            </td>
-                            <td class="menuRegisterDate">
-                                2022-12-12
-                            </td>
-                            <td class="menuManging">
-                                <div class="menu-btn-wrapper">
-                                    <button>
-                                        수정
-                                    </button>
-                                    <button>
-                                        삭제
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <tr>
+                                </td>
+                                <td>
+                                    <div class="menuTitle">
+                                        <a href="#" class="link">[포크밸리] 한돈 대패 삼겹살 300g (냉동)</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="menuSellPrice">
+                                        <span class="price" th:text="|${#numbers.formatInteger(10900, 0, 'COMMA')}원|"></span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="menuQuantity">
+                                        <span> 2개 </span>
+                                    </div>
+                                </td>
+                                <td class="menuRegisterDate">
+                                    2022-12-12
+                                </td>
+                                <td class="menuManging">
+                                    <div class="menu-btn-wrapper">
+                                        <button>
+                                            수정
+                                        </button>
+                                        <button>
+                                            삭제
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </th:block>
+<!--                        <tr>
                             <td class="menuThumb">
                                 <img src="https://cdn.discordapp.com/attachments/969471931575320587/970916819336589322/unknown.png" alt="">
                             </td>
@@ -333,7 +334,7 @@
                                     </button>
                                 </div>
                             </td>
-                        </tr>
+                        </tr>-->
 
                         </tbody>
                     </table>
