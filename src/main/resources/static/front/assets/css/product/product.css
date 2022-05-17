@@ -73,7 +73,6 @@ body {
     line-height: 35px;
     letter-spacing: -1px;
     text-align: center;
-    margin-bottom: 100px;
 }
 
 #lnbMenu .list {
@@ -947,16 +946,16 @@ button {
     float: right;
 }
 
-.areabutton {
-    width: 205px;
-    border: 1px solid #ddd;
-    border-radius: 7px;
-    font-size: 15px;
-    font-weight: 600;
-    line-height: normal;
-    color: #333;
-    background-color: #f4f4f4;
-    cursor: pointer;
-    padding: 10px;
+#goodsList .sort_menu .list li:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 6px;
+    width: 1px;
+    height: 10px;
+    background-color: #e5e5e5;
+}
+#goodsList .sort_menu .list li:last-child::after {
+    content: none;
 }
 
