@@ -80,15 +80,17 @@
 					<div class="mainNew wrapperMain" th:each="product:${newList}">
 						<div class="mainNewBox" th:object="${product}">
 							<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
-							<a class="imgBox">
-								<div class="mainPicture"><!--사진--></div>
+							<a class="imgBox"th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+								<img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+							</a>
+							<a class="toBasket">
 								<img class="innerCart"
 									 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
 							</a>
 							<div class="mainNewTxt">
-								<a class="newATag" th:href="*{sellProductNum}"><p class="mainNewTxtTitle"
+								<a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}"><p class="mainNewTxtTitle"
 																				  th:text="*{sellProductName}"></p></a>
-								<a class="newATag" th:href="*{sellProductNum}">
+								<a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
 									<div style="display: flex">
 										<span id="percentProduct" style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 17px;"></span>
 										<p class="mainNewTxtPrice newPrice"
@@ -98,9 +100,6 @@
 								<p class="mainNewTxtOriginPrice"
 								   th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></p>
 							</div>
-							<input type="hidden" th:value="*{sellProductImageUploadPath}"/>
-							<input type="hidden" th:value="*{sellProductImageUuid}"/>
-							<input type="hidden" th:value="*{sellProductThumbnail}"/>
 						</div>
 					</div>
 				</div>
@@ -125,8 +124,11 @@
 				<div class="wrapperMain "th:each="product:${saleList}">
 					<div class="mainLastBox" th:object="${product}">
 						<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
-						<a class="imgLastChanceBox imgAll">
-							<img class="mainNewImg" src="https://img-cf.kurly.com/shop/data/goods/1637927974776l0.jpg">
+
+						<a class="imgLastChanceBox imgAll"th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+							<img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+						</a>
+						<a class="toBasket">
 							<img class="innerLatChanceCart"
 								 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
 						</a>
@@ -139,10 +141,10 @@
 						<!--내용-->
 						<div class="mainLastTxt">
 							<span class="mainLastDescription" th:text="*{sellProductDescription}"></span>
-							<a class="newATag" th:href="*{sellProductNum}">
+							<a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
 								<p class="mainLastTxtTitle" th:text="*{sellProductName}"></p>
 							</a>
-							<a class="newATag" th:href="*{sellProductNum}">
+							<a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
 								<div style="display: flex;justify-content: space-evenly;width: 230px;margin-left: -13px;">
 									<span id="percentProduct" style="color:#FA622F;"></span>
 									<p class="mainLastTxtPrice newPrice"
@@ -171,16 +173,17 @@
 						<div class="mainNew wrapperMain" th:each="product:${bestReviewList}">
 							<div class="mainNewBox" th:object="${product}">
 								<input class="pno" type="hidden" th:value="*{sellProductNum}"/>
-								<a class="imgBox">
-									<img class="mainNewImg"
-										 src="https://img-cf.kurly.com/shop/data/goods/1510797780548l0.jpg">
+								<a class="imgBox"th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+									<img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+								</a>
+								<a class="toBasket">
 									<img class="innerCart"
 										 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
 								</a>
 								<div class="mainNewTxt">
-									<a class="newATag" th:href="*{sellProductNum}">
+									<a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
 										<p class="mainNewTxtTitle" th:text="*{sellProductName}"></p></a>
-									<a class="newATag" th:href="*{sellProductNum}">
+									<a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
 										<div style="display: flex">
 											<span id="percentProduct" style="color:#FA622F;"></span>
 											<p class="mainNewTxtPrice newPrice"
@@ -209,7 +212,7 @@
 </div>
 
 <!-- 장바구니 모달창 -->
-<div id="cartPut" style="display:none;">
+<div id="cartPut" style="display:block;">
 	<div class="cart_option cartList cart_type3" style="opacity: 1;">
 		<div class="inner_option">
 			<button type="button" class="btn_close1">레이어닫기</button>
@@ -273,40 +276,6 @@
 	console.log("calender",calender)
 
 	let wrapperMain=$(".wrapperMain");
-
-	// 상품 사진 띄우기
-	$.each(wrapperMain, function(item){
-			let pno = $(this).find(".pno").val();
-			console.log(pno)
-			$.ajax({
-				type: "POST",
-				url: "/main/getAttachList",
-				data: {pno: pno},
-				success: function(result){
-					alert(result);
-				}
-			});
-
-		(function () {
-			$.getJSON("/main/getAttachList", {pno: pno}, function (productList) {
-				console.log("productList",productList)
-				if (productList.length == 0) {
-					$("div.mainPicture").text("사진이 없습니다.");
-					return;
-				}
-
-				let str = "";
-				$.each(productList, function (i, attach) {
-					let fileCallPath = attach.sellProductImageUploadPath + "/" + attach.sellProductImageUuid + "_" + attach.sellProductThumbnail;
-					str += "<img class=\"mainNewImg\" src='/main/display?sellProductThumbnail=" + fileCallPath +"'>";
-					console.log("이미지",fileCallPath);
-				});
-
-				$("div.mainPicture").html(str);
-			})
-		}());
-	});
-
 
 </script>
 </html>
