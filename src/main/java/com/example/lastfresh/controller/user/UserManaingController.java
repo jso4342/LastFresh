@@ -135,5 +135,8 @@ public class UserManaingController {
     @GetMapping("/manage/userLogin")
     public void userLogin(){};
 
+    @GetMapping("/manage/userId")
+    public void userId(){};
+
 
 }
