@@ -4,5 +4,6 @@
     <typeAliases>
         <typeAlias type="com.example.lastfresh.domain.dto.ProductListDTO" alias="ProductListDTO"/>
         <typeAlias type="com.example.lastfresh.domain.vo.ProductVO" alias="ProductVO"/>
+        <typeAlias type="com.example.lastfresh.domain.dto.ProductDTO" alias="ProductDTO"/>
     </typeAliases>
 </configuration>

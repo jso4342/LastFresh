@@ -1,5 +1,6 @@
 package com.example.lastfresh.mapper.owner;
 
+import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.dto.ProductListDTO;
 import com.example.lastfresh.domain.vo.Criteria;
 import com.example.lastfresh.domain.vo.ProductVO;
@@ -20,6 +21,9 @@ public interface OwnerProductMapper {
     //      메뉴 삭제
     public int deleteProductMenu(Long sellProductNum);
 
+    public ProductDTO getListAll(Long sellProductNum);
+
+    public void updateExpireProduct();
 //
 }
 

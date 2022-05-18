@@ -11,6 +11,17 @@
 </head>
 <body>
 <th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    let message = [[${result}]];
+    console.log(message);
+    if(message != null) {
+        alert(message);
+    }
+
+    /*]]>*/
+</script>
 <div class="page_myPage myPage_type1 sellMenuList-wrapper">
     <div id="snb" class="snb_my">
         <h2 class="tit_snb">판매자 페이지</h2>
@@ -41,10 +52,6 @@
                     <button><a href="/sell/sellMenuRegister">상품 등록</a></button>
                 </div>
                 <div class="menuTable-wrapper" name="frmOrdView">
-                    <form method="post" action="/sell/remove" id="deleteForm">
-                        <input type="hidden" th:field="${criteria.pageNum}">
-                        <input type="hidden" th:field="${criteria.amount}">
-                        <input type="hidden" name="sellProductNum">
                         <table class="menuTable sellMenuList">
                             <colgroup>
                                 <col class="colgroup-span-1" style="width:80px;">
@@ -104,19 +111,28 @@
                                         </td>
                                         <td class="menuManging">
                                             <div class="menu-btn-wrapper">
-                                                <button>
-                                                    <a href="">수정</a>
-                                                </button>
-                                                <button class="product-delete">
-                                                    <a class="productMenuRemove" th:href="${product.sellProductNum}">삭제</a>
-                                                </button>
+                                                <form method="post" action="/sell/modify" id="modifyForm">
+                                                    <button class="product-modify">
+                                                        <a th:href="${product.sellProductNum}">수정</a>
+                                                    </button>
+                                                    <input type="hidden" th:field="${criteria.pageNum}">
+                                                    <input type="hidden" th:field="${criteria.amount}">
+                                                    <input type="hidden" name="sellProductNum">
+                                                </form>
+                                                <form method="post" action="/sell/remove" id="deleteForm">
+                                                    <button class="product-delete">
+                                                        <a class="productMenuRemove" th:href="${product.sellProductNum}">삭제</a>
+                                                    </button>
+                                                    <input type="hidden" th:field="${criteria.pageNum}">
+                                                    <input type="hidden" th:field="${criteria.amount}">
+                                                    <input type="hidden" name="sellProductNum">
+                                                </form>
                                             </div>
                                         </td>
                                     </tr>
                                 </th:block>
                             </tbody>
                         </table>
-                    </form>
                 </div>
             </div>
             <div th:object="${pageDTO}">

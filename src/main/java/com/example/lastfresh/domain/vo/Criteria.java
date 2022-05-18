@@ -23,14 +23,13 @@ public class Criteria { /*Criteria : 검색의 기준*/
     public Criteria(@NonNull int pageNum, @NonNull int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
-        this.limit = (pageNum - 1) * amount;
-//        log.info("-------------크리테리아----------------------");
-//        log.info("크리테리아 pageNum : " + pageNum);
-//        log.info("크리테리아 pageNum : " + pageNum);
-//        log.info("크리테리아 amount : " + amount);
-//        log.info("크리테리아 limit : " + (pageNum - 1));
-//        log.info("크리테리아 limit : " + amount);
-//        log.info("--------------크리테리아----------------------");
+        this.limit = (pageNum - 1) * amount;             
+        log.info("-------------크리테리아----------------------");
+        log.info("크리테리아 pageNum : " + pageNum);
+        log.info("크리테리아 amount : " + amount);
+        log.info("크리테리아 userNum : " + userNum);
+        log.info("크리테리아 limit : " + this.limit);
+        log.info("--------------크리테리아----------------------");
     }
 
     //    "경로1/경로2?KEY=VALUE&KEY=VALUE"
