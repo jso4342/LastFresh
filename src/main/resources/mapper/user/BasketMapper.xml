@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lastfresh.mapper.user.BasketMapper">
-    <insert id="insert">
-        INSERT INTO test(userId)
-        VALUES(#{userId})
-    </insert>
+   <select id="getListByUserNum" resultType="BasketVO">
+        SELECT BASKET_NUM, USER_NUM, SELL_PRODUCT_NUM, BASKET_QUANTITY, BASKET_DELIVERY_METHOD FROM TBL_BASKET
+        WHERE USER_NUM = #{userNum}
+        AND BASKET_GO_ORDER = 1;
+   </select>
+
+    <select id="getListByDTO" resultType="BasketDTO">
+        select BASKET_NUM, B.USER_NUM, B.SELL_PRODUCT_NUM, BASKET_QUANTITY, BASKET_DELIVERY_METHOD, SELL_PRODUCT_NAME, SELL_PRODUCT_DISCOUNT_PRICE, SELL_PRODUCT_THUMBNAIL, SELL_PRODUCT_IMAGE_UPLOAD_PATH
+        from TBL_BASKET B
+        LEFT JOIN TBL_SELL_PRODUCT P ON B.SELL_PRODUCT_NUM = P.SELL_PRODUCT_NUM
+        WHERE B.USER_NUM = #{userNum}
+        AND B.BASKET_GO_ORDER = 1;
+   </select>
 
 <!--    <delete id="delete">-->
 <!--    </delete>-->
