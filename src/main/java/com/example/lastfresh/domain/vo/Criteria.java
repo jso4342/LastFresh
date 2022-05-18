@@ -10,7 +10,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 @Data
 @Slf4j
-@RequiredArgsConstructor
 public class Criteria { /*Criteria : 검색의 기준*/
 //    생성자로 초기화 시 pageNum과 amount만 초기화하기 위해서 @NonNull을 붙인다.
     @NonNull private int pageNum;
