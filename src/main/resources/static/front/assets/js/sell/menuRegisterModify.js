@@ -55,7 +55,6 @@ function checkFile(fileName){
     return true;
 }
 
-
 let $sideSnb = $('.inner_snb li a');
 
 $.each($sideSnb, function (i, e) {

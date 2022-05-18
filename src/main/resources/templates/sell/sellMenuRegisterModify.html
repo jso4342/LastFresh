@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>라스트프레시 | 메뉴 작성</title>
+    <title>라스트프레시 | 메뉴 수정</title>
     <link rel="stylesheet" href="/front/assets/css/sell/sellMain.css">
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,13 +30,12 @@
     </div>
 
     <div class="page_section section_orderview menu-register-section">
-        <form id="menu-register-form" method="post" action="/sell/sellMenuRegister" enctype="multipart/form-data">
-
+        <form id="menu-register-form" method="post" action="/sell/sellMenuRegister" enctype="multipart/form-data" th:object="${list}">
+            <input type="hidden" th:field="*{sellProductNum}">
             <!-- 상품 등록 안내-->
             <div class="menu-register-wrapper">
                 <h3 class="tit">상품 등록</h3>
             </div>
-
             <!-- 상품 카테고리-->
             <div class="menu-register-content">
                 <div class="menu-register-title sell-category-wrapper">
@@ -70,7 +69,7 @@
                 </div>
                 <div class="menu-register-info sellProductName">
                     <div class="input-group">
-                        <input type="text" name="sellProductName" maxlength='50'>
+                        <input type="text" name="sellProductName" maxlength='50' th:value="*{sellProductName}">
                         <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                     </div>
                     <span class="input-group-addon">
@@ -92,7 +91,7 @@
                     <div class="menu-price-wrapper">
                         <label for="sellProductOriginPrice">정상 판매가</label>
                         <div class="input-group sell-price">
-                            <input type="number" name="sellProductOriginPrice" id="sellProductOriginPrice" placeholder="숫자만 입력">
+                            <input type="number" name="sellProductOriginPrice" id="sellProductOriginPrice" placeholder="숫자만 입력" th:value="*{sellProductOriginPrice}">
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                         <span class="input-group-addon">
@@ -103,7 +102,7 @@
                     <div class="menu-price-wrapper">
                         <label for="sellProductDiscountPrice">할인 판매가</label>
                         <div class="input-group sell-price">
-                            <input type="number" name="sellProductDiscountPrice" id="sellProductDiscountPrice" placeholder="숫자만 입력">
+                            <input type="number" name="sellProductDiscountPrice" id="sellProductDiscountPrice" placeholder="숫자만 입력" th:value="*{sellProductDiscountPrice}">
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                         <span class="input-group-addon">
@@ -114,7 +113,7 @@
                     <div class="menu-price-wrapper">
                         <label for="sellProductExpireDay">판매 기간</label>
                         <div class="input-group sell-date">
-                            <input type="date" name="sellProductExpireDay" id="sellProductExpireDay">
+                            <input type="date" name="sellProductExpireDay" id="sellProductExpireDay" th:value="*{sellProductExpireDate}">
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                     </div>
@@ -131,7 +130,7 @@
                 <div class="menu-register-info sellStockWrapper">
                     <div class="menu-stock-wrapper">
                         <div class="input-group sell-stock">
-                            <input type="number" name="sellProductStock" id="sellProductStock" placeholder="숫자만 입력">
+                            <input type="number" name="sellProductStock" id="sellProductStock" placeholder="숫자만 입력" th:value="*{sellProductStock}">
                             <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                         </div>
                         <span class="input-group-addon">
@@ -281,12 +280,12 @@
 
                 <div class="menu-register-info sellAddress">
                     <div class="input-group sell-address1" style="display: flex;">
-                        <input type="text" name="sellProductAddressPostNum" id="zipcode" placeholder="우편번호">
+                        <input type="text" name="sellProductAddressPostNum" id="zipcode" placeholder="우편번호" th:value="*{sellProductAddressPostNum}">
                         <input type="button" onclick="find()" value="우편번호 찾기" style="cursor: pointer">
                     </div>
                     <div class="input-group sell-address2">
-                        <input type="text" name="sellProductAddress" id="address" placeholder="주소">
-                        <input type="text" name="sellProductAddressDetail" id="addressDetail" placeholder="상세주소" style="margin-top: 1px">
+                        <input type="text" name="sellProductAddress" id="address" placeholder="주소" th:value="*{sellProductAddress}">
+                        <input type="text" name="sellProductAddressDetail" id="addressDetail" placeholder="상세주소" style="margin-top: 1px" th:value="*{sellProductAddressDetail}">
                     </div>
                 </div>
             </div>
@@ -299,7 +298,7 @@
 
                 <div class="menu-register-info sellProductDescription">
                     <div class="input-group menu-description-wrapper">
-                        <input type="text" name="sellProductDescription" id="sellProductDescription" maxlength='25'>
+                        <input type="text" name="sellProductDescription" id="sellProductDescription" maxlength='25' th:value="*{sellProductDescription}">
                         <a role="button" class="btn-clear" tabindex="-1" style="display: none;"><span aria-label="삭제">×</span></a>
                     </div>
                     <span class="input-group-addon">
@@ -321,7 +320,7 @@
                         <div class="menu-register-info sellProductPhoneNum">
                             <div class="menu-phoneNum-wrapper">
                                 <div class="input-group sell-phoneNum">
-                                    <input type="text" name="sellProductPhoneNum" class="sellProductPhoneNum" id="sellProductPhoneNum">
+                                    <input type="text" name="sellProductPhoneNum" class="sellProductPhoneNum" id="sellProductPhoneNum" th:value="*{sellProductPhone}">
                                 </div>
                             </div>
                         </div>
@@ -373,18 +372,20 @@
                 </div>
             </div>
 
-            <input type="hidden" name="sellProductThumbnail">
-            <input type="hidden" name="sellProductImage">
-            <input type="hidden" name="sellProductImageUploadPath">
-            <input type="hidden" name="sellProductImageUuid">
+            <input type="hidden" name="sellProductThumbnail" th:value="*{sellProductThumbnail}">
+            <input type="hidden" name="sellProductImage" th:value="*{sellProductImage}">
+            <input type="hidden" name="sellProductImageUploadPath" th:value="*{sellProductImageUploadPath}">
+            <input type="hidden" name="sellProductImageUuid" th:value="*{sellProductImageUuid}">
+            <input type="hidden" th:field="${criteria.pageNum}">
+            <input type="hidden" th:field="${criteria.amount}">
         </form>
         <div class="blank_article">
         </div>
     </div>
 </div>
 <div class="bottomBar">
-    <div class="menu-final-register bottomBar-btn" onclick="menuRegister()">
-        등록 하기
+    <div class="menu-final-register bottomBar-btn" onclick="menuModify()">
+        수정 하기
     </div>
     <div class="menu-final-cancel bottomBar-cancel-btn" onclick="history.back()">
         취소
@@ -395,5 +396,23 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
-<script src="/front/assets/js/sell/menuRegister.js"></script>
+<script src="/front/assets/js/sell/menuRegisterModify.js"></script>
+<script th:inline="javascript">
+        let sellProductCategory = [[${list.sellProductCategory}]];
+
+        function categorySelected() {
+
+            $("#category").val(sellProductCategory).prop("selected", true);
+        }
+
+        categorySelected();
+
+        let sellProductPickUp = [[${list.sellProductPickup}]];
+
+        function pickUpSelected() {
+            $("input[name='sellProductPickup'][value= " + sellProductPickUp + "]").prop("checked", true);
+        }
+
+        pickUpSelected();
+</script>
 </html>

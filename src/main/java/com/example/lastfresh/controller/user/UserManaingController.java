@@ -5,13 +5,16 @@ package com.example.lastfresh.controller.user;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Random;
+
 /*유저 아이디찾기, 비밀번호찾기, 비밀번호 재설정, 회원가입, 로그인*/
 
 @Controller
@@ -55,6 +58,63 @@ public class UserManaingController {
         return "0";
 
     }
+    //휴대폰인증
+    @GetMapping("/manage/phoneCheck")
+    public @ResponseBody
+    String sendSMS(String userPhone) {
+
+        Random rand  = new Random();
+        String numStr = "";
+        for(int i=0; i<4; i++) {
+            String ran = Integer.toString(rand.nextInt(10));
+            numStr+=ran;
+        }
+
+        System.out.println("수신자 번호 : " + userPhone);
+        System.out.println("인증번호 : " + numStr);
+        userService.certifiedPhoneNumber(userPhone,numStr);
+        return numStr;
+    }
+
+
+
+    //아이디 중복검사
+    @GetMapping("/manage/IDCheck/{userId}")
+    @ResponseBody
+        public JSONObject checkId(HttpServletRequest req, @PathVariable("userId") String userId){
+        //파라미터는 form태그처럼 페이지 이동으로 받을때, pathVariable은 페이지이동 없는 ajax로 받을때. @ResponseBody 줘야함
+        JSONObject obj=new JSONObject();
+        if(userService.checkId(userId)){
+            obj.put("status", "not-ok");
+        }else{
+            obj.put("status", "ok");
+        }
+        return obj;
+    }
+
+    //이메일 중복검사
+    @GetMapping("/manage/EmailCheck/{userEmail}")
+    @ResponseBody
+    public JSONObject checkEmail(HttpServletRequest req, @PathVariable("userEmail") String userEmail){
+        //파라미터는 form태그처럼 페이지 이동으로 받을때, pathVariable은 페이지이동 없는 ajax로 받을때. @ResponseBody 줘야함
+        JSONObject obj=new JSONObject();
+        if(userService.checkEmail(userEmail)){
+            obj.put("status", "not-ok");
+        }else{
+            obj.put("status", "ok");
+        }
+        return obj;
+    }
+
+
+
+
+
+
+
+
+
+
 
     //단순페이지 이동
     @GetMapping("/manage/userFindId")
@@ -74,6 +134,9 @@ public class UserManaingController {
 
     @GetMapping("/manage/userLogin")
     public void userLogin(){};
+
+    @GetMapping("/manage/userId")
+    public void userId(){};
 
 
 }

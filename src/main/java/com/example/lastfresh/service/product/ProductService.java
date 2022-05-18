@@ -3,6 +3,7 @@ package com.example.lastfresh.service.product;
 import com.example.lastfresh.domain.dao.product.AttachDAO;
 import com.example.lastfresh.domain.dao.product.ProductDAO;
 import com.example.lastfresh.domain.repository.ProductRepository;
+import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,11 +21,20 @@ import java.util.List;
 @Slf4j
 public class ProductService{
     private final ProductRepository productRepository;
-
+    private final ProductDAO productDAO;
     //상품 목록
-    public List<ProductVO> getList() {
-        List<ProductVO> products = productRepository.findAll();
-        return products;
+    public List<ProductVO> getList(CriteriaProduct criteriaProduct) {
+        return productDAO.getList(criteriaProduct);
+//        List<ProductVO> products = productRepository.findAll();
+//        return products;
+    }
+    // 특정 게시글 가져오기
+    public ProductVO get(Long sellProductNum) {
+        return productDAO.get(sellProductNum);
+    }
+    // 상품 전체 갯수
+    public int getTotal() {
+        return productDAO.getTotal();
     }
 
 
@@ -41,7 +51,6 @@ public class ProductService{
         return content;
     }
 
-
     //마감 상품 목록
     @Query("select products from ProductVO products where products.sellProductExpireDay= current_date ")
     public List<ProductVO> getListBySale() {
@@ -55,4 +64,14 @@ public class ProductService{
         return content;
     }
 
+    //후기 많은 상품 목록(myBatis로 구현됨)
+    public  List<ProductVO> getListByReview(){
+        List<ProductVO> products=productDAO.getListByReview();
+        return products;
+    }
+
+    //이미지
+    public  List<ProductVO> getImages(Long pno){ return productDAO.getImages(pno);}
+
 }
+

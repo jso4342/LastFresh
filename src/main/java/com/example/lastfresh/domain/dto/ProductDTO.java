@@ -17,6 +17,8 @@ import java.util.Date;
 @Getter
 @Setter
 public class ProductDTO {
+    private Long sellProductNum;
+
     private Long sellProductCategory;
 
     private String sellProductName;
@@ -25,14 +27,13 @@ public class ProductDTO {
 
     private Long sellProductDiscountPrice;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate sellProductExpireDay;
+    private String sellProductExpireDate;
 
     private Long sellProductStock;
 
-    private String sellProductPickup;
+    private String sellProductPickup; // 0 픽업, 1 픽업 불가
 
-    private String sellProductDelivery;  // 0배달x, 1프레쉬라이더, 2자가라이더
+    private String sellProductDeliveryMethod;  // 0배달x, 1프레쉬라이더, 2자가라이더
 
     private String sellProductDeliveryAddress1;
 
@@ -40,7 +41,7 @@ public class ProductDTO {
 
     private String sellProductDeliveryAddress3;
 
-    private String sellProductShipping;  // 0배달x, 1프레쉬라이더, 2자가라이더
+    private String sellProductShippingMethod;  // 0배달x, 1프레쉬라이더, 2자가라이더
 
     private String sellProductAddress;
 
@@ -50,7 +51,7 @@ public class ProductDTO {
 
     private String sellProductDescription;
 
-    private String sellProductPhoneNum;
+    private String sellProductPhone;
 
     private String sellProductThumbnail;
 

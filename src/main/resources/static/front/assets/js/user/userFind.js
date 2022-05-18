@@ -1,9 +1,3 @@
-function send(){
-    $("#findId").css("display", "block");
-}
-function send1(){
-    $("#findId1").css("display", "block");
-}
 
 function showemaildiv() {
     $('.email_box').show();
@@ -52,4 +46,62 @@ function find1(){
     $("#phoneCheck").css("display", "none");
     $(".check").css("display", "block");
 }
+
+/*  cool sns 문자인증*/
+$('#phoneCheck').click(function(){
+    let phoneNumber = $('#phone').val();
+    Swal.fire('인증번호 발송 완료!')
+
+
+    $.ajax({
+        type: "GET",
+        url: "/find/check/sendSMS",
+        data: {
+            "phoneNumber" : phoneNumber
+        },
+        success: function(res){
+            $('#check').click(function(){
+                if($.trim(res) ==$('#inputCertifiedPhone').val()){
+
+                    $(cart1).removeClass("off");
+                    $(cart1).css("opacity", "1");
+                    $(".bg_loading").css("display", "block");
+                   /* location.href = "/user/manage/userId"*/
+                    $.ajax({
+                        type: "GET",
+                        url: "/find/phoneNumber",
+                        data: {
+                            "userPhone" : $('#phone').val()
+                        },
+                        success: function(data){
+                            $('#findId_css').text(data);
+                        }
+
+                    })
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: '인증오류',
+                        text: '인증번호가 올바르지 않습니다!',
+                        footer: '<a href="/main/main">다음에 인증하기</a>'
+                    })
+                }
+            })
+
+
+        }
+    })
+});
+
+var cart = $(".cart_option");
+var cart1 = $(".cart_option1");
+
+var button = $(".cancel");
+var button1 = $(".cancel1");
+
+/*$(".check").click(function(){
+    $(cart1).removeClass("off");
+    $(cart1).css("opacity", "1");
+    $(".bg_loading").css("display", "block");
+});*/
 

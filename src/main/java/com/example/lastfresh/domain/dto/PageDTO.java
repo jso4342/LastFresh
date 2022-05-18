@@ -10,7 +10,8 @@ public class PageDTO {
     private int startPage;
     private int endPage;
     private int realEnd;
-    private boolean prev, next;
+    private boolean prev;
+    private boolean next;
 
     private Criteria criteria;
     private int total;
@@ -41,6 +42,7 @@ public class PageDTO {
         /*prev, next 구하기*/
         this.prev = this.startPage > 1;
         this.next = this.endPage < this.realEnd;
+
     }
 
 }

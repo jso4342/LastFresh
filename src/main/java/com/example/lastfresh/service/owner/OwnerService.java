@@ -1,14 +1,22 @@
 package com.example.lastfresh.service.owner;
 
 import com.example.lastfresh.domain.dao.owner.OwnerProductDAO;
+import com.example.lastfresh.domain.dao.product.ProductDAO;
+import com.example.lastfresh.domain.dto.ProductDTO;
+import com.example.lastfresh.domain.dto.ProductListDTO;
 import com.example.lastfresh.domain.repository.ProductRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
+import com.example.lastfresh.domain.vo.Criteria;
 import com.example.lastfresh.domain.vo.ProductVO;
+import com.example.lastfresh.domain.vo.ProductVO2;
 import com.example.lastfresh.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 @Transactional
@@ -44,10 +52,23 @@ public class OwnerService {
         productRepository.save(productVO);
     }
 
-//    public List<ProductVO> getList(Criteria criteria) {
-//        return ProductDAO.getList(criteria);
-//    }
+    public List<ProductListDTO> getList(Criteria criteria){
+        return ownerProductDAO.getList(criteria);
+    }
 
+    public int getTotal(Criteria criteria) {
+        return ownerProductDAO.getTotal(criteria);
+    }
+
+    /*delete*/
+    public boolean deleteProductMenu (Long sellProductNum) {
+        return ownerProductDAO.deleteProductMenu(sellProductNum);
+    }
+
+    /* productDTO By sellProductNum*/
+    public ProductDTO getListAllBysSllProductNum (Long sellProductNum) {
+        return ownerProductDAO.getListAll(sellProductNum);
+    }
 
 
     //    public PageDTO<ProductVO> getProductVOs(Pageable pageable, Long userNum) {

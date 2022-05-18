@@ -35,10 +35,12 @@
             <tr>
                 <th class="first">아이디
                     <span class="icon">*</span>
+<!--                    <span id="result" style="font-size:0.7em"></span>-->
                 </th>
                 <td>
                     <input id="userId" name="userId" class="id" type="text" value maxlength="16" placeholder="아이디를 입력하세요">
                     <a class="btn_check" href="">중복확인</a>
+                    <span id="result" style="font-size:0.7em"></span>
                 </td>
             </tr>
             <tr>
@@ -55,7 +57,8 @@
                     <span class="icon">*</span>
                 </th>
                 <td>
-                    <input class="id media" type="password" value maxlength="16" placeholder="비밀번호를 한번 더 입력하세요">
+                    <input onchange="match(this)" id="userPwOk" name="userPwOk" class="id media" type="password" value maxlength="16" placeholder="비밀번호를 한번 더 입력하세요">
+                    <div id="resultPw" style="font-size:0.7em" type="hidden" ></div>
                 </td>
             </tr>
             <tr>
@@ -72,7 +75,8 @@
                 </th>
                 <td>
                     <input id="userEmail" name="userEmail" class="id" type="text" placeholder="ex)LastFresh@fresh.com">
-                    <a class="btn_check" href="">중복확인</a>
+                    <a class="btn_check btn_check2" href="">중복확인</a>
+                    <span id="resultEmail" style="font-size:0.7em"></span>
                 </td>
             </tr>
             <tr>
@@ -80,8 +84,11 @@
                     <span class="icon">*</span>
                 </th>
                 <td>
-                    <input id="userPhone" name="userPhone" class="id" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
-                    <a class="btn_check" href="">인증번호 받기</a>
+                    <input id="userPhone" name="userPhone"  class="id" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
+                    <a type="button" class="btn_check" id="phoneCheckButton">인증번호 받기</a>
+
+                    <input id="checkCN"  class="id" type="text" value maxlength="16" placeholder="인증번호 입력">
+                    <a type="button" class="btn_check" id="phoneCheck" >확인</a>
                 </td>
             </tr>
             <tr>
@@ -111,14 +118,7 @@
                     <input id="userAddressDetail" name="userAddressDetail" class="id media" type="text" value maxlength="16" placeholder="상세 주소를 입력하세요">
                 </td>
             </tr>
-            <tr>
-                <th>생년월일
-                    <span class="icon"></span>
-                </th>
-                <td class="td_birth">
-                    <input class="id media" type="text" value maxlength="16" placeholder="ex)19970527">
-                </td>
-            </tr>
+
         </form>
         <tr class="agree" style="border-top: 1px solid">
             <th>
@@ -140,7 +140,7 @@
                 </div>
                 <div class="check_view">
                     <label class="check_agree2">
-                        <input type="checkbox" name="check" required label="이용약관">
+                        <input id="check1" type="checkbox" name="check" required label="이용약관">
                         <span class="agreeicon"></span>
                         이용약관 동의
                         <span class="sub">(필수)</span>
@@ -231,7 +231,7 @@
                 <!--개인정보 수집이용 동의-->
                 <div class="check_view">
                     <label class="check_agree2">
-                        <input type="checkbox" name="check" required label="이용약관">
+                        <input id="check2" type="checkbox" name="check" required label="이용약관">
                         <span class="agreeicon"></span>
                         개인정보 수집이용 동의
                         <span class="sub">(필수)</span>
@@ -384,4 +384,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/user/userJoin.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </html>

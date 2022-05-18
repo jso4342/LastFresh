@@ -121,6 +121,13 @@
             <version>2.6.7</version>
         </dependency>
 
+        <!--암호화(시큐리티 의존성 주입)-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+            <version>2.4.5</version>
+        </dependency>
+
     </dependencies>
 
     <build>
