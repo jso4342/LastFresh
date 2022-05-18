@@ -5,11 +5,14 @@ package com.example.lastfresh.controller.user;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Param;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
 /*유저 아이디찾기, 비밀번호찾기, 비밀번호 재설정, 회원가입, 로그인*/
@@ -73,6 +76,35 @@ public class UserManaingController {
         return numStr;
     }
 
+
+
+    //아이디 중복검사
+    @GetMapping("/manage/IDCheck/{userId}")
+    @ResponseBody
+        public JSONObject checkId(HttpServletRequest req, @PathVariable("userId") String userId){
+        //파라미터는 form태그처럼 페이지 이동으로 받을때, pathVariable은 페이지이동 없는 ajax로 받을때. @ResponseBody 줘야함
+        JSONObject obj=new JSONObject();
+        if(userService.checkId(userId)){
+            obj.put("status", "not-ok");
+        }else{
+            obj.put("status", "ok");
+        }
+        return obj;
+    }
+
+    //이메일 중복검사
+    @GetMapping("/manage/EmailCheck/{userEmail}")
+    @ResponseBody
+    public JSONObject checkEmail(HttpServletRequest req, @PathVariable("userEmail") String userEmail){
+        //파라미터는 form태그처럼 페이지 이동으로 받을때, pathVariable은 페이지이동 없는 ajax로 받을때. @ResponseBody 줘야함
+        JSONObject obj=new JSONObject();
+        if(userService.checkEmail(userEmail)){
+            obj.put("status", "not-ok");
+        }else{
+            obj.put("status", "ok");
+        }
+        return obj;
+    }
 
 
 
