@@ -280,7 +280,7 @@
     let year = today.getFullYear(); // 년도
     let month = today.getMonth() + 1;  // 월
     let date = today.getDate();  // 날짜
-    let calender = "~" + year + "/" + month + "/" + date
+    let calender = "&nbsp;"+"&nbsp;"+"~" + year + "/" + month + "/" + date
     document.getElementById("lastChanceDate").innerHTML = calender
     console.log("calender", calender)
 
@@ -289,7 +289,7 @@
     let saleListPercents = [[${saleListPercents}]];
     let bestReviewListPercents = [[${bestReviewListPercents}]];
 
-    $( document ).ready( function() {
+    $(document).ready( function() {
         $(".newListPercent").each(function(i, item){
             $(this).html(newListPercents[i]+"%");
         });
