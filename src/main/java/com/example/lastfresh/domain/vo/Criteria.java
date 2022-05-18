@@ -10,6 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Component
 @Data
 @Slf4j
+@RequiredArgsConstructor
 public class Criteria { /*Criteria : 검색의 기준*/
 //    생성자로 초기화 시 pageNum과 amount만 초기화하기 위해서 @NonNull을 붙인다.
     @NonNull private int pageNum;
@@ -23,12 +24,14 @@ public class Criteria { /*Criteria : 검색의 기준*/
     public Criteria(@NonNull int pageNum, @NonNull int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
-        log.info("-------------크리테리아----------------------");
-        log.info("크리테리아 pageNum : " + pageNum);
-        log.info("크리테리아 amount : " + amount);
-        log.info("크리테리아 limit : " + (pageNum - 1) * amount);
-        log.info("--------------크리테리아----------------------");
-        this.limit = (this.pageNum - 1) * this.amount;
+        this.limit = (pageNum - 1) * amount;
+//        log.info("-------------크리테리아----------------------");
+//        log.info("크리테리아 pageNum : " + pageNum);
+//        log.info("크리테리아 pageNum : " + pageNum);
+//        log.info("크리테리아 amount : " + amount);
+//        log.info("크리테리아 limit : " + (pageNum - 1));
+//        log.info("크리테리아 limit : " + amount);
+//        log.info("--------------크리테리아----------------------");
     }
 
     //    "경로1/경로2?KEY=VALUE&KEY=VALUE"

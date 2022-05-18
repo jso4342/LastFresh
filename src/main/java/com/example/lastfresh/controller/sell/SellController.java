@@ -54,6 +54,7 @@ public class SellController {
         log.info("limit : " + criteria.getLimit());
         log.info("pageNum :" + criteria.getPageNum());
         log.info("userNum : " + criteria.getUserNum());
+        log.info("userNum : " + criteria.getAmount());
         log.info("---------------------------------------------------");
         model.addAttribute("list", ownerService.getList(criteria));
         log.info("---------------------------------------------------");
@@ -79,7 +80,7 @@ public class SellController {
 //        session.setAttribute();
 //        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
 
-        ownerService.register(productVO, 6L);
+        ownerService.register(productVO, 3L);
 
         return new RedirectView("sellMenuList");
     }

@@ -3,6 +3,14 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     -webkit-appearance: button;
     cursor: pointer;
 }
+
+span.ok {
+    color: #00a000;
+}
+span.notOk {
+    color: #de0000;
+}
+
 .page_myPage.myPage_type1 .page_section {
     float: right;
     width: 820px;

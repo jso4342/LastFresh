@@ -16,6 +16,10 @@ body, button, input, select, textarea {
     font-size: 14px;
     color: #333;
 }
+
+button:hover{
+    background: #DA291C !important;
+}
 html {
     touch-action: manipulation;
     -ms-text-size-adjust: 100%;

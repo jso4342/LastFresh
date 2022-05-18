@@ -34,3 +34,6 @@ $('input[type=radio]').each(function (i,radio) {
 //     })
 // })
 
+function sendSelect() {
+    selectForm.submit();
+}

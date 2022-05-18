@@ -171,6 +171,7 @@ a.btn_check {
     padding-top: 0;
     cursor: pointer;
     margin-left: 20px;
+    cursor: pointer;
 }
 
 .requir {
@@ -557,4 +558,3 @@ td.emph{
     }
 
 }
-
