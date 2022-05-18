@@ -3,27 +3,32 @@ package com.example.lastfresh.domain.vo;
 import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 @Data
-@RequiredArgsConstructor
+@Slf4j
 public class Criteria { /*Criteria : 검색의 기준*/
 //    생성자로 초기화 시 pageNum과 amount만 초기화하기 위해서 @NonNull을 붙인다.
     @NonNull private int pageNum;
     @NonNull private int amount;
-    private String type;
-    private String keyword;
+    private int limit;
+    private Long userNum;
 
 //    롬복을 통해 생성된 초기화 생성자를 기본 생성자에서 기본 값을 설정한 뒤 호출해준다.
     public Criteria() {this(1, 10);}
 
-    public Criteria(@NonNull int pageNum, @NonNull int amount, String type, String keyword) {
+    public Criteria(@NonNull int pageNum, @NonNull int amount) {
         this.pageNum = pageNum;
         this.amount = amount;
-        this.type = type;
-        this.keyword = keyword;
+        log.info("-------------크리테리아----------------------");
+        log.info("크리테리아 pageNum : " + pageNum);
+        log.info("크리테리아 amount : " + amount);
+        log.info("크리테리아 limit : " + (pageNum - 1) * amount);
+        log.info("--------------크리테리아----------------------");
+        this.limit = (this.pageNum - 1) * this.amount;
     }
 
     //    "경로1/경로2?KEY=VALUE&KEY=VALUE"
@@ -36,14 +41,8 @@ public class Criteria { /*Criteria : 검색의 기준*/
     public String getListLink(){
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("")
                 .queryParam("pageNum", this.pageNum)
-                .queryParam("amount", this.amount)
-                .queryParam("type", this.type)
-                .queryParam("keyword", this.keyword);
+                .queryParam("amount", this.amount);
         return builder.toUriString();
-    }
-
-    public String[] getTypes(){
-        return type == null ? new String[] {} : type.split("");
     }
 }
 
