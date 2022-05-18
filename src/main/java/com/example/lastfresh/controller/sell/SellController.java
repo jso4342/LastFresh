@@ -49,13 +49,14 @@ public class SellController {
     public void sellMenuList(Criteria criteria,  Model model){
         /*세션으로 받아올 값*/
         Long userNum = 6L;
-        criteria.setUserNum(userNum);
         log.info("----------------------11111-----------------------------");
         log.info("limit : " + criteria.getLimit());
         log.info("pageNum :" + criteria.getPageNum());
         log.info("userNum : " + criteria.getUserNum());
         log.info("userNum : " + criteria.getAmount());
         log.info("---------------------------------------------------");
+        criteria = new Criteria(criteria.getPageNum(), criteria.getAmount());
+        criteria.setUserNum(userNum);
         model.addAttribute("list", ownerService.getList(criteria));
         log.info("---------------------------------------------------");
         log.info("----------------------" + criteria.getLimit());
@@ -86,15 +87,41 @@ public class SellController {
     }
 
     @PostMapping("/remove")
-    public RedirectView remove (Long sellProductNum) {
+    public RedirectView remove (Long sellProductNum, Criteria criteria, RedirectAttributes rttr) {
         log.info("삭제-------------------------------------------------------------");
         log.info("sellProductNum : " + sellProductNum);
 
+        String result = null;
+
         if (ownerService.deleteProductMenu(sellProductNum)) {
-            log.info("-----------------삭제 성공------------------------");
+            result = "삭제에 성공하셨습니다.";
+        } else {
+            result = "삭제에 실패하였습니다.";
         }
 
+        rttr.addFlashAttribute("result", result);
+        rttr.addAttribute("pageNum", criteria.getPageNum());
+        rttr.addAttribute("amount", criteria.getAmount());
+
         return new RedirectView("sellMenuList");
+    }
+
+    @GetMapping("/sellMenuRegisterModify")
+    public void modify (Long sellProductNum, Criteria criteria, Model model) {
+        log.info("------------------------------------------");
+        log.info("상품 정보 By sellProductNum :" + ownerService.getListAllBysSllProductNum(sellProductNum).toString());
+        log.info("------------------------------------------");
+        model.addAttribute("list", ownerService.getListAllBysSllProductNum(sellProductNum));
+        model.addAttribute("criteria", criteria);
+    }
+
+    @PostMapping("/modify")
+    public RedirectView modify (Long sellProductNum, Criteria criteria, RedirectAttributes rttr) {
+
+        rttr.addAttribute("sellProductNum", sellProductNum);
+        rttr.addAttribute("pageNum", criteria.getPageNum());
+        rttr.addAttribute("amount", criteria.getAmount());
+        return new RedirectView("sellMenuRegisterModify");
     }
 
 //    @PostMapping("/menuDeleteAjax")

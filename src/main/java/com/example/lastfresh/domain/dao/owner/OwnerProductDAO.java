@@ -1,6 +1,7 @@
 package com.example.lastfresh.domain.dao.owner;
 
 
+import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.dto.ProductListDTO;
 import com.example.lastfresh.domain.vo.Criteria;
 import com.example.lastfresh.domain.vo.ProductVO;
@@ -19,8 +20,14 @@ public class OwnerProductDAO {
     private final OwnerProductMapper ownerproductMapper;
 
     public List<ProductListDTO> getList(Criteria criteria) {return ownerproductMapper.getList(criteria);}
+
     public int getTotal(Criteria criteria) {return ownerproductMapper.getTotal(criteria);}
+
     public boolean deleteProductMenu(Long sellProductNum) {return ownerproductMapper.deleteProductMenu(sellProductNum) == 1;}
+
+    public ProductDTO getListAll(Long sellProductNum) {return ownerproductMapper.getListAll(sellProductNum);}
+
+    public void updateExpireProduct() {ownerproductMapper.updateExpireProduct();}
 //    public void register( ) {}
 //    public boolean modify( ) {}
 //    public boolean remove( ) {}

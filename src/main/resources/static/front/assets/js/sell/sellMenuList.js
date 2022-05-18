@@ -31,8 +31,7 @@ $("a.changePage").click(function(e){
 
 //등록된 메뉴 삭제
 // let pageInfo = [[${pageDTO.criteria.listLink}]];
-
-$(".product-delete").on("click", function(e){
+$("#deleteForm .product-delete").on("click", function(e){
     e.preventDefault();
     let sellProductNum = $(this).find('a').attr("href");
 
@@ -40,3 +39,14 @@ $(".product-delete").on("click", function(e){
 
     $('#deleteForm').submit();
 });
+
+/* 메뉴 수정 */
+$("#modifyForm .product-modify").on("click", function(e){
+    e.preventDefault();
+    let sellProductNum = $(this).find('a').attr("href");
+
+    $('input[name=sellProductNum]').val(sellProductNum);
+
+    $('#modifyForm').submit();
+});
+
