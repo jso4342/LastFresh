@@ -5,5 +5,8 @@
         <typeAlias type="com.example.lastfresh.domain.dto.ProductListDTO" alias="ProductListDTO"/>
         <typeAlias type="com.example.lastfresh.domain.vo.ProductVO" alias="ProductVO"/>
         <typeAlias type="com.example.lastfresh.domain.dto.ProductDTO" alias="ProductDTO"/>
+        <typeAlias type="com.example.lastfresh.domain.vo.BasketVO" alias="BasketVO"/>
+        <typeAlias type="com.example.lastfresh.domain.dto.BasketDTO" alias="BasketDTO"/>
+        <typeAlias type="com.example.lastfresh.domain.vo.UserVO" alias="UserVO"/>
     </typeAliases>
 </configuration>
