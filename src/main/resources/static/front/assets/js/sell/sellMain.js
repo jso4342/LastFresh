@@ -12,3 +12,12 @@ $.each($sideSnb, function (i, e) {
         $sideSnb[index].classList.add("menuClicked");
     });
 });
+
+/*div 높이 변화시, 전체 높이 변경*/
+let $pageDiv = $('.page_section');
+
+$pageDiv.change(function () {
+    let height = $('.page_section').height() + 100;
+
+    $('.sellMenuRegister').css("height", height);
+});

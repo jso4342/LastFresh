@@ -175,6 +175,10 @@
         border-bottom: 2px solid #333;
     }
 
+    .small-width {
+        display: block !important;
+    }
+
 }
 
 .sellMenuRegister {
@@ -186,7 +190,7 @@
 }
 
 .sellMenuList-wrapper {
-    height: 1200px;
+    height: 2000px;
 }
 
 .media-info {
@@ -197,6 +201,10 @@
 }
 
 /*주문 상세 내역*/
+.small-width {
+    display: none;
+}
+
 button, html input[type=button], input[type=reset], input[type=submit] {
     -webkit-appearance: button;
     cursor: pointer;

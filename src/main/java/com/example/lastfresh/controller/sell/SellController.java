@@ -2,18 +2,20 @@ package com.example.lastfresh.controller.sell;
 
 import com.example.lastfresh.domain.dto.ImageDTO;
 import com.example.lastfresh.domain.dto.PageDTO;
+import com.example.lastfresh.domain.vo.Criteria;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.service.owner.OwnerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,16 +46,34 @@ public class SellController {
 //    }
 
     @GetMapping("/sellMenuList")
-    public void sellMenuList(Criteria criteria, Model model){
-//        model.addAttribute("list", boardService.getList(criteria));
-//        model.addAttribute("pageDTO", new PageDTO(criteria, boardService.getTotal(criteria)));
+    public void sellMenuList(Criteria criteria,  Model model){
+        /*세션으로 받아올 값*/
+        Long userNum = 6L;
+        criteria.setUserNum(userNum);
+        log.info("----------------------11111-----------------------------");
+        log.info("limit : " + criteria.getLimit());
+        log.info("pageNum :" + criteria.getPageNum());
+        log.info("userNum : " + criteria.getUserNum());
+        log.info("userNum : " + criteria.getAmount());
+        log.info("---------------------------------------------------");
+        model.addAttribute("list", ownerService.getList(criteria));
+        log.info("---------------------------------------------------");
+        log.info("----------------------" + criteria.getLimit());
+        log.info("----------------------" + criteria.getPageNum());
+        log.info("----------------------" + criteria.getUserNum());
+        log.info("---------------------------------------------------");
+        model.addAttribute("pageDTO", new PageDTO(criteria, ownerService.getTotal(criteria)));
+    }
+
+    @GetMapping("/sellMenuRegister")
+    public void register() {
     }
 
     @PostMapping("/sellMenuRegister")
     public RedirectView register(ProductVO productVO, HttpServletRequest request){
         log.info("-----------------------------------------------------");
         log.info("등록 들어옴");
-        log.info("DTO : " + productVO);
+        log.info("ProductVO : " + productVO);
         log.info("-----------------------------------------------------");
 
 //        HttpSession session = request.getSession();
@@ -65,19 +85,21 @@ public class SellController {
         return new RedirectView("sellMenuList");
     }
 
-//    @PostMapping("/sellMenuRegister")
-//    public RedirectView register(ProductVO productVO, HttpServletRequest request){
-//        log.info("-----------------------------------------------------");
-//        log.info("등록 들어옴");
-//        log.info("DTO : " + productVO);
-//        log.info("-----------------------------------------------------");
-//
-////        HttpSession session = request.getSession();
-////        session.setAttribute();
-////        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
-//
-//        ownerService.register(productVO, 0L);
-//
+    @PostMapping("/remove")
+    public RedirectView remove (Long sellProductNum) {
+        log.info("삭제-------------------------------------------------------------");
+        log.info("sellProductNum : " + sellProductNum);
+
+        if (ownerService.deleteProductMenu(sellProductNum)) {
+            log.info("-----------------삭제 성공------------------------");
+        }
+
+        return new RedirectView("sellMenuList");
+    }
+
+//    @PostMapping("/menuDeleteAjax")
+//    public RedirectView remove(Long sellProductNum) {
+//        ownerService.deleteProductMenu(sellProductNum);
 //        return new RedirectView("sellMenuList");
 //    }
 
@@ -133,5 +155,11 @@ public class SellController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Date today = new Date();
         return sdf.format(today);
+    }
+
+    @GetMapping("/display")
+    @ResponseBody
+    public byte[] getFile(String fileName) throws IOException{
+        return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 }
