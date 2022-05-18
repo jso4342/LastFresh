@@ -31,29 +31,92 @@ import java.util.UUID;
 @RequestMapping("/main/*")
 public class MainPageController {
     private final ProductService productService;
+
     @GetMapping("/main")
-    public void main(Model model){
+    public void main(Model model) {
+        model.addAttribute("newListPercents", getPercentOfNew());
+        model.addAttribute("saleListPercents", getListBySale());
+        model.addAttribute("bestReviewListPercents", getListByReview());
         model.addAttribute("newList", productService.getListByNew());
         model.addAttribute("saleList", productService.getListBySale());
         model.addAttribute("bestReviewList", productService.getListByReview());
     }
+
     @GetMapping("/getAttachList")
     @ResponseBody
-    public List<ProductVO> getAttachList(Long pno){return productService.getImages(pno);}
+    public List<ProductVO> getAttachList(Long pno) {
+        return productService.getImages(pno);
+    }
 
     @GetMapping("/display")
     @ResponseBody
-    public byte[] getFile(String sellProductThumbnail) throws IOException{
+    public byte[] getFile(String sellProductThumbnail) throws IOException {
         return FileCopyUtils.copyToByteArray(new File("C:/upload/" + sellProductThumbnail));
     }
 
     @GetMapping("/mainTerm")
-    public void mainTerm(){}
+    public void mainTerm() {
+    }
 
     @GetMapping("/mainHowToUser")
-    public void mainHowToUser(){}
+    public void mainHowToUser() {
+    }
 
+    public List<Double> getPercentOfNew() {
+        Long originalPrice = 0L;
+        Long salePrice = 0L;
+        Double percent = 0.0;
+        Double roundedNumber = 0.0;
 
+        List<Double> percents = new ArrayList<>();
+
+        List<ProductVO> listByNew = productService.getListByNew();
+        for (ProductVO product : listByNew) {
+            originalPrice = product.getSellProductOriginPrice();
+            salePrice = product.getSellProductDiscountPrice();
+            percent = (double)((((double)originalPrice) - salePrice) / originalPrice) * 100;
+            roundedNumber = (double)(Math.round(percent*1000)/1000);
+
+            percents.add(roundedNumber);
+        }
+        return percents;
+    }
+
+    public List<Double> getListBySale() {
+        Long originalPrice = 0L;
+        Long salePrice = 0L;
+        Double percent = 0.0;
+        Double roundedNumber = 0.0;
+
+        List<Double> percents = new ArrayList<>();
+        List<ProductVO> listBySale = productService.getListBySale();
+        for (ProductVO product : listBySale) {
+            originalPrice = product.getSellProductOriginPrice();
+            salePrice = product.getSellProductDiscountPrice();
+            percent = (double)((((double)originalPrice) - salePrice) / originalPrice) * 100;
+            roundedNumber = (double)(Math.round(percent*1000)/1000);
+
+            percents.add(roundedNumber);
+        }
+        return percents;
+    }
+
+    public List<Double> getListByReview() {
+        Long originalPrice = 0L;
+        Long salePrice = 0L;
+        Double percent = 0.0;
+        Double roundedNumber = 0.0;
+        List<Double> percents = new ArrayList<>();
+        List<ProductVO> listByReview = productService.getListByReview();
+        for (ProductVO product : listByReview) {
+            originalPrice = product.getSellProductOriginPrice();
+            salePrice = product.getSellProductDiscountPrice();
+            percent = (double)((((double)originalPrice) - salePrice) / originalPrice) * 100;
+            roundedNumber = (double)(Math.round(percent*1000)/1000);
+            percents.add(roundedNumber);
+        }
+        return percents;
+    }
 
 
 }
