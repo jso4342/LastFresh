@@ -398,41 +398,49 @@
 <script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
 <script src="/front/assets/js/sell/menuRegisterModify.js"></script>
 <script th:inline="javascript">
-        let sellProductCategory = [[${list.sellProductCategory}]];
-
         function categorySelected() {
-
+            let sellProductCategory = [[${list.sellProductCategory}]];
             $("#category").val(sellProductCategory).prop("selected", true);
         }
 
         categorySelected();
 
 
-        let sellProductPickUp = [[${list.sellProductPickup}]];
-
         function pickUpSelected() {
+            let sellProductPickUp = [[${list.sellProductPickup}]];
             $("input[name='sellProductPickup'][value= " + sellProductPickUp + "]").prop("checked", true);
         }
 
         pickUpSelected();
 
 
-        let sellProductShippingMethod = [[${list.sellProductShippingMethod}]];
-        
         function shippingSelected() {
+            let sellProductShippingMethod = [[${list.sellProductShippingMethod}]];
             $("input[name='sellProductShipping'][value= " + sellProductShippingMethod + "]").prop("checked", true);
         }
 
         shippingSelected();
 
 
-        let sellProductDeliveryMethod = [[${list.sellProductDeliveryMethod}]];
-
         function deliverySelected() {
+            let sellProductDeliveryMethod = [[${list.sellProductDeliveryMethod}]];
             $("input[name='sellProductDelivery'][value= " + sellProductDeliveryMethod + "]").prop("checked", true);
         }
 
         deliverySelected();
+
+        function letterChange() {
+            let sellProductName = [[${list.sellProductName}]].length;
+            let sellProductDescription = [[${list.sellProductDescription}]].length;
+
+            let $letterProductNameSpan = $('.text-primary');
+            let $letterDescriptionSpan = $('.text-primary-description');
+
+            $letterProductNameSpan.text(sellProductName);
+            $letterDescriptionSpan.text(sellProductDescription);
+        }
+
+        letterChange()
 
 </script>
 </html>

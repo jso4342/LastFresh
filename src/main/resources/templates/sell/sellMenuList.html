@@ -34,7 +34,7 @@
                     <a class="menuClicked" href="/sell/sellMenuList">상품 목록</a>
                 </li>
                 <li>
-                    <a href="#">개인 정보 수정</a>
+                    <a href="/user/myPage/myCheckPw?userNum=6">개인 정보 수정</a>
                 </li>
             </ul>
         </div>
@@ -75,7 +75,7 @@
                             <tbody class="menuRegister-list">
 
                                 <th:block th:each="product:${list}">
-                                    <tr>
+                                    <tr th:if="${product.sellProductStatus == '0'}">
                                         <td class="menuThumb">
                                             <img th:src="'/sell/display?fileName=' + ${product.sellProductImageUploadPath} + '/' + ${product.sellProductThumbnail}"  width='100px' height='100px'>
                                         </td>
@@ -130,6 +130,63 @@
                                             </div>
                                         </td>
                                     </tr>
+
+                                    <tr th:unless="${product.sellProductStatus == '0'}">
+                                        <td class="menuThumb">
+                                            <img th:src="'/sell/display?fileName=' + ${product.sellProductImageUploadPath} + '/' + ${product.sellProductThumbnail}"  width='100px' height='100px'>
+                                        </td>
+                                        <td class="menuMethod">
+                                            <div class="order-method-wrapper">
+                                                <div class="order-method pickUp" th:if="${product.sellProductPickup} == '1'">
+                                                    포장
+                                                </div>
+                                                <div class="order-method delivery" th:if="${product.sellProductDeliveryMethod} != '0'">
+                                                    배달
+                                                </div>
+                                                <div class="order-method shipping" th:if="${product.sellProductShippingMethod} != '0'">
+                                                    배송
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="menuTitle">
+                                                <a href="#" class="link" th:text="${product.sellProductName}"></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="menuSellPrice">
+                                                <span class="price" th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></span>
+                                            </div>
+                                        </td>
+                                        <td colspan="3">
+                                            <div class="menuQuantity">
+                                                <h2>판매 종료</h2>
+<!--                                                <span th:text="${product.sellProductStock}"></span>-->
+                                            </div>
+                                        </td>
+<!--                                        <td class="menuRegisterDate" th:text="${product.sellProductExpireDate}">-->
+<!--                                        </td>-->
+<!--                                        <td class="menuManging">-->
+<!--                                            <div class="menu-btn-wrapper">-->
+<!--                                                <form method="post" action="/sell/modify" id="modifyForm">-->
+<!--                                                    <button class="product-modify">-->
+<!--                                                        <a th:href="${product.sellProductNum}">수정</a>-->
+<!--                                                    </button>-->
+<!--                                                    <input type="hidden" th:field="${criteria.pageNum}">-->
+<!--                                                    <input type="hidden" th:field="${criteria.amount}">-->
+<!--                                                    <input type="hidden" name="sellProductNum">-->
+<!--                                                </form>-->
+<!--                                                <form method="post" action="/sell/remove" id="deleteForm">-->
+<!--                                                    <button class="product-delete">-->
+<!--                                                        <a class="productMenuRemove" th:href="${product.sellProductNum}">삭제</a>-->
+<!--                                                    </button>-->
+<!--                                                    <input type="hidden" th:field="${criteria.pageNum}">-->
+<!--                                                    <input type="hidden" th:field="${criteria.amount}">-->
+<!--                                                    <input type="hidden" name="sellProductNum">-->
+<!--                                                </form>-->
+<!--                                            </div>-->
+<!--                                        </td>-->
+                                    </tr>
                                 </th:block>
                             </tbody>
                         </table>
@@ -149,7 +206,7 @@
                     <!--이전 버튼-->
                     <a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
                     <th:block th:each="num:${#numbers.sequence(pageDTO.getStartPage(), pageDTO.getEndPage())}">
-                        <code th:if="${pageDTO.criteria.getPageNum() == num}" th:text="${num}"></code>
+                            <code th:if="${pageDTO.criteria.getPageNum() == num}" th:text="${num}"></code>
                         <a class="changePage" th:unless="${pageDTO.criteria.getPageNum() == num}" th:href="${num}">
                             <code th:text="${num}"></code>
                         </a>

@@ -102,7 +102,7 @@ public class OwnerService {
         productVO1.setSellProductImage(productVO.getSellProductImage());
         productVO1.setSellProductImageUploadPath(productVO.getSellProductImageUploadPath());
         productVO1.setSellProductImageUuid(productVO.getSellProductImageUuid());
-        productRepository.save(productVO1);
+//        productRepository.save(productVO1);
     }
 
     //    public PageDTO<ProductVO> getProductVOs(Pageable pageable, Long userNum) {

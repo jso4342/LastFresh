@@ -607,6 +607,36 @@ function menuModify() {
         return;
     }
 
+
+    let $deliveryCheckRiderUsing = $('#sellProductDeliveryRider-true').is(':checked');
+    let $delivery1_1 = $('select[name=sellProductDeliveryAddress1_1] option:checked');
+    let $delivery1_2 = $('select[name=sellProductDeliveryAddress1_2] option:checked');
+    let $delivery1_3 = $('select[name=sellProductDeliveryAddress1_3] option:checked');
+
+    let $delivery2_1 = $('select[name=sellProductDeliveryAddress2_1] option:checked');
+    let $delivery2_2 = $('select[name=sellProductDeliveryAddress2_2] option:checked');
+    let $delivery2_3 = $('select[name=sellProductDeliveryAddress2_3] option:checked');
+
+    let $delivery3_1 = $('select[name=sellProductDeliveryAddress3_1] option:checked');
+    let $delivery3_2 = $('select[name=sellProductDeliveryAddress3_2] option:checked');
+    let $delivery3_3 = $('select[name=sellProductDeliveryAddress3_3] option:checked');
+
+    let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();
+    let str2 = $delivery2_1.text() + " " + $delivery2_2.text() + " " + $delivery2_3.text();
+    let str3 = $delivery3_1.text() + " " + $delivery3_2.text() + " " + $delivery3_3.text();
+    let unSelectStr = "선택 선택 선택";
+    let checkStr1 = str1 == unSelectStr;
+    let checkStr2 = str2 == unSelectStr;
+    let checkStr3 = str3 == unSelectStr;
+
+    // console.log($deliveryCheckRiderUsing);
+
+    if((checkStr1 || checkStr2 || checkStr3) && $deliveryCheckRiderUsing) {
+        alert("배달할 지역을 선택해주세요")
+        return;
+    }
+
+
     let $sellProductShipping = $('input[name=sellProductShipping]:checked');
     if($sellProductShipping.val() == "" || $sellProductShipping.val() == null) {
         alert("라이더 이용 유무 선택 해주세요");
@@ -632,8 +662,13 @@ function menuModify() {
     if(!validateInput("sellProductPhoneNum", "핸드폰 번호를 입력 해주세요")) {
         return;
     }
+    // console.log($('#sellProductThumbnail').val());
+    // console.log($('#sellProductImage').val());
+    if(!validateInputFile("sellProductThumbnail", "대표 이미지를 첨부 해주세요")) {
+        return;
+    }
 
-    if(!validateInput("sellProductImageInput", "대표 이미지를 첨부 해주세요")) {
+    if(!validateInputFile("sellProductImage", "상세 이미지를 첨부 해주세요")) {
         return;
     }
 
@@ -642,8 +677,17 @@ function menuModify() {
 
 function validateInput(name, wordding) {
     let $name = $('input[name=' + name + ']');
-    console.log($name)
-    console.log($name.val())
+    // console.log($name)
+    // console.log($name.val())
+    if($name.val() == "" || $name.val() == null) {
+        alert(wordding);
+        return false;
+    }
+    return true;
+}
+
+function validateInputFile(name, wordding) {
+    let $name = $('#' + name);
     if($name.val() == "" || $name.val() == null) {
         alert(wordding);
         return false;
