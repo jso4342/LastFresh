@@ -17,11 +17,11 @@ public class test {
 //    public void insert(){
 //        mapper.insert("hi");
 //    }
-@Autowired
-private UserMapper mapper;
-    @Test
-    public void insert(){mapper.insert("hi");
-    }
+//@Autowired
+//private UserMapper mapper;
+//    @Test
+//    public void insert(){mapper.insert("hi");
+//    }
 
     
 }
