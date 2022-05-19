@@ -16,6 +16,8 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -41,6 +43,7 @@ public class OwnerService {
 //        productRepository.save(productVO);
 //    }
 
+    /*메뉴 등록하기*/
     public void register(ProductVO productVO, Long userNum) {
         log.info("--------------------------------------------------");
         log.info("DTO :" + productVO);
@@ -52,15 +55,20 @@ public class OwnerService {
         productRepository.save(productVO);
     }
 
-    public List<ProductListDTO> getList(Criteria criteria){
-        return ownerProductDAO.getList(criteria);
+    /*로그인한 판매자의 상품 목록 가져오기*/
+//    public List<ProductListDTO> getList(Criteria criteria){
+//        return ownerProductDAO.getList(criteria);
+//    }
+    public List<ProductListDTO> getList(HashMap<String,Object> map){
+        return ownerProductDAO.getList(map);
     }
 
-    public int getTotal(Criteria criteria) {
-        return ownerProductDAO.getTotal(criteria);
+    /*로그인한 판매자의 상품 총 개수*/
+    public int getTotal(HashMap<String,Object> map) {
+        return ownerProductDAO.getTotal(map);
     }
 
-    /*delete*/
+    /*로그인한 판매자의 상품 delete*/
     public boolean deleteProductMenu (Long sellProductNum) {
         return ownerProductDAO.deleteProductMenu(sellProductNum);
     }
@@ -69,7 +77,33 @@ public class OwnerService {
     public ProductDTO getListAllBysSllProductNum (Long sellProductNum) {
         return ownerProductDAO.getListAll(sellProductNum);
     }
-
+    
+    /* 상품 정보 업데이트*/
+    public void modify(ProductVO productVO) {
+        ProductVO productVO1 = productRepository.findById(productVO.getSellProductNum()).orElseThrow(EntityNotFoundException::new);
+        productVO1.setSellProductCategory(productVO.getSellProductCategory());
+        productVO1.setSellProductName(productVO.getSellProductName());
+        productVO1.setSellProductOriginPrice(productVO.getSellProductOriginPrice());
+        productVO1.setSellProductDiscountPrice(productVO.getSellProductDiscountPrice());
+        productVO1.setSellProductExpireDay(productVO.getSellProductExpireDay());
+        productVO1.setSellProductStock(productVO.getSellProductStock());
+        productVO1.setSellProductPickup(productVO.getSellProductPickup());
+        productVO1.setSellProductDelivery(productVO.getSellProductDelivery());
+        productVO1.setSellProductDeliveryAddress1(productVO.getSellProductDeliveryAddress1());
+        productVO1.setSellProductDeliveryAddress2(productVO.getSellProductDeliveryAddress2());
+        productVO1.setSellProductDeliveryAddress3(productVO.getSellProductDeliveryAddress3());
+        productVO1.setSellProductShipping(productVO.getSellProductShipping());
+        productVO1.setSellProductAddress(productVO.getSellProductAddress());
+        productVO1.setSellProductAddressDetail(productVO.getSellProductAddressDetail());
+        productVO1.setSellProductAddressPostNum(productVO.getSellProductAddressPostNum());
+        productVO1.setSellProductDescription(productVO.getSellProductDescription());
+        productVO1.setSellProductPhoneNum(productVO.getSellProductPhoneNum());
+        productVO1.setSellProductThumbnail(productVO.getSellProductThumbnail());
+        productVO1.setSellProductImage(productVO.getSellProductImage());
+        productVO1.setSellProductImageUploadPath(productVO.getSellProductImageUploadPath());
+        productVO1.setSellProductImageUuid(productVO.getSellProductImageUuid());
+        productRepository.save(productVO1);
+    }
 
     //    public PageDTO<ProductVO> getProductVOs(Pageable pageable, Long userNum) {
 //        UserVO userVO = userRepository.findById(userNum).get();

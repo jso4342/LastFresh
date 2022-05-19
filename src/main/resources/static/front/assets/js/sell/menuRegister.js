@@ -438,8 +438,8 @@ let $label2 = $('label[for=sellProductDelivery-true]');
 function deliveryNoUsing() {
     let $RiderUsingBtn = $('input[name=sellProductDeliveryRider]');
 
-    $label1.css('border-bottom', '4px solid #DA291C');
-    $label2.css('border-bottom', '1px solid #e0e4e6');
+    // $label1.css('border-bottom', '4px solid #DA291C');
+    // $label2.css('border-bottom', '1px solid #e0e4e6');
 
     $RiderUsingBtn.prop('checked', false);
 
@@ -451,8 +451,8 @@ function deliveryNoUsing() {
 
 /*배달 가능 클릭시*/
 function deliveryUsing() {
-    $label1.css('border-bottom', '1px solid #e0e4e6');
-    $label2.css('border-bottom', '4px solid #DA291C');
+    // $label1.css('border-bottom', '1px solid #e0e4e6');
+    // $label2.css('border-bottom', '4px solid #DA291C');
     $RiderList.show();
 }
 
@@ -487,15 +487,15 @@ let $label4 = $('label[for=sellProductShipping-true]');
 
 /*배송 가능 시*/
 function shippingUsing() {
-    $label3.css('border-bottom', '1px solid #e0e4e6');
-    $label4.css('border-bottom', '4px solid #DA291C');
+    // $label3.css('border-bottom', '1px solid #e0e4e6');
+    // $label4.css('border-bottom', '4px solid #DA291C');
     $shippingRiderList.show()
 }
 
 /*배송 불가능 시*/
 function shippingNoUsing() {
-    $label3.css('border-bottom', '4px solid #DA291C');
-    $label4.css('border-bottom', '1px solid #e0e4e6');
+    // $label3.css('border-bottom', '4px solid #DA291C');
+    // $label4.css('border-bottom', '1px solid #e0e4e6');
     $shippingRiderList.hide()
 }
 

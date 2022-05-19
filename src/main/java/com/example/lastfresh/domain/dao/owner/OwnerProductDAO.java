@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Repository
@@ -19,9 +20,11 @@ import java.util.List;
 public class OwnerProductDAO {
     private final OwnerProductMapper ownerproductMapper;
 
-    public List<ProductListDTO> getList(Criteria criteria) {return ownerproductMapper.getList(criteria);}
+//    public List<ProductListDTO> getList(Criteria criteria) {return ownerproductMapper.getList(criteria);}
+    public List<ProductListDTO> getList(HashMap<String,Object> map) {return ownerproductMapper.getList(map);}
 
-    public int getTotal(Criteria criteria) {return ownerproductMapper.getTotal(criteria);}
+//    public int getTotal(Criteria criteria) {return ownerproductMapper.getTotal(criteria);}
+    public int getTotal(HashMap<String,Object> map) {return ownerproductMapper.getTotal(map);}
 
     public boolean deleteProductMenu(Long sellProductNum) {return ownerproductMapper.deleteProductMenu(sellProductNum) == 1;}
 
