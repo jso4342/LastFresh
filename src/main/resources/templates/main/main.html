@@ -67,9 +67,9 @@
 
     <!-- Main -->
     <section id="main">
-        		<input type="hidden" th:value="${newListPercents}"/>
-        		<input type="hidden" th:value="${saleListPercents}"/>
-        		<input type="hidden" th:value="${bestReviewListPercents}"/>
+        <input type="hidden" th:value="${newListPercents}"/>
+        <input type="hidden" th:value="${saleListPercents}"/>
+        <input type="hidden" th:value="${bestReviewListPercents}"/>
         <div class="mainWrapper">
             <!-- 신상품 -->
             <div class="newProduct">
@@ -84,7 +84,8 @@
                         <div class="mainNewBox" th:object="${product}">
                             <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
                             <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+                                <img class="mainNewImg"
+                                     th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
                             </a>
                             <a class="toBasket">
                                 <img class="innerCart"
@@ -100,6 +101,9 @@
                                               style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 16px;"></span>
                                         <p class="mainNewTxtPrice newPrice"
                                            th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
+                                        <p class="dcPriceNum"
+                                           style="display: none" type="hidden"
+                                           th:text="*{sellProductDiscountPrice}"/>
                                     </div>
                                 </a>
                                 <p class="mainNewTxtOriginPrice"
@@ -108,61 +112,62 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- 미니 배너  -->
-            <div class="miniBanner">
-                <img style="width: 56em;"
-                     src="https://cdn.discordapp.com/attachments/733016627054116960/973561296752623627/-001_7.png">
-            </div>
-            <!-- 오늘 마감 -->
-            <div class="lastChance">
-                <div class="mainLastBoxTxt">
-                    <h2 class="mainTitle" style="margin-bottom: 27px;">오늘 마감</h2>
-                    <p class="lastChanceTxt">자정 전까지 한정 특가</p>
-                    <img class="lastIcon"
-                         src="https://cdn.discordapp.com/attachments/969471931575320587/970272217000726578/2022-05-01_7.29.44.png">
-                    <p class="mainNewTxtPrice lastChanceDate" id="lastChanceDate" style="margin-bottom: 35px;"></p>
-                    <p class="lastChanceTxt dontHesitate" style="color:#CCCCCC; font-size:14px;">망설이면 늦어요!</p>
+                <!-- 미니 배너  -->
+                <div class="miniBanner">
+                    <img style="width: 56em;"
+                         src="https://cdn.discordapp.com/attachments/733016627054116960/973561296752623627/-001_7.png">
                 </div>
+                <!-- 오늘 마감 -->
+                <div class="lastChance">
+                    <div class="mainLastBoxTxt">
+                        <h2 class="mainTitle" style="margin-bottom: 27px;">오늘 마감</h2>
+                        <p class="lastChanceTxt">자정 전까지 한정 특가</p>
+                        <img class="lastIcon"
+                             src="https://cdn.discordapp.com/attachments/969471931575320587/970272217000726578/2022-05-01_7.29.44.png">
+                        <p class="mainNewTxtPrice lastChanceDate" id="lastChanceDate" style="margin-bottom: 35px;"></p>
+                        <p class="lastChanceTxt dontHesitate" style="color:#CCCCCC; font-size:14px;">망설이면 늦어요!</p>
+                    </div>
 
-                <!-- 오늘 마감 상품 목록 -->
-                <div class="wrapperMain " th:each="product:${saleList}">
-                    <div class="mainLastBox" th:object="${product}">
-                        <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
-
-                        <a class="imgLastChanceBox imgAll"
-                           th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                            <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
-                        </a>
-                        <a class="toBasket">
-                            <img class="innerLatChanceCart"
-                                 src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
-                        </a>
-                        <!-- 오늘 마감 왼쪽 위 라벨 부분 -->
-                        <div class="upLeftLabel">
-                            <div class="sticker">
-                                <div class="stickerText">일일특가</div>
-                            </div>
-                        </div>
-                        <!--내용-->
-                        <div class="mainLastTxt">
-                            <span class="mainLastDescription" th:text="*{sellProductDescription}"></span>
-                            <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                <p class="mainLastTxtTitle" th:text="*{sellProductName}"></p>
+                    <!-- 오늘 마감 상품 목록 -->
+                    <div class="wrapperMain " th:each="product:${saleList}">
+                        <div class="mainLastBox" th:object="${product}">
+                            <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
+                            <a class="imgLastChanceBox imgAll"
+                               th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+                                <img class="mainNewImg"
+                                     th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
                             </a>
-                            <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                <div style="display: flex;justify-content: space-evenly;width: 230px;margin-left: -13px;">
-                                    <span id="percentProduct saleListPercent"  style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 20px;"class="saleListPercent"></span>
-                                    <p class="mainLastTxtPrice newPrice"
-                                       th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
-                                    <span class="mainNewTxtOriginPrice"
-                                          th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
+                            <a class="toBasket">
+                                <img class="innerLatChanceCart"
+                                     src="https://cdn.discordapp.com/attachments/969471931575320587/970547008081379378/cart_white_45_45-svg.png">
+                            </a>
+                            <!-- 오늘 마감 왼쪽 위 라벨 부분 -->
+                            <div class="upLeftLabel">
+                                <div class="sticker">
+                                    <div class="stickerText">일일특가</div>
                                 </div>
-                            </a>
+                            </div>
+                            <!--내용-->
+                            <div class="mainLastTxt">
+                                <span class="mainLastDescription" th:text="*{sellProductDescription}"></span>
+                                <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+                                    <p class="mainLastTxtTitle" th:text="*{sellProductName}"></p>
+                                </a>
+                                <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+                                    <div style="display: flex;justify-content: space-evenly;width: 230px;margin-left: -13px;">
+                                        <span id="percentProduct saleListPercent"
+                                              style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 20px;"
+                                              class="saleListPercent"></span>
+                                        <p class="mainLastTxtPrice newPrice"
+                                           th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
+                                        <span class="mainNewTxtOriginPrice"
+                                              th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-
                 <!-- 미니 배너 -->
                 <div class=" miniBanner">
                     <img class="secondBanner"
@@ -180,7 +185,8 @@
                             <div class="mainNewBox" th:object="${product}">
                                 <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
                                 <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                    <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+                                    <img class="mainNewImg"
+                                         th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
                                 </a>
                                 <a class="toBasket">
                                     <img class="innerCart"
@@ -193,7 +199,9 @@
                                     <a class="newATag"
                                        th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                         <div style="display: flex">
-                                            <span id="percentProduct bestReviewListPercent" class="bestReviewListPercent"  style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 16px;"></span>
+                                            <span id="percentProduct bestReviewListPercent"
+                                                  class="bestReviewListPercent"
+                                                  style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 16px;"></span>
                                             <p class="mainNewTxtPrice newPrice"
                                                th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
                                         </div>
@@ -201,12 +209,12 @@
                                     <p class="mainNewTxtOriginPrice"
                                        th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></p>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <!-- modal 배경 -->
             <div class="bg_loading" id="bgLoading" style="display: none;">
                 <div class="loading_show"></div>
@@ -221,7 +229,7 @@
 </div>
 
 <!-- 장바구니 모달창 -->
-<div id="cartPut" style="display:block;">
+<div id="cartPut" style="display:none;">
     <div class="cart_option cartList cart_type3" style="opacity: 1;">
         <div class="inner_option">
             <button type="button" class="btn_close1">레이어닫기</button>
@@ -236,15 +244,17 @@
 							</span>
                             <span class="name">
                                  [프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)
-                                </span>
+                            </span>
                             <div class="option">
 								<span class="count">
-									<button type="button" class="btn down on">수량내리기</button>
-									<input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
-									<button type="button" class="btn up on">수량내리기</button>
+									<button type="button" class="btn down on"onclick='count("minus")'
+                                    >수량내리기</button>
+									<input type="number" readonly="readonly" onfocus="this.blur()" class="inp result">
+									<button type="button" class="btn up on"onclick='count("plus")'
+                                    >수량올리기</button>
 								</span>
                                 <span class="price">
-									<span class="dc_price">15,200원</span>
+									<span class="dc_price"></span>
 								</span>
                             </div>
                         </li>
@@ -254,8 +264,7 @@
                     <div class="price">
                         <strong class="tit">합계</strong>
                         <span class="sum">
-                                <span class="num">20,900</span>
-                                <span class="won">원</span>
+                                <span class="num"></span>
                             </span>
                     </div>
                     <p class="txt_point">
@@ -280,7 +289,7 @@
     let year = today.getFullYear(); // 년도
     let month = today.getMonth() + 1;  // 월
     let date = today.getDate();  // 날짜
-    let calender = "&nbsp;"+"&nbsp;"+"~" + year + "/" + month + "/" + date
+    let calender = "&nbsp;" + "&nbsp;" + "~" + year + "/" + month + "/" + date
     document.getElementById("lastChanceDate").innerHTML = calender
     console.log("calender", calender)
 
@@ -289,16 +298,42 @@
     let saleListPercents = [[${saleListPercents}]];
     let bestReviewListPercents = [[${bestReviewListPercents}]];
 
-    $(document).ready( function() {
-        $(".newListPercent").each(function(i, item){
-            $(this).html(newListPercents[i]+"%");
+    $(document).ready(function () {
+        $(".newListPercent").each(function (i, item) {
+            $(this).html(newListPercents[i] + "%");
         });
-        $(".saleListPercent").each(function(i, item){
-            $(this).html(saleListPercents[i]+"%");
+        $(".saleListPercent").each(function (i, item) {
+            $(this).html(saleListPercents[i] + "%");
         });
-        $(".bestReviewListPercent").each(function(i, item){
-            $(this).html(bestReviewListPercents[i]+"%");
+        $(".bestReviewListPercent").each(function (i, item) {
+            $(this).html(bestReviewListPercents[i] + "%");
         });
     });
+
+    //장바구니 가격 표시
+    $(".toBasket").each(function (i, item) {
+        let price = ($(".newPrice")[i].innerHTML);
+        let beforePrice = ($(".dcPriceNum")[i].innerHTML);
+        $(this).click(function () {
+            //일반금액
+            $(".dc_price").html(price);
+            //합계 전 가격
+            $(".num").html(beforePrice);
+        })
+    });
+    // 더하기/빼기
+    function count(type) {
+        let resultElement = $(".result");
+        let number = resultElement.val();
+        if (type === 'plus') {
+            number = parseInt(number) + 1;
+        } else if (type === 'minus') {
+            number = parseInt(number) - 1;
+            if (number == 0) {
+                return
+            }
+        }
+        resultElement.val(number);
+    }
 </script>
 </html>

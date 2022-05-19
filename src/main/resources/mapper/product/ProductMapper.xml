@@ -41,6 +41,12 @@
        where SELL_PRODUCT_NUM= #{SELL_PRODUCT_NUM};
     </select>
 
+    <insert id="getBasketInfo" >
+        INSERT INTO tbl_basket
+        (USER_NUM, SELL_PRODUCT_NUM, BASKET_QUANTITY, BASKET_DELIVERY_METHOD, BASKET_GO_ORDER)
+        VALUES(	#{USER_NUM}, #{SELL_PRODUCT_NUM}, #{BASKET_QUANTITY}, #{BASKET_DELIVERY_METHOD}, 0);
+    </insert>
+
 <!--    <update id="updateReplyCount">-->
 <!--    </update>-->
 </mapper>

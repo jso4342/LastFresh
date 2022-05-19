@@ -645,10 +645,12 @@ button {
     line-height: 0;
     text-indent: -9999px;
 }
-
+li.on{
+    list-style:none;
+}
 #cartPut .cart_option .list .inp {
     float: left;
-    width: 30px;
+    width: 32px;
     height: 30px;
     margin-right: -1px;
     padding: 0 0 4px;
@@ -657,7 +659,7 @@ button {
     font-size: 14px;
     color: #000;
     line-height: 18px;
-    text-align: center;
+    text-align: end;
 }
 
 #cartPut .cart_option .list .up.on {
