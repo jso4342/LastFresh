@@ -37,6 +37,7 @@ public class UserMyPageController {
         String result = null;
         Long userNum = userVO.getUserNum();
 
+        rttr.addAttribute("userNum", userNum);
         rttr.addAttribute("result", myPageService.modify(userVO, userNum) ? "success" : "failure");
 
         return new RedirectView("myChangeInfo");

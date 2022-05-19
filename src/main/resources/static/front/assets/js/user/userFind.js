@@ -62,12 +62,11 @@ $('#phoneCheck').click(function(){
         success: function(res){
             $('#check').click(function(){
                 if($.trim(res) ==$('#inputCertifiedPhone').val()){
-                    Swal.fire(
-                        '인증성공!',
-                        '휴대폰 인증이 정상적으로 완료되었습니다.',
-                        'success'
-                    )
-                    $("#findId1").css("display", "block");
+
+                    $(cart1).removeClass("off");
+                    $(cart1).css("opacity", "1");
+                    $(".bg_loading").css("display", "block");
+                   /* location.href = "/user/manage/userId"*/
                     $.ajax({
                         type: "GET",
                         url: "/find/phoneNumber",
@@ -84,7 +83,7 @@ $('#phoneCheck').click(function(){
                         icon: 'error',
                         title: '인증오류',
                         text: '인증번호가 올바르지 않습니다!',
-                        footer: '<a href="/user/manage/userFindId">다음에 인증하기</a>'
+                        footer: '<a href="/main/main">다음에 인증하기</a>'
                     })
                 }
             })
@@ -93,3 +92,16 @@ $('#phoneCheck').click(function(){
         }
     })
 });
+
+var cart = $(".cart_option");
+var cart1 = $(".cart_option1");
+
+var button = $(".cancel");
+var button1 = $(".cancel1");
+
+/*$(".check").click(function(){
+    $(cart1).removeClass("off");
+    $(cart1).css("opacity", "1");
+    $(".bg_loading").css("display", "block");
+});*/
+

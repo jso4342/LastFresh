@@ -64,7 +64,7 @@
                     </p>
                 </div>
             </div>
-            <div class="css-1blp8ou el059co3">
+           <!-- <div class="css-1blp8ou el059co3">
                 <div class="input_wrapper" id="findId" style="display: none">
                     <input type="tel" data-testid="input-box" id="findId_css1" value="dge04200" placeholder="" class="input_info">
                 </div>
@@ -74,7 +74,8 @@
                     <p type="tel" data-testid="input-box"  id="findId_css" class="input_info">
                     </p>
                 </div>
-            </div>
+            </div>-->
+
             <div class="accept_wrapper" id="emailCheck" onclick="find()"style="display: block">
                 <p class="accept_button email_box"  type="submit" disabled="" radius="4">
                     <span class="accept_text">확인</span>
@@ -87,6 +88,38 @@
             </div>
 
         </form>
+        <div class="bg_loading" id="bgLoading" style="display: none;">
+            <div class="loading_show"></div>
+    </div>
+</div>
+<div class="cartPut"> <!-- 아이디 수정해주세요 : CSS 주의-->
+    <div class="cart_option1 cartList cart_type3 off" style="opacity: 0;">
+        <div class="region_select modal">
+            <div class="css-140915z e1lv8394">
+                <div class="css-6mht10 e1lv8393">
+                    <div class="css-1ymrnwr e1lv8392">
+                        고객님의 LastFresh 계정을 찾았습니다.
+                        <div class="css-1jlgal3 e1lv8391">아이디 확인 후 로그인해 주세요.</div>
+                    </div>
+                    <ul class="css-14o5m2r ewnnxio4">
+                        <li class="css-1qp8f6i ewnnxio3">
+                            <img class="css-ate73y e1raycba0" src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CiAgICA8ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0Y1RjVGNSIgY3g9IjIwIiBjeT0iMjAiIHI9IjIwIi8+CiAgICAgICAgPHBhdGggZD0iTTIwIDE5YzQuNjUzIDAgOC41IDMuNDc2IDguNSA3LjcyIDAgLjQzLS4zNDYuNzgtLjc3My43OEgxMi4yNzNhLjc3Ni43NzYgMCAwIDEtLjc3My0uNzhjMC00LjI4NSAzLjgyNC03LjcyIDguNS03Ljcyem0wLTguNWEzLjQgMy40IDAgMSAxIDAgNi44IDMuNCAzLjQgMCAwIDEgMC02Ljh6IiBzdHJva2U9IiNDQ0MiIGZpbGw9IiNDQ0MiLz4KICAgIDwvZz4KPC9zdmc+Cg==">
+                            <div class="css-yzpdz ewnnxio2">
+                                <p class="css-1kkr6j1 ewnnxio1" id="findId_css" type="tel"></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="css-gyfngb e1lv8390">
+                        <a class="css-qsvy0v e4nu7ef2" type="button" href="/user/manage/userFindPw">
+                            <span class="css-1dqhxzp e4nu7ef1">비밀번호 찾기</span>
+                        </a>
+                        <a class="css-hwhn8c e4nu7ef2" type="button" href="/user/manage/userLogin">
+                            <span class="css-1dqhxzp e4nu7ef1">로그인</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <th:block th:insert="/fragments/footer.html :: footFragment"/>

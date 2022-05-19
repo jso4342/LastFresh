@@ -3,12 +3,14 @@ package com.example.lastfresh.domain.vo;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_USER")
 @Getter
 @Setter
-@ToString
+@ToString( exclude = {"basketVO", "productVO"})
 //@NoArgsConstructor
 public class UserVO {
     @Id
@@ -37,6 +39,10 @@ public class UserVO {
     @Column(name = "USER_STATUS")
     private String userStatus;
 
+    //basket many to many
+    @OneToMany(mappedBy = "userVO") // 다대다
+        List<BasketVO> baskets = new ArrayList<>();
+   // private List<Baskes = new ArrayList<>();
 
     public void updateAll(String userPw, String userName, String userEmail, String userAddress, String userAddressDetail, String userAddressPostNum, String userPhone, String userKakao, String userStatus){
         this.userPw = userPw;

@@ -45,7 +45,7 @@ public class UserFindController {
 
     @GetMapping("/phoneNumber")
     public String phoneNumber(String userPhone, Model model){
-       /* log.info("-------------------------------");
+        /*log.info("-------------------------------");
         log.info("폰번호" + userPhone);
         log.info("-------------------------------");
         log.info("-------------------------------");
