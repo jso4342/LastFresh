@@ -15,7 +15,7 @@ public class Criteria { /*Criteria : 검색의 기준*/
     @NonNull private int pageNum;
     @NonNull private int amount;
     private int limit;
-    private Long userNum;
+//    private Long userNum;
 
 //    롬복을 통해 생성된 초기화 생성자를 기본 생성자에서 기본 값을 설정한 뒤 호출해준다.
     public Criteria() {this(1, 10);}
@@ -27,7 +27,7 @@ public class Criteria { /*Criteria : 검색의 기준*/
         log.info("-------------크리테리아----------------------");
         log.info("크리테리아 pageNum : " + pageNum);
         log.info("크리테리아 amount : " + amount);
-        log.info("크리테리아 userNum : " + userNum);
+//        log.info("크리테리아 userNum : " + userNum);
         log.info("크리테리아 limit : " + this.limit);
         log.info("--------------크리테리아----------------------");
     }

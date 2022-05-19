@@ -11,7 +11,7 @@
 </head>
 <body>
 <th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
-<div class="page_myPage myPage_type1 sellMenuRegister">
+<div class="page_myPage myPage_type1 sellMenuRegisterModify">
     <div id="snb" class="snb_my">
         <h2 class="tit_snb">판매자 페이지</h2>
         <div class="inner_snb">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="page_section section_orderview menu-register-section">
-        <form id="menu-register-form" method="post" action="/sell/sellMenuRegister" enctype="multipart/form-data" th:object="${list}">
+        <form id="menu-register-form" method="post" action="/sell/sellMenuRegisterModify" enctype="multipart/form-data" th:object="${list}">
             <input type="hidden" th:field="*{sellProductNum}">
             <!-- 상품 등록 안내-->
             <div class="menu-register-wrapper">
@@ -372,10 +372,10 @@
                 </div>
             </div>
 
-            <input type="hidden" name="sellProductThumbnail" th:value="*{sellProductThumbnail}">
-            <input type="hidden" name="sellProductImage" th:value="*{sellProductImage}">
-            <input type="hidden" name="sellProductImageUploadPath" th:value="*{sellProductImageUploadPath}">
-            <input type="hidden" name="sellProductImageUuid" th:value="*{sellProductImageUuid}">
+            <input type="hidden" name="sellProductThumbnail">
+            <input type="hidden" name="sellProductImage">
+            <input type="hidden" name="sellProductImageUploadPath">
+            <input type="hidden" name="sellProductImageUuid">
             <input type="hidden" th:field="${criteria.pageNum}">
             <input type="hidden" th:field="${criteria.amount}">
         </form>
@@ -398,21 +398,49 @@
 <script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
 <script src="/front/assets/js/sell/menuRegisterModify.js"></script>
 <script th:inline="javascript">
-        let sellProductCategory = [[${list.sellProductCategory}]];
-
         function categorySelected() {
-
+            let sellProductCategory = [[${list.sellProductCategory}]];
             $("#category").val(sellProductCategory).prop("selected", true);
         }
 
         categorySelected();
 
-        let sellProductPickUp = [[${list.sellProductPickup}]];
 
         function pickUpSelected() {
+            let sellProductPickUp = [[${list.sellProductPickup}]];
             $("input[name='sellProductPickup'][value= " + sellProductPickUp + "]").prop("checked", true);
         }
 
         pickUpSelected();
+
+
+        function shippingSelected() {
+            let sellProductShippingMethod = [[${list.sellProductShippingMethod}]];
+            $("input[name='sellProductShipping'][value= " + sellProductShippingMethod + "]").prop("checked", true);
+        }
+
+        shippingSelected();
+
+
+        function deliverySelected() {
+            let sellProductDeliveryMethod = [[${list.sellProductDeliveryMethod}]];
+            $("input[name='sellProductDelivery'][value= " + sellProductDeliveryMethod + "]").prop("checked", true);
+        }
+
+        deliverySelected();
+
+        function letterChange() {
+            let sellProductName = [[${list.sellProductName}]].length;
+            let sellProductDescription = [[${list.sellProductDescription}]].length;
+
+            let $letterProductNameSpan = $('.text-primary');
+            let $letterDescriptionSpan = $('.text-primary-description');
+
+            $letterProductNameSpan.text(sellProductName);
+            $letterDescriptionSpan.text(sellProductDescription);
+        }
+
+        letterChange()
+
 </script>
 </html>

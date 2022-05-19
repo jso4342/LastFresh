@@ -430,15 +430,10 @@ function chk_file_type(obj) {
 
 /* 라이더 사용 유무 창*/
 let $RiderList = $('.menu-deliveryRider-wrapper');
-let $label1 = $('label[for=sellProductDelivery-false]');
-let $label2 = $('label[for=sellProductDelivery-true]');
 
 /*배달 불가능 클릭시*/
 function deliveryNoUsing() {
     let $RiderUsingBtn = $('input[name=sellProductDeliveryRider]');
-
-    $label1.css('border-bottom', '4px solid #DA291C');
-    $label2.css('border-bottom', '1px solid #e0e4e6');
 
     $RiderUsingBtn.prop('checked', false);
 
@@ -450,8 +445,6 @@ function deliveryNoUsing() {
 
 /*배달 가능 클릭시*/
 function deliveryUsing() {
-    $label1.css('border-bottom', '1px solid #e0e4e6');
-    $label2.css('border-bottom', '4px solid #DA291C');
     $RiderList.show();
 }
 
@@ -481,25 +474,99 @@ function riderNoUsing() {
 
 
 let $shippingRiderList = $('.menu-shippingRider-wrapper');
-let $label3 = $('label[for=sellProductShipping-false]');
-let $label4 = $('label[for=sellProductShipping-true]');
 
 /*배송 가능 시*/
 function shippingUsing() {
-    $label3.css('border-bottom', '1px solid #e0e4e6');
-    $label4.css('border-bottom', '4px solid #DA291C');
     $shippingRiderList.show()
 }
 
 /*배송 불가능 시*/
 function shippingNoUsing() {
-    $label3.css('border-bottom', '4px solid #DA291C');
-    $label4.css('border-bottom', '1px solid #e0e4e6');
     $shippingRiderList.hide()
 }
 
+$('input[name=sellProductShipping]').change(function () {
+    let inputCheck1 = $('#sellProductShippingRider-true').is(':checked');
+    let inputCheck2 = $('#sellProductShippingRider-false').is(':checked');
+    let inputCheck3 = $('#sellProductShipping-true').is(':checked');
+    let $label = $('label[for=sellProductShipping-true]');
+
+    $label.css('border-bottom', '1px solid #e0e4e6');
+
+    if(inputCheck3) {
+        $label.css('border-bottom', '4px solid #DA291C');
+    }
+
+    if(inputCheck1 || inputCheck2) {
+        $shippingRiderList.show();
+        $label.css('border-bottom', '4px solid #DA291C');
+    }
+
+});
+
+$('input[name=sellProductDelivery]').change(function () {
+    let inputCheck1 = $('#sellProductDeliveryRider-true').is(':checked');
+    let inputCheck2 = $('#sellProductDeliveryRider-false').is(':checked');
+    let inputCheck3 = $('#sellProductDelivery-true').is(':checked');
+    let $label = $('label[for=sellProductDelivery-true]');
+
+    $label.css('border-bottom', '1px solid #e0e4e6');
+
+    if(inputCheck3) {
+        $label.css('border-bottom', '4px solid #DA291C');
+    }
+
+    if(inputCheck1 || inputCheck2) {
+        $RiderList.show();
+        $label.css('border-bottom', '4px solid #DA291C');
+    }
+});
+
+
+$(document).ready(function () {
+    function divShow() {
+        let $shippingCheckRiderUsing = $('#sellProductShippingRider-true').is(':checked');
+        let $shippingCheckRiderNoUsing = $('#sellProductShippingRider-false').is(':checked');
+        let $shippingCheckPossible = $('#sellProductShipping-true').is(':checked');
+        let $shippingLabel = $('label[for=sellProductShipping-true]');
+
+        $shippingLabel.css('border-bottom', '1px solid #e0e4e6');
+
+        if($shippingCheckPossible) {
+            $shippingLabel.css('border-bottom', '4px solid #DA291C');
+        }
+
+        if($shippingCheckRiderUsing || $shippingCheckRiderNoUsing) {
+            $shippingRiderList.show();
+            $shippingLabel.css('border-bottom', '4px solid #DA291C');
+        }
+
+        let $deliveryCheckRiderUsing = $('#sellProductDeliveryRider-true').is(':checked');
+        let $deliveryCheckRiderNoUsing = $('#sellProductDeliveryRider-false').is(':checked');
+        let $deliveryCheckPossible = $('#sellProductDelivery-true').is(':checked');
+        let $deliveryLabel = $('label[for=sellProductDelivery-true]');
+
+        $deliveryLabel.css('border-bottom', '1px solid #e0e4e6');
+
+        if($deliveryCheckPossible) {
+            $deliveryLabel.css('border-bottom', '4px solid #DA291C');
+        }
+
+        if($deliveryCheckRiderUsing || $deliveryCheckRiderNoUsing) {
+            $RiderList.show();
+            $deliveryLabel.css('border-bottom', '4px solid #DA291C');
+        }
+
+        if($deliveryCheckRiderUsing) {
+            $deliveryList.show();
+        }
+    }
+
+    divShow();
+});
+
 /* 메뉴 등록 */
-function menuRegister() {
+function menuModify() {
     deliverySum();
 
     let $category = $('select[name=sellProductCategory] option:checked');
@@ -540,6 +607,36 @@ function menuRegister() {
         return;
     }
 
+
+    let $deliveryCheckRiderUsing = $('#sellProductDeliveryRider-true').is(':checked');
+    let $delivery1_1 = $('select[name=sellProductDeliveryAddress1_1] option:checked');
+    let $delivery1_2 = $('select[name=sellProductDeliveryAddress1_2] option:checked');
+    let $delivery1_3 = $('select[name=sellProductDeliveryAddress1_3] option:checked');
+
+    let $delivery2_1 = $('select[name=sellProductDeliveryAddress2_1] option:checked');
+    let $delivery2_2 = $('select[name=sellProductDeliveryAddress2_2] option:checked');
+    let $delivery2_3 = $('select[name=sellProductDeliveryAddress2_3] option:checked');
+
+    let $delivery3_1 = $('select[name=sellProductDeliveryAddress3_1] option:checked');
+    let $delivery3_2 = $('select[name=sellProductDeliveryAddress3_2] option:checked');
+    let $delivery3_3 = $('select[name=sellProductDeliveryAddress3_3] option:checked');
+
+    let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();
+    let str2 = $delivery2_1.text() + " " + $delivery2_2.text() + " " + $delivery2_3.text();
+    let str3 = $delivery3_1.text() + " " + $delivery3_2.text() + " " + $delivery3_3.text();
+    let unSelectStr = "선택 선택 선택";
+    let checkStr1 = str1 == unSelectStr;
+    let checkStr2 = str2 == unSelectStr;
+    let checkStr3 = str3 == unSelectStr;
+
+    // console.log($deliveryCheckRiderUsing);
+
+    if((checkStr1 || checkStr2 || checkStr3) && $deliveryCheckRiderUsing) {
+        alert("배달할 지역을 선택해주세요")
+        return;
+    }
+
+
     let $sellProductShipping = $('input[name=sellProductShipping]:checked');
     if($sellProductShipping.val() == "" || $sellProductShipping.val() == null) {
         alert("라이더 이용 유무 선택 해주세요");
@@ -565,8 +662,13 @@ function menuRegister() {
     if(!validateInput("sellProductPhoneNum", "핸드폰 번호를 입력 해주세요")) {
         return;
     }
+    // console.log($('#sellProductThumbnail').val());
+    // console.log($('#sellProductImage').val());
+    if(!validateInputFile("sellProductThumbnail", "대표 이미지를 첨부 해주세요")) {
+        return;
+    }
 
-    if(!validateInput("sellProductImageInput", "대표 이미지를 첨부 해주세요")) {
+    if(!validateInputFile("sellProductImage", "상세 이미지를 첨부 해주세요")) {
         return;
     }
 
@@ -575,8 +677,17 @@ function menuRegister() {
 
 function validateInput(name, wordding) {
     let $name = $('input[name=' + name + ']');
-    console.log($name)
-    console.log($name.val())
+    // console.log($name)
+    // console.log($name.val())
+    if($name.val() == "" || $name.val() == null) {
+        alert(wordding);
+        return false;
+    }
+    return true;
+}
+
+function validateInputFile(name, wordding) {
+    let $name = $('#' + name);
     if($name.val() == "" || $name.val() == null) {
         alert(wordding);
         return false;
@@ -610,6 +721,9 @@ function deliverySum() {
     delivery1.val(str1);
     delivery2.val(str2);
     delivery3.val(str3);
+    console.log(delivery1.val());
+    console.log(delivery2.val());
+    console.log(delivery3.val());
 }
 
 
@@ -619,5 +733,5 @@ let $pageDiv = $('.page_section');
 $pageDiv.change(function () {
     let height = $('.page_section').height() + 100;
 
-    $('.sellMenuRegister').css("height", height);
+    $('.sellMenuRegisterModify').css("height", height);
 });

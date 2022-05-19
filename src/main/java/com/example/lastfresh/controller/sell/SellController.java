@@ -2,6 +2,7 @@ package com.example.lastfresh.controller.sell;
 
 import com.example.lastfresh.domain.dto.ImageDTO;
 import com.example.lastfresh.domain.dto.PageDTO;
+import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.vo.Criteria;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.service.owner.OwnerService;
@@ -24,6 +25,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -52,18 +55,23 @@ public class SellController {
         log.info("----------------------11111-----------------------------");
         log.info("limit : " + criteria.getLimit());
         log.info("pageNum :" + criteria.getPageNum());
-        log.info("userNum : " + criteria.getUserNum());
+//        log.info("userNum : " + criteria.getUserNum());
         log.info("userNum : " + criteria.getAmount());
         log.info("---------------------------------------------------");
+
         criteria = new Criteria(criteria.getPageNum(), criteria.getAmount());
-        criteria.setUserNum(userNum);
-        model.addAttribute("list", ownerService.getList(criteria));
+//        criteria.setUserNum(userNum);
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userNum", userNum);
+        map.put("criteria", criteria);
+        model.addAttribute("list", ownerService.getList(map));
         log.info("---------------------------------------------------");
         log.info("----------------------" + criteria.getLimit());
         log.info("----------------------" + criteria.getPageNum());
-        log.info("----------------------" + criteria.getUserNum());
+//        log.info("----------------------" + criteria.getUserNum());
         log.info("---------------------------------------------------");
-        model.addAttribute("pageDTO", new PageDTO(criteria, ownerService.getTotal(criteria)));
+        model.addAttribute("pageDTO", new PageDTO(criteria, ownerService.getTotal(map)));
     }
 
     @GetMapping("/sellMenuRegister")
@@ -103,6 +111,18 @@ public class SellController {
         rttr.addAttribute("pageNum", criteria.getPageNum());
         rttr.addAttribute("amount", criteria.getAmount());
 
+        return new RedirectView("sellMenuList");
+    }
+
+    @PostMapping("/sellMenuRegisterModify")
+    public RedirectView modify(ProductVO productVO, ProductDTO productDTO, Criteria criteria, RedirectAttributes rttr) {
+        log.info("업데이트-------------------------------------------------------------");
+        log.info("넘어옴 formData : " + productVO.toString());
+
+        ownerService.modify(productVO);
+
+        rttr.addAttribute("pageNum", criteria.getPageNum());
+        rttr.addAttribute("amount", criteria.getAmount());
         return new RedirectView("sellMenuList");
     }
 

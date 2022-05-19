@@ -40,10 +40,30 @@ public class FileCheck {
         ownerProductDAO.updateExpireProduct();
     }
 
+//    @Scheduled(cron = "0 0 2 * * *")
+//    public void checkFiles() throws Exception{
+//        log.warn("File Check Task run..................");
+//        log.warn("======================================");
+//
+//        List<ownerProductDAO> fileList = ownerProductDAO.getOldFiles();
+//        //모델 객체에 있는 uploadPath만 가져오기 위해 map을 사용한다.
+//        List<Path> fileListPaths = fileList.stream()
+//                .map(file -> Paths.get("C:/upload", file.getUploadPath(), file.getUuid() + "_" + file.getFileName()))
+//                .collect(Collectors.toList());
+//
+//        //RDB의 목록과 실제 경로의 목록을 비교하여 삭제 대상을 찾은 후 삭제
+//        File directory = Paths.get("C:/upload", getUploadPathYesterDay()).toFile();
+//        for(File file : directory.listFiles(file -> !fileListPaths.contains(file.toPath()))){
+//            log.info(file.getPath() + " deleted");
+//            file.delete();
+//        }
+//    }
+
     private String getUploadPathYesterDay(){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
         Calendar yesterday = Calendar.getInstance();
         yesterday.add(Calendar.DATE, -1);
         return sdf.format(yesterday.getTime());
     }
+
 }

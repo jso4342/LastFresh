@@ -960,6 +960,14 @@ div.shipping {
     color: #333;
 }
 
+.sell-delivery input[type=radio]:checked+label {
+    border-bottom: 4px solid #DA291C;
+}
+
+.sell-shipping input[type=radio]:checked+label {
+    border-bottom: 4px solid #DA291C;
+}
+
 .rider-radio-input input[type=radio]:checked+label {
     background-color: #DA291C;
     color: #fff;
@@ -1251,4 +1259,11 @@ input[name=sellProductDescription] {
 }
 
 
+/*
+메뉴 수정창
+*/
+
+.sellMenuRegisterModify {
+    height: 3119px;
+}
 

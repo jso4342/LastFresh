@@ -7,7 +7,7 @@
         SELL_PRODUCT_DELIVERY_METHOD, SELL_PRODUCT_SHIPPING_METHOD, SELL_PRODUCT_IMAGE_UPLOAD_PATH, SELL_PRODUCT_THUMBNAIL
         FROM tbl_sell_product
         WHERE USER_NUM = #{userNum}
-        ORDER BY 1 DESC limit #{limit}, 10
+        ORDER BY 1 DESC limit #{criteria.limit}, 10
     </select>
 
     <select id="getTotal" resultType="_int">
@@ -30,6 +30,19 @@
         WHERE SELL_PRODUCT_NUM = #{sellProductNum}
     </select>
 
+      <update id="updateMenu">
+            UPDATE tbl_sell_product
+            SET SELL_PRODUCT_CATEGORY = #{sellProductCategory}, SELL_PRODUCT_NAME = #{sellProductName}, SELL_PRODUCT_ORIGIN_PRICE = #{sellProductOriginPrice}, SELL_PRODUCT_DISCOUNT_PRICE = #{sellProductDiscountPrice},
+            SELL_PRODUCT_EXPIRE_DATE = #{sellProductExpireDate}, SELL_PRODUCT_STOCK = #{sellProductStock}, SELL_PRODUCT_PICKUP = #{sellProductPickup}, SELL_PRODUCT_DELIVERY_METHOD = #{sellProductDeliveryMethod},
+            SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductDeliveryAddress1}, SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductDeliveryAddress2}, SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductDeliveryAddress3}, SELL_PRODUCT_SHIPPING_METHOD = #{sellProductShippingMethod},
+            SELL_PRODUCT_ADDRESS = #{sellProductAddress}, SELL_PRODUCT_ADDRESS_DETAIL = #{sellProductAddressDetail}, SELL_PRODUCT_ADDRESS_POST_NUM = #{sellProductAddressPostNum}, SELL_PRODUCT_DESCRIPTION = #{sellProductDescription}, SELL_PRODUCT_PHONE = #{sellProductPhone},
+            SELL_PRODUCT_THUMBNAIL = #{sellProductThumbnail}, SELL_PRODUCT_IMAGE = #{sellProductImage}, SELL_PRODUCT_IMAGE_UPLOAD_PATH = #{sellProductImageUploadPath}, SELL_PRODUCT_IMAGE_UUID = #{sellProductImageUuid}
+            WHERE SELL_PRODUCT_NUM = #{sellProductNum}
+      </update>
+
+
+
+    <!-- 마감기한 지난 상품 status 업데이트-->
     <update id="updateExpireProduct">
         UPDATE tbl_sell_product
         SET SELL_PRODUCT_STATUS = -1
