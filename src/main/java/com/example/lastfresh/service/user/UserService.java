@@ -1,11 +1,13 @@
 package com.example.lastfresh.service.user;
 
+import com.example.lastfresh.domain.dao.user.UserDAO;
 import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.apache.catalina.User;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +25,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final UserDAO userDAO;
+
     //회원가입
     public void join(UserVO userVO) {
         String encodedPassword = passwordEncoder.encode(userVO.getUserPw());
@@ -30,7 +34,15 @@ public class UserService {
         userRepository.save(userVO);
     }
 
-    //휴대폰인증
+    //로그인
+    public Long login(String userId, String userPw){
+        return userDAO.login(userId,userPw);
+    }
+
+
+
+
+//휴대폰인증
     public void certifiedPhoneNumber(String userPhone, String cerNum) {
 
         String api_key = "NCSZMN9NMV9PSDYK";
@@ -54,6 +66,8 @@ public class UserService {
         }
 
     }
+
+
     //아이디 중복검사
 
     public boolean checkId(String userId) {
@@ -91,4 +105,5 @@ public class UserService {
         }
         return checkEmail;
     }
+
 }

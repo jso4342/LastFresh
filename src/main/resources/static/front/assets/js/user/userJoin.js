@@ -1,5 +1,6 @@
 var check = false;
 var check2 = false;
+var form = document.joinForm;
 
 //a태그 링크 없애기
 $("#addressButton").removeAttr("href")
@@ -43,8 +44,9 @@ $('#phoneCheckButton').click(function(){
                         title: '인증오류',
                         text: '인증번호가 올바르지 않습니다!',
                         footer: '<a href="/user/manage/userJoin">다음에 인증하기</a>'
-                    });
 
+                    });
+                    $("input#checkCN").focus();
                 }
 
             })
@@ -172,6 +174,7 @@ function checkId(userId){
                 $("#result").text("중복된 아이디입니다.");
                 $("#result").css("color", "red");
                 $("input#userId").focus();
+                console.log("들어옴")
             }
         },
         error: function(){
@@ -188,9 +191,6 @@ $("a.btn_check").on("click", function(e){
 });
 
 
-
-
-
 //이메일 중복 키 이벤트
 $("a.btn_check2").on("click", function(e){
     e.preventDefault();
@@ -198,6 +198,7 @@ $("a.btn_check2").on("click", function(e){
     check = false;
     checkEmail($("input#userEmail").val());
 });
+
 
 //이메일 중복검사
 function checkEmail(userEmail){
@@ -228,52 +229,6 @@ function checkEmail(userEmail){
     });
 }
 
-// //비밀번호 유효성검사
-// function checkPw() {
-//     let id = $("#id").val();
-//     let pw = $("#password").val();
-//     let number = pw.search(/[0-9]/g);
-//     let english = pw.search(/[a-z]/ig);
-//     let spece = pw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-//     let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-//
-//     if (pw.length < 8 || pw.length > 20) {
-//         alert("8자리 ~ 20자리 이내로 입력해주세요.");
-//         return false;
-//
-//     } else if (pw.search(/\s/) != -1) {
-//         alert("비밀번호는 공백 없이 입력해주세요.");
-//         return false;
-//
-//     } else if (number < 0 || english < 0 || spece < 0) {
-//         alert("영문,숫자,특수문자를 혼합하여 입력해주세요.");
-//         return false;
-//
-//     } else if ((number < 0 && english < 0) || (english < 0 && spece < 0) || (spece < 0 && number < 0)) {
-//         alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-//         return false;
-//
-//     } else if (/(\w)\1\1\1/.test(pw)) {
-//         alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
-//         return false;
-//
-//     } else if (pw.search(id) > -1) {
-//         alert("비밀번호에 아이디가 포함되었습니다.");
-//         return false;
-//     } else {
-//         alert("비밀번호가 정상적으로 입력되었습니다.");
-//         return true;
-//     }
-//
-//     if (false === reg.test(pw)) {
-//         alert('비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.');
-//         return false;
-//     } else {
-//         alert("비밀번호가 정상적으로 입력되었습니다.");
-//         return true;
-//     }
-//
-// }
 
 
 //유효성 검사
@@ -312,10 +267,10 @@ function sendJoin() {
         alert("이메일을 확인해주세요.");
         return;
     }
-    if(!joinForm.userPhone.value){
-        alert("핸드폰 번호를 입력해주세요.");
-        return;
-    }
+    // if(!joinForm.userPhone.value){
+    //     alert("핸드폰 번호를 입력해주세요.");
+    //     return;
+    // }
     if(!joinForm.userAddressPostNum.value){
         alert("우편번호를 입력해주세요.");
         return;
@@ -328,9 +283,25 @@ function sendJoin() {
         alert("상세주소를 입력해주세요.");
         return;
     }
-    // if($('#phoneCheck')==a){
-    //     alert("휴대폰 인증을 진행해 주세요");
-    //     return;
-    // }
     joinForm.submit();
 }
+
+//비밀번호 유효성 검사
+
+//8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함되어 있는 지 검사
+//(?=.*?문자) : 각각의 모든 대상을 '문자'로 검사한다.
+var pwCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/;
+var hangleCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+
+document.querySelector("input[name='userPw']").addEventListener("blur", function(){
+    if(!pwCheck.test(inko.ko2en(form.userPw.value))){
+        $("#result2").text("비밀번호는 8자리 이상이어야 하며, 영문/숫자/특수문자 모두 포함해야 합니다.");
+        $("#result2").css("color", "#ffb61a");
+        form.userPw.focus();
+    }else{
+        $("#result2").text("사용가능한 비밀번호입니다.");
+        $("#result2").css("color", "#03c75a");
+        form.rePw.focus();
+        check = true;
+    }
+});
