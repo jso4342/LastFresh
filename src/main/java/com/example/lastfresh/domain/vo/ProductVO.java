@@ -1,16 +1,12 @@
 package com.example.lastfresh.domain.vo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Component
@@ -18,7 +14,7 @@ import java.util.List;
 @Table(name = "TBL_SELL_PRODUCT")
 @Getter
 @Setter
-@ToString( exclude = "userVO")
+@ToString( exclude = {"userVO", "basketVO"})
 @AllArgsConstructor
 public class ProductVO {
     @Id
@@ -99,7 +95,7 @@ public class ProductVO {
 
     @OneToMany // 일대다
     @JoinColumn(name = "BAKSET_NUM")
-        List<BasketVO> baskets = new ArrayList<>();
+    List<BasketVO> baskets = new ArrayList<>();
 
 //    void test() {
 //        this.sellProductExpireDay.isBefore(LocalDate.now());
@@ -107,13 +103,13 @@ public class ProductVO {
 
     @Builder
     public ProductVO(Long sellProductNum, Long sellProductCategory, String sellProductName, Long sellProductOriginPrice,
-                     Long sellProductDiscountPrice, LocalDate sellProductExpireDay, Long sellProductStock,
-                     String sellProductStatus, String sellProductPickup, String sellProductDelivery,
-                     String sellProductDeliveryAddress1, String sellProductDeliveryAddress2, String sellProductDeliveryAddress3,
-                     String sellProductShipping, String sellProductAddress, String sellProductAddressDetail,
-                     String sellProductAddressPostNum, String sellProductDescription, String sellProductPhoneNum,
-                     String sellProductThumbnail, String sellProductImage, String sellProductImageUploadPath,
-                     String sellProductImageUuid) {
+                       Long sellProductDiscountPrice, LocalDate sellProductExpireDay, Long sellProductStock,
+                       String sellProductStatus, String sellProductPickup, String sellProductDelivery,
+                       String sellProductDeliveryAddress1, String sellProductDeliveryAddress2, String sellProductDeliveryAddress3,
+                       String sellProductShipping, String sellProductAddress, String sellProductAddressDetail,
+                       String sellProductAddressPostNum, String sellProductDescription, String sellProductPhoneNum,
+                       String sellProductThumbnail, String sellProductImage, String sellProductImageUploadPath,
+                       String sellProductImageUuid) {
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.sellProductNum = sellProductNum;
         this.sellProductCategory = sellProductCategory;

@@ -7,8 +7,12 @@
     width: 56em;
 }
 
+.hrUp{
+    border-bottom: solid 1px;
+}
+
 #title{
-    margin-top:100px;
+    margin-top:40px;
     margin-bottom:70px;
 }
 
@@ -89,10 +93,10 @@ input::-webkit-input-placeholder {
     text-align: left;
 }
 
-.finalPrice{
+/*.finalPrice{
     text-align: right;
 
-}
+}*/
 
 .selectAll{
     margin-left: 29px;
@@ -189,11 +193,11 @@ element.style {
 }
 
 .order_goodslist .name .inner_name {
-    display: table-cell;
+   /* display: table-cell;*/
     font-weight: 600;
     font-size: 16px;
     color: #000;
-    line-height: 24px;
+    line-height: 134px;
     vertical-align: middle;
 }
 
@@ -384,24 +388,24 @@ input[type="button"].quantity {
 /* 결제금액_sticky */
 .tax_absolute{position:relative;float:right;width:284px;height:0}
 .tax_absolute .inner_sticky{position:absolute;right:0;top:0;width:100%}
-#orderitem_money_info{width:100%;padding:18px 19px 34px 20px;background:#fafafa;border:1px solid #f2f2f2}
+.orderitem_money_info{width:100%;padding:18px 19px 34px 20px;background:#fafafa;border:1px solid #f2f2f2}
 
-#orderitem_money_info .fst{padding-top:0;padding-bottom:4px}
-#orderitem_money_info .lst{margin:17px 0 0 0;padding-top:15px;border-top:1px solid #eee}
-#orderitem_money_info .lst .tit{padding-top:2px}
-#orderitem_money_info .tit,
-#orderitem_money_info .lst .totalPrice .won,
-#orderitem_money_info .totalPrice{font:normal 16px/24px 'Noto Sans';vertical-align:top}
-#orderitem_money_info .lst .totalPrice .won{vertical-align:2px}
-#orderitem_money_info .tit{float:left;width:96px}
-#orderitem_money_info .totalPrice{float:right;width:144px;text-align:right}
+.orderitem_money_info .fst{padding-top:0;padding-bottom:4px}
+.orderitem_money_info .lst{margin:17px 0 0 0;padding-top:15px;border-top:1px solid #eee}
+.orderitem_money_info .lst .tit{padding-top:2px}
+.orderitem_money_info .tit,
+.orderitem_money_info .lst .totalPrice .won,
+.orderitem_money_info .totalPrice{font:normal 16px/24px 'Noto Sans';vertical-align:top}
+.orderitem_money_info .lst .totalPrice .won{vertical-align:2px}
+.orderitem_money_info .tit{float:left;width:96px}
+.orderitem_money_info .totalPrice{float:right;width:144px;text-align:right}
 
-#orderitem_money_info .sub{padding-top:8px}
-#orderitem_money_info .sub .tit,
-#orderitem_money_info .totalPrice .normal,
-#orderitem_money_info .sub .totalPrice{font-weight:normal;font-size:14px;color:#999;line-height:20px}
-#orderitem_money_info .sub .tit{padding-left:16px;background:url(https://res.kurly.com/pc/service/order/2011/ico_sub_price_dot.svg) no-repeat 0 0;background-size:16px 20px}
-#orderitem_money_info .lst .totalPrice{font-weight:bold;font-size:22px;line-height:28px}
+.orderitem_money_info .sub{padding-top:8px}
+.orderitem_money_info .sub .tit,
+.orderitem_money_info .totalPrice .normal,
+.orderitem_money_info .sub .totalPrice{font-weight:normal;font-size:14px;color:#999;line-height:20px}
+.orderitem_money_info .sub .tit{padding-left:16px;background:url(https://res.kurly.com/pc/service/order/2011/ico_sub_price_dot.svg) no-repeat 0 0;background-size:16px 20px}
+.orderitem_money_info .lst .totalPrice{font-weight:bold;font-size:22px;line-height:28px}
 
 
 /* 주문서 - 확인사항 */
@@ -412,8 +416,8 @@ input[type="button"].quantity {
 /*------------------------결제 수단*/
 
 
-
-div#orderitem_money_info dl{
+ 
+div.orderitem_money_info dl{
     margin: 0;
 }
 
@@ -703,5 +707,8 @@ input#zipcode {
     }
     .before{
         display: none;
+    }
+    .hrUp{
+        border-bottom: none;
     }
 }
