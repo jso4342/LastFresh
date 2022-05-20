@@ -15,6 +15,12 @@
         AND B.BASKET_GO_ORDER = 1;
    </select>
 
+    <delete id="removeItems">
+        delete from TBL_BASKET
+        WHERE USER_NUM = #{userNum}
+        AND BASKET_GO_ORDER = 1;
+    </delete>
+
 <!--    <delete id="delete">-->
 <!--    </delete>-->
 

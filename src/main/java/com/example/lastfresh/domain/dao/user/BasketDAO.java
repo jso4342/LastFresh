@@ -18,6 +18,7 @@ public class BasketDAO {
 
     public List<BasketVO> getListByUserNum(Long userNum) {return basketMapper.getListByUserNum(userNum);}
     public List<BasketDTO> getListByDTO(Long userNum){return basketMapper.getListByDTO(userNum);}
+    public void removeItems(Long userNum){basketMapper.removeItems(userNum);}
 //    public  getList( ) {}
 //    public void insert( ) {}
 //    public  get( ) {}

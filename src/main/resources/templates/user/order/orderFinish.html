@@ -21,7 +21,7 @@
                     <img src="https://cdn.discordapp.com/attachments/969471931575320587/976387277389447188/img_success_order_end.png" alt="아이콘" class="ico">
                     <div class="check">
                         <p class="tit">
-                            <span id="user_name" class="name">장서영님의</span>
+                            <span id="user_name" class="name" th:text="${userName}"></span><span> 님의</span>
                             <span id="completed" class="name">주문이 완료되었습니다.</span>
                         </p>
                         <strong id="delivery_complete_message">곧 만나요!</strong>
@@ -31,7 +31,7 @@
                     <ul style="padding-left:0;">
                         <li>
                             <span class="title">결제금액</span>
-                            <strong class="money">14,690 <span class="won">원</span></strong>
+                            <strong class="money" th:text="${#numbers.formatInteger(totalPrice, 0, 'COMMA')}" style="font-size: 30px;"></strong><span class="won" style="margin-left: -100px;">원</span>
                         </li>
 
                     </ul>
@@ -60,4 +60,5 @@
 </div>
 <th:block th:insert="/fragments/footer.html :: footFragment"/>
 </body>
+
 </html>

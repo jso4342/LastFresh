@@ -193,7 +193,7 @@ element.style {
 }
 
 .order_goodslist .name .inner_name {
-   /* display: table-cell;*/
+    /* display: table-cell;*/
     font-weight: 600;
     font-size: 16px;
     color: #000;
@@ -416,7 +416,7 @@ input[type="button"].quantity {
 /*------------------------결제 수단*/
 
 
- 
+
 div.orderitem_money_info dl{
     margin: 0;
 }

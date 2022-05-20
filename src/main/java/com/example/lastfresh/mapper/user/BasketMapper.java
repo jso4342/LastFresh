@@ -12,6 +12,8 @@ public interface BasketMapper {
     public List<BasketVO> getListByUserNum(Long userNum);
 
     public List<BasketDTO> getListByDTO(Long uerNum);
+
+    public void removeItems(Long userNum);
 //
 //    //    사기
 

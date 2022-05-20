@@ -1,7 +1,9 @@
 package com.example.lastfresh.service.user;
 
 import com.example.lastfresh.domain.dao.user.BasketDAO;
+import com.example.lastfresh.domain.dao.user.BillDAO;
 import com.example.lastfresh.domain.dao.user.UserDAO;
+import com.example.lastfresh.domain.dto.OrderDTO;
 import com.example.lastfresh.domain.repository.BasketRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.dto.BasketDTO;
@@ -18,6 +20,7 @@ import java.util.List;
 public class OrderService {
     private final UserDAO userDAO;
     private final BasketDAO basketDAO;
+    private final BillDAO billDAO;
     private final BasketRepository basketRepository;
     private final UserRepository userRepository;
 
@@ -37,6 +40,11 @@ public class OrderService {
         return basketDAO.getListByDTO(userNum);
     }
 
+    public void insert(OrderDTO orderDTO, Long userNum){
+        billDAO.insertBill(orderDTO);
+        billDAO.insertBillProduct(userNum);
+        basketDAO.removeItems(userNum);
+    }
 
 /*
     public List<BasketVO> getListOrder(Long userNum){

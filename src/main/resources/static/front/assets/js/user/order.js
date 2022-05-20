@@ -38,6 +38,7 @@ function doSum() {
     $('.productsTotalPrice').text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     $('.paper_settlement').text(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     $('.finalPrice').val(sum);
+    //$("input[name='orderer_email']").val(sum);
 
 }
 
