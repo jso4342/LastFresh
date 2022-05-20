@@ -14,6 +14,10 @@ public interface BasketMapper {
     public List<BasketDTO> getListByDTO(Long uerNum);
 
     public void removeItems(Long userNum);
+
+    //  장바구니에 상품 담기
+    public void insert(BasketVO basketVO);
+
 //
 //    //    사기
 
