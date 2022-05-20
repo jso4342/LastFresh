@@ -2,6 +2,7 @@ package com.example.lastfresh.controller.user;
 
 
 import com.example.lastfresh.domain.dto.BasketDTO;
+import com.example.lastfresh.domain.dto.OrderDTO;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.MyPageService;
 import com.example.lastfresh.service.user.OrderService;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.File;
@@ -44,11 +46,19 @@ public class BasketController {
 
     // 주문 완료 시
     @PostMapping("/order")
-    public RedirectView orderProceed(BasketDTO basketDTO, UserVO userVO, Model model){
-   /*     *//*      model.addAttribute("list", boardService.getList(criteria));*//*
+        public RedirectView orderProceed(OrderDTO orderDTO, RedirectAttributes rttr){
+        Long userNum = orderDTO.getUserNum();
+        int totalPrice = orderDTO.getFinalPrice();
+        String userName = orderDTO.getUserName();
+        log.info("############# userNum" +  userNum);
+        log.info("############# totalPrice" +  orderDTO.getFinalPrice());
+        log.info("############# userName" +  orderDTO.getUserName());
 
-        model.addAttribute("listOrder", orderService.getListByUserNum(userNum));
-*/
+        rttr.addFlashAttribute("userNum", userNum);
+        rttr.addFlashAttribute("totalPrice", totalPrice);
+        rttr.addFlashAttribute("userName", userName);
+
+        orderService.insert(orderDTO, userNum);
         return new RedirectView("orderFinish");
     }
 
@@ -56,14 +66,15 @@ public class BasketController {
     public void orderCart(){}
 
     @GetMapping("/orderFinish")
-    public void orderFinish(){}
+    public void orderFinish(){
+    }
 
 
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
         return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
-      /*  return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));*/
+      //  return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 
 }

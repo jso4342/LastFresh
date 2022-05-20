@@ -1,6 +1,7 @@
 package com.example.lastfresh.domain.dao.user;
 
 
+import com.example.lastfresh.domain.dto.OrderDTO;
 import com.example.lastfresh.mapper.user.BillMapper;
 import com.example.lastfresh.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,19 @@ import org.springframework.stereotype.Repository;
 @Slf4j
 public class BillDAO {
     private final BillMapper billMapper;
+
+    public void insertBill(OrderDTO orderDTO){
+        billMapper.insertBill(orderDTO);
+    };
+
+    public void insertBillProduct(Long userNum){
+        int orderNum = billMapper.getLastOrderNum();
+        billMapper.insertBillProduct(userNum, orderNum);
+    };
+
+
+
+    //insertBillProduct
 //    public  getList( ) {}
 
 //    public  get( ) {}
