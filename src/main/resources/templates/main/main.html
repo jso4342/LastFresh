@@ -93,7 +93,7 @@
                             </a>
                             <div class="mainNewTxt">
                                 <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}"><p
-                                        class="mainNewTxtTitle"
+                                        class="mainNewTxtTitle productName"
                                         th:text="*{sellProductName}"></p></a>
                                 <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                     <div style="display: flex">
@@ -151,7 +151,7 @@
                             <div class="mainLastTxt">
                                 <span class="mainLastDescription" th:text="*{sellProductDescription}"></span>
                                 <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                    <p class="mainLastTxtTitle" th:text="*{sellProductName}"></p>
+                                    <p class="mainLastTxtTitle productName" th:text="*{sellProductName}"></p>
                                 </a>
                                 <a class="newATag" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                     <div style="display: flex;justify-content: space-evenly;width: 230px;margin-left: -13px;">
@@ -160,6 +160,9 @@
                                               class="saleListPercent"></span>
                                         <p class="mainLastTxtPrice newPrice"
                                            th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
+                                        <p class="dcPriceNum"
+                                           style="display: none" type="hidden"
+                                           th:text="*{sellProductDiscountPrice}"/>
                                         <span class="mainNewTxtOriginPrice"
                                               th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
                                     </div>
@@ -195,7 +198,7 @@
                                 <div class="mainNewTxt">
                                     <a class="newATag"
                                        th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                        <p class="mainNewTxtTitle" th:text="*{sellProductName}"></p></a>
+                                        <p class="mainNewTxtTitle productName" th:text="*{sellProductName}"></p></a>
                                     <a class="newATag"
                                        th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                         <div style="display: flex">
@@ -204,6 +207,9 @@
                                                   style="color:#FA622F;margin: -1px 7px 0 0;font-weight: bold; font-size: 16px;"></span>
                                             <p class="mainNewTxtPrice newPrice"
                                                th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></p>
+                                            <p class="dcPriceNum"
+                                               style="display: none" type="hidden"
+                                               th:text="*{sellProductDiscountPrice}"/>
                                         </div>
                                     </a>
                                     <p class="mainNewTxtOriginPrice"
@@ -242,9 +248,7 @@
 									<span class="txt">삭제하기</span>
 								</button>
 							</span>
-                            <span class="name">
-                                 [프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)
-                            </span>
+                            <span class="name"></span>
                             <div class="option">
 								<span class="count">
 									<button type="button" class="btn down on"onclick='count("minus")'
@@ -255,6 +259,19 @@
 								</span>
                                 <span class="price">
 									<span class="dc_price"></span>
+								</span>
+                            </div>
+                            <div class="option">
+                                <span class="receiveMethod">
+									<button type="button" id="pickUpB"
+                                    >픽업</button>
+									<button type="button" id="deliveryB"
+                                    >배달</button>
+                                    <button type="button" id="shippingB"
+                                    >배송</button>
+								</span>
+                                <span class="receiveMethodMsgWrap">
+									<span class="receiveMethodMsg">옵션 선택:</span>
 								</span>
                             </div>
                         </li>
