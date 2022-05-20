@@ -66,6 +66,7 @@
                     <!-- 구매자 정보 -->
 
                     <div class="toggleBtn" >
+                        <input type="hidden" name="userNum" th:field="*{userNum}">
                         <h2 class="tit_section">주문자 정보</h2>
                         <a class="open-icon" href="#">
                             <img src="https://res.kurly.com/mobile/ico/2106/ico_drop_up.svg">
@@ -75,15 +76,15 @@
                         <table class="goodsinfo_table orderer">
                             <tbody><tr class="fst">
                                 <th>보내는 분</th>
-                                <td><input id="name" type="text" name="orderer_name" value="" required="" label="보내는 분의 이름을 적어주세요" placeholder="이름을 입력해주세요" th:value="*{userName}"></td>
+                                <td><input id="name" type="text" name="userName" value="" required="" label="보내는 분의 이름을 적어주세요" placeholder="이름을 입력해주세요" th:value="*{userName}"></td>
                             </tr>
                             <tr>
                                 <th>휴대폰</th>
-                                <td><input type="text" name="orderer_phone" value="" size="11" maxlength="11" option="regNum" required="" label="주문자 휴대폰번호" placeholder="숫자만 입력해주세요" th:value="*{userPhone}" ></td>
+                                <td><input type="text" name="userPhone" value="" size="11" maxlength="11" option="regNum" required="" label="주문자 휴대폰번호" placeholder="숫자만 입력해주세요" th:value="*{userPhone}" ></td>
                             </tr>
                             <tr>
                                 <th>이메일</th>
-                                <td><input type="text" id="email" name="orderer_email" value="" required="" option="regEmail" label="주문자 이메일" placeholder="예) lastfresh@gmail.com" th:value="*{userEmail}"></td>
+                                <td><input type="text" id="email" name="userEmail" value="" required="" option="regEmail" label="주문자 이메일" placeholder="예) lastfresh@gmail.com" th:value="*{userEmail}"></td>
                             </tr>
                             </tbody>
                         </table>
@@ -103,7 +104,7 @@
                             <div class="section_full">
                             <span class="address" id="divDestination">
                                <div style="display: flex;">
-                                  <input class="addBox" type="text" name="userZipcode" id="zipcode" placeholder="우편번호" style="margin-top: 0px" th:field="*{userAddressPostNum}">
+                                  <input class="addBox" type="text" name="userAddressPostNum" id="zipcode" placeholder="우편번호" style="margin-top: 0px" th:field="*{userAddressPostNum}">
                                   <input type="button" onclick="find()" value="우편번호 찾기" class="addressFinder addBox" style="margin-top: 0px"><br>
                                </div>
                                 <input class="addBox" type="text" name="userAddress" id="address" placeholder="주소" th:field="*{userAddress}" >
@@ -125,7 +126,6 @@
                                         <span class="productsTotalPrice">
                                         </span>
                                         <span> 원</span></dd>
-
                                 </dl>
                                 <!--
                                 <dl class="amount sub">
@@ -145,7 +145,7 @@
                                         <span class="paper_settlement">
                                         </span>
                                         <span> 원</span>
-                                        <input type="hidden" value="" class="finalPrice" name="finalPrice">
+
                                     </dd>
 
                                 </dl>
@@ -209,7 +209,7 @@
                                     <dd class="totalPrice">
                                         <span class="paper_settlement"></span>
                                         <span> 원</span>
-                                        <input type="hidden" value="20800" class="finalPrice" name="finalPrice">
+                                        <input type="hidden" class="finalPrice" name="finalPrice">
                                     </dd>
 
                                 </dl>
@@ -306,14 +306,14 @@
         if (document.getElementsByClassName('inner_name').length - 1 == 0){
             var product_name = document.getElementsByClassName('inner_name').item(1).textContent;
         }else{
-            var product_name = document.getElementsByClassName('inner_name').item(1).textContent + " 外 ";
+            var product_name = document.getElementsByClassName('inner_name').item(1).textContent + " 外";
         }
-        const orderer_name = $("input[name='orderer_name']").val();
+        const orderer_name = $("input[name='userName']").val();
         const amount =  $('.finalPrice').val();
-        const orderer_email = $("input[name='orderer_email']").val();
-        const orderer_phone = $("input[name='orderer_phone']").val();
+        const orderer_email = $("input[name='userEmail']").val();
+        const orderer_phone = $("input[name='userPhone']").val();
         const orderer_address = $("input[name='userAddress']").val() + " " + $("input[name='userAddressDetail']").val();
-        const orderer_zipcode = $("input[name='userZipcode']").val();
+        const orderer_zipcode = $("input[name='userAddressPostNum']").val();
 
 
 
@@ -334,6 +334,41 @@
         // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
         IMP.request_pay({
+
+            /*
+            *
+            *
+
+            create table TBL_BILLS(
+
+
+
+       USER_NUM int unsigned,                    유저넘
+       BILL_DELIVERY_ADDRESS varchar(500),         주소
+       BILL_DELIVERY_ADDRESS_DETAIL varchar(500), 상세주소
+       BILL_DELIVERY_ADDRESS_POST_NUM varchar(500), 우편번호
+       BILL_TOTAL_PRICE int unsigned,               총 가격
+       BILL_ORDER_DATE date, //insert시 now()        날짜
+
+
+        //주문 상세(상품목록)
+        create table TBL_BILLS_PRODUCT(
+
+            SELL_PRODUCT_NUM int unsigned,          상품명  > BASKET
+            BILL_ORDER_NUM int unsigned,            위 오더 테이블 넘
+            USER_NUM int unsigned, //라이더 USER_NUM   라이더 유저넘 : /n
+            BILL_PRODUCT_QUANTITY int unsigned,       구매 수량  > BASKET
+            BILL_PRODUCT_PRICE int unsigned,           가격  > BASKET
+            BILL_DELIVERY_METHOD varchar(10),           배송 방법 > BASKET
+            BILL_COOKING_TIME int unsigned,             시간 / null
+            BILL_STATUS varchar(10) default '0',        // 0
+            constraint BILL_SELL_PRODUCT_NUM foreign key(SELL_PRODUCT_NUM) references TBL_SELL_PRODUCT (SELL_PRODUCT_NUM) on delete cascade,
+            constraint BILL_ORDER_NUM foreign key(BILL_ORDER_NUM) references TBL_BILLS(BILL_ORDER_NUM) on delete cascade,
+            constraint RIDER_USER_NUM foreign key(USER_NUM) references TBL_USER(USER_NUM) on delete cascade
+    );
+
+            * */
+
             pg: 'inicis', // version 1.1.0부터 지원.
             pay_method: pay_text,
             merchant_uid: 'merchant_' + new Date().getTime(),
@@ -345,11 +380,6 @@
             buyer_addr: orderer_address,
             buyer_postcode: orderer_zipcode,
             m_redirect_url: 'https://www.yourdomain.com/payments/complete'
-            /*
-            모바일 결제시,
-            결제가 끝나고 랜딩되는 URL을 지정
-            (카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-            */
         }, function (rsp) {
             console.log(rsp);
             if (rsp.success) {
