@@ -51,50 +51,56 @@ $(button).click(function(){
     $(cart).addClass("off");
     $(cart).css("opacity", "0");
     $(".bg_loading").css("display", "none");
+    $(".result").val(1);
 });
 $(document).ready( function() {
     $(".result").val(1);
 });
-let total=0;
+//마감날짜
+let today = new Date();
+let year = today.getFullYear(); // 년도
+let month = today.getMonth() + 1;  // 월
+let date = today.getDate();  // 날짜
+let calender = "&nbsp;" + "&nbsp;" + "~" + year + "/" + month + "/" + date
+document.getElementById("lastChanceDate").innerHTML = calender
+console.log("calender", calender)
 
-// function count(type)  {
-//     // 결과를 표시할 element
-//     let resultElement = $(".result");
-//     let afterPrice =$(".num");
-//     // 현재 화면에 표시된 값
-//     // let number = resultElement.val();
-//     // let beforePrice =($(".dcPriceNum").innerHTML);
-//     console.log(total)
-//     // 더하기/빼기
-//     $(".toBasket").each(function(i, item) {
-//         //일반금액
-//         let price=($(".newPrice")[i].innerHTML);
-//         $(".dc_price").html(price);
-//         //합계 전 가격
-//         let beforePrice =($(".dcPriceNum")[i].innerHTML);
-//         $(".num").html(beforePrice);
-//         console.log(beforePrice)
-//         //수량
-//         let number = resultElement.val();
-//
-//         if (type === 'plus') {
-//             number = parseInt(number) + 1;
-//             console.log(number)
-//             total = beforePrice * number;
-//             console.log(total)
-//         } else if (type === 'minus') {
-//             number = parseInt(number) - 1;
-//             total = (beforePrice / number);
-//             console.log(total)
-//             if (number == 0) {
-//                 return
-//             }
-//         }
-//         resultElement.val(number);
-//         afterPrice.html(total);
-//     });
-//
-//     // 내용 포멧
-//
-//     // 결과 출력
-// }
+//장바구니 가격 표시
+$(".toBasket").each(function (i, item) {
+    let price = ($(".newPrice")[i].innerHTML);
+    let beforePrice = ($(".dcPriceNum")[i].innerHTML);
+    console.log(beforePrice)
+    $(this).click(function () {
+        //일반금액
+        $(".dc_price").html(price);
+        $(".fixedHiddenNum").val(beforePrice);
+        //합계 전 가격
+        $(".num").html(beforePrice);
+        $(".numHidden").val(beforePrice);
+
+    })
+});
+// 더하기/빼기
+function count(type) {
+    let afterPrice= $(".num");
+    let resultElement = $(".result");
+    let number = resultElement.val();
+    let hiddenAfPrice=$(".numHidden");
+    let hiddenTotalPrice=parseInt($(".numHidden").val());
+    let fixedHiddenNum=parseInt($(".fixedHiddenNum").val());
+    let total;
+    if (type === 'plus') {
+        number = parseInt(number) + 1;
+        total=hiddenTotalPrice+fixedHiddenNum;
+    } else if (type === 'minus') {
+        number = parseInt(number) - 1;
+        total=hiddenTotalPrice-fixedHiddenNum;
+        console.log(total)
+        if (number == 0) {
+            return
+        }
+    }
+    resultElement.val(number);
+    hiddenAfPrice.val(total);
+    afterPrice.html(total);
+}
