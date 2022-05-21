@@ -82,7 +82,7 @@
                 <div style="display: flex; justify-content: space-around !important;">
                     <div class="mainNew wrapperMain" th:each="product:${newList}">
                         <div class="mainNewBox" th:object="${product}">
-                            <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
+                            <p class="pno" type="hidden" style="display:none" th:text="*{sellProductNum}"/>
                             <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                 <img class="mainNewImg"
                                      th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
@@ -131,7 +131,7 @@
                     <!-- 오늘 마감 상품 목록 -->
                     <div class="wrapperMain " th:each="product:${saleList}">
                         <div class="mainLastBox" th:object="${product}">
-                            <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
+                            <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
                             <a class="imgLastChanceBox imgAll"
                                th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                 <img class="mainNewImg"
@@ -186,7 +186,7 @@
                     <div style="display: flex; justify-content: space-around !important;">
                         <div class="mainNew wrapperMain" th:each="product:${bestReviewList}">
                             <div class="mainNewBox" th:object="${product}">
-                                <input class="pno" type="hidden" th:value="*{sellProductNum}"/>
+                                <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
                                 <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                     <img class="mainNewImg"
                                          th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
@@ -237,7 +237,7 @@
 <!-- 장바구니 모달창 -->
 <div id="cartPut" style="display:none;">
     <div class="cart_option cartList cart_type3" style="opacity: 1;">
-        <div class="inner_option">
+        <form  method="post" action="/main/productToBasket" class="inner_option">
             <button type="button" class="btn_close1">레이어닫기</button>
             <div class="in_option">
                 <div class="list_goods">
@@ -253,7 +253,7 @@
 								<span class="count">
 									<button type="button" class="btn down on"onclick='count("minus")'
                                     >수량내리기</button>
-									<input type="number" readonly="readonly" onfocus="this.blur()" class="inp result">
+									<input type="number" readonly="readonly" onfocus="this.blur()" name="basketQuantity" class="inp result">
 									<button type="button" class="btn up on"onclick='count("plus")'
                                     >수량올리기</button>
 								</span>
@@ -282,8 +282,6 @@
                         <strong class="tit">합계</strong>
                         <span class="sum">
                                 <span class="num"></span>원
-                            <span class="numHidden"style="display: none" type="hidden"/>
-                            <span class="fixedHiddenNum"style="display: none" type="hidden"/>
                             </span>
                     </div>
                     <p class="txt_point">
@@ -292,9 +290,14 @@
             </div>
             <div class="cart_modal_footer">
                 <button type="button" class="base_button cancel half"> 취소</button>
-                <button type="button" class="base_button half"> 장바구니 담기</button>
+                <button type="submit" class="base_button half submit"> 장바구니 담기</button>
             </div>
-        </div>
+            <p class="fixedHiddenNum"style="display: none" type="hidden"/>
+
+            <input class="totalMoneyHidden"style="display: none" type="hidden"name="basketPrice"/>
+            <input class="receiveMethodHidden"style="display: none" type="hidden"name="basketDeliveryMethod"/>
+            <input class="pnoHidden"style="display: none" type="hidden"name="sellProductNum"/>
+        </form>
     </div>
 </div>
 
@@ -304,6 +307,8 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.0.min.js"></script>
 <script src="/front/assets/js/main/main.js"></script>
 <script th:inline="javascript">
+
+
     //할인률
     let newListPercents = [[${newListPercents}]];
     let saleListPercents = [[${saleListPercents}]];
