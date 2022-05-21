@@ -50,7 +50,7 @@ $(button).click(function () {
     $(cart).addClass("off");
     $(cart).css("opacity", "0");
     $(".bg_loading").css("display", "none");
-    $(".result").val(1);
+    $(".basketQuantity").val(1);
     $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
     $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
     $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
@@ -73,9 +73,6 @@ function  AddComma(num)
     return num.toString().replace(regexp, ',');
 }
 
-$(document).ready(function () {
-    $(".result").val(1);
-});
 
 $(".toBasket").each(function (i, item) {
     let price = AddComma($(".newPrice")[i].innerHTML);
@@ -83,18 +80,22 @@ $(".toBasket").each(function (i, item) {
     let beforePriceWithCom =AddComma ($(".dcPriceNum")[i].innerHTML);
     let productName = ($(".productName")[i].innerHTML);
     let pno = ($(".pno")[i].innerHTML);
+    let stocks = ($(".stocks")[i].innerHTML);
     $(this).click(function () {
         //상품명
         $(".name").html(productName);
         //상품 번호
         $(".pnoHidden").val(pno);
+        //상품 최대 개수
+        $(".stocksHidden").val(stocks);
+        //상품 개수
+        $(".basketQuantity").val(1);
         //일반 금액
         $(".dc_price").html(price);
         $(".fixedHiddenNum").val(beforePrice);
         //합계 전 가격
         $(".num").html(beforePriceWithCom);
         $(".totalMoneyHidden").val(beforePrice);
-
     })
 });
 
@@ -102,29 +103,30 @@ $(".toBasket").each(function (i, item) {
 function count(type) {
     // 더하기/빼기
     let afterPrice = $(".num");
-    let resultElement = $(".result");
-    let number = resultElement.val();
+    let resultElement = $(".basketQuantity");
+    let number = $(".basketQuantity").val();
     let hiddenAfPrice = $(".totalMoneyHidden");
     let hiddenTotalPrice = parseInt($(".totalMoneyHidden").val());
     let fixedHiddenNum = parseInt($(".fixedHiddenNum").val());
+    let maxStock=parseInt($(".stocksHidden").val());
     let total;
     if (type === 'plus') {
         number = parseInt(number) + 1;
         total = hiddenTotalPrice + fixedHiddenNum;
+        if (number ==  maxStock+1) {
+            return
+        }
     } else if (type === 'minus') {
         number = parseInt(number) - 1;
         total = hiddenTotalPrice - fixedHiddenNum;
-        console.log(total)
-        if (number == 0) {
+        if (number ==0) {
             return
         }
     }
     resultElement.val(number);
     hiddenAfPrice.val(total);
     afterPrice.html(AddComma(total));
-
 }
-
 // 전달방식
 document.getElementById("pickUpB").addEventListener("click", function () {
     $("#pickUpB").css("opacity", "1").css("border", "2px solid  #DA291C").css("background-color", "#DA291C")
