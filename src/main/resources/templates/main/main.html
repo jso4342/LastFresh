@@ -83,6 +83,7 @@
                     <div class="mainNew wrapperMain" th:each="product:${newList}">
                         <div class="mainNewBox" th:object="${product}">
                             <p class="pno" type="hidden" style="display:none" th:text="*{sellProductNum}"/>
+                            <p class="stocks" type="hidden" style="display:none" th:text="*{sellProductStock}"/>
                             <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                 <img class="mainNewImg"
                                      th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
@@ -132,6 +133,7 @@
                     <div class="wrapperMain " th:each="product:${saleList}">
                         <div class="mainLastBox" th:object="${product}">
                             <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
+                            <p class="stocks" type="hidden" style="display:none" th:text="*{sellProductStock}"/>
                             <a class="imgLastChanceBox imgAll"
                                th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                 <img class="mainNewImg"
@@ -187,6 +189,7 @@
                         <div class="mainNew wrapperMain" th:each="product:${bestReviewList}">
                             <div class="mainNewBox" th:object="${product}">
                                 <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
+                                <p class="stocks" type="hidden" style="display:none" th:text="*{sellProductStock}"/>
                                 <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                     <img class="mainNewImg"
                                          th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
@@ -253,7 +256,7 @@
 								<span class="count">
 									<button type="button" class="btn down on"onclick='count("minus")'
                                     >수량내리기</button>
-									<input type="number" readonly="readonly" onfocus="this.blur()" name="basketQuantity" class="inp result">
+									<input type="number" readonly="readonly" onfocus="this.blur()"  class="inp basketQuantity">
 									<button type="button" class="btn up on"onclick='count("plus")'
                                     >수량올리기</button>
 								</span>
@@ -290,10 +293,12 @@
             </div>
             <div class="cart_modal_footer">
                 <button type="button" class="base_button cancel half"> 취소</button>
-                <button type="submit" class="base_button half submit"> 장바구니 담기</button>
+                <button type="submit" class="base_button submit"> 장바구니 담기</button>
             </div>
             <p class="fixedHiddenNum"style="display: none" type="hidden"/>
+            <p class="stocksHidden"style="display: none" type="hidden"/>
 
+            <input class="basketQuantity"style="display: none" type="hidden"name="basketQuantity"/>
             <input class="totalMoneyHidden"style="display: none" type="hidden"name="basketPrice"/>
             <input class="receiveMethodHidden"style="display: none" type="hidden"name="basketDeliveryMethod"/>
             <input class="pnoHidden"style="display: none" type="hidden"name="sellProductNum"/>
