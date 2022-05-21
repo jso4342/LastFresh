@@ -1,13 +1,15 @@
 package com.example.lastfresh.service.product;
 
-import com.example.lastfresh.domain.dao.product.AttachDAO;
 import com.example.lastfresh.domain.dao.product.ProductDAO;
+import com.example.lastfresh.domain.repository.BasketRepository;
 import com.example.lastfresh.domain.repository.ProductRepository;
+import com.example.lastfresh.domain.repository.UserRepository;
+import com.example.lastfresh.domain.vo.BasketVO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
+import com.example.lastfresh.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Criteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -21,6 +23,9 @@ import java.util.List;
 @Slf4j
 public class ProductService{
     private final ProductRepository productRepository;
+    private final UserRepository userRepository;
+    private final BasketRepository basketRepository;
+
     private final ProductDAO productDAO;
     //상품 목록
     public List<ProductVO> getList(CriteriaProduct criteriaProduct) {
@@ -72,6 +77,16 @@ public class ProductService{
 
     //이미지
     public  List<ProductVO> getImages(Long pno){ return productDAO.getImages(pno);}
+
+    //상품 담기
+    public  void productToBasket(Long userNum, BasketVO basketVO,ProductVO productVO){
+
+        UserVO userVO = userRepository.findById(userNum).get();
+        basketVO.setProductVO(productVO);
+        basketVO.setUserVO(userVO);
+        basketVO.setBasketGoOrder(0L);
+        basketRepository.save(basketVO);
+    }
 
 }
 
