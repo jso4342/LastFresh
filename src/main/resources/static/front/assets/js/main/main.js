@@ -32,6 +32,17 @@ $.each($category, function(index, item){
 
 let cart = $(".cart_option");
 let button = $(".half");
+let submit = $(".submit");
+$(submit).click(function () {
+    let receiveMethod=parseInt($(".receiveMethodHidden").val());
+    console.log(receiveMethod)
+    if(receiveMethod=="0"){
+        alert("옵션을 선택해주세요")
+        return false;
+    }else {
+        alert("장바구니에 상품을 담았습니다.")
+    }
+});
 $(".innerLatChanceCart").click(function () {
     $(cart).removeClass("off");
     $(cart).css("opacity", "1");
@@ -54,7 +65,7 @@ $(button).click(function () {
     $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
     $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
     $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
-    $("#receiveMethodHidden").val(0)
+    parseInt($(".receiveMethodHidden").val(0));
 });
 
 //마감날짜
@@ -90,6 +101,8 @@ $(".toBasket").each(function (i, item) {
         $(".stocksHidden").val(stocks);
         //상품 개수
         $(".basketQuantity").val(1);
+        //옵션 선택
+        parseInt($(".receiveMethodHidden").val(0));
         //일반 금액
         $(".dc_price").html(price);
         $(".fixedHiddenNum").val(beforePrice);
@@ -114,7 +127,7 @@ function count(type) {
         number = parseInt(number) + 1;
         total = hiddenTotalPrice + fixedHiddenNum;
         if (number ==  maxStock+1) {
-            return
+            return false
         }
     } else if (type === 'minus') {
         number = parseInt(number) - 1;
