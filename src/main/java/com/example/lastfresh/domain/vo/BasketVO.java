@@ -27,6 +27,9 @@ public class BasketVO {
     /* 0주문선택X, 1주문선택O */
     @Column(name = "BASKET_GO_ORDER")
     private Long basketGoOrder;
+    /*총 금액*/
+    @Column(name = "BASKET_PRICE")
+    private Long basketPrice;
 
     @ManyToOne // 다대일
     @JoinColumn(name = "USER_NUM")

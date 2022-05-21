@@ -1,7 +1,9 @@
 package com.example.lastfresh.controller.main;
 
 
+import com.example.lastfresh.domain.vo.BasketVO;
 import com.example.lastfresh.domain.vo.ProductVO;
+import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -117,6 +124,14 @@ public class MainPageController {
         }
         return percents;
     }
+    @PostMapping("/productToBasket")
+    public RedirectView productToBasket(ProductVO productVO,BasketVO basketVO,HttpServletRequest request) {
+//                HttpSession session = request.getSession();
+////                session.setAttribute();
+//                Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
 
+        productService.productToBasket(3L,basketVO,productVO);
+        return new RedirectView("main");
+    }
 
 }
