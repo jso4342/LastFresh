@@ -10,6 +10,7 @@ import org.apache.catalina.User;
 import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class UserManaingController {
     // 현진용
     private final UserService userService;
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     //회원가입
     @PostMapping("/manage/userJoin")
@@ -38,23 +40,16 @@ public class UserManaingController {
     }
 
     //로그인
-    // @RequestMapping(value="/index", method= {{RequestMethod.GET, RequestMethod.POST})
     @PostMapping("manage/userLogin")
     public String login(@RequestParam String userId, String userPw, HttpServletRequest request, RedirectAttributes rttr, Model model) throws Exception {
-        Long userNumber = 0L;
-        userNumber = userService.login(userId, userPw);
-        HttpSession session = request.getSession();
-
-
-        if (userNumber == null) {//로그인실패
-            model.addAttribute("msg", "로그인실패");
-            return "user/manage/userLogin"; //로그인으로 이동
-        } else {
-            session.setAttribute("userNumber", userNumber);
-            return "main/main";
-
-            //return "user/manage/userLogin";
+        Long userNumber = userService.decryption(userId, userPw);
+        if(userNumber != 0L) {
+                HttpSession session = request.getSession();
+                session.setAttribute("userNumber", userNumber);
+                return "main/main";
         }
+        model.addAttribute("msg", "로그인실패");
+        return "user/manage/userLogin";
     }
 
 

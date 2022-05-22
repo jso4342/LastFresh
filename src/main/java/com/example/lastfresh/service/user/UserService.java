@@ -34,12 +34,20 @@ public class UserService {
         userRepository.save(userVO);
     }
 
-    //로그인
-    public Long login(String userId, String userPw){
-        return userDAO.login(userId,userPw);
+    //복호화 ,로그인
+    public Long decryption(String userId, String userPw){
+        Long userNum = 0L;
+        UserVO userVO = userRepository.findByUserId(userId);
+        System.out.println(passwordEncoder.matches(userPw, userVO.getUserPw()));
+        if(!passwordEncoder.matches(userPw, userVO.getUserPw())){
+            System.out.println("비밀번호가 일치하지 않습니다.");
+            return userNum;
+        }
+        userNum = userVO.getUserNum();
+        log.info(""+userNum);
+        return userNum;
+
     }
-
-
 
 
 //휴대폰인증

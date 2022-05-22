@@ -8,5 +8,7 @@ public interface UserMapper {
     //로그인
     public Long login(String userId, String userPw);
 
+    //복호화
+    public String decryption(String userId);
 }
 
