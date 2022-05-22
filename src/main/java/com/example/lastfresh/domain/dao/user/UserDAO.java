@@ -14,6 +14,7 @@ public class UserDAO {
     private final UserMapper userMapper;
 
     public Long login(String userId, String userPw) {return userMapper.login(userId, userPw);}
+    public String decryption(String userId) {return userMapper.decryption(userId);}
 
 
 
