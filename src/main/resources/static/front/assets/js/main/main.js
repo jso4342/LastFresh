@@ -1,35 +1,3 @@
-/*
-var check = false;
-
-const $category = $('.gnb_menu li');
-
-
-function send(){
-    if(check == false) {
-        $('.gnb_sub').show();
-        /!*	$('#allCategory').css({
-                "color" : "#DA291C",
-                "font-weight" : "600"
-            });*!/
-        check = true;
-    }else {
-        $('.gnb_sub').hide();
-        /!*$('#allCategory').css({
-            "color" : "#333",
-            "font-weight" : "500"
-        });*!/
-        check = false;
-    }
-}
-
-$.each($category, function(index, item){
-    $(item).mouseover(function(){
-        $category.addClass("current");
-    })
-});
-*/
-
-
 let cart = $(".cart_option");
 let button = $(".half");
 let submit = $(".submit");
@@ -66,6 +34,15 @@ $(button).click(function () {
     $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
     $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
     parseInt($(".receiveMethodHidden").val(0));
+    //픽업 status
+        $("#pickUpB").css("display", "");
+        $(".receiveMethod").css("padding-left", "");
+    //배달 status
+        $("#deliveryB").css("display", "");
+        $(".receiveMethod").css("padding-left", "");
+    //배송 status
+        $("#shippingB").css("display", "");
+        $(".receiveMethod").css("padding-left", "");
 });
 
 //마감날짜
@@ -92,6 +69,10 @@ $(".toBasket").each(function (i, item) {
     let productName = ($(".productName")[i].innerHTML);
     let pno = ($(".pno")[i].innerHTML);
     let stocks = ($(".stocks")[i].innerHTML);
+    let pickUpStatus = ($(".pickUpStatus")[i].innerHTML);
+    let deliveryStatus = ($(".deliveryStatus")[i].innerHTML);
+    let shippingStatus = ($(".shippingStatus")[i].innerHTML);
+
     $(this).click(function () {
         //상품명
         $(".name").html(productName);
@@ -103,6 +84,36 @@ $(".toBasket").each(function (i, item) {
         $(".basketQuantity").val(1);
         //옵션 선택
         parseInt($(".receiveMethodHidden").val(0));
+        //픽업 status
+        if(pickUpStatus==1){
+            $("#pickUpB").css("display", "none");
+            $(".receiveMethod").css("padding-left", "203px");
+        }
+        //배달 status
+        if(deliveryStatus==0){
+            $("#deliveryB").css("display", "none");
+            $(".receiveMethod").css("padding-left", "203px");
+        }
+        //배송 status
+        if(shippingStatus==0){
+            $("#shippingB").css("display", "none");
+            $(".receiveMethod").css("padding-left", "203px");
+        }
+        //픽업 배달status
+        if(pickUpStatus==1&deliveryStatus==0){
+            $("#pickUpB").css("display", "none");
+            $(".receiveMethod").css("padding-left", "250px");
+        }
+        //배달 배송status
+        if(deliveryStatus==0&shippingStatus==0){
+            $("#deliveryB").css("display", "none");
+            $(".receiveMethod").css("padding-left", "250px");
+        }
+        //배송 픽업status
+        if(shippingStatus==0&pickUpStatus==1){
+            $("#shippingB").css("display", "none");
+            $(".receiveMethod").css("padding-left", "250px");
+        }
         //일반 금액
         $(".dc_price").html(price);
         $(".fixedHiddenNum").val(beforePrice);
