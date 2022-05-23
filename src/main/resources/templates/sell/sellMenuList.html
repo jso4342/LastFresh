@@ -11,17 +11,6 @@
 </head>
 <body>
 <th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
-<script th:inline="javascript">
-    /*<![CDATA[*/
-
-    let message = [[${result}]];
-    console.log(message);
-    if(message != null) {
-        alert(message);
-    }
-
-    /*]]>*/
-</script>
 <div class="page_myPage myPage_type1 sellMenuList-wrapper">
     <div id="snb" class="snb_my">
         <h2 class="tit_snb">판매자 페이지</h2>
@@ -81,7 +70,7 @@
                                         </td>
                                         <td class="menuMethod">
                                             <div class="order-method-wrapper">
-                                                <div class="order-method pickUp" th:if="${product.sellProductPickup} == '1'">
+                                                <div class="order-method pickUp" th:if="${product.sellProductPickup} == '0'">
                                                     포장
                                                 </div>
                                                 <div class="order-method delivery" th:if="${product.sellProductDeliveryMethod} != '0'">
@@ -117,6 +106,7 @@
                                                     </button>
                                                     <input type="hidden" th:field="${criteria.pageNum}">
                                                     <input type="hidden" th:field="${criteria.amount}">
+                                                    <input type="hidden" th:field="${criteria.limit}">
                                                     <input type="hidden" name="sellProductNum">
                                                 </form>
                                                 <form method="post" action="/sell/remove" id="deleteForm">
@@ -125,6 +115,7 @@
                                                     </button>
                                                     <input type="hidden" th:field="${criteria.pageNum}">
                                                     <input type="hidden" th:field="${criteria.amount}">
+                                                    <input type="hidden" th:field="${criteria.limit}">
                                                     <input type="hidden" name="sellProductNum">
                                                 </form>
                                             </div>
@@ -164,28 +155,6 @@
 <!--                                                <span th:text="${product.sellProductStock}"></span>-->
                                             </div>
                                         </td>
-<!--                                        <td class="menuRegisterDate" th:text="${product.sellProductExpireDate}">-->
-<!--                                        </td>-->
-<!--                                        <td class="menuManging">-->
-<!--                                            <div class="menu-btn-wrapper">-->
-<!--                                                <form method="post" action="/sell/modify" id="modifyForm">-->
-<!--                                                    <button class="product-modify">-->
-<!--                                                        <a th:href="${product.sellProductNum}">수정</a>-->
-<!--                                                    </button>-->
-<!--                                                    <input type="hidden" th:field="${criteria.pageNum}">-->
-<!--                                                    <input type="hidden" th:field="${criteria.amount}">-->
-<!--                                                    <input type="hidden" name="sellProductNum">-->
-<!--                                                </form>-->
-<!--                                                <form method="post" action="/sell/remove" id="deleteForm">-->
-<!--                                                    <button class="product-delete">-->
-<!--                                                        <a class="productMenuRemove" th:href="${product.sellProductNum}">삭제</a>-->
-<!--                                                    </button>-->
-<!--                                                    <input type="hidden" th:field="${criteria.pageNum}">-->
-<!--                                                    <input type="hidden" th:field="${criteria.amount}">-->
-<!--                                                    <input type="hidden" name="sellProductNum">-->
-<!--                                                </form>-->
-<!--                                            </div>-->
-<!--                                        </td>-->
                                     </tr>
                                 </th:block>
                             </tbody>
@@ -220,9 +189,10 @@
                     <a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>
                 </div>
                 <!--th:object는 부모 태그의 object에서 먼저 mapping을 해준다. 따라서 *가 아닌 $로 사용한다.-->
-                <form action="/sell/sellMenuList" th:object="${criteria}" name="pageForm">
-                    <input type="hidden" th:field="*{pageNum}">
-                    <input type="hidden" th:field="*{amount}">
+                <form action="/sell/sellMenuList" th:object="${pageDTO.criteria}" name="pageForm">
+                    <input class="page-pageNum" type="hidden" name="pageNum" th:value="*{pageNum}">
+                    <input class="page-amount" type="hidden" name="amount" th:value="*{amount}">
+                    <input class="page-limit" type="hidden" name="limit" th:value="*{limit}">
                 </form>
             </div>
         </div>
@@ -231,5 +201,31 @@
 <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/front/assets/js/sell/sellMenuList.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    let message = [[${result}]];
+    console.log(message);
+    if(message != null) {
+        swal(message);
+    }
+
+    /*]]>*/
+</script>
+<script th:inline="javascript">
+    // let thpageNum = [[${pageDTO.criteria.pageNum}]];
+    // let thamount = [[${pageDTO.criteria.amount}]];
+    // let thlimit = [[${pageDTO.criteria.limit}]];
+    //
+    // let $pageNum = $('input[name=pageNum]').val(thpageNum);
+    // console.log($pageNum);
+    // let $amount = $('input[name=amount]').val(thamount);
+    // console.log($amount);
+    // let $limit = $('input[name=limit]').val(thlimit);
+    // console.log($limit);
+</script>
+<script>
+</script>
 </html>

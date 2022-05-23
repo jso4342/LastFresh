@@ -9,7 +9,7 @@ $("input[type='file']").change(function(e){
     }
 
     if (!checkFile(files1[0].name) || !checkFile(files2[0].name)) {
-        alert("이미지 파일만 넣어 주세요")
+        swal("이미지 파일만 넣어 주세요")
         return;
     }
 
@@ -39,7 +39,7 @@ $("input[type='file']").change(function(e){
             $('input[name=sellProductImageUuid]').val(data.sellProductImageUuid);
         },
         error: function (request,status,error) {
-            alert(request.responseText);
+            swal(request.responseText);
         }
     });
 });
@@ -417,7 +417,7 @@ function chk_file_type(obj) {
     let check_file_type = new Array('jpg','gif','png','jpeg','bmp');
 
     if(check_file_type.indexOf(file_type) == -1){
-        alert('이미지 파일만 선택할 수 있습니다.');
+        swal('이미지 파일만 선택할 수 있습니다.');
         var parent_Obj=obj.parentNode
         var node = parent_Obj.replaceChild(obj.cloneNode(true),obj);
         return false;
@@ -571,7 +571,7 @@ function menuModify() {
 
     let $category = $('select[name=sellProductCategory] option:checked');
     if($category.val() == "" || $category.val() == null) {
-        alert("카테고리를 선택 해주세요");
+        swal("카테고리를 선택 해주세요");
         return;
     }
 
@@ -597,13 +597,13 @@ function menuModify() {
 
     let $sellProductPickup = $('input[name=sellProductPickup]:checked');
     if($sellProductPickup.val() == "" || $sellProductPickup.val() == null) {
-        alert("픽업 유무 선택 해주세요");
+        swal("픽업 유무 선택 해주세요");
         return;
     }
 
     let $sellProductDelivery = $('input[name=sellProductDelivery]:checked');
     if($sellProductDelivery.val() == "" || $sellProductDelivery.val() == null) {
-        alert("라이더 이용 유무 선택 해주세요");
+        swal("라이더 이용 유무 선택 해주세요");
         return;
     }
 
@@ -632,14 +632,23 @@ function menuModify() {
     // console.log($deliveryCheckRiderUsing);
 
     if((checkStr1 || checkStr2 || checkStr3) && $deliveryCheckRiderUsing) {
-        alert("배달할 지역을 선택해주세요")
+        swal("배달할 지역을 선택해주세요")
         return;
     }
 
 
     let $sellProductShipping = $('input[name=sellProductShipping]:checked');
     if($sellProductShipping.val() == "" || $sellProductShipping.val() == null) {
-        alert("라이더 이용 유무 선택 해주세요");
+        swal("라이더 이용 유무 선택 해주세요");
+        return;
+    }
+
+    let checked1 = $('#sellProductPickup-false:checked');
+    let checked2 = $('#sellProductDelivery-false:checked');
+    let checked3 = $('#sellProductShipping-false:checked');
+
+    if (checked1 && checked2 && checked3) {
+        swal("픽업 또는 배달 또는 배송 중 한가지를 선택 해주세요")
         return;
     }
 
@@ -680,7 +689,7 @@ function validateInput(name, wordding) {
     // console.log($name)
     // console.log($name.val())
     if($name.val() == "" || $name.val() == null) {
-        alert(wordding);
+        swal(wordding);
         return false;
     }
     return true;
@@ -689,7 +698,7 @@ function validateInput(name, wordding) {
 function validateInputFile(name, wordding) {
     let $name = $('#' + name);
     if($name.val() == "" || $name.val() == null) {
-        alert(wordding);
+        swal(wordding);
         return false;
     }
     return true;
