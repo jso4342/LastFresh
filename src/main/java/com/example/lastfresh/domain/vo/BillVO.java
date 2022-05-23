@@ -6,12 +6,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "TBL_BILLS")
 @Getter
-@ToString
+@ToString(of={"billOrderNum", "billDeliveryAddress", "billDeliveryAddressDetail", "billDeliveryAddressPostNum", "billTotalPrice", "billOrderDate"})
 @NoArgsConstructor
 public class BillVO {
     @Id
@@ -33,14 +35,17 @@ public class BillVO {
     @JoinColumn(name = "USER_NUM")
     private UserVO userVO;
 
-    @Builder
+    @OneToMany(mappedBy = "billVO")
+    List<BillProductVO> products = new ArrayList<>();
 
-    public BillVO(Long billOrderNum, String billDeliveryAddress, String billDeliveryAddressDetail, String billDeliveryAddressPostNum, Long billTotalPrice, Date billOrderDate) {
+    @Builder
+    public BillVO(Long billOrderNum, String billDeliveryAddress, String billDeliveryAddressDetail, String billDeliveryAddressPostNum, Long billTotalPrice, Date billOrderDate, UserVO userVO) {
         this.billOrderNum = billOrderNum;
         this.billDeliveryAddress = billDeliveryAddress;
         this.billDeliveryAddressDetail = billDeliveryAddressDetail;
         this.billDeliveryAddressPostNum = billDeliveryAddressPostNum;
         this.billTotalPrice = billTotalPrice;
         this.billOrderDate = billOrderDate;
+        this.userVO = userVO;
     }
 }

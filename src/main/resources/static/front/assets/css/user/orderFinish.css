@@ -6,6 +6,7 @@ p{margin:0 !important;
     background-color: #f3f2f4;
 }
 
+*{font-family: 'Noto Sans KR', sans-serif;}
 .section_end .amount_money .money {
     font-size: 20px;
     font-weight: 700;

@@ -1,12 +1,16 @@
 package com.example.lastfresh.domain.dao.user;
 
 
+import com.example.lastfresh.domain.dto.BasketDTO;
 import com.example.lastfresh.domain.dto.OrderDTO;
+import com.example.lastfresh.domain.vo.BillVO;
 import com.example.lastfresh.mapper.user.BillMapper;
 import com.example.lastfresh.mapper.user.UserMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -23,6 +27,8 @@ public class BillDAO {
         billMapper.insertBillProduct(userNum, orderNum);
     };
 
+  /*  public List<BillVO> getOrders(Long userNum){return billMapper.getOrders(userNum);}
+*/
 
 
     //insertBillProduct

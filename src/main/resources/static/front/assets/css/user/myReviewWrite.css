@@ -2,7 +2,7 @@
 input:focus-visible {
     outline-offset: 0px;
 }
-
+*{font-family: 'Noto Sans KR', sans-serif;}
 td, th {
     padding: 0;
 }

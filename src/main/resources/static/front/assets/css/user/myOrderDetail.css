@@ -18,6 +18,10 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     color: #333;
     letter-spacing: -.5px;
 }
+
+
+*{font-family: 'Noto Sans KR', sans-serif;}
+
 #Type {
     position: relative;
     padding: 0 0 21px;

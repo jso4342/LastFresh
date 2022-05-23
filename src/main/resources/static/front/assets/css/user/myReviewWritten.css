@@ -8,6 +8,7 @@ a {
     float: right;
     width: 820px;
 }
+*{font-family: 'Noto Sans KR', sans-serif;}
 .section_review .head_aticle {
     padding-bottom: 20px;
 }

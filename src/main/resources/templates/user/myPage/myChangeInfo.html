@@ -297,11 +297,11 @@
     let userPw = [[${user.userPw}]];
 
     function goReview(){
-        location.href = '/user/myPage/myReviewUnwritten';
+        location.href = '/user/myPage/myReviewUnwritten?userNum=' + userNum;
     }
 
     function goOrder(){
-        location.href = '/user/myPage/myOrder';
+        location.href = '/user/myPage/myOrder?userNum=' + userNum;
     }
 
     function goInfo(){

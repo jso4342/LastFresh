@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TBL_BILLS_PRODUCT")
 @Getter
-@ToString
+@ToString(of = {"billProductListNum", "billProductQuantity", "billProductPrice", "billDeliveryMethod", "billCookingTime", "billStatus"})
 @NoArgsConstructor
 public class BillProductVO {
     @Id
@@ -43,12 +43,15 @@ public class BillProductVO {
     private UserVO userVO;
 
     @Builder
-    public BillProductVO(Long billProductListNum, Long billProductQuantity, Long billProductPrice, String billDeliveryMethod, String billCookingTime, String billStatus) {
+    public BillProductVO(Long billProductListNum, Long billProductQuantity, Long billProductPrice, String billDeliveryMethod, String billCookingTime, String billStatus, UserVO userVO, BillVO billVO, ProductVO productVO) {
         this.billProductListNum = billProductListNum;
         this.billProductQuantity = billProductQuantity;
         this.billProductPrice = billProductPrice;
         this.billDeliveryMethod = billDeliveryMethod;
         this.billCookingTime = billCookingTime;
         this.billStatus = billStatus;
+        this.productVO = productVO;
+        this.billVO = billVO;
+        this.userVO = userVO;
     }
 }

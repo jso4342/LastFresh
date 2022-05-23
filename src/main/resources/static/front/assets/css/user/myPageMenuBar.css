@@ -3,6 +3,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 /*페이지 디자인*/
 .page_myPage.myPage_type1{
@@ -12,6 +13,7 @@
     width: 1050px;
     margin: 0 auto;
 }
+
 #snb .tit_snb {
     padding: 5px 0 35px 1px;
     font-weight: 700;

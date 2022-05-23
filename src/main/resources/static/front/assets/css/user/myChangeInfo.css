@@ -11,6 +11,10 @@ span.notOk {
     color: #de0000;
 }
 
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .page_myPage.myPage_type1 .page_section {
     float: right;
     width: 820px;
