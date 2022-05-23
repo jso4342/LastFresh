@@ -126,11 +126,10 @@ public class MainPageController {
     }
     @PostMapping("/productToBasket")
     public RedirectView productToBasket(ProductVO productVO,BasketVO basketVO,HttpServletRequest request) {
-//                HttpSession session = request.getSession();
-////                session.setAttribute();
-//                Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
+                HttpSession session = request.getSession();
+                Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
 
-        productService.productToBasket(3L,basketVO,productVO);
+        productService.productToBasket(userNum,basketVO,productVO);
         return new RedirectView("main");
     }
 

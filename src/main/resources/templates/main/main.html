@@ -84,6 +84,9 @@
                         <div class="mainNewBox" th:object="${product}">
                             <p class="pno" type="hidden" style="display:none" th:text="*{sellProductNum}"/>
                             <p class="stocks" type="hidden" style="display:none" th:text="*{sellProductStock}"/>
+                            <p class="pickUpStatus" type="hidden" style="display:none" th:text="*{sellProductPickup}"/>
+                            <p class="deliveryStatus" type="hidden" style="display:none" th:text="*{sellProductDelivery}"/>
+                            <p class="shippingStatus" type="hidden" style="display:none" th:text="*{sellProductShipping}"/>
                             <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                 <img class="mainNewImg"
                                      th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
@@ -134,6 +137,9 @@
                         <div class="mainLastBox" th:object="${product}">
                             <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
                             <p class="stocks" type="hidden" style="display:none" th:text="*{sellProductStock}"/>
+                            <p class="pickUpStatus" type="hidden" style="display:none" th:text="*{sellProductPickup}"/>
+                            <p class="deliveryStatus" type="hidden" style="display:none" th:text="*{sellProductDelivery}"/>
+                            <p class="shippingStatus" type="hidden" style="display:none" th:text="*{sellProductShipping}"/>
                             <a class="imgLastChanceBox imgAll"
                                th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                 <img class="mainNewImg"
@@ -190,6 +196,9 @@
                             <div class="mainNewBox" th:object="${product}">
                                 <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
                                 <p class="stocks" type="hidden" style="display:none" th:text="*{sellProductStock}"/>
+                                <p class="pickUpStatus" type="hidden" style="display:none" th:text="*{sellProductPickup}"/>
+                                <p class="deliveryStatus" type="hidden" style="display:none" th:text="*{sellProductDelivery}"/>
+                                <p class="shippingStatus" type="hidden" style="display:none" th:text="*{sellProductShipping}"/>
                                 <a class="imgBox" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                     <img class="mainNewImg"
                                          th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
