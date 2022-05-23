@@ -41,8 +41,11 @@ public class UserVO {
 
     //basket many to many
     @OneToMany(mappedBy = "userVO") // 다대다
-        List<BasketVO> baskets = new ArrayList<>();
+    List<BasketVO> baskets = new ArrayList<>();
    // private List<Baskes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "userVO") // 다대다
+    List<BillVO> bills = new ArrayList<>();
 
     public void updateAll(String userPw, String userName, String userEmail, String userAddress, String userAddressDetail, String userAddressPostNum, String userPhone, String userKakao, String userStatus){
         this.userPw = userPw;

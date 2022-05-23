@@ -17,6 +17,7 @@
     color: #333;
     letter-spacing: -.5px;
 }
+*{font-family: 'Noto Sans KR', sans-serif;}
 .section_review .review_notice {
     font-size: 14px;
     color: #999;

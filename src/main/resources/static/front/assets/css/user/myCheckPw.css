@@ -6,6 +6,12 @@
 .page_myPage .head_aticle {
     padding: 5px 0 34px;
 }
+
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .page_myPage .head_aticle .tit {
     height: 36px;
     font-weight: 700;

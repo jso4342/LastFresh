@@ -14,6 +14,12 @@
     color: #333;
     letter-spacing: -.5px;
 }
+
+
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
 .page_myPage .head_aticle .tit_sub {
     padding-left: 11px;
     font-size: 14px;

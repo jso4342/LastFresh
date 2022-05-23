@@ -240,7 +240,7 @@
 <script src="/front/assets/js/user/order.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
 
 
@@ -303,8 +303,8 @@
         const phone = document.getElementById('phone');
         /*const product_num = ;*/
 //        const product_name = document.getElementsByClassName('inner_name').item(0)
-        if (document.getElementsByClassName('inner_name').length - 1 == 0){
-            var product_name = document.getElementsByClassName('inner_name').item(1).textContent;
+        if (document.getElementsByClassName('inner_name').length - 1 == 0) {
+            var product_name = document.getElementsByClassName('inner_name').textContent;
         }else{
             var product_name = document.getElementsByClassName('inner_name').item(1).textContent + " 外";
         }
@@ -319,12 +319,12 @@
 
         if(card.checked) {
             pay_text = 'card';
-        } else if (bank.checked) {
+        } else if (bank.checked)
             pay_text = 'trans';
         }else if(phone.checked){
             pay_text = 'phone';
         }else{
-            alert("결제 방법을 선택해주세요");
+            swal("결제 방법을 선택해주세요");
             return;
         }
 
@@ -391,7 +391,7 @@
                 var msg = '결제가 실패하였습니다.\n';
                 msg += '실패 이유 : ' + rsp.error_msg;
             }
-            alert(msg);
+            swal(msg);
         });
     }
 </script>

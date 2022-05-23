@@ -1,20 +1,27 @@
 package com.example.lastfresh.controller.user;
 
 
+import com.example.lastfresh.domain.repository.BillRepository;
+import com.example.lastfresh.domain.repository.MemberRepository;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Criteria;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 /*유저 마이 페이지*/
 
 @Controller
@@ -23,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/user/myPage/*")
 public class UserMyPageController {
     private final MyPageService myPageService;
+
 
 
     //회원 정보 수정 페이지
@@ -50,23 +58,12 @@ public class UserMyPageController {
         model.addAttribute("user", myPageService.get(userNum));
     }
 
-    // 비밀번호 확인
-/*    @PostMapping("/myCheckPw")
-    public RedirectView verify(Long userNum, String userPw, Model model) throws Exception {
-        String result = null;
-
-         model.addAttribute("result", myPageService.checkPw(userNum, userPw) ? "success" : "failure");
-        if (myPageService.checkPw(userNum, userPw) == true){
-            model.addAttribute("user", myPageService.get(userNum));
-            return new RedirectView("myChangeInfo");
-        }else{
-            return new RedirectView("myCheckPw");
-        }*/
-
-
 
     @GetMapping("/myOrder")
-    public void myOrder(){}
+    public void myOrder(Long userNum, Model model) throws Exception{
+        model.addAttribute("bills", myPageService.getBills(userNum));
+        model.addAttribute("userNum", userNum);
+    }
 
     @GetMapping("/myOrderDetail")
     public void myOrderDetail(){}
@@ -80,4 +77,10 @@ public class UserMyPageController {
     @GetMapping("/myReviewWritten")
     public void myReviewWritten(){}
 
+    @GetMapping("/display")
+    @ResponseBody
+    public byte[] getFile(String fileName) throws IOException {
+        return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
+        //  return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
+    }
 }
