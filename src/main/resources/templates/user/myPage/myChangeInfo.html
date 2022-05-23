@@ -118,7 +118,7 @@
                         </th>
                         <td>
                             <div id="codeNum" class="code_num">
-                                <input type="text" name="userPhone" id="auth_code" th:value="*{userPhone}" label="인증번호 확인" <!--pattern="[0-9]*"--> class="inp_confirm">
+                                <input type="text" name="userPhone" id="auth_code" th:value="*{userPhone}" label="인증번호 확인" class="inp_confirm">
                                 <button id="btn_cert_confirm" name="btn_cert_confirm" class="btn default disabled" type="button" onclick="showPhoneCode()">인증번호 발송</button>
                                 <input type="text" name="auth_code_input" placeholder="인증번호를 입력해주세요" pattern="[0-9]*" class="inp_confirm_code" style="display:none">
                                 <button id="btn_code_confirm" name="btn_code_confirm" class="btn default disabled" type="bpattern="[0-9]*" utton" style="display:none;" onclick="verifyPhone()">인증하기</button>
@@ -404,9 +404,11 @@
     }
 
     /*핸드폰 번호 하이푼*/
-    $('#auth_code').keydown(function(event) {
+    $('input[id=auth_code]').keydown(function(event) {
+
         let key = event.charCode || event.keyCode || 0;
         $text = $(this);
+        $text *= 1;
         if (key !== 8 && key !== 9) {
             if ($text.val().length === 3) {
                 $text.val($text.val() + '-');

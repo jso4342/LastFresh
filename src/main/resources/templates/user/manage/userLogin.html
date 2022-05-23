@@ -11,6 +11,13 @@
 
 </head>
 <body>
+<!--<div th:if="${session.userNumber==0}">-->
+<!--    <th:Object th:text="${session.userNumber}"/>-->
+
+<!--    <script>-->
+<!--        alert("아이디 또는 비밀번호를 다시 확인하세요")-->
+<!--    </script>-->
+<!--</div>-->
 
 <th:block th:insert="/fragments/header.html :: headFragment"/>
 <div id="main">
@@ -22,15 +29,15 @@
             <h3 class="tit_login">로그인</h3>
             <div class="write_form">
                 <div class="write_view login_view">
-                    <form>
 
-                        <input class="input" value="" type="text" name="m_id" size="20" tabindex="1" placeholder="아이디를 입력해주세요">
-                        <input class="input" type="password" name="password" size="20" tabindex="2" placeholder="비밀번호를 입력해주세요">
+                    <form th:action="@{/user/manage/userLogin}" th:method="post" name="loginForm">
+                        <input class="input" value="" type="text" name="userId" size="20" tabindex="1" placeholder="아이디를 입력해주세요">
+                        <input class="input" type="password" name="userPw" size="20" tabindex="2" placeholder="비밀번호를 입력해주세요">
                         <div class="checkbox_save">
                             <label class="label_checkbox checked">
                                 <input type="checkbox" id="chk_security" name="chk_security" value="y" checked="checked"
                                        onchange="if( this.checked){$(this).parent().addClass('checked')}else{$(this).parent().removeClass('checked')} ">
-                                보안접속
+
                             </label>
 
                             <div class="login_search">
@@ -46,7 +53,7 @@
                                 </a>
                             </div>
                         </div>
-                        <button class="btn_type1" type="submit">
+                        <button onclick="sendLogin()" class="btn_type1" type="button">
                             <span class="txt_type">로그인</span>
                         </button>
                     </form>
@@ -87,5 +94,12 @@
 </body>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="/front/assets/js/user/userLogin.js"></script>
+<script th:inline="javascript">
 
+    let msg =[[${msg}]]
+    console.log(msg);
+    if(msg) {
+        alert("아이디 또는 비밀번호를 다시 확인하세요")
+    }
+</script>
 </html>

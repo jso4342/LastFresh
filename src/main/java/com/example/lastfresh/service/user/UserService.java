@@ -1,11 +1,13 @@
 package com.example.lastfresh.service.user;
 
+import com.example.lastfresh.domain.dao.user.UserDAO;
 import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
+import org.apache.catalina.User;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +25,8 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    private final UserDAO userDAO;
+
     //회원가입
     public void join(UserVO userVO) {
         String encodedPassword = passwordEncoder.encode(userVO.getUserPw());
@@ -30,7 +34,23 @@ public class UserService {
         userRepository.save(userVO);
     }
 
-    //휴대폰인증
+    //복호화 ,로그인
+    public Long decryption(String userId, String userPw){
+        Long userNum = 0L;
+        UserVO userVO = userRepository.findByUserId(userId);
+        System.out.println(passwordEncoder.matches(userPw, userVO.getUserPw()));
+        if(!passwordEncoder.matches(userPw, userVO.getUserPw())){
+            System.out.println("비밀번호가 일치하지 않습니다.");
+            return userNum;
+        }
+        userNum = userVO.getUserNum();
+        log.info(""+userNum);
+        return userNum;
+
+    }
+
+
+//휴대폰인증
     public void certifiedPhoneNumber(String userPhone, String cerNum) {
 
         String api_key = "NCSZMN9NMV9PSDYK";
@@ -54,6 +74,8 @@ public class UserService {
         }
 
     }
+
+
     //아이디 중복검사
 
     public boolean checkId(String userId) {
@@ -91,4 +113,5 @@ public class UserService {
         }
         return checkEmail;
     }
+
 }
