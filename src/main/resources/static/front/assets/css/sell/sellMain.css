@@ -1267,3 +1267,7 @@ input[name=sellProductDescription] {
     height: 3119px;
 }
 
+/* swal창 */
+.swal-footer {
+    text-align: center;
+}

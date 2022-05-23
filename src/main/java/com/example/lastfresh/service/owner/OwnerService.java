@@ -2,6 +2,7 @@ package com.example.lastfresh.service.owner;
 
 import com.example.lastfresh.domain.dao.owner.OwnerProductDAO;
 import com.example.lastfresh.domain.dao.product.ProductDAO;
+import com.example.lastfresh.domain.dto.BillSoldProductDTO;
 import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.dto.ProductListDTO;
 import com.example.lastfresh.domain.repository.ProductRepository;
@@ -103,6 +104,16 @@ public class OwnerService {
         productVO1.setSellProductImageUploadPath(productVO.getSellProductImageUploadPath());
         productVO1.setSellProductImageUuid(productVO.getSellProductImageUuid());
 //        productRepository.save(productVO1);
+    }
+
+    /*로그인한 판매자의 판매 완료 목록 가져오기*/
+    public List<BillSoldProductDTO> getListSold(HashMap<String,Object> map){
+        return ownerProductDAO.getListSold(map);
+    }
+
+    /*로그인한 판매자의 판매 완료 상품 총 개수*/
+    public int getTotalSold(HashMap<String,Object> map) {
+        return ownerProductDAO.getTotalSold(map);
     }
 
     //    public PageDTO<ProductVO> getProductVOs(Pageable pageable, Long userNum) {

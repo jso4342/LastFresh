@@ -1,15 +1,11 @@
 package com.example.lastfresh.domain.dao.owner;
 
 
+import com.example.lastfresh.domain.dto.BillSoldProductDTO;
 import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.dto.ProductListDTO;
-import com.example.lastfresh.domain.vo.Criteria;
-import com.example.lastfresh.domain.vo.ProductVO;
-import com.example.lastfresh.domain.vo.ProductVO2;
 import com.example.lastfresh.mapper.owner.OwnerProductMapper;
-import com.example.lastfresh.mapper.product.ProductMapper;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
@@ -26,18 +22,20 @@ public class OwnerProductDAO {
 //    public int getTotal(Criteria criteria) {return ownerproductMapper.getTotal(criteria);}
     public int getTotal(HashMap<String,Object> map) {return ownerproductMapper.getTotal(map);}
 
+    /*상품 삭제*/
     public boolean deleteProductMenu(Long sellProductNum) {return ownerproductMapper.deleteProductMenu(sellProductNum) == 1;}
-
+    
+    /*상품 하나의 총 정보*/
     public ProductDTO getListAll(Long sellProductNum) {return ownerproductMapper.getListAll(sellProductNum);}
+    
+    /*판매된 상품 총 목록*/
+    public List<BillSoldProductDTO> getListSold(HashMap<String, Object> map) {return ownerproductMapper.getListSold(map);}
+    
+    /*판맨된 상품 총 개수*/
+    public int getTotalSold(HashMap<String,Object> map) {return ownerproductMapper.getTotalSold(map);}
 
+    /* 마감기한 지난 상품 자동 업데이트*/
     public void updateExpireProduct() {ownerproductMapper.updateExpireProduct();}
-//    public void register( ) {}
-//    public boolean modify( ) {}
-//    public boolean remove( ) {}
-//    public  get( ) {}
-//    public int getTotal( ) {}
-//    public void updateReplyCount() {}
-
 }
 
 

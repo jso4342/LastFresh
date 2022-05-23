@@ -26,6 +26,12 @@ $pageDiv.change(function () {
 $("a.changePage").click(function(e){
     e.preventDefault();
     $(pageForm).find("input[name='pageNum']").val($(this).attr("href"));
+    let $pageNum = $('.page-pageNum').val();
+    console.log($pageNum);
+    let $amount = $('.page-amount').val();
+    console.log($amount);
+    console.log(($pageNum - 1) * $amount);
+    $('.page-limit').val(($pageNum - 1) * $amount);
     $(pageForm).submit();
 });
 

@@ -40,7 +40,30 @@ public class SellController {
     public void pos(){}
 
     @GetMapping("/sellMain")
-    public void sellMain(){}
+    public void sellMain(Criteria criteria, Model model){
+        log.info("sellMain실행");
+        log.info("form Criteria : " + criteria.toString());
+
+        /*세션으로 받아올 값*/
+        Long userNum = 6L;
+
+        if(criteria.getPageNum() == 0) {
+            criteria = new Criteria(1, 10, 0);
+        }
+
+        log.info("criteria :" + criteria.toString());
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("userNum", userNum);
+        map.put("criteria", criteria);
+
+
+        model.addAttribute("list", ownerService.getListSold(map));
+        PageDTO pageDTO = new PageDTO(criteria, ownerService.getTotalSold(map));
+        model.addAttribute("pageDTO", pageDTO);
+        log.info("pageDto.criteria: " + pageDTO.getCriteria());
+        log.info("pageDto.criteria: " + pageDTO.toString());
+    }
 
 //    @GetMapping("/sellMenuList")
 //    public void sellMenuList(Pageable pageable, Model model){
@@ -50,28 +73,30 @@ public class SellController {
 
     @GetMapping("/sellMenuList")
     public void sellMenuList(Criteria criteria,  Model model){
+//        log.info("sellMenuList실행");
+//        log.info("form Criteria : " + criteria.toString());
+
         /*세션으로 받아올 값*/
         Long userNum = 6L;
-        log.info("----------------------11111-----------------------------");
-        log.info("limit : " + criteria.getLimit());
-        log.info("pageNum :" + criteria.getPageNum());
-//        log.info("userNum : " + criteria.getUserNum());
-        log.info("userNum : " + criteria.getAmount());
-        log.info("---------------------------------------------------");
 
-        criteria = new Criteria(criteria.getPageNum(), criteria.getAmount());
+        if(criteria.getPageNum() == 0) {
+            criteria = new Criteria(1, 10, 0);
+        }
+
+        log.info("criteria :" + criteria.toString());
+
+//        criteria = new Criteria(criteria.getPageNum(), criteria.getAmount());
 //        criteria.setUserNum(userNum);
 
         HashMap<String, Object> map = new HashMap<>();
         map.put("userNum", userNum);
         map.put("criteria", criteria);
+
+
         model.addAttribute("list", ownerService.getList(map));
-        log.info("---------------------------------------------------");
-        log.info("----------------------" + criteria.getLimit());
-        log.info("----------------------" + criteria.getPageNum());
-//        log.info("----------------------" + criteria.getUserNum());
-        log.info("---------------------------------------------------");
-        model.addAttribute("pageDTO", new PageDTO(criteria, ownerService.getTotal(map)));
+        PageDTO pageDTO = new PageDTO(criteria, ownerService.getTotal(map));
+        model.addAttribute("pageDTO", pageDTO);
+        log.info("pageDto.criteria: " + pageDTO.getCriteria());
     }
 
     @GetMapping("/sellMenuRegister")
@@ -89,7 +114,7 @@ public class SellController {
 //        session.setAttribute();
 //        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
 
-        ownerService.register(productVO, 3L);
+        ownerService.register(productVO, 6L);
 
         return new RedirectView("sellMenuList");
     }
@@ -110,6 +135,7 @@ public class SellController {
         rttr.addFlashAttribute("result", result);
         rttr.addAttribute("pageNum", criteria.getPageNum());
         rttr.addAttribute("amount", criteria.getAmount());
+        rttr.addAttribute("limit", criteria.getLimit());
 
         return new RedirectView("sellMenuList");
     }
@@ -123,6 +149,7 @@ public class SellController {
 
         rttr.addAttribute("pageNum", criteria.getPageNum());
         rttr.addAttribute("amount", criteria.getAmount());
+        rttr.addAttribute("limit", criteria.getLimit());
         return new RedirectView("sellMenuList");
     }
 
@@ -149,6 +176,7 @@ public class SellController {
 //        ownerService.deleteProductMenu(sellProductNum);
 //        return new RedirectView("sellMenuList");
 //    }
+
 
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
