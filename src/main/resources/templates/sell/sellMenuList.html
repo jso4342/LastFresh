@@ -173,20 +173,28 @@
                         만약 조건식이 참이 아닐 때를 처리해야 한다면 th:unless를 사용하여 if의 조건식과 동일하게 설정해준다.
                     -->
                     <!--이전 버튼-->
-                    <a class="changePage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
+                    <a class="changePage firstPage" th:if="*{startPage != 1}" th:href="1"><code><<</code></a>
+                    <a class="changePage previousPage" th:if="*{prev}" th:href="*{startPage - 1}"><code>&lt;</code></a>
                     <th:block th:each="num:${#numbers.sequence(pageDTO.getStartPage(), pageDTO.getEndPage())}">
-                            <code th:if="${pageDTO.criteria.getPageNum() == num}" th:text="${num}"></code>
+                            <code class="selectedPage" th:if="${pageDTO.criteria.getPageNum() == num}" th:text="${num}"></code>
                         <a class="changePage" th:unless="${pageDTO.criteria.getPageNum() == num}" th:href="${num}">
                             <code th:text="${num}"></code>
                         </a>
                     </th:block>
                     <!--다음 버튼-->
-                    <a class="changePage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>
+                    <a class="changePage nextPage" th:if="*{next}" th:href="*{endPage + 1}"><code>&gt;</code></a>
+                    <a class="changePage lastPage" th:if="*{endPage != realEnd}" th:href="*{realEnd}"><code>>></code></a>
                 </div>
+
+
                 <div class="small-width" style="text-align: center;">
-                    <a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}"><code>&lt;</code></a>
+                    <a class="changePage" th:if="*{criteria.pageNum > 1}" th:href="*{criteria.pageNum - 1}">
+                        <img src="https://cdn.discordapp.com/attachments/969471931575320587/978341135581843466/unknown.png" alt="" style="transform: rotate(180deg);">
+                    </a>
                     <code th:text="*{criteria.pageNum}"></code>
-                    <a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}"><code>&gt;</code></a>
+                    <a class="changePage" th:if="*{criteria.pageNum < realEnd}" th:href="*{criteria.pageNum + 1}">
+                        <img src="https://cdn.discordapp.com/attachments/969471931575320587/978341135581843466/unknown.png" alt="">
+                    </a>
                 </div>
                 <!--th:object는 부모 태그의 object에서 먼저 mapping을 해준다. 따라서 *가 아닌 $로 사용한다.-->
                 <form action="/sell/sellMenuList" th:object="${pageDTO.criteria}" name="pageForm">

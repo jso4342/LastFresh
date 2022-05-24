@@ -69,3 +69,67 @@ $.each($sideBars, function (i, e) {
         $sideBars[index].classList.add("sellClicked");
     });
 });
+
+let page = 1;
+let amount = 4;
+let billStatus = 0;
+
+listAjax(page, amount, billStatus);
+
+function listAjax(page, amount, billStatus) {
+    let pageNum = page || 1;
+    let limit = (page - 1) * amount;
+    console.log("들어옴1");
+
+    $.ajax({
+        type: "GET",
+        url: "/pos/list/" + billStatus + "/" + pageNum + "/" + amount + "/" + limit,
+        success: function (list) {
+            console.log("들어옴3");
+
+            let str = "";
+            let $orderList = $('.order-content');
+
+            if(list == null || list.length == 0){
+                $orderList.html("<p>주문이 없습니다.</p>");
+                return;
+            }
+
+            str += '<div class="order-list-wrapper">';
+            str += '<div class="order-list">';
+            str += '<div class="order-info1">';
+            str += '<div class="order-time">';
+            str += '18:41';
+            str += '</div>';
+            str += '<div class="order-method pickUp">';
+            str += '포장';
+            str += '</div>';
+            str += '</div>';
+            str += '<div class="order-info2">';
+            str += '<div class="order-menu">';
+            str += '<p class="order-price">31,800원</p>';
+            str += '<p class="order-menuInfo">김치찌개 2개</p>';
+            str += '</div>';
+            str += '<br>';
+            str += '<div class="order-address">';
+            str += '서울 송파구 방이동 999-9';
+            str += '</div>';
+            str += '<div class="order-phoneNum">';
+            str += '010-5999-9999';
+            str += '</div>';
+            str += '</div>';
+            str += '<div class="order-accept">';
+            str += '<button class="order-reception-btn">접수하기</button>';
+            str += '<button class="order-cancel-btn">취소</button>';
+            str += '</div>';
+            str += '</div>';
+            str += '<hr>';
+            str += '</div>';
+
+            $orderList.html(str);
+        },
+        error: function (error,status,msg) {
+            alert("상태코드 " + status + "에러메시지" + msg)
+        }
+    });
+}

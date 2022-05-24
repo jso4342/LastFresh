@@ -17,6 +17,11 @@ public class PosDTO {
     private Long billCookingTime;
     private String billOrderDate;
     private String billOrderDateTime;
+    private String billDeliveryAddress;
+    private String billDeliveryAddressDetail;
+    private String billDeliveryAddressPostNum;
+    private String sellProductDeliveryMethod;
+    private String sellProductShippingMethod;
     private String sellProductName;
     private String userPhone;
     private Long sellUserNum;

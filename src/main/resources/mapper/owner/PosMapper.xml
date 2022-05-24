@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.lastfresh.mapper.owner.SellMapper">
+<mapper namespace="com.example.lastfresh.mapper.owner.PosMapper">
     <select id="getPreparingList" resultType="posDTO">
         select tbp.BILL_PRODUCT_LIST_NUM, tbp.SELL_PRODUCT_NUM, tbp.BILL_ORDER_NUM,
         tbp.USER_NUM as USER_NUM, tbp.BILL_PRODUCT_QUANTITY, tbp.BILL_PRODUCT_PRICE,
@@ -8,7 +8,7 @@
         tsp.USER_NUM as SELL_USER_NUM, DATE_FORMAT(tb.BILL_ORDER_DATE,'%Y-%m-%d') as Bill_ORDER_DATE,
         DATE_FORMAT(tb.BILL_ORDER_DATE,'%H:%i') as Bill_ORDER_DATE_TIME, tb.BILL_DELIVERY_ADDRESS,
         tb.BILL_DELIVERY_ADDRESS_DETAIL, tb.BILL_DELIVERY_ADDRESS_POST_NUM, tsp.SELL_PRODUCT_NAME,
-        tu.USER_PHONE
+        tu.USER_PHONE, tsp.SELL_PRODUCT_DELIVERY_METHOD, tsp.SELL_PRODUCT_SHIPPING_METHOD
         from tbl_bills_product tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
@@ -16,7 +16,16 @@
         on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         left join tbl_user tu
         on tb.USER_NUM = tu.USER_NUM
+        where tbp.BILL_STATUS = #{billStatus} and tsp.USER_NUM = #{userNum}
+        ORDER BY 1 DESC limit #{criteria.limit}, 4
+    </select>
+    
+    <select id="getTotalPreparing" resultType="_int">
+        select count(tbp.BILL_PRODUCT_LIST_NUM)
+        from tbl_bills_product tbp
+        left join tbl_sell_product tsp
+        on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         where tbp.BILL_STATUS = 0 and tsp.USER_NUM = #{userNum}
-        ORDER BY 1 DESC limit #{criteria.limit}, 4;
+        ORDER BY 1 DESC limit #{criteria.limit}, 4
     </select>
 </mapper>

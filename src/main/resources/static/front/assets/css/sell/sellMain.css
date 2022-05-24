@@ -59,6 +59,7 @@
     .order-list-wrapper-media {
         display: flex !important;
         flex-direction: column;
+        margin-bottom: 70px;
     }
 
     .order-Num {
@@ -175,9 +176,54 @@
         border-bottom: 2px solid #333;
     }
 
+
+    /*페이징 처리*/
     .small-width {
         display: block !important;
+        height: 122px;
+        font-size: 54px;
     }
+
+    .small-width code {
+        display: inline-block;
+        width: 84px;
+        height: 84px;
+        vertical-align: top;
+        font-weight: 700;
+        font-size: 54px;
+        color: #DA291C;
+        letter-spacing: 0px;
+        line-height: 67px;
+        margin: -1px;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    .small-width .changePage {
+        display: inline-block;
+        width: 84px;
+        height: 84px;
+        vertical-align: top;
+        font-weight: 700;
+        font-size: 14px;
+        color: #DA291C;
+        letter-spacing: 0px;
+        line-height: 123px;
+        margin: -2px;
+        padding: 0;
+        box-sizing: border-box;
+        border: none;
+        background-color: white;
+    }
+
+    .small-width .changePage img {
+        width: 60px;
+    }
+
+    .big-width {
+        display: none;
+    }
+
 
 }
 
@@ -290,14 +336,27 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     background-position: 50% 50%;
     background-size: cover;
 }
+
 .section_orderview .tbl_type1 .info {
     padding: 20px 0;
 }
+
 .section_orderview .tbl_type1 .name .link {
     font-weight: 700;
     font-size: 16px;
     color: #333;
     line-height: 24px;
+}
+
+.customer-info {
+    font-weight: 700;
+    font-size: 16px;
+    color: #333;
+    line-height: 24px;
+}
+
+.customer-info p {
+    padding: 5px 0;
 }
 
 .name {
@@ -547,7 +606,7 @@ ol, ul {
 }
 
 #snb .list_menu li.on a, #snb .list_menu li a:hover {
-    background: #fafafa url(https://res.kurly.com/pc/ico/2008/ico_arrow_6x11_on.svg) no-repeat 174px 52%;
+    background: #fafafa url(https://cdn.discordapp.com/attachments/969471931575320587/972087200621690880/590706d067c9b9b2.png) no-repeat 174px 52%;
     background-size: 6px 11px;
     font-weight: 700;
     color: #DA291C;
@@ -728,7 +787,7 @@ div.shipping {
 }
 
 .menuClicked {
-    background: #fafafa url(https://res.kurly.com/pc/ico/2008/ico_arrow_6x11_on.svg) no-repeat 174px 52% !important;
+    background: #fafafa url(https://cdn.discordapp.com/attachments/969471931575320587/972087200621690880/590706d067c9b9b2.png) no-repeat 174px 52% !important;
     background-size: 6px 11px !important;
     font-weight: 700 !important;
     color: #DA291C !important;
@@ -1183,6 +1242,55 @@ div.shipping {
     width: 137px;
 }
 
+.sell-main-address {
+    height: 124px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.sell-main-address-wrapper {
+    padding: 36px;
+}
+
+.sell-main-address-wrapper span {
+    width: 161px;
+    display: inline-block;
+}
+
+.sell-main-address select {
+    height: 34px;
+    padding: 4px 10px;
+    font-size: 15px;
+    line-height: 24px;
+    background-color: white;
+    background-image: none;
+    border: 1px solid #a2a2a2;
+    border-radius: 0;
+    box-shadow: none!important;
+    width: 237px;
+}
+
+.sell-main-address-detail {
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.sell-main-address-detail input {
+    height: 34px;
+    padding: 4px 10px;
+    font-size: 15px;
+    line-height: 24px;
+    background-color: #f8f9fd;
+    background-image: none;
+    border: 1px solid #a2a2a2;
+    border-radius: 0;
+    box-shadow: none!important;
+    width: 237px;
+}
+
 
 .bottomBar {
     padding: 10px 89px;
@@ -1217,7 +1325,7 @@ div.shipping {
     cursor: pointer;
 }
 
-.input-group input:focus, #sellProductStock:focus, #sellProductDescription:focus {
+.input-group input:focus, #sellProductStock:focus, #sellProductDescription:focus{
     background-color: #ffffff;
 }
 
@@ -1270,4 +1378,62 @@ input[name=sellProductDescription] {
 /* swal창 */
 .swal-footer {
     text-align: center;
+}
+
+/* 페이징네이션*/
+.changePage, .selectedPage{
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
+    letter-spacing: 0px;
+    line-height: 34px;
+    margin: -2px;
+    padding: 0;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.selectedPage {
+    color: #DA291C;
+}
+
+.selectedPage, .changePage:hover {
+    background-color: #ffffffe0;
+}
+
+.nextPage {
+    background-color: #ffffffe0;
+    background-image: url("https://res.kurly.com/pc/etc/old/images/common/icon-pagination-next.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+}
+
+.lastPage {
+    background-color: #ffffffe0;
+    background-image: url("https://res.kurly.com/pc/etc/old/images/common/icon-pagination-last.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+}
+
+.previousPage {
+    background-image: url("https://res.kurly.com/pc/etc/old/images/common/icon-pagination-prev.png");
+    background-color: #ffffffe0;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
+}
+
+.firstPage {
+    background-image: url("https://res.kurly.com/pc/etc/old/images/common/icon-pagination-first.png");
+    background-color: #ffffffe0;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    text-indent: -9999px;
 }
