@@ -10,8 +10,8 @@ import java.util.List;
 @Mapper
 public interface PosMapper {
     /*Pos 준비중 주문 리스트 조회*/
-    public List<PosDTO> getPreparingList(HashMap<String, Object> map);
+    List<PosDTO> getPreparingList(HashMap<String, Object> map);
 
     /*Pos 준비중 주문 총 개수*/
-    public int getTotalPreparing(HashMap<String,Object> map);
+    int getTotalPreparing(HashMap<String,Object> map);
 }

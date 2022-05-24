@@ -825,6 +825,7 @@ function deliverySum() {
 let $pageDiv = $('.page_section');
 
 $pageDiv.change(function () {
+    console.log('길이조절');
     let height = $('.page_section').height() + 100;
 
     $('.sellMenuRegister').css("height", height);

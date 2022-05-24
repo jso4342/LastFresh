@@ -1381,7 +1381,7 @@ input[name=sellProductDescription] {
 }
 
 /* 페이징네이션*/
-.changePage, .selectedPage {
+.changePage, .selectedPage{
     display: inline-block;
     width: 34px;
     height: 34px;
@@ -1389,13 +1389,17 @@ input[name=sellProductDescription] {
     vertical-align: top;
     font-weight: 700;
     font-size: 14px;
-    color: #DA291C;
+    color: #000000;
     letter-spacing: 0px;
     line-height: 34px;
     margin: -2px;
     padding: 0;
     background-color: #f7f7f7;
     box-sizing: border-box;
+}
+
+.selectedPage {
+    color: #DA291C;
 }
 
 .selectedPage, .changePage:hover {
