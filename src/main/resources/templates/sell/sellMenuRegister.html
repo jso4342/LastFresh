@@ -278,15 +278,47 @@
                 <div class="menu-register-title">
                     주소
                 </div>
-
-                <div class="menu-register-info sellAddress">
-                    <div class="input-group sell-address1" style="display: flex;">
-                        <input type="text" name="sellProductAddressPostNum" id="zipcode" placeholder="우편번호">
-                        <input type="button" onclick="find()" value="우편번호 찾기" style="cursor: pointer">
+                <div class="sell-main-address-wrapper">
+                    <div class="input-group sell-main-address">
+                        <div>
+                            <span>
+                                시/도 주소
+                            </span>
+                            <select id="sellProductDeliveryAddress4_1" name="sellProductDeliveryAddress4_1" class="sido4 address">
+                                <option value="">'시/도'를 선택해주세요</option>
+                            </select>
+                        </div>
+                        <div>
+                            <span>
+                                시/군/구 주소
+                            </span>
+                            <select name="sellProductDeliveryAddress4_2" class="sigugun4 address">
+                                <option value="">'시/군/구'를 선택해주세요</option>
+                            </select>
+                        </div>
+                        <div>
+                            <span>
+                                동 주소
+                            </span>
+                            <select name="sellProductDeliveryAddress4_3" class="dong4 address">
+                                <option value="">'동'을 선택해주세요</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="sellProductAddress">
                     </div>
-                    <div class="input-group sell-address2">
-                        <input type="text" name="sellProductAddress" id="address" placeholder="주소">
-                        <input type="text" name="sellProductAddressDetail" id="addressDetail" placeholder="상세주소" style="margin-top: 1px">
+                    <div class="sell-main-address-detail">
+                        <div class="input-group">
+                            <span>
+                                상세 주소
+                            </span>
+                            <input type="text" name="sellProductAddressDetail" placeholder="상세 주소를 입력해주세요">
+                        </div>
+                        <div class="input-group">
+                            <span>
+                                우편 번호
+                            </span>
+                            <input type="text" name="sellProductAddressPostNum" placeholder="우편 번호를 입력해주세요">
+                        </div>
                     </div>
                 </div>
             </div>

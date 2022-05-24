@@ -19,6 +19,10 @@ public class BillSoldProductDTO {
     private String billOrderDateTime;
     private String sellProductThumbnail;
     private String sellProductImageUploadPath;
+    private String billDeliveryAddress;
+    private String billDeliveryAddressDetail;
+    private String billDeliveryAddressPostNum;
+    private String userPhone;
     private String sellProductName;
     private Long sellUserNum;
 }

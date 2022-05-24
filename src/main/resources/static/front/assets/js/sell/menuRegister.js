@@ -232,6 +232,58 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    //sido option 추가
+    $.each(hangjungdong.sido, function(idx, code){
+        //append를 이용하여 option 하위에 붙여넣음
+        $('.sido4').append(fn_option(code.sido, code.codeNm));
+    });
+
+    //sido 변경시 시군구 option 추가
+    $('.sido4').change(function(){
+        $('.sigugun4').show();
+        $('.sigugun4').empty();
+        $('.sigugun4').append(fn_option('','선택')); //
+        $.each(hangjungdong.sigugun, function(idx, code){
+            if($('.sido4 > option:selected').val() == code.sido)
+                $('.sigugun4').append(fn_option(code.sigugun, code.codeNm));
+        });
+
+        //세종특별자치시 예외처리
+        //옵션값을 읽어 비교
+        if($('.sido4 option:selected').val() == '36'){
+            $('.sigugun4').hide();
+            //index를 이용해서 selected 속성(attr)추가
+            //기본 선택 옵션이 최상위로 index 0을 가짐
+            $('.sigugun4 option:eq(1)').attr('selected', 'selected');
+            //trigger를 이용해 change 실행
+            $('.sigugun4').trigger('change');
+        }
+    });
+
+    //시군구 변경시 행정동 옵션추가
+    $('.sigugun4').change(function(){
+        //option 제거
+        $('.dong4').empty();
+        $.each(hangjungdong.dong, function(idx, code){
+            if($('.sido4 > option:selected').val() == code.sido && $('.sigugun4 > option:selected').val() == code.sigugun)
+                $('.dong4').append(fn_option(code.dong, code.codeNm));
+        });
+        //option의 맨앞에 추가
+        $('.dong4').prepend(fn_option('','선택'));
+        //option중 선택을 기본으로 선택
+        $('.dong4 option:eq("")').attr('selected', 'selected');
+
+    });
+
+    $('.dong4').change(function(){
+        var sido = $('.sido4 option:selected').val();
+        var sigugun = $('.sigugun4 option:selected').val();
+        var dong = $('.dong4 option:selected').val();
+        var dongCode = sido + sigugun + dong + '00';
+    });
+});
+
 function fn_option(code, name){
     return '<option value="' + code +'">' + name +'</option>';
 }
@@ -242,31 +294,86 @@ var width = 500; //팝업의 너비
 var height = 600; //팝업의 높이
 
 // 주소 찾기(Daum API)
-function find() {
-    new daum.Postcode({
-        width: width, //생성자에 크기 값을 명시적으로 지정
-        height: height,
-
-        oncomplete: function (data) {
-            var addr = ''; // 주소 변수
-            if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
-                addr = data.roadAddress;
-            } else { // 사용자가 지번 주소를 선택했을 경우(J)
-                addr = data.jibunAddress;
-            }
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            document.getElementById('zipcode').value = data.zonecode;
-            document.getElementById("address").value = addr;
-            // 커서를 상세주소 필드로 이동한다.
-            document.getElementById("addressDetail").focus();
-        }
-    }).open({
-        left: (window.screen.width / 2) - (width / 2),
-        top: (window.screen.height / 2) - (height / 2)
-    });
-
-}
+// function find() {
+//     new daum.Postcode({
+//         width: width, //생성자에 크기 값을 명시적으로 지정
+//         height: height,
+//
+//         oncomplete: function (data) {
+//             var addr = ''; // 주소 변수
+//             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+//                 addr = data.jibunAddress;
+//             } else { // 사용자가 지번 주소를 선택했을 경우(J)
+//                 addr = data.jibunAddress;
+//             }
+//
+//             // 우편번호와 주소 정보를 해당 필드에 넣는다.
+//             document.getElementById('zipcode').value = data.zonecode;
+//             document.getElementById("address").value = addr;
+//             // 커서를 상세주소 필드로 이동한다.
+//             document.getElementById("addressDetail").focus();
+//         }
+//     }).open({
+//         left: (window.screen.width / 2) - (width / 2),
+//         top: (window.screen.height / 2) - (height / 2)
+//     });
+//
+// }
+// function find() {
+//     new daum.Postcode({
+//         oncomplete: function(data) {
+//             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+//
+//             // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+//             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+//             var roadAddr = data.roadAddress; // 도로명 주소 변수
+//             var extraRoadAddr = ''; // 참고 항목 변수
+//
+//             // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+//             // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+//             if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+//                 extraRoadAddr += data.bname;
+//             }
+//             // 건물명이 있고, 공동주택일 경우 추가한다.
+//             if(data.buildingName !== '' && data.apartment === 'Y'){
+//                 extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+//             }
+//             // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+//             if(extraRoadAddr !== ''){
+//                 extraRoadAddr = ' (' + extraRoadAddr + ')';
+//             }
+//
+//             // 우편번호와 주소 정보를 해당 필드에 넣는다.
+//             document.getElementById('zipcode').value = data.zonecode;
+//             // document.getElementById("sample4_roadAddress").value = roadAddr;
+//             document.getElementById("address").value = data.jibunAddress;
+//
+//             // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
+//             // if(roadAddr !== ''){
+//             //     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+//             // } else {
+//             //     document.getElementById("sample4_extraAddress").value = '';
+//             // }
+//
+//             var guideTextBox = document.getElementById("guide");
+//             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
+//             if(data.autoRoadAddress) {
+//                 var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+//                 // guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+//                 // guideTextBox.style.display = 'block';
+//
+//             } else if(data.autoJibunAddress) {
+//                 var expJibunAddr = data.autoJibunAddress;
+//                 document.getElementById("address").value = expJibunAddr;
+//                 // guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+//                 // guideTextBox.style.display = 'block';
+//             } else {
+//                 // guideTextBox.innerHTML = '';
+//                 // guideTextBox.style.display = 'none';
+//             }
+//         }
+//     }).open();
+// }
 
 /*상품명 글자 제한*/
 let $productNameInput = $('input[name=sellProductName]');
@@ -391,10 +498,7 @@ $(".detailImg").change(function(e){
 });
 
 
-
-
 /* 파일 첨부 삭제*/
-
 let defaultFileImg = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAPFBMVEX///8AAACTk5Ph4eEvLy83Nzeenp4rKyuampqXl5eKiore3t7q6upPT08bGxsgICCnp6dVVVWCgoLKyspE041KAAABLklEQVR4nO3YS04CURRFUUShwB9+5j9XY8dEK7H1kscu1hrAzdndu9sBAAAAAAAAALfl8e6vp9mTBtuvCu9nTxpMYZ/CPoV9CvsU9insU9insE9hn8I+hX0K+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9insU9insE9h3/YLT6vC59mTfrwsDwO8rgqHnL28DSg8rLZdk6NChQqnU6hQ4XwKFSqcT6HCb8vsiH+dBhQe9wOc31fbPs4jDn8OKBzjvCq8ni/GGNv/RCnsU9insE9hn8I+hX0K+xT2KexT2KewT2Gfwj6FfQr7FPYp7FPYp7BPYZ/CPoV9CvsU9insU9insE9hn8I+hX0K+xT2KezbfuFxOfx22VohAAAAAAAAbMEXTtsa+A/Y6sQAAAAASUVORK5CYII=";
 
 function cancelFile(fileName){
@@ -614,20 +718,26 @@ function menuRegister() {
         return;
     }
 
-    let checked1 = $('#sellProductPickup-false:checked');
-    let checked2 = $('#sellProductDelivery-false:checked');
-    let checked3 = $('#sellProductShipping-false:checked');
+    let checked1 = $('#sellProductPickup-false:checked').is(':checked');
+    let checked2 = $('#sellProductDelivery-false:checked').is(':checked');
+    let checked3 = $('#sellProductShipping-false:checked').is(':checked');
 
     if (checked1 && checked2 && checked3) {
         swal("픽업 또는 배달 또는 배송 중 한가지를 선택 해주세요")
         return;
     }
 
-    if(!validateInput("sellProductAddressPostNum", "주소를 입력 해주세요")) {
-        return;
-    }
+    let $delivery4_1 = $('select[name=sellProductDeliveryAddress4_1] option:checked');
+    let $delivery4_2 = $('select[name=sellProductDeliveryAddress4_2] option:checked');
+    let $delivery4_3 = $('select[name=sellProductDeliveryAddress4_3] option:checked');
 
-    if(!validateInput("sellProductAddress", "주소를 입력 해주세요")) {
+    let str4 = $delivery4_1.text() + " " + $delivery4_2.text() + " " + $delivery4_3.text();
+    let unMainAddress = "'시/도'를 선택해주세요 '시/군/구'를 선택해주세요 '동'을 선택해주세요";
+    let checkStr4 = str4 == unMainAddress;
+    console.log(checkStr4);
+    console.log(str4);
+    if (checkStr4) {
+        swal("주소를 입력해주세요");
         return;
     }
 
@@ -690,17 +800,24 @@ function deliverySum() {
     let $delivery3_2 = $('select[name=sellProductDeliveryAddress3_2] option:checked');
     let $delivery3_3 = $('select[name=sellProductDeliveryAddress3_3] option:checked');
 
+    let $delivery4_1 = $('select[name=sellProductDeliveryAddress4_1] option:checked');
+    let $delivery4_2 = $('select[name=sellProductDeliveryAddress4_2] option:checked');
+    let $delivery4_3 = $('select[name=sellProductDeliveryAddress4_3] option:checked');
+
     let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();  
     let str2 = $delivery2_1.text() + " " + $delivery2_2.text() + " " + $delivery2_3.text();
     let str3 = $delivery3_1.text() + " " + $delivery3_2.text() + " " + $delivery3_3.text();
+    let str4 = $delivery4_1.text() + " " + $delivery4_2.text() + " " + $delivery4_3.text();
 
     let delivery1 = $('input[name=sellProductDeliveryAddress1]');
     let delivery2 = $('input[name=sellProductDeliveryAddress2]');
     let delivery3 = $('input[name=sellProductDeliveryAddress3]');
+    let delivery4 = $('input[name=sellProductAddress]');
 
     delivery1.val(str1);
     delivery2.val(str2);
     delivery3.val(str3);
+    delivery4.val(str4);
 }
 
 

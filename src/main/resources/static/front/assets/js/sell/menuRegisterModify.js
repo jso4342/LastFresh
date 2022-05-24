@@ -231,6 +231,58 @@ $(document).ready(function(){
     });
 });
 
+$(document).ready(function(){
+    //sido option 추가
+    $.each(hangjungdong.sido, function(idx, code){
+        //append를 이용하여 option 하위에 붙여넣음
+        $('.sido4').append(fn_option(code.sido, code.codeNm));
+    });
+
+    //sido 변경시 시군구 option 추가
+    $('.sido4').change(function(){
+        $('.sigugun4').show();
+        $('.sigugun4').empty();
+        $('.sigugun4').append(fn_option('','선택')); //
+        $.each(hangjungdong.sigugun, function(idx, code){
+            if($('.sido4 > option:selected').val() == code.sido)
+                $('.sigugun4').append(fn_option(code.sigugun, code.codeNm));
+        });
+
+        //세종특별자치시 예외처리
+        //옵션값을 읽어 비교
+        if($('.sido4 option:selected').val() == '36'){
+            $('.sigugun4').hide();
+            //index를 이용해서 selected 속성(attr)추가
+            //기본 선택 옵션이 최상위로 index 0을 가짐
+            $('.sigugun4 option:eq(1)').attr('selected', 'selected');
+            //trigger를 이용해 change 실행
+            $('.sigugun4').trigger('change');
+        }
+    });
+
+    //시군구 변경시 행정동 옵션추가
+    $('.sigugun4').change(function(){
+        //option 제거
+        $('.dong4').empty();
+        $.each(hangjungdong.dong, function(idx, code){
+            if($('.sido4 > option:selected').val() == code.sido && $('.sigugun4 > option:selected').val() == code.sigugun)
+                $('.dong4').append(fn_option(code.dong, code.codeNm));
+        });
+        //option의 맨앞에 추가
+        $('.dong4').prepend(fn_option('','선택'));
+        //option중 선택을 기본으로 선택
+        $('.dong4 option:eq("")').attr('selected', 'selected');
+
+    });
+
+    $('.dong4').change(function(){
+        var sido = $('.sido4 option:selected').val();
+        var sigugun = $('.sigugun4 option:selected').val();
+        var dong = $('.dong4 option:selected').val();
+        var dongCode = sido + sigugun + dong + '00';
+    });
+});
+
 function fn_option(code, name){
     return '<option value="' + code +'">' + name +'</option>';
 }
@@ -643,20 +695,29 @@ function menuModify() {
         return;
     }
 
-    let checked1 = $('#sellProductPickup-false:checked');
-    let checked2 = $('#sellProductDelivery-false:checked');
-    let checked3 = $('#sellProductShipping-false:checked');
+    let checked1 = $('#sellProductPickup-false:checked').is(':checked');
+    let checked2 = $('#sellProductDelivery-false:checked').is(':checked');
+    let checked3 = $('#sellProductShipping-false:checked').is(':checked');
+
+    console.log(checked1);
+    console.log(checked2);
+    console.log(checked3);
 
     if (checked1 && checked2 && checked3) {
         swal("픽업 또는 배달 또는 배송 중 한가지를 선택 해주세요")
         return;
     }
 
-    if(!validateInput("sellProductAddressPostNum", "주소를 입력 해주세요")) {
-        return;
-    }
+    let $delivery4_1 = $('select[name=sellProductDeliveryAddress4_1] option:checked');
+    let $delivery4_2 = $('select[name=sellProductDeliveryAddress4_2] option:checked');
+    let $delivery4_3 = $('select[name=sellProductDeliveryAddress4_3] option:checked');
 
-    if(!validateInput("sellProductAddress", "주소를 입력 해주세요")) {
+    let str4 = $delivery4_1.text() + " " + $delivery4_2.text() + " " + $delivery4_3.text();
+    let unMainAddress = "'시/도'를 선택해주세요 '시/군/구'를 선택해주세요 '동'을 선택해주세요";
+    let checkStr4 = str4 == unMainAddress;
+
+    if (checkStr4) {
+        swal("주소를 입력해주세요");
         return;
     }
 
@@ -719,20 +780,24 @@ function deliverySum() {
     let $delivery3_2 = $('select[name=sellProductDeliveryAddress3_2] option:checked');
     let $delivery3_3 = $('select[name=sellProductDeliveryAddress3_3] option:checked');
 
-    let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();  
+    let $delivery4_1 = $('select[name=sellProductDeliveryAddress4_1] option:checked');
+    let $delivery4_2 = $('select[name=sellProductDeliveryAddress4_2] option:checked');
+    let $delivery4_3 = $('select[name=sellProductDeliveryAddress4_3] option:checked');
+
+    let str1 = $delivery1_1.text() + " " + $delivery1_2.text() + " " + $delivery1_3.text();
     let str2 = $delivery2_1.text() + " " + $delivery2_2.text() + " " + $delivery2_3.text();
     let str3 = $delivery3_1.text() + " " + $delivery3_2.text() + " " + $delivery3_3.text();
+    let str4 = $delivery4_1.text() + " " + $delivery4_2.text() + " " + $delivery4_3.text();
 
     let delivery1 = $('input[name=sellProductDeliveryAddress1]');
     let delivery2 = $('input[name=sellProductDeliveryAddress2]');
     let delivery3 = $('input[name=sellProductDeliveryAddress3]');
+    let delivery4 = $('input[name=sellProductAddress]');
 
     delivery1.val(str1);
     delivery2.val(str2);
     delivery3.val(str3);
-    console.log(delivery1.val());
-    console.log(delivery2.val());
-    console.log(delivery3.val());
+    delivery4.val(str4);
 }
 
 

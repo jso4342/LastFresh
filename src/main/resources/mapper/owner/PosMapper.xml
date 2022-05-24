@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.lastfresh.mapper.owner.SellMapper">
+<mapper namespace="com.example.lastfresh.mapper.owner.PosMapper">
     <select id="getPreparingList" resultType="posDTO">
         select tbp.BILL_PRODUCT_LIST_NUM, tbp.SELL_PRODUCT_NUM, tbp.BILL_ORDER_NUM,
         tbp.USER_NUM as USER_NUM, tbp.BILL_PRODUCT_QUANTITY, tbp.BILL_PRODUCT_PRICE,
@@ -17,6 +17,15 @@
         left join tbl_user tu
         on tb.USER_NUM = tu.USER_NUM
         where tbp.BILL_STATUS = 0 and tsp.USER_NUM = #{userNum}
-        ORDER BY 1 DESC limit #{criteria.limit}, 4;
+        ORDER BY 1 DESC limit #{criteria.limit}, 4
+    </select>
+    
+    <select id="getTotalPreparing" resultType="_int">
+        select count(tbp.BILL_PRODUCT_LIST_NUM)
+        from tbl_bills_product tbp
+        left join tbl_sell_product tsp
+        on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
+        where tbp.BILL_STATUS = 0 and tsp.USER_NUM = #{userNum}
+        ORDER BY 1 DESC limit #{criteria.limit}, 4
     </select>
 </mapper>
