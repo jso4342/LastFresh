@@ -1,3 +1,4 @@
+/*
 $('#Type').each(function (i,btn) {
     $(btn).on("click",function () {
         $("#Type").toggleClass("on");
@@ -33,4 +34,4 @@ $('#ShippingInform').each(function (i,btn) {
             $(".ShippingInformShow").show();
         }
     })
-})
+})*/

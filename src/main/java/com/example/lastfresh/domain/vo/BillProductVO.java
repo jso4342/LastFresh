@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "TBL_BILLS_PRODUCT")
@@ -54,4 +56,9 @@ public class BillProductVO {
         this.billVO = billVO;
         this.userVO = userVO;
     }
+
+    public void updateBillStatus(String billStatus){
+        this.billStatus = billStatus;
+    }
+
 }
