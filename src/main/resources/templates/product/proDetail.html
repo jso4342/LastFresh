@@ -299,7 +299,7 @@
         },function (reviewCount, list) {
             let str = "";
             if(list == null || list.length == 0){
-                $reviewUL.html("");
+                $reviewUL.html("<p>등록된 리뷰가 없습니다.</p>");
                 return;
             }
 
@@ -387,13 +387,13 @@
             }
         }
         $pagingTag.html(str);
-        $("a.layout-pagination-number").on("click", function (e) {
-            e.preventDefault();
-            $("a.pagination-number").addClass(".__active");
-            page = $(this).attr("href");
-            showList(page);
-        });
-
     }
+
+    $(".board_pg_area").on("click", "a.layout-pagination-number", function (e) {
+        e.preventDefault();
+        $("a.pagination-number").addClass(".__active");
+        page = $(this).attr("href");
+        showList(page);
+    });
 </script>
 </html>

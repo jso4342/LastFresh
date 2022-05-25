@@ -3,6 +3,7 @@ package com.example.lastfresh.controller.user;
 import com.example.lastfresh.domain.dto.ReviewPageDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
+import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;

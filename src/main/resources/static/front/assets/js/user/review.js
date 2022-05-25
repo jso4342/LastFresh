@@ -46,6 +46,26 @@ let reviewService = (function () {
             error(er);
         }
     })
+        
+        //댓글 작성 시간(Controller)
+        function getReviewDateByController(reviewDate) {
+            $.ajax({
+
+            });
+        }
+        
+        //댓글 작성 시간(Javascript)
+        function getReviewDateByJavascript(reviewDate) {
+            let today = new Date();
+            let rDate = new Date();
+            let gap = today.getTime() - rDate.getTime();
+
+            if (gap < 1000 * 60 * 60 * 24){
+
+            }else {
+                
+            }
+        }
     }
     return {reviewGetList: reviewGetList, readReview: readReview}
 })();
