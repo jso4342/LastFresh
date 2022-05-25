@@ -12,10 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -66,7 +63,35 @@ public class UserMyPageController {
     }
 
     @GetMapping("/myOrderDetail")
-    public void myOrderDetail(){}
+    public void myOrderDetail(Long userNum, Long billOrderNum, Model model) throws Exception{
+        model.addAttribute("bill", myPageService.getBill(billOrderNum));
+        model.addAttribute("userNum", userNum);
+        model.addAttribute("user", myPageService.get(userNum));
+        model.addAttribute("billOrderNum", billOrderNum);
+       // log.info("ffffffffffffffffff" + myPageService.getBill(billOrderNum).toString());
+    }
+
+    //cancel one item
+    @GetMapping("/cancelOrder")
+    public RedirectView cancelOrder(Long billProductNum, Long userNum, Long billOrderNum, RedirectAttributes rttr) throws Exception {
+        myPageService.cancelOrder(billProductNum);
+        rttr.addAttribute("bill", myPageService.getBill(billOrderNum));
+        rttr.addAttribute("userNum", userNum);
+        rttr.addAttribute("user", myPageService.get(userNum));
+        rttr.addAttribute("billOrderNum", billOrderNum);
+        return new RedirectView("myOrderDetail");
+    };
+
+    //cancel all items
+  /*  @GetMapping("/cancelAll")
+    public RedirectView cancelAll(Long userNum, Long billOrderNum, RedirectAttributes rttr) throws Exception {
+        myPageService.cancelAll(billOrderNum);
+        rttr.addAttribute("bill", myPageService.getBill(billOrderNum));
+        rttr.addAttribute("userNum", userNum);
+        rttr.addAttribute("user", myPageService.get(userNum));
+        rttr.addAttribute("billOrderNum", billOrderNum);
+        return new RedirectView("myOrderDetail");
+    };*/
 
     @GetMapping("/myReviewUnwritten")
     public void myReviewUnwritten(){}

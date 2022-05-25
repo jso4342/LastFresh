@@ -71,7 +71,7 @@
 
                                  <dl class="orderBill">
                                      <dt>주문상태</dt>
-                                     <dd class="status">배송완료</dd>
+                                     <dd class="status"></dd>
                                      <th:block th:each="product:*{products}">
                                          <span th:object="${product}">
                                              <span class="orderBillStatus" style="font-size:0px;" th:text="*{billStatus}"></span>
@@ -126,64 +126,91 @@
         location.href = "/user/myPage/myOrderDetail?billOrderNum=" + $(this).attr("href") + "&userNum=" + userNum;
     });
 
-    $(document).ready(function(){
-        let dateOrder;
+    let dateOrder;
 
-        // 날짜 처리
-        $('.orderDate').each(function () {
-          //   console.log("ff : " + $(this).text());
-            var dataOrder = $(this).text();
-            var dateSplit = dataOrder.split(' ');
-            dateSplit[0].replace("-", ".");
+    // 날짜 처리
+    $('.orderDate').each(function () {
+        //   console.log("ff : " + $(this).text());
+        var dataOrder = $(this).text();
+        var dateSplit = dataOrder.split(' ');
+        dateSplit[0].replace("-", ".");
 
-            //console.log(dateSplit[0]);
-            var timeSplit = dateSplit[1].split(':');
-            //console.log(timeSplit[0]);
-            //console.log(timeSplit[1]);
-            /* for ( var i in dateSplit ) {
-                 document.write( '<p>' + dateSplit[i] + '</p>' );
-             }*/
-            var dateInfo = dateSplit[0] + " (" + timeSplit[0] + "시 " + timeSplit[1] +"분)";
-            //console.log(dateInfo);
+        //console.log(dateSplit[0]);
+        var timeSplit = dateSplit[1].split(':');
+        //console.log(timeSplit[0]);
+        //console.log(timeSplit[1]);
+        /* for ( var i in dateSplit ) {
+             document.write( '<p>' + dateSplit[i] + '</p>' );
+         }*/
+        var dateInfo = dateSplit[0] + " (" + timeSplit[0] + "시 " + timeSplit[1] +"분)";
+        //console.log(dateInfo);
 
-            $(this).text(dateInfo);
-        });
+        $(this).text(dateInfo);
+    });
 
-        // 주문번호 처리
-        $('.orderNum').each(function (){
-            var orderNumber = $(this).text();
-            var result = '';
-            var n = orderNumber.toString();
+    // 주문번호 처리
+    $('.orderNum').each(function (){
+        var orderNumber = $(this).text();
+        var result = '';
+        var n = orderNumber.toString();
 
-                if (n.length < 7) {
-                    for (var i = 0; i < 7 - n.length; i++)
-                        result += '0';
-                }
-            $(this).text(result + n);
-
-        });
-
-
-        // 주문상태 처리
-        $('.orderBill').each(function (){
-           /* var orderNumber = $(this).text();
-            var result = '';
-            var n = orderNumber.toString();*/
-            $(this).querySelector('.orderBillStatus');
-            console.log($(this).querySelector('.orderBillStatus'));
-                console.log("확인");
-            });
-           /* if (n.length < 7) {
-                for (var i = 0; i < 7 - n.length; i++)
-                    result += '0';
-            }
-            $(this).text(result + n);
-*/
-
-
-
-
+        if (n.length < 7) {
+            for (var i = 0; i < 7 - n.length; i++)
+                result += '0';
+        }
+        $(this).text(result + n);
 
     });
+
+
+    // 주문상태 처리
+    $('.orderBill').each(function (){
+        var countZero = 0; //waiting
+        var countOne = 0; //prepare
+        var countTwo = 0; //shipping
+        var countThree = 0; // finished
+        var countMinus = 0; //cancel
+        var len = $(this).children().children().length;
+        //   console.log($(this).children().children()[0]).text();
+        //  for (var i = 0; i < $(this).children().children().length; i++){
+        for(var i = 0; i < $(this).children().children().text().length; i++){
+            if ($(this).children().children().text().charAt(i) == 0){
+                countZero++;
+            } else if ($(this).children().children().text().charAt(i) == 1){
+                countOne++;
+            } else if ($(this).children().children().text().charAt(i) == 2){
+                countTwo++;
+            } else if ($(this).children().children().text().charAt(i) == 3){
+                countThree++;
+            } else {
+                countMinus++;
+            }
+        }
+
+        /*   console.log("my len : " + len);
+       console.log("my countZero : " + countZero);
+       console.log("my countOne : " + countOne);
+       console.log("my countTwo : " + countTwo);
+       console.log("my countThree : " + countThree);
+       console.log("my countMinus : " + countMinus);*/
+        if (len == countMinus){
+            $(this).children('.status').text("주문 취소");
+        } else if (len == countZero){
+            $(this).children('.status').text("접수 대기중");
+        }else if (len == countThree){
+            $(this).children('.status').text("배송 완료");
+        }else if (countTwo == 0){
+            $(this).children('.status').text("준비중");
+        }else{
+            $(this).children('.status').text("배송 대기중");
+        }
+
+        //  console.log("gg : " + $(this).children().children().text());
+        // }
+    });
+
+
+
+
 </script>
 </html>
