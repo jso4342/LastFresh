@@ -827,6 +827,7 @@ let $pageDiv = $('.page_section');
 $pageDiv.change(function () {
     console.log('길이조절');
     let height = $('.page_section').height() + 100;
+    console.log(height);
 
-    $('.sellMenuRegister').css("height", height);
+    $('.sellMenuRegisterModify').css("height", height);
 });

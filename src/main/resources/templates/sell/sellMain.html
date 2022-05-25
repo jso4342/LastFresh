@@ -277,7 +277,7 @@
                 </a>
             </div>
             <!--th:object는 부모 태그의 object에서 먼저 mapping을 해준다. 따라서 *가 아닌 $로 사용한다.-->
-            <form action="/sell/sellMenuList" th:object="${pageDTO.criteria}" name="pageForm">
+            <form action="/sell/sellMain" th:object="${pageDTO.criteria}" name="pageForm">
                 <input class="page-pageNum" type="hidden" name="pageNum" th:value="*{pageNum}">
                 <input class="page-amount" type="hidden" name="amount" th:value="*{amount}">
                 <input class="page-limit" type="hidden" name="limit" th:value="*{limit}">
