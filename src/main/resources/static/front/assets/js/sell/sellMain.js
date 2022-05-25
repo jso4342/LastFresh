@@ -16,10 +16,18 @@ $.each($sideSnb, function (i, e) {
 /*div 높이 변화시, 전체 높이 변경*/
 let $pageDiv = $('.page_section');
 
+defaultHeight();
+
+function defaultHeight () {
+    let height = $('.page_section').height() + 100;
+
+    $('.sellMain').css("height", height);
+}
+
 $pageDiv.change(function () {
     let height = $('.page_section').height() + 100;
 
-    $('.sellMenuRegister').css("height", height);
+    $('.sellMain').css("height", height);
 });
 
 /*페이지 이동*/

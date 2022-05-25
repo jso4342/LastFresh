@@ -243,10 +243,6 @@ div.noorder p {
     color: #6a6262db;
 }
 
-div.noorder {
-    display: none;
-}
-
 div.order-content {
     display: flex;
     flex-direction: column;
@@ -268,8 +264,8 @@ div.order-info1 {
 div.order-info2 {
     font-size: 1.7rem;
     line-height: 0.7;
-    width: 33%;
-    padding: 10px 30px 10px 30px;
+    width: 37%;
+    padding: 0px 30px 0px 30px;
     text-align: left;
 }
 
@@ -280,6 +276,7 @@ div.order-info2 div.order-address, div.order-info2 p.order-price {
 div.order-info2 p.order-menuInfo, .order-phoneNum, p.order-price {
     color: #818181cc;
     margin: 15px 0;
+    line-height: 1;
 }
 
 div.order-info2 p.order-price {
@@ -289,9 +286,9 @@ div.order-info2 p.order-price {
 
 div.order-accept {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    width: 35%;
+    width: 27%;
     line-height: 9;
 }
 
@@ -307,6 +304,20 @@ div.order-accept button {
     margin: 7px;
     cursor: pointer;
 }
+
+div.order-accept button a {
+    color: #ffffffe0;
+}
+
+div.order-accept button a:link {
+    text-decoration: none;
+}
+
+div.order-accept button a:visited {
+    text-decoration: none;
+}
+
+
 
 div.order-accept button.delivery-complete-btn {
     width: 6vw;
@@ -344,5 +355,47 @@ div.delivery {
 div.shipping {
     background-color: #FFC107;
     box-shadow: 1px 1px 4px #FFC107;
+}
+
+
+/*swal css*/
+.swal-footer {
+    text-align: center;
+}
+
+.swal-text:first-child {
+    font-weight: bold;
+    font-size: 37px;
+}
+
+/*post 페이징*/
+.paging {
+    margin-top: 17px;
+}
+
+a.changePage, .selectedPage {
+    text-decoration: none;
+    display: inline-block;
+    width: 55px;
+    height: 45px;
+    border: 1px solid #ddd;
+    vertical-align: top;
+    font-weight: 700;
+    font-size: 30px;
+    color: #000000;
+    letter-spacing: 0px;
+    line-height: 42px;
+    margin: -2px;
+    padding: 0;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+}
+
+.selectedPage{
+    color: #DA291C;
+}
+
+.selectedPage, .changePage:hover {
+    background-color: #ffffffe0;
 }
 

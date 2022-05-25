@@ -14,4 +14,10 @@ public interface PosMapper {
 
     /*Pos 준비중 주문 총 개수*/
     int getTotalPreparing(HashMap<String,Object> map);
+
+    /*Pos 주문 접수시 상태 업데이트*/
+    int updateBillStatus(PosDTO posDTO);
+
+    /*Pos 주문 취소시 상태 업데이트*/
+    int updateBillStatusCancel(PosDTO posDTO);
 }

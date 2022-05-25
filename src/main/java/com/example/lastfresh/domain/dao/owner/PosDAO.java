@@ -18,4 +18,10 @@ public class PosDAO {
 
     /*Pos 준비중 주문 총 개수*/
     public int getTotalPreparing(HashMap<String,Object> map){return posMapper.getTotalPreparing(map);}
+    
+    /*Pos 주문 접수 시 쿠킹타임 및 스테이터스 변경*/
+    public int updateBillStatusCancel(PosDTO posDTO){return posMapper.updateBillStatusCancel(posDTO);}
+
+    /*Pos 주문 취소 시 스테이터스 변경*/
+    public int updateBillStatus(PosDTO posDTO){return posMapper.updateBillStatus(posDTO);}
 }

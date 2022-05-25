@@ -22,6 +22,7 @@ public class PosDTO {
     private String billDeliveryAddressPostNum;
     private String sellProductDeliveryMethod;
     private String sellProductShippingMethod;
+    private String sellProductPickup;
     private String sellProductName;
     private String userPhone;
     private Long sellUserNum;
