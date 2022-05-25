@@ -4,17 +4,22 @@ package com.example.lastfresh.controller.user;
 import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
-import org.apache.ibatis.annotations.Param;
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -32,32 +37,61 @@ public class UserManaingController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+
     //회원가입
     @PostMapping("/manage/userJoin")
     public String Join(UserVO userVO) {
         userService.join(userVO);
         return "user/manage/userLogin";
     }
+    //카카오로그인 js
+    @GetMapping("/manage/kakao")
+    public String kakao(String userKakao, Model model){
+            model.addAttribute("userKakao",userKakao);
+        return "user/manage/userJoin";
+    }
+
 
     //로그인
-    @PostMapping("manage/userLogin")
-    public String login(@RequestParam String userId, String userPw, HttpServletRequest request, RedirectAttributes rttr, Model model) throws Exception {
+    @PostMapping("/manage/userLogin")
+    public ModelAndView login(@RequestParam String userId, String userPw, HttpServletRequest request, Model model, RedirectAttributes rttr) throws Exception {
         Long userNumber = userService.decryption(userId, userPw);
-        if(userNumber != 0L) {
-                HttpSession session = request.getSession();
-                session.setAttribute("userNumber", userNumber);
-                return "main/main";
+        ModelAndView mav = new ModelAndView();
+        HttpSession session = request.getSession();
+        if (userNumber == 0L) {//로그인실패
+            mav.setView(new RedirectView("userLogin"));
+
+            rttr.addFlashAttribute("msg", "로그인실패");
+            mav.setView(new RedirectView("userLogin"));
+            return mav;
         }
-        model.addAttribute("msg", "로그인실패");
-        return "user/manage/userLogin";
+        session.setAttribute("userNumber", userNumber);
+        mav.setView(new RedirectView("/main/main"));
+        return mav;
+    }
+
+    //카카오 + 회원유형
+    @GetMapping("/manage/userSelect")
+    public String userSelectwithKakao(String userKakao, Model model, HttpServletRequest request){
+        UserVO byUserKakao = userRepository.findByUserKakao(userKakao);
+        HttpSession session = request.getSession();
+        if(byUserKakao != null){
+            session.setAttribute("userNum", byUserKakao.getUserNum());
+            return "main/main";
+        }
+
+        model.addAttribute("userKakao",userKakao);
+        log.info(userKakao);
+        return "user/manage/userSelect";
     }
 
 
     //회원유형
     @PostMapping("/manage/userSelect")
-    public String userSelect(String selector, Model model) {
-
-
+    public String userSelect(String userKakao, String selector, Model model) {
+        log.info("회원유형");
+        log.info(userKakao);
+        model.addAttribute("userKakao",userKakao);
         String userStatus = this.getUserStatus(selector);
         model.addAttribute("userStatus", userStatus);
         return "user/manage/userJoin";
@@ -134,13 +168,7 @@ public class UserManaingController {
     public void useFindId() {
     }
 
-    ;
 
-    @GetMapping("/manage/userSelect")
-    public void userSelect() {
-    }
-
-    ;
 
     @GetMapping("/manage/userFindPw")
     public void userFindPw() {
@@ -167,7 +195,10 @@ public class UserManaingController {
     ;
 
     @GetMapping("/manage/userId")
-    public void userId(){};
+    public void userId() {
+    }
+
+    ;
 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserRepository extends JpaRepository<UserVO, Long> {
     UserVO findByUserId(String userId);
+    UserVO findByUserKakao(String userKakao);
 
     //findById의 Id는 디비 테이블의 pk값 즉 vo에 적혀있는 id값
     //findBy 뒤에 컬럼명을 적으면 그 컬럼으로 비교할 수 있다.

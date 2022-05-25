@@ -18,6 +18,9 @@
 
 <div class="data_method">
     <form th:action="@{/user/manage/userSelect}" th:method="post" name="selectForm">
+        <th:block th:if="${userKakao}">
+            <input type="hidden" name="userKakao" th:value="${userKakao}">
+        </th:block>
         <div class="toggleBtn">
             <h2 class="tit_section" id="titFocusMethod">회원가입 구분</h2>
             <a class="open-icon" href="#">
@@ -73,6 +76,11 @@
 <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--th문을 console로 뽑을때 쓰는 문법-->
+<script th:inline="javascript">
+    let userkakao =[[${userKakao}]];
+    console.log(userkakao);
+</script>
 <script src="/front/assets/js/user/userSelect.js"></script>
 
 </html>
