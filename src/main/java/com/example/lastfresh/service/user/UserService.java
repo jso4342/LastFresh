@@ -41,10 +41,11 @@ public class UserService {
         System.out.println(passwordEncoder.matches(userPw, userVO.getUserPw()));
         if(!passwordEncoder.matches(userPw, userVO.getUserPw())){
             System.out.println("비밀번호가 일치하지 않습니다.");
-            return userNum;
+            log.info("asd"+userNum);
+            return null;
         }
         userNum = userVO.getUserNum();
-        log.info(""+userNum);
+        log.info("로그인성공"+userNum);
         return userNum;
 
     }
