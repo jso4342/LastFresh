@@ -22,7 +22,7 @@
     </select>
 
     <select id="getPickupTotal" resultType="_int">
-       SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_SELL_PRODUCT WHERE SELL_PRODUCT_PICKUP = 1
+       SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_SELL_PRODUCT WHERE SELL_PRODUCT_PICKUP = 0
     </select>
 
     <select id="getPickupList" resultType="ProductVO">
@@ -30,7 +30,7 @@
         SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
           T.*
         FROM  TBL_SELL_PRODUCT T,(SELECT @ROWNUM := 0 ) TMP
-        WHERE SELL_PRODUCT_PICKUP =1
+        WHERE SELL_PRODUCT_PICKUP =0
         ORDER BY SELL_PRODUCT_NUM desc
          limit #{limit},6
         ]]>
