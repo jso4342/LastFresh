@@ -47,25 +47,45 @@ let reviewService = (function () {
         }
     })
         
-        //댓글 작성 시간(Controller)
-        function getReviewDateByController(reviewDate) {
-            $.ajax({
-
-            });
-        }
-        
-        //댓글 작성 시간(Javascript)
-        function getReviewDateByJavascript(reviewDate) {
-            let today = new Date();
-            let rDate = new Date();
-            let gap = today.getTime() - rDate.getTime();
-
-            if (gap < 1000 * 60 * 60 * 24){
-
-            }else {
-                
+    }
+    //댓글 작성 시간(Controller)
+    function getReviewDateByController(reviewDate, callback, error) {
+        $.ajax({
+            type: "GET",
+            url: "/time",
+            data: {reviewDate : reviewDate},
+            success: function (date) {
+                if(callback){
+                    callback(date);
+                }
+            },
+            error: function (xhr, status, er) {
+                if (error){
+                    error(er);
+                }
             }
+        });
+    }
+
+    //댓글 작성 시간(Javascript)
+    function getReviewDateByJavascript(reviewDate) {
+        let today = new Date();
+        let rDate = new Date(reviewDate);
+        let gap = today.getTime() - rDate.getTime();
+
+        if(gap < 1000 * 60 * 60 * 24){
+            let h = rDate.getHours();
+            let mm = rDate.getMinutes();
+            let s = rDate.getSeconds();
+
+            return [(h < 10 ? '0' : '') + h, ':', (mm < 10 ? '0' : '') + mm, ':', (s < 10 ? '0' : '') + s].join("");
+        }else{
+            let y = rDate.getFullYear();
+            let m = rDate.getMonth() + 1;
+            let d = rDate.getDate();
+
+            return [y, '-', (m < 10 ? '0' : '') + m, '-', (d < 10 ? '0' : '') + d].join("");
         }
     }
-    return {reviewGetList: reviewGetList, readReview: readReview}
+    return {reviewGetList: reviewGetList, readReview: readReview, getReviewDateByController: getReviewDateByController, getReviewDateByJavascript: getReviewDateByJavascript()}
 })();

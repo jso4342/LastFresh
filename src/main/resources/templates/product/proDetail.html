@@ -95,7 +95,7 @@
                                 <dl class="list">
                                     <dt class="tit">배송구분</dt>
                                     <span class="receiveMethod">
-									<button type="button" id="pickUpP" th:style="*{sellProductPickup == '0' ? 'display:none;' : 'display:inline-block;'}">픽업</button>
+									<button type="button" id="pickUpP" th:style="*{sellProductPickup == '1' ? 'display:none;' : 'display:inline-block;'}">픽업</button>
 									<button type="button" id="deliveryP" th:style="*{sellProductDelivery == '0' ? 'display:none;' : 'display:inline-block;'}">배달</button>
                                     <button type="button" id="shippingP" th:style="*{sellProductShipping == '0' ? 'display:none;' : 'display:inline-block;'}">배송</button>
 								</span>
@@ -304,7 +304,6 @@
             }
 
             $.each(list, function(index, item) {
-                console.log(item);
                 str += "<table class='xans-board-listheaderd tbl_newtype1' width='100%' border='0' cellpadding='0' cellspacing='0' onclick='view_content'(this,'event','notice')'>";
                 str += "<caption style='display:none'>구매후기 제목</caption>";
                 str += "<colgroup>";
@@ -346,8 +345,6 @@
                 str += "</div>";
             })
             $reviewUL.html(str);
-            console.log("----------리뷰갯수-----------");
-            console.log(reviewCount);
             showReviewPage(reviewCount);
         })
     }
