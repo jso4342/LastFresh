@@ -252,6 +252,7 @@ img, video, canvas {
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
+    width: 430px;
 }
 
 #sectionView .thumb .bg {
@@ -394,6 +395,10 @@ ol, ul {
     font-size: 14px;
     line-height: 20px;
     word-break: break-all;
+}
+
+.desc223 {
+    padding-left: 128px;
 }
 
 #sectionView .goods_info .emph {
@@ -647,6 +652,7 @@ form {
     font-size: 13px;
     line-height: 20px;
     vertical-align: 2px;
+    padding-right: 11px;
 }
 
 #cartPut .cart_type2 .total .txt_point {
@@ -1395,4 +1401,44 @@ a {
 
 .innerFooter {
     width: 80em !important;
+}
+/* 배송구분*/
+#pickUpP {
+    height: 22px;
+    margin-right: 6px;
+    padding: 0 8px;
+    border-radius: 4px;
+    background-color: #8BC34A;
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+    line-height: 22px;
+    vertical-align: middle;
+    opacity: 0.2;
+}
+#deliveryP {
+    height: 22px;
+    margin-right: 6px;
+    padding: 0 8px;
+    border-radius: 4px;
+    background-color: #03A9F4;
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+    line-height: 22px;
+    vertical-align: middle;
+    opacity: 0.2;
+}
+#shippingP {
+    height: 22px;
+    margin-right: 6px;
+    padding: 0 8px;
+    border-radius: 4px;
+    background-color: #FFC107;
+    font-weight: 700;
+    font-size: 12px;
+    color: white;
+    line-height: 22px;
+    vertical-align: middle;
+    opacity: 0.2;
 }

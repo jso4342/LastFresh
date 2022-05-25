@@ -1,21 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lastfresh.mapper.user.ReviewMapper">
-<!--    <insert id="insert">-->
-<!--    </insert>-->
+    <!--    <insert id="insert">-->
+    <!--    </insert>-->
 
-<!--    <select id="read" resultType="">-->
-<!--    </select>-->
+    <select id="readReview" resultType="ReviewVO">
+        SELECT REVIEW_NUM, SELL_PRODUCT_NUM, USER_NUM, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_DATE
+        FROM TBL_REVIEW
+        WHERE REVIEW_NUM = #{reviewNum}
+    </select>
 
-<!--    <delete id="delete">-->
-<!--    </delete>-->
+    <select id="getReviewList" resultType="ReviewVO">
+        <![CDATA[
+        SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
+          T.*
+        FROM  TBL_REVIEW T,(SELECT @ROWNUM := 0 ) TMP
+        WHERE SELL_PRODUCT_NUM = #{sellProductNum}
+        ORDER BY REVIEW_NUM desc
+         limit #{criteriaProduct.limit},6
+        ]]>
+    </select>
+    <!--    <delete id="delete">-->
+    <!--    </delete>-->
 
-<!--    <update id="update">-->
-<!--    </update>-->
+    <!--    <update id="update">-->
+    <!--    </update>-->
 
-<!--    <select id="getList" resultType="">-->
-<!--    </select>-->
 
-<!--    <select id="getTotal" resultType="_int">-->
-<!--    </select>-->
+    <select id="getTotal" resultType="_int">
+        SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_REVIEW WHERE SELL_PRODUCT_NUM = ${sellProductNum}
+    </select>
 </mapper>

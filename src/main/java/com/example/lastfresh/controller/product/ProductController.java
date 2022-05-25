@@ -20,7 +20,11 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping("/proDelivery")
-    public void proDelivery() {
+    public void proDelivery(CriteriaProduct criteriaProduct, Model model) {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+        model.addAttribute("deliveryList", productService.getDeliveryList(criteriaProduct));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getDeliveryTotal(criteriaProduct)));
+        model.addAttribute("getDeliveryTotal",productService.getDeliveryTotal(criteriaProduct));
     }
 
     @GetMapping("/proDetail")
@@ -30,16 +34,26 @@ public class ProductController {
 
     @GetMapping("/proNew")
     public void list(CriteriaProduct criteriaProduct, Model model) {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         model.addAttribute("list", productService.getList(criteriaProduct));
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal()));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
+        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
     @GetMapping("/proPickup")
-    public void proPickup() {
+    public void proPickup(CriteriaProduct criteriaProduct, Model model) {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+        model.addAttribute("pickupList", productService.getPickupList(criteriaProduct));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getPickupTotal(criteriaProduct)));
+        model.addAttribute("getPickupTotal",productService.getPickupTotal(criteriaProduct));
     }
 
     @GetMapping("/proShipping")
-    public void proShipping() {
+    public void proShipping(CriteriaProduct criteriaProduct, Model model) {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+        model.addAttribute("shippingList", productService.getShippingList(criteriaProduct));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getShippingTotal(criteriaProduct)));
+        model.addAttribute("getShippingTotal",productService.getShippingTotal(criteriaProduct));
     }
 
     //    private final ProductService productService;
