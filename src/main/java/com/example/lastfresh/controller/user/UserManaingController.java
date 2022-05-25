@@ -58,7 +58,7 @@ public class UserManaingController {
         Long userNumber = userService.decryption(userId, userPw);
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if (userNumber == 0L) {//로그인실패
+        if (userNumber == null) {//로그인실패
             mav.setView(new RedirectView("userLogin"));
 
             rttr.addFlashAttribute("msg", "로그인실패");
@@ -67,6 +67,7 @@ public class UserManaingController {
         }
         session.setAttribute("userNumber", userNumber);
         mav.setView(new RedirectView("/main/main"));
+        log.info("로그인성공"+userNumber);
         return mav;
     }
 
@@ -164,41 +165,13 @@ public class UserManaingController {
 
 
     //단순페이지 이동
-    @GetMapping("/manage/userFindId")
-    public void useFindId() {
-    }
-
-
-
-    @GetMapping("/manage/userFindPw")
-    public void userFindPw() {
-    }
-
-    ;
-
-    @GetMapping("/manage/userNewPw")
-    public void userNewPw() {
-    }
-
-    ;
 
     @GetMapping("/manage/userJoin")
     public void userJoin() {
     }
 
-    ;
-
     @GetMapping("/manage/userLogin")
     public void userLogin() {
     }
-
-    ;
-
-    @GetMapping("/manage/userId")
-    public void userId() {
-    }
-
-    ;
-
 
 }
