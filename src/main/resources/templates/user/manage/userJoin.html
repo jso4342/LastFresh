@@ -31,7 +31,8 @@
         <tbody>
         <form th:action="@{/user/manage/userJoin}" th:method="post" name="joinForm">
             <input type="hidden" name="userStatus" th:value="${userStatus}">
-            <!--            <form th:action="@{user/manage/userJoin.user}" th:method="post" th:object=$"{UserVO}" name="joinForm">&ndash;&gt;-->
+            <input  type="hidden" name="userKakao" th:value="${userKakao}">
+<!--            <input th:if="${userKakao !=null}" type="hidden" name="userKakao" th:value="${userKakao}">-->
             <tr>
                 <th class="first">아이디
                     <span class="icon">*</span>
@@ -84,10 +85,10 @@
                     <span class="icon">*</span>
                 </th>
                 <td>
-                    <input id="userPhone" name="userPhone"  class="id" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
+                    <input id="userPhone" name="userPhone"  class="id phone" type="text" value maxlength="16" placeholder="하이픈(-)없이 입력하세요">
                     <a type="button" class="btn_check" id="phoneCheckButton">인증번호 받기</a>
 
-                    <input id="checkCN"  class="id" type="text" value maxlength="16" placeholder="인증번호 입력">
+                    <input id="checkCN"  class="id certify" type="text" value maxlength="16" placeholder="인증번호 입력">
                     <a type="button" class="btn_check" id="phoneCheck" >확인</a>
                 </td>
             </tr>
@@ -382,6 +383,11 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--th문을 console로 뽑을때 쓰는 문법-->
+<script th:inline="javascript">
+    let userkakao =[[${userKakao}]];
+    console.log(userkakao);
+</script>
 <script src="/front/assets/js/user/userJoin.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 

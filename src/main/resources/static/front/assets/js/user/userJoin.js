@@ -1,5 +1,7 @@
 var check = false;
 var check2 = false;
+var check3 = false;
+var check4=true;
 var form = document.joinForm;
 
 //a태그 링크 없애기
@@ -25,8 +27,10 @@ $('#phoneCheckButton').click(function(){
                     Swal.fire(
                         '인증성공!',
                         '휴대폰 인증이 정상적으로 완료되었습니다.',
-                        'success'
+                        'success',
+
                     )
+                    check4=false;
                     $('#phoneCheck').css('display','none');
                     $('#phoneCheckButton').css('display','none');
 
@@ -46,7 +50,7 @@ $('#phoneCheckButton').click(function(){
                         footer: '<a href="/user/manage/userJoin">다음에 인증하기</a>'
 
                     });
-                    $("input#checkCN").focus();
+                    check4=true;
                 }
 
             })
@@ -135,22 +139,22 @@ $(document).ready(function() {
 
 
 // 비밀번호 확인
- function match(obj) {
+function match(obj) {
     let userPw = document.querySelector('#userPw').value;
     let userPwOk = document.querySelector('#userPwOk').value;
     let resultPw = document.getElementById('resultPw');
 
-        if(userPw != userPwOk){
-            resultPw.innerText = '비밀번호가 일치하지 않습니다.';
-            resultPw.style.color = 'red';
-            obj.value ='';
-            obj.focus();
-            return false;
-        }else {
-            resultPw.innerText = '비밀번호가 일치합니다.';
-            resultPw.style.color = 'blue';
-        }
+    if(userPw != userPwOk){
+        resultPw.innerText = '비밀번호가 일치하지 않습니다.';
+        resultPw.style.color = 'red';
+        obj.value ='';
+        obj.focus();
+        return false;
+    }else {
+        resultPw.innerText = '비밀번호가 일치합니다.';
+        resultPw.style.color = 'blue';
     }
+}
 
 
 //아이디 중복검사
@@ -175,6 +179,7 @@ function checkId(userId){
                 $("#result").css("color", "red");
                 $("input#userId").focus();
                 console.log("들어옴")
+                check = false;
             }
         },
         error: function(){
@@ -234,11 +239,11 @@ function checkEmail(userEmail){
 //유효성 검사
 function sendJoin() {
 
-     if(!$all.is(":checked")){
+    if(!$all.is(":checked")){
         alert("약관에 동의해주세요.");
         return;
     }
-     if(!$all2.is(":checked")){
+    if(!$all2.is(":checked")){
         alert("약관에 동의해주세요.");
         return;
     }
@@ -267,8 +272,13 @@ function sendJoin() {
         alert("이메일을 확인해주세요.");
         return;
     }
-    // if(!joinForm.userPhone.value){
-    //     alert("핸드폰 번호를 입력해주세요.");
+    if(check4){
+        alert("휴대폰 번호를 입력해주세요.");
+        return;
+    }
+
+    // if(check3){
+    //     alert("휴대폰 인증을 진행해주세요.");
     //     return;
     // }
     if(!joinForm.userAddressPostNum.value){

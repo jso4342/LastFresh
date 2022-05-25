@@ -82,8 +82,16 @@
                             카카오로 <span>간편하게 시작</span>하세요.
                         </h2>
                     </div>
+                    <a href="#" id="userKakao">
+                        <img class="kakao_img" src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="358"/>
+                    </a>
 
-                    <a href="javascript:kakaoLogin();"><img src="https://m.uppear.co.kr/data/skin/mobile/moment_m/new/img/kakao_3.png" alt=""></a>
+                    <!--RestAPI-->
+<!--                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=cef762addd4feb67be52cfbee6c6ef04&redirect_uri=http://localhost:11111/user/auth/kakao/callback&response_type=code">-->
+<!--                        <img class="kakao_img" src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="358"/>-->
+<!--                    </a>-->
+                    <br>
+<!--                    <a href="/logout">로그아웃</a>-->
                 </div>
             </div>
         </div>
@@ -102,4 +110,43 @@
         alert("아이디 또는 비밀번호를 다시 확인하세요")
     }
 </script>
+
+<script>
+    // 카카오로그인===================================
+    Kakao.init('5f4d1ae11a3b60e8962da349854f336d');
+
+    function kakaoLogin() {
+        //1. 로그인 시도
+        Kakao.Auth.login({
+            success : function(authObj) {
+
+                //2. 로그인 성공시, API 호출
+                Kakao.API.request({
+                    url : '/v2/user/me',
+                    success : function(res) {
+                        var ac = res.kakao_account
+                        var id = res.id;
+//               확인 출력
+              console.log(ac.email);
+              console.log(ac.profile.nickname);
+              console.log('카카오id : ' + id)
+
+//               id/email/nickname db저장해서 사용하기
+                        scope: 'account_email';
+                        alert('성공'); //확인
+                        location.href ="/user/manage/userSelect?userKakao="+ac.email;
+                    }
+                })
+                var token = authObj.access_token;
+            },
+            fail : function(err) {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    const login = document.querySelector('#userKakao');
+    login.addEventListener('click', kakaoLogin);
+</script>
+
+
 </html>
