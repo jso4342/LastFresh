@@ -331,7 +331,6 @@ div.mainNewTxt p, div.mainNewTxtLast p {
 /* -----------미니 배너-------- */
 .miniBanner {
     margin-bottom: 125px;
-    margin-top: 125px;
 }
 
 /* -----------오늘 마감-------- */
@@ -825,7 +824,6 @@ li.on{
 }
 .receiveMethod{
     padding: 22px 0 0 154px;
-
 }
 .receiveMethodMsg{
     padding-right: 4px;

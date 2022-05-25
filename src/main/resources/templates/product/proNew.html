@@ -42,7 +42,7 @@
                             <div class="sort_menu">
                                 <div>
                                     <p class="count">
-                                        <span class="inner_count">총 6개</span>
+                                        <span class="inner_count" th:text="|총 ${getTotal}개|"></span>
                                     </p>
                                     <div class="select_type">
                                         <a class="name_select">추천순</a>
@@ -72,11 +72,6 @@
                                             </li>
                                             <li class>
                                                 <a class>신상품</a>
-                                                <!---->
-                                            </li>
-                                            <li class>
-                                                <a class="areabutton">지역선택</a>
-                                                <!---->
                                             </li>
                                         </ul>
                                     </div>
@@ -91,10 +86,9 @@
                                         <li th:object="${product}">
                                             <div class="item">
                                                 <div class="thumb">
-                                                    <a class="img" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1649919206285l0.jpg);" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                                        <!---->
-                                                        <!---->
-                                                        <img src="https://img-cf.kurly.com/shop/data/goods/1649919206285l0.jpg" alt="푸짐하게 즐기는 대용량 동태탕">
+                                                    <a class="img" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+                                                        <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+                                                        <!--                                                        <img src="https://img-cf.kurly.com/shop/data/goods/1649919206285l0.jpg" alt="푸짐하게 즐기는 대용량 동태탕">-->
                                                     </a>
                                                     <div class="group_btn">
                                                         <button type="button" class="btn btn_cart">
@@ -105,14 +99,17 @@
                                                     </div>
                                                 </div>
                                                 <a class="info">
+                                                    <input type="hidden" th:value="${newListPercents}"/>
                                                     <span class="name" th:text="*{sellProductName}"></span>
                                                     <span class="cost">
-                                                        <!---->
+                                                        <span class="dc dcList" th:text="|*{(sellProductOriginPrice-sellProductDiscountPrice)*100 / sellProductOriginPrice}%|">20%</span>
                                                         <span class="price" th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></span>
+                                                        <span class="priceList" th:text="*{sellProductDiscountPrice}" style="display: none" type="hidden"></span>
                                                         <span class="original" th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
+                                                        <!--                                                        <span class="originalList" th:text="*{sellProductOriginPrice}" style="display: none"></span>-->
                                                         <!---->
                                                     </span>
-                                                    <!--                                                    <span class="desc">푸짐하게 즐기는 대용량 동태탕</span>-->
+                                                    <span class="desc" th:text="*{sellProductDescription}"></span>
                                                     <span class="tag">
                                                          <span class="ico2 limit tag_type2" th:style="${product.sellProductPickup == '0' ? 'display:none;' : 'display:inline-block;'}">픽업</span>
                                                          <span class="ico3 limit tag_type2" th:style="${product.sellProductShipping == '0' ? 'display:none;' : 'display:inline-block;'}">배송</span>
@@ -127,16 +124,23 @@
                         </div>
                         <div class="layout-pagination" th:object="${ProductPageDTO}">
                             <div class="pagediv">
-                                <a href="#main" class="layout-pagination-button layout-pagination-first-page" th:href="@{startPage}">맨 처음 페이지로 가기</a>
-                                <a href="#main" class="layout-pagination-button layout-pagination-prev-page" th:if="*{prev}" th:href="*{startPage - 1}">이전 페이지로 가기</a>
+                                <a href="#main" class="layout-pagination-button layout-pagination-first-page layout-pagination-number" th:href="1">맨 처음 페이지로 가기</a>
+                                <a href="#main" class="layout-pagination-button layout-pagination-prev-page layout-pagination-number" th:if="*{prev}" th:href="*{startPage - 1}">이전 페이지로 가기</a>
                                 <th:block th:each="num:${#numbers.sequence(ProductPageDTO.getStartPage(), ProductPageDTO.getEndPage())}">
-                                    <code th:if="${ProductPageDTO.criteriaProduct.getPageNum() == num}" th:text="${num}"></code>
-                                    <a class="layout-pagination-button layout-pagination-number __active" th:unless="${ProductPageDTO.criteriaProduct.getPageNum() == num}" th:href="${num}">
+                                    <a class="layout-pagination-button layout-pagination-number pagination-number" th:if="${ProductPageDTO.criteriaProduct.getPageNum() == num}">
+                                        <code id="nowPage" th:text="${num}"></code>
+                                    </a>
+                                    <a class="layout-pagination-button layout-pagination-number pagination-number" th:unless="${ProductPageDTO.criteriaProduct.getPageNum() == num}" th:href="${num}">
                                         <code th:text="${num}"></code>
                                     </a>
                                 </th:block>
-                                <a href="#main" class="layout-pagination-button layout-pagination-next-page" th:if="*{next}" th:href="*{endPage + 1}">다음 페이지로 가기</a>
-                                <a href="#main" class="layout-pagination-button layout-pagination-last-page" th:href="*{endPage}">맨 끝 페이지로 가기</a>
+                                <a href="#main" class="layout-pagination-button layout-pagination-next-page layout-pagination-number" th:if="*{next}" th:href="*{endPage + 1}">다음 페이지로 가기</a>
+                                <a href="#main" class="layout-pagination-button layout-pagination-last-page layout-pagination-number" th:href="*{realEnd}">맨 끝 페이지로 가기</a>
+                            </div>
+                            <div class="small-width" style="text-align: center; display: none;" >
+                                <a class="changePage" th:if="*{criteriaProduct.pageNum > 1}" th:href="*{criteriaProduct.pageNum - 1}"><code>&lt;</code></a>
+                                <code th:text="*{criteriaProduct.pageNum}"></code>
+                                <a class="changePage" th:if="*{criteriaProduct.pageNum < realEnd}" th:href="*{criteriaProduct.pageNum + 1}"><code>&gt;</code></a>
                             </div>
                             <form action="/product/proNew" th:object="${criteriaProduct}" name="pageForm">
                                 <input type="hidden" th:field="*{pageNum}">
@@ -153,6 +157,7 @@
     </div>
 </div>
 <div class="cartPut">
+    <input type="hidden"/>
     <div class="cart_option cartList cart_type3 off" style="opacity: 0;">
         <div class="inner_option">
             <button type="button" class="btn_close1" >레이어닫기</button>
@@ -170,11 +175,8 @@
                                     </button>
                                 </span>
                             <span class="name">
-                                 <!---->
                                  [프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)
-                                <!---->
                                 </span>
-                            <!---->
                             <div class="option">
                                     <span class="count">
                                         <button type="button" class="btn down on">수량내리기</button>
@@ -237,6 +239,10 @@
 <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
+<script th:inline="javascript">
+    let pageNum = [[${criteriaProduct.pageNum}]]
+    console.log(pageNum);
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/product/product.js"></script>
 <script src="/front/assets/js/product/proDeliveryStatus.js"></script>

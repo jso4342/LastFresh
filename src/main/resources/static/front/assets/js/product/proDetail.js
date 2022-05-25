@@ -1,8 +1,8 @@
 
 
 
-var sell_price;
-var amount;
+let sell_price;
+let amount;
 
 function init () {
     sell_price = document.form.sell_price.value;
@@ -13,7 +13,8 @@ function init () {
     change();
 }
 
-function add () {
+
+function add() {
     hm = document.form.amount;
     sum = document.form.sum;
     hm.value ++ ;
@@ -26,7 +27,7 @@ function add () {
 
 }
 
-function del () {
+function del() {
     hm = document.form.amount;
     sum = document.form.sum;
     if (hm.value > 1) {
@@ -49,7 +50,10 @@ function change () {
     }
 }
 
-
+$(document).ready(function() {
+    init();
+    $('#totalProduct').text(document.getElementsByClassName('prod').length);
+});
 var mySum = 0;
 // 결제 금액
 function doSum() {
@@ -102,3 +106,32 @@ $review.click(function (){
     $a2.addClass("__active");
     $a1.removeClass("__active");
 })
+
+// 전달방식
+document.getElementById("pickUpP").addEventListener("click", function () {
+    $("#pickUpP").css("opacity", "1").css("border", "none").css("background-color", "#8BC34A")
+    $("#deliveryP").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
+    $("#shippingP").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $(".receiveMethodHidden").val(1)
+
+})
+document.getElementById("deliveryP").addEventListener("click", function () {
+    $("#deliveryP").css("opacity", "1").css("border", "none").css("background-color", "#03A9F4")
+    $("#pickUpP").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
+    $("#shippingP").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $(".receiveMethodHidden").val(2)
+
+})
+document.getElementById("shippingP").addEventListener("click", function () {
+    $("#shippingP").css("opacity", "1").css("border", "none").css("background-color", "#FFC107")
+    $("#pickUpP").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
+    $("#deliveryP").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
+    $(".receiveMethodHidden").val(3)
+
+})
+
+function  AddComma(num)
+{
+    let regexp = /\B(?=(\d{3})+(?!\d))/g;
+    return num.toString().replace(regexp, ',');
+}

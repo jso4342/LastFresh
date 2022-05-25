@@ -27,19 +27,44 @@ public class ProductService{
     private final BasketRepository basketRepository;
 
     private final ProductDAO productDAO;
-    //상품 목록
+    // 신상품 상품 목록
     public List<ProductVO> getList(CriteriaProduct criteriaProduct) {
         return productDAO.getList(criteriaProduct);
 //        List<ProductVO> products = productRepository.findAll();
 //        return products;
     }
-    // 특정 게시글 가져오기
+    // 해당 게시글 가져오기
     public ProductVO get(Long sellProductNum) {
         return productDAO.get(sellProductNum);
     }
-    // 상품 전체 갯수
-    public int getTotal() {
-        return productDAO.getTotal();
+    // 신상품 상품 전체 갯수
+    public int getTotal(CriteriaProduct criteriaProduct) {
+        return productDAO.getTotal(criteriaProduct);
+    }
+    // 픽업 상품 목록
+    public List<ProductVO> getPickupList(CriteriaProduct criteriaProduct) {
+        return productDAO.getPickupList(criteriaProduct);
+    }
+    // 픽업 상품 전체 갯수
+    public int getPickupTotal(CriteriaProduct criteriaProduct) {
+        return productDAO.getPickupTotal(criteriaProduct);
+    }
+    // 배달 상품 목록
+    public List<ProductVO> getDeliveryList(CriteriaProduct criteriaProduct) {
+        return productDAO.getDeliveryList(criteriaProduct);
+    }
+    // 배달 상품 전체 갯수
+    public int getDeliveryTotal(CriteriaProduct criteriaProduct) {
+        return productDAO.getDeliveryTotal(criteriaProduct);
+    }
+
+    // 배송 상품 목록
+    public List<ProductVO> getShippingList(CriteriaProduct criteriaProduct) {
+        return productDAO.getShippingList(criteriaProduct);
+    }
+    // 배송 상품 전체 갯수
+    public int getShippingTotal(CriteriaProduct criteriaProduct) {
+        return productDAO.getShippingTotal(criteriaProduct);
     }
 
 

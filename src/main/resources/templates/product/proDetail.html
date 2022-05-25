@@ -44,12 +44,13 @@
                     </div>
                     <div id="sectionView" th:object="${proDetail}">
                         <div class="inner_view">
-                            <div class="thumb" style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1649919206335y0.jpg);">
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXcAAAHnCAQAAADpr9U2AAABeUlEQVR42u3BMQEAAADCoPVPbQ0PoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALg0lPQAATTM2xoAAAAASUVORK5CYII=" alt="상품 대표 이미지" class="bg">
+                            <div class="thumb">
+                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
                             </div>
+                            <input type="hidden" th:value="*{sellProductNum}">
                             <p class="goods_name">
                                 <strong class="name" th:text="*{sellProductName}"></strong>
-                                <!--                                <span class="short_desc">푸짐하게 즐기는 대용량 동태탕</span>-->
+                                <span class="short_desc" th:text="*{sellProductDescription}"></span>
                             </p>
                             <!---->
                             <p class="goods_price">
@@ -77,32 +78,34 @@
                                 <!---->
                                 <dl class="list fst">
                                     <dt class="tit">매장</dt>
-                                    <dd class="desc" th:text="*{sellProductDescription}">동영이네 동태탕</dd>
+                                    <dd class="desc" th:text="*{sellProductDescription}"></dd>
+                                </dl>
+                                <dl class="list" th:style="*{sellProductDelivery == '0' ? 'display:none;' : 'display:inline-block;'}">
+                                    <dt class="tit">배달 가능 지역</dt>
+                                    <dd class="desc" th:text="*{sellProductDeliveryAddress1}"></dd>
+                                    <dt class="tit"></dt>
+                                    <dd class="desc desc223" th:text="*{sellProductDeliveryAddress2}"></dd>
+                                    <dt class="tit"></dt>
+                                    <dd class="desc desc223" th:text="*{sellProductDeliveryAddress3}"></dd>
                                 </dl>
                                 <dl class="list">
-                                    <dt class="tit">주소</dt>
-                                    <dd class="desc"　th:text="*{sellProductDeliveryAddress1}">서울특별시 구로구 구로동로26길 51-7</dd>
+                                    <dt class="tit">매장주소</dt>
+                                    <dd class="desc" th:text="*{sellProductAddress}"></dd>
                                 </dl>
                                 <dl class="list">
                                     <dt class="tit">배송구분</dt>
-                                    <!---->
-                                    <dd class="desc" > 배달/배송 </dd>
+                                    <span class="receiveMethod">
+									<button type="button" id="pickUpP" th:style="*{sellProductPickup == '0' ? 'display:none;' : 'display:inline-block;'}">픽업</button>
+									<button type="button" id="deliveryP" th:style="*{sellProductDelivery == '0' ? 'display:none;' : 'display:inline-block;'}">배달</button>
+                                    <button type="button" id="shippingP" th:style="*{sellProductShipping == '0' ? 'display:none;' : 'display:inline-block;'}">배송</button>
+								</span>
                                 </dl>
-                                <!---->
-
-                                <!---->
-                                <!---->
-                                <!---->
-                                <!---->
-                                <!---->
-                                <!---->
-                                <!---->
                             </div>
                             <!---->
                         </div>
                         <!---->
                     </div>
-                    <div id="cartPut">
+                    <div id="cartPut" th:object="${proDetail}">
                         <form name="form" method="get">
                             <div class="cart_option cartList cart_type2">
                                 <div class="inner_option">
@@ -128,7 +131,7 @@
                                                     <span class="tit_item">구매수량</span>
                                                     <div class="option">
                                                             <span class="count">
-                                                                <input type=hidden name="sell_price" value="15900">
+                                                                <input th:value="*{sellProductDiscountPrice}" type=hidden name="sell_price">
                                                                 <button type="button" class="btn down on" data-opt="decrease" onclick="del();">수량내리기</button>
                                                                 <input type="text" name="amount"  class="inp" value="1" onchange="change();">
                                                                 <button type="button" class="btn up on" data-opt="increase" onclick="add();">수량올리기</button>
@@ -147,7 +150,8 @@
                                             <div class="price">
                                                 <!---->
                                                 <strong class="tit">총 상품금액 :</strong>
-                                                <input type="text" class="num" name="sum" style="width:100px" readonly><span class="won">원</span>
+                                                <input type="text" class="num" name="sum" style="width:125px" readonly >
+                                                <span class="won">원</span>
                                             </div>
                                             <p class="txt_point">
 
@@ -207,10 +211,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="goods-view-infomation-content __active" id="goods-description">
+                        <div class="goods-view-infomation-content __active" id="goods-description" th:object="${proDetail}">
                             <div id="giftNotice"></div>
                             <div class="goods_wrap">
-                                <img src="http://ttoksor1.negagea.kr/JKS/SKOREA/prebie7.jpg">
+                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductImage}">
                             </div>
                         </div>
 
@@ -244,9 +248,10 @@
                                             <caption style="display:none">구매후기 제목</caption>
                                             <colgroup>
                                                 <col style="width:70px;">
-                                                <col style="width:auto;">
-                                                <col style="width:51px;">
-                                                <col style="width:110px;">
+                                                <col style="width:134px;">
+                                                <col style="width:384px;">
+                                                <col style="width:60px;">
+                                                <col style="width:76px;">
                                                 <col style="width:80px;">
 
                                             </colgroup>
@@ -254,6 +259,7 @@
                                             <tr>
                                                 <th scope="col" class="input_txt">번호</th>
                                                 <th scope="col" class="input_txt">제목</th>
+                                                <th scope="col" class="input_txt">내용</th>
                                                 <th scope="col" class="input_txt">
                                                 </th>
                                                 <th scope="col" class="input_txt" align="left">작성자</th>
@@ -263,247 +269,131 @@
                                             </tbody>
                                         </table>
                                         <div class="tr_line">
-                                            <table class="xans-board-listheaderd tbl_newtype1" width="100%" border="0" cellpadding="0" cellspacing="0" onclick="view_content(this,event,'notice')">
-                                                <caption style="display:none">구매후기 제목</caption>
-                                                <colgroup>
-                                                    <col style="width:70px;">
-                                                    <col style="width:auto;">
-                                                    <col style="width:51px;">
-                                                    <col style="width:110px;">
-                                                    <col style="width:80px;">
-
-                                                </colgroup>
-                                                <tbody>
-                                                <tr>
-                                                    <input type="hidden" name="index" value="-1">
-                                                    <input type="hidden" name="image" value>
-                                                    <input type="hidden" name="grade" value="0">
-                                                    <input type="hidden" name="best" value="false">
-                                                    <input type="hidden" name="pNo" value>
-                                                    <td align="center">21</td>
-                                                    <td class="subject">
-                                                        <div class="fst">괜찮대요 </div>
-                                                    </td>
-                                                    <td></td>
-                                                    <td class="user_grade">최*영</td>
-                                                    <td class="time">2022-05-01</td>
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div data-sno="53094294" class="review_view" style="display: none;">
-                                                <div class="inner_review">
-                                                    <div class="name_purchase">
-                                                        <strong class="name">[프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)</strong>
-                                                        <p class="package"></p>
-                                                    </div>
-                                                    <div class="review_photo">
-
-                                                        <img src="//img-cf.kurly.com/shop/data/review/20220501/b9a428fca3ef0cd357bcf4d546e5f577.jpg" name="rv_attach_image[]" border="0">
-                                                        <br>
-                                                        <br>
-                                                        큰아이는 좀 짜다고 하고 다른 식구들은 맛있대요.
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
-                                        <div class="tr_line">
-                                            <table class="xans-board-listheaderd tbl_newtype1" width="100%" border="0" cellpadding="0" cellspacing="0" onclick="view_content(this,event,'notice')">
-                                                <caption style="display:none">구매후기 제목</caption>
-                                                <colgroup>
-                                                    <col style="width:70px;">
-                                                    <col style="width:auto;">
-                                                    <col style="width:51px;">
-                                                    <col style="width:110px;">
-                                                    <col style="width:80px;">
-
-                                                </colgroup>
-                                                <tbody>
-                                                <tr>
-                                                    <input type="hidden" name="index" value="-1">
-                                                    <input type="hidden" name="image" value>
-                                                    <input type="hidden" name="grade" value="0">
-                                                    <input type="hidden" name="best" value="false">
-                                                    <input type="hidden" name="pNo" value>
-                                                    <td align="center">20</td>
-                                                    <td class="subject">
-                                                        <div class="fst">별로에요 </div>
-                                                    </td>
-                                                    <td></td>
-                                                    <td class="user_grade">진*종</td>
-                                                    <td class="time">2022-04-27</td>
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div data-sno="53094294" class="review_view" style="display: none;">
-                                                <div class="inner_review">
-                                                    <div class="name_purchase">
-                                                        <strong class="name">[프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)</strong>
-                                                        <p class="package"></p>
-                                                    </div>
-                                                    <div class="review_photo">
-
-                                                        <img src="//img-cf.kurly.com/shop/data/review/20220501/b9a428fca3ef0cd357bcf4d546e5f577.jpg" name="rv_attach_image[]" border="0">
-                                                        <br>
-                                                        <br>
-                                                        큰아이는 좀 짜다고 하고 다른 식구들은 맛있대요.
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <div class="board_pg_area">
                                         </div>
-                                        <div class="tr_line">
-                                            <table class="xans-board-listheaderd tbl_newtype1" width="100%" border="0" cellpadding="0" cellspacing="0" onclick="view_content(this,event,'notice')">
-                                                <caption style="display:none">구매후기 제목</caption>
-                                                <colgroup>
-                                                    <col style="width:70px;">
-                                                    <col style="width:auto;">
-                                                    <col style="width:51px;">
-                                                    <col style="width:110px;">
-                                                    <col style="width:80px;">
-
-                                                </colgroup>
-                                                <tbody>
-                                                <tr>
-                                                    <input type="hidden" name="index" value="-1">
-                                                    <input type="hidden" name="image" value>
-                                                    <input type="hidden" name="grade" value="0">
-                                                    <input type="hidden" name="best" value="false">
-                                                    <input type="hidden" name="pNo" value>
-                                                    <td align="center">19</td>
-                                                    <td class="subject">
-                                                        <div class="fst">맛있어용~~~~ 아이도 너무 맛있어하고 남편도 너무 맛있어해요 </div>
-                                                    </td>
-                                                    <td></td>
-                                                    <td class="user_grade">심*환</td>
-                                                    <td class="time">2022-04-20</td>
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div data-sno="53094294" class="review_view" style="display: none;">
-                                                <div class="inner_review">
-                                                    <div class="name_purchase">
-                                                        <strong class="name">[프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)</strong>
-                                                        <p class="package"></p>
-                                                    </div>
-                                                    <div class="review_photo">
-
-                                                        <img src="//img-cf.kurly.com/shop/data/review/20220501/b9a428fca3ef0cd357bcf4d546e5f577.jpg" name="rv_attach_image[]" border="0">
-                                                        <br>
-                                                        <br>
-                                                        큰아이는 좀 짜다고 하고 다른 식구들은 맛있대요.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tr_line">
-                                            <table class="xans-board-listheaderd tbl_newtype1" width="100%" border="0" cellpadding="0" cellspacing="0" onclick="view_content(this,event,'notice')">
-                                                <caption style="display:none">구매후기 제목</caption>
-                                                <colgroup>
-                                                    <col style="width:70px;">
-                                                    <col style="width:auto;">
-                                                    <col style="width:51px;">
-                                                    <col style="width:110px;">
-                                                    <col style="width:80px;">
-                                                </colgroup>
-                                                <tbody>
-                                                <tr>
-                                                    <input type="hidden" name="index" value="-1">
-                                                    <input type="hidden" name="image" value>
-                                                    <input type="hidden" name="grade" value="0">
-                                                    <input type="hidden" name="best" value="false">
-                                                    <input type="hidden" name="pNo" value>
-                                                    <td align="center">18</td>
-                                                    <td class="subject">
-                                                        <div class="fst">굿 </div>
-                                                    </td>
-                                                    <td></td>
-                                                    <td class="user_grade">현*용</td>
-                                                    <td class="time">2022-03-12</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div data-sno="53094294" class="review_view" style="display: none;">
-                                                <div class="inner_review">
-                                                    <div class="name_purchase">
-                                                        <strong class="name">[프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)</strong>
-                                                        <p class="package"></p>
-                                                    </div>
-                                                    <div class="review_photo">
-                                                        <img src="//img-cf.kurly.com/shop/data/review/20220501/b9a428fca3ef0cd357bcf4d546e5f577.jpg" name="rv_attach_image[]" border="0">
-                                                        <br>
-                                                        <br>
-                                                        큰아이는 좀 짜다고 하고 다른 식구들은 맛있대요.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tr_line">
-                                            <table class="xans-board-listheaderd tbl_newtype1" width="100%" border="0" cellpadding="0" cellspacing="0" onclick="view_content(this,event,'notice')">
-                                                <caption style="display:none">구매후기 제목</caption>
-                                                <colgroup>
-                                                    <col style="width:70px;">
-                                                    <col style="width:auto;">
-                                                    <col style="width:51px;">
-                                                    <col style="width:110px;">
-                                                    <col style="width:80px;">
-                                                </colgroup>
-                                                <tbody>
-                                                <tr>
-                                                    <input type="hidden" name="index" value="-1">
-                                                    <input type="hidden" name="image" value>
-                                                    <input type="hidden" name="grade" value="0">
-                                                    <input type="hidden" name="best" value="false">
-                                                    <input type="hidden" name="pNo" value>
-                                                    <td align="center">17</td>
-                                                    <td class="subject">
-                                                        <div class="fst">생각보다 </div>
-                                                    </td>
-                                                    <td></td>
-                                                    <td class="user_grade">공*윤</td>
-                                                    <td class="time">2022-03-09</td>
-
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <div data-sno="53094294" class="review_view" style="display: none;">
-                                                <div class="inner_review">
-                                                    <div class="name_purchase">
-                                                        <strong class="name">[프레시지] 자이언트 살이꽉찬 동태탕 (3~4인분)</strong>
-                                                        <p class="package"></p>
-                                                    </div>
-                                                    <div class="review_photo">
-                                                        <img src="//img-cf.kurly.com/shop/data/review/20220501/b9a428fca3ef0cd357bcf4d546e5f577.jpg" name="rv_attach_image[]" border="0">
-                                                        <br>
-                                                        <br>
-                                                        큰아이는 좀 짜다고 하고 다른 식구들은 맛있대요.
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <p class="btnArea after"></p>
                                 </div>
-                            </div>
-                            <div class="board_pg_area">
-                                <a href="https://www.kurly.com/shop/goods/goods_review_list.php?goodsno=122963&page=1" class="layout-pagination-button layout-pagination-first-page">맨 처음 페이지로 가기</a>
-                                <a href="https://www.kurly.com/shop/goods/goods_review_list.php?goodsno=122963&page=1" class="layout-pagination-button layout-pagination-prev-page">이전 페이지로 가기</a>
-                                <strong class="layout-pagination-button layout-pagination-number __active">1</strong>
-                                <a href="https://www.kurly.com/shop/goods/goods_review_list.php?goodsno=122963&page=2" class="layout-pagination-button layout-pagination-next-page">다음 페이지로 가기</a>
-                                <a href="https://www.kurly.com/shop/goods/goods_review_list.php?goodsno=122963&page=1" class="layout-pagination-button layout-pagination-last-page">맨 끝 페이지로 가기</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div id="layerDSR"></div>
+            <div id="footer"></div>
         </div>
-    </div>
-    <div id="layerDSR"></div>
-    <div id="footer"></div>
-</div>
-<th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
+        <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="/front/assets/js/product/proDetail.js"></script>
+        <script src="/front/assets/js/user/review.js"></script>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/front/assets/js/product/proDetail.js"></script>
+<script th:inline="javascript">
+    let sellProductNum = [[${proDetail.sellProductNum}]];
+    let page = 1;
+    const $reviewUL = $("div.tr_line");
+
+    showList(page);
+
+    function showList(page){
+        reviewService.reviewGetList({
+            sellProductNum: sellProductNum, page: page || 1
+        },function (reviewCount, list) {
+            let str = "";
+            if(list == null || list.length == 0){
+                $reviewUL.html("");
+                return;
+            }
+
+            $.each(list, function(index, item) {
+                console.log(item);
+                str += "<table class='xans-board-listheaderd tbl_newtype1' width='100%' border='0' cellpadding='0' cellspacing='0' onclick='view_content'(this,'event','notice')'>";
+                str += "<caption style='display:none'>구매후기 제목</caption>";
+                str += "<colgroup>";
+                str += "<col style='width:140px;'>";
+                str += "<col style='width:259px;'>";
+                str += "<col style='width:545px;'>";
+                str += "<col style='width:237px;'>";
+                str += "<col style='width:184px;'>";
+                str += " <col style='width:108px;'>";
+                str += " </colgroup>";
+                str += "<tbody>";
+                str += "<tr>";
+                str += "<input type='hidden' name='index' value='-1'>";
+                str += "<input type='hidden' name='image' value>";
+                str += "<input type='hidden' name='grade' value='0'>";
+                str += "<input type='hidden' name='best' value='false'>";
+                str += "<input type='hidden' name='pNo' value>";
+                str += "<td align='center'>"+ item.reviewNum+"</td>";
+                str += "<td class='subject'>";
+                str += "<div class='fst'>"+ item.reviewTitle+ "</div>";
+                str += "</td>";
+                str += "<td>" + item.reviewContent + "</td>";
+                str += "<td></td>";
+                str += "<td class='user_grade'>" + item.userName + "</td>";
+                str += "<td class='time'>" + item.reviewDate + "</td>";
+                str += "<tr>";
+                str += "</tbody>";
+                str += "</table>";
+                str += "<div data-sno='53094294' class='review_view' style='display: none;'>";
+                str += "<div class='inner_review'>";
+                str += "<div class='name_purchase'>";
+                str += "<strong class='name'>" + item.sellProductName + "</strong>";
+                str += "<p class='package'></p>";
+                str += "</div>";
+                str += "<div>" + item.reviewContent + "</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+                str += "</div>";
+            })
+            $reviewUL.html(str);
+            console.log("----------리뷰갯수-----------");
+            console.log(reviewCount);
+            showReviewPage(reviewCount);
+        })
+    }
+
+    // 페이징 처리
+    function showReviewPage(reviewCount) {
+        let endNum = Math.ceil(page / 10.0)*10;
+        let startNum = endNum - 9;
+        let realEnd = Math.ceil(reviewCount / 10.0);
+        let str = "";
+        const $pagingTag = $("div.board_pg_area");
+
+        if (endNum > realEnd) {
+            endNum = realEnd
+        }
+
+        let prev = startNum >= 1;
+        let next = endNum * 10 >= reviewCount;
+
+        if(matchMedia("screen and (max-width:918px)").matches){
+
+        }else {
+            if (prev) {
+                str += "<a href='1' class='layout-pagination-button layout-pagination-first-page layout-pagination-number'>맨 처음 페이지로 가기</a>"
+                str += "<a href='" + (startNum - 1) + "' class='layout-pagination-button layout-pagination-prev-page layout-pagination-number'>이전 페이지로 가기</a>"
+            }
+            for (let i=startNum; i<=endNum; i++){
+                if (page == 1){
+                    str += "<a class='layout-pagination-button layout-pagination-number pagination-number' href='" + i + "'><code>" + i + "</code></a>";
+                    continue;
+                }
+                str += "<a class='layout-pagination-button layout-pagination-number pagination-number' href='" + i + "'><code>" + i + "</code></a>";
+            }
+            if (next){
+                str += "<a href='"+(endNum + 1)+"' class='layout-pagination-button layout-pagination-next-page layout-pagination-number'>다음 페이지로 가기</a>"
+                str += "<a href='"+realEnd+"' class='layout-pagination-button layout-pagination-last-page layout-pagination-number' >맨 끝 페이지로 가기</a>"
+            }
+        }
+        $pagingTag.html(str);
+        $("a.layout-pagination-number").on("click", function (e) {
+            e.preventDefault();
+            $("a.pagination-number").addClass(".__active");
+            page = $(this).attr("href");
+            showList(page);
+        });
+
+    }
+</script>
 </html>
