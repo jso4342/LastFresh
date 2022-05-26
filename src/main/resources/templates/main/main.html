@@ -79,7 +79,7 @@
                              src="https://s3.ap-northeast-2.amazonaws.com/res.kurly.com/kurly/ico/2021/arrow_title_32_32.svg"></a>
                 </div>
                 <!-- 신상품 목록 -->
-                <div style="display: flex; justify-content: space-around !important;">
+                <div class="newPro">
                     <div class="mainNew wrapperMain" th:each="product:${newList}">
                         <div class="mainNewBox" th:object="${product}">
                             <p class="pno" type="hidden" style="display:none" th:text="*{sellProductNum}"/>
@@ -191,7 +191,7 @@
                     </div>
 
                     <!-- 신상품 목록 -->
-                    <div style="display: flex; justify-content: space-around !important;">
+                    <div class="newPro">
                         <div class="mainNew wrapperMain" th:each="product:${bestReviewList}">
                             <div class="mainNewBox" th:object="${product}">
                                 <p class="pno" type="hidden" style="display: none" th:text="*{sellProductNum}"/>
@@ -304,11 +304,11 @@
                 <button type="button" class="base_button cancel half"> 취소</button>
                 <button type="submit" class="base_button submit"> 장바구니 담기</button>
             </div>
-            <input class="fixedHiddenNum"style="display: none" type="hidden"/>
+            <input class="fixedHiddenNum"style="display: none" type="hidden"name="basketPrice"/>
             <input class="stocksHidden"style="display: none" type="hidden"/>
 
             <input class="basketQuantity"style="display: none" type="hidden"name="basketQuantity"/>
-            <input class="totalMoneyHidden"style="display: none" type="hidden"name="basketPrice"/>
+            <input class="totalMoneyHidden"style="display: none" type="hidden"/>
             <input class="receiveMethodHidden"style="display: none" type="hidden"name="basketDeliveryMethod"/>
             <input class="pnoHidden"style="display: none" type="hidden"name="sellProductNum"/>
         </form>
