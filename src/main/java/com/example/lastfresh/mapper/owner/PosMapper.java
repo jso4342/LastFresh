@@ -24,6 +24,9 @@ public interface PosMapper {
     /*Pos 자가라이더 준비중 시 상태 업데이트*/
     int updateBillStatusSelfReady(PosDTO posDTO);
 
-    /*Pos 주문 취소시 상태 업데이트*/
+    /*Pos 주문 취소시  주문 상태 업데이트*/
     int updateBillStatusCancel(PosDTO posDTO);
+
+    /*Pos 주문 취소시 상품 업데이트*/
+    void updateSellStatusRestore(PosDTO posDTO);
 }

@@ -144,14 +144,18 @@ function showList(page, billStatus) {
                 str += '<div class="order-accept">';
                 if(item.billStatus == '0' && item.sellProductPickup == '0' && item.billDeliveryMethod == 1) {
                     str += '<button class="delivery-pickUp-btn"><a class="acceptPickUp" href="' + item.billProductListNum + '">픽업대기</a></button>';
-                    str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '">취소</a></button>';
+                    str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '" data-stock="' + item.billProductQuantity + '" data-product="' + item.sellProductNum + '">취소</a></button>';
                 } else if (item.billStatus == '0') {
                     str += '<button class="order-reception-btn"><a class="acceptOrder" href="' + item.billProductListNum + '">접수하기</a></button>';
-                    str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '">취소</a></button>';
-                } else if (item.billStatus == '1' && (item.sellProductDeliveryMethod == '2' || item.sellProductShippingMethod == '2')) {
-                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송시작</a></button>';
-                } else if (item.billStatus == '2' && (item.sellProductDeliveryMethod == '2' || item.sellProductShippingMethod == '2')) {
-                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송완료</a></button>';
+                    str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '" data-stock="' + item.billProductQuantity + '" data-product="' + item.sellProductNum + '">취소</a></button>';
+                } else if (item.billStatus == '1' && item.billDeliveryMethod == '2' && item.sellProductDeliveryMethod == '2') {
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배달 시작</a></button>';
+                } else if (item.billStatus == '1' && item.billDeliveryMethod == '3' && item.sellProductShippingMethod == '2') {
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송 시작</a></button>';
+                } else if (item.billStatus == '2' && item.billDeliveryMethod == '2' && item.sellProductDeliveryMethod == '2') {
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배달 완료</a></button>';
+                } else if (item.billStatus == '2' && item.billDeliveryMethod == '2' && item.sellProductShippingMethod == '2') {
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송 완료</a></button>';
                 } else if (item.billStatus == '1') {
                     str += '<button class="order-ready-btn">준비중</button>';
                 } else if (item.billStatus == '2') {
@@ -275,13 +279,13 @@ $(".order-content").on("click", "button.order-cancel-btn", function(e){
     console.log("오더 캔슬 들어옴");
     e.preventDefault();
     let billProductListNum = $(this).find('a.cancelOrder').attr("href");
-
-    console.log(billProductListNum);
+    let billProductQuantity = $($(this).find('a.cancelOrder')).data("stock");
+    let sellProductNum = $($(this).find('a.cancelOrder')).data("product");
 
     $.ajax({
         type: "PATCH",
         url: "/pos/cancel/",
-        data:JSON.stringify({"billProductListNum": billProductListNum}),
+        data:JSON.stringify({"billProductListNum": billProductListNum, "billProductQuantity": billProductQuantity, "sellProductNum": sellProductNum}),
         contentType: "application/json; charset=utf-8",
         success: function (result) {
             swal(result);

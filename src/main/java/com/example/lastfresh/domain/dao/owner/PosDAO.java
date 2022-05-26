@@ -28,6 +28,9 @@ public class PosDAO {
     /*Pos 자가라이더 준비중 시 스테이터스 변경*/
     public int updateBillStatusSelfReady(PosDTO posDTO){return posMapper.updateBillStatusSelfReady(posDTO);}
 
-    /*Pos 주문 취소 시 스테이터스 변경*/
+    /*Pos 주문 취소 시 주문 스테이터스 변경*/
     public int updateBillStatus(PosDTO posDTO){return posMapper.updateBillStatus(posDTO);}
+
+    /*Pos 주문 취소 시 상품 스테이터스, 수량 변경*/
+    public void updateSellStatusRestore(PosDTO posDTO){posMapper.updateSellStatusRestore(posDTO);}
 }

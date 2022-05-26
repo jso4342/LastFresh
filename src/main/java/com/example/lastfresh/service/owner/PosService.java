@@ -5,6 +5,7 @@ import com.example.lastfresh.domain.dto.PosDTO;
 import com.example.lastfresh.domain.vo.CriteriaPos;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,9 @@ public class PosService {
     }
     
     /* 주문 취소시 상태 변경 */
+    @Transactional
     public boolean cancelBill(PosDTO posDTO) {
+        posDAO.updateSellStatusRestore(posDTO);
         return posDAO.updateBillStatusCancel(posDTO) == 1;
     }
 }
