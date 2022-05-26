@@ -64,6 +64,8 @@ public class PosController {
 
     @GetMapping("/count/{billStatus}")
     public ResponseEntity<Integer> getCount(@PathVariable("billStatus") Long billStatus, HttpServletRequest request) {
+        log.info("count 실행");
+        log.info("billStatus : " + billStatus);
         String status1 = null;
         String status2 = null;
         String status3 = null;
@@ -88,6 +90,7 @@ public class PosController {
         return ResponseEntity.ok(posService.getTotalPreparing(map));
     }
 
+    /* 주문 접수 */
     @PatchMapping(value = {"/accept"}, consumes = "application/json")
     public ResponseEntity<String> orderAccept(@RequestBody PosDTO posDTO){
         log.info("modify실행");
@@ -95,8 +98,28 @@ public class PosController {
         return ResponseEntity.ok(posService.modifyBill(posDTO) ? "접수 완료" : "접수 실패");
     }
 
+    /* 픽업 접수 */
+    @PatchMapping(value = {"/acceptPickUp"}, consumes = "application/json")
+    public ResponseEntity<String> pickUpAccept(@RequestBody PosDTO posDTO){
+        return ResponseEntity.ok(posService.modifyBillPickUp(posDTO) ? "픽업 완료" : "픽업 실패");
+    }
+
+    /* 자가라이더 준비중 시 */
+    @PatchMapping(value = {"/selfReady"}, consumes = "application/json")
+    public ResponseEntity<String> selfReady(@RequestBody PosDTO posDTO){
+        return ResponseEntity.ok(posService.modifyBillSelfReady(posDTO) ? "배송 시작" : "배송 실패");
+    }
+
+    /* 픽업 접수 */
+    @PatchMapping(value = {"/selfDelivery"}, consumes = "application/json")
+    public ResponseEntity<String> selfDelivery(@RequestBody PosDTO posDTO){
+        return ResponseEntity.ok(posService.modifyBillPickUp(posDTO) ? "배송 완료 완료" : "배송 실패");
+    }
+
+    /* 주문 취소 */
     @PatchMapping(value = {"/cancel"}, consumes = "application/json")
     public ResponseEntity<String> orderCancel(@RequestBody PosDTO posDTO){
         return ResponseEntity.ok(posService.cancelBill(posDTO) ? "주문취소 완료" : "주문취소 실패");
     }
+
 }

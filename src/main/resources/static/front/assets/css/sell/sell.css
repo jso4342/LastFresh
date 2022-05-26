@@ -317,9 +317,7 @@ div.order-accept button a:visited {
     text-decoration: none;
 }
 
-
-
-div.order-accept button.delivery-complete-btn {
+div.order-accept button.delivery-complete-btn, div.order-accept button.delivery-cancel-btn{
     width: 6vw;
     height: 15vh;
     font-size: 1.8rem;
@@ -329,10 +327,60 @@ div.order-accept button.delivery-complete-btn {
     box-shadow: 1px 1px 3px #a9a4a4;
     border: none;
     margin: 7px;
+    cursor: unset;
 }
 
-div.order-time {
-    font-size: 5rem;
+div.order-accept button.delivery-cancel-btn {
+    color: #d26f6f;
+}
+
+div.order-accept button.order-ready-btn {
+    width: 6vw;
+    height: 15vh;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffffe0;
+    background-color: rgba(203, 87, 77, 0.72);
+    box-shadow: 1px 1px 3px #da291c;
+    border: none;
+    margin: 7px;
+    cursor: unset;
+}
+
+div.order-accept button.order-delivery-btn {
+    width: 6vw;
+    height: 15vh;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffffe0;
+    background-color: #DA291C;
+    box-shadow: 1px 1px 3px #da291c;
+    border: none;
+    margin: 7px;
+    cursor: unset;
+}
+
+div.order-accept button.order-selfReady-btn, div.order-accept button.order-selfDelivery-btn {
+    width: 6vw;
+    height: 15vh;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffffe0;
+    background-color: rgba(87, 107, 217, 0.89);
+    box-shadow: 1px 1px 3px #a9a4a4;
+    border: none;
+    margin: 7px;
+}
+
+div.order-time p:first-child {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+div.order-time p:last-child {
+    margin: 0;
+    font-size: 61px;
 }
 
 div.order-method {

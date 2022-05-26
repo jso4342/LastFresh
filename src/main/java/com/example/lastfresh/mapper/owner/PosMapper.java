@@ -18,6 +18,12 @@ public interface PosMapper {
     /*Pos 주문 접수시 상태 업데이트*/
     int updateBillStatus(PosDTO posDTO);
 
+    /*Pos 픽업시 상태 업데이트*/
+    int updateBillStatusPickUp(PosDTO posDTO);
+
+    /*Pos 자가라이더 준비중 시 상태 업데이트*/
+    int updateBillStatusSelfReady(PosDTO posDTO);
+
     /*Pos 주문 취소시 상태 업데이트*/
     int updateBillStatusCancel(PosDTO posDTO);
 }

@@ -98,11 +98,23 @@ function showList(page, billStatus) {
             // }
 
             $.each(result.list, function (i, item) {
+                let str1 = item.billOrderDate + " " + item.billOrderDateTime;
+                let str2 = item.billCookingTime;
+                let date = new Date(str1);
+                date.setMinutes(date.getMinutes() + str2);
+
                 str += '<div class="order-list-wrapper">';
                 str += '<div class="order-list">';
                 str += '<div class="order-info1">';
                 str += '<div class="order-time">';
-                str += item.billOrderDateTime;
+                if(item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
+                    str += '<p>주문 접수 시간</p>';
+                    str += '<p>' + item.billOrderDateTime + '</p>';
+                } else if (item.billStatus == '1' || item.billStatus == '2') {
+                    str += '<p>예상 완료 시간</p>';
+                    str += '<p>' + date.getHours() + ':' + date.getMinutes() + '</p>';
+                }
+
                 str += '</div>';
                 if(item.billDeliveryMethod == 1) {
                     str += '<div class="order-method pickUp">';
@@ -130,8 +142,25 @@ function showList(page, billStatus) {
                 str += '</div>';
                 str += '</div>';
                 str += '<div class="order-accept">';
-                str += '<button class="order-reception-btn"><a class="acceptOrder" href="' + item.billProductListNum + '">접수하기</a></button>';
-                str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '">취소</a></button>';
+                if(item.billStatus == '0' && item.sellProductPickup == '0' && item.billDeliveryMethod == 1) {
+                    str += '<button class="delivery-pickUp-btn"><a class="acceptPickUp" href="' + item.billProductListNum + '">픽업대기</a></button>';
+                    str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '">취소</a></button>';
+                } else if (item.billStatus == '0') {
+                    str += '<button class="order-reception-btn"><a class="acceptOrder" href="' + item.billProductListNum + '">접수하기</a></button>';
+                    str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '">취소</a></button>';
+                } else if (item.billStatus == '1' && (item.sellProductDeliveryMethod == '2' || item.sellProductShippingMethod == '2')) {
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송시작</a></button>';
+                } else if (item.billStatus == '2' && (item.sellProductDeliveryMethod == '2' || item.sellProductShippingMethod == '2')) {
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송완료</a></button>';
+                } else if (item.billStatus == '1') {
+                    str += '<button class="order-ready-btn">준비중</button>';
+                } else if (item.billStatus == '2') {
+                    str += '<button class="order-delivery-btn">배송중</button>';
+                } else if (item.billStatus == '3') {
+                    str += '<button class="delivery-complete-btn">주문완료</button>';
+                } else if (item.billStatus == '-1') {
+                    str += '<button class="delivery-cancel-btn">주문취소</button>';
+                }
                 str += '</div>';
                 str += '</div>';
                 str += '<hr>';
@@ -264,6 +293,75 @@ $(".order-content").on("click", "button.order-cancel-btn", function(e){
     });
 });
 
+//픽업 접수 하기
+$(".order-content").on("click", "button.delivery-pickUp-btn", function(e){
+    console.log("픽업 접수 들어옴");
+    e.preventDefault();
+    let billProductListNum = $(this).find('a.acceptPickUp').attr("href");
+
+    console.log(billProductListNum);
+
+    $.ajax({
+        type: "PATCH",
+        url: "/pos/acceptPickUp/",
+        data:JSON.stringify({"billProductListNum": billProductListNum}),
+        contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            swal(result);
+            showList(pageNum, billStatus);
+        },
+        error: function (error,status,msg) {
+            swal("상태코드 " + status + "에러메시지" + msg)
+        }
+    });
+});
+
+//자가 라이더시 준비중 클릭
+$(".order-content").on("click", "button.order-selfReady-btn", function(e){
+    console.log("자가라이더 준비 들어옴");
+    e.preventDefault();
+    let billProductListNum = $(this).find('a.selfReadyOrder').attr("href");
+
+    console.log(billProductListNum);
+
+    $.ajax({
+        type: "PATCH",
+        url: "/pos/selfReady/",
+        data:JSON.stringify({"billProductListNum": billProductListNum}),
+        contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            swal(result);
+            showList(pageNum, billStatus);
+        },
+        error: function (error,status,msg) {
+            swal("상태코드 " + status + "에러메시지" + msg)
+        }
+    });
+});
+
+//자가 라이더시 배송중 클릭
+$(".order-content").on("click", "button.order-selfDelivery-btn", function(e){
+    console.log("자가라이더 배송 들어옴");
+    e.preventDefault();
+    let billProductListNum = $(this).find('a.acceptSelfDeliveryOrder').attr("href");
+
+    console.log(billProductListNum);
+
+    $.ajax({
+        type: "PATCH",
+        url: "/pos/selfDelivery/",
+        data:JSON.stringify({"billProductListNum": billProductListNum}),
+        contentType: "application/json; charset=utf-8",
+        success: function (result) {
+            swal(result);
+            showList(pageNum, billStatus);
+        },
+        error: function (error,status,msg) {
+            swal("상태코드 " + status + "에러메시지" + msg)
+        }
+    });
+});
+
 /*접수대기 클릭 시*/
 function orderReady(num) {
     billStatus = num;
@@ -271,14 +369,14 @@ function orderReady(num) {
     showList(pageNum, billStatus);
 }
 
-/*접수대기 클릭 시*/
+/*처리중 클릭 시*/
 function orderProcessing(num) {
     billStatus = num;
     pageNum = 1
     showList(pageNum, billStatus);
 }
 
-/*접수대기 클릭 시*/
+/*완료 클릭 시*/
 function orderCompleted(num) {
     billStatus = num;
     pageNum = 1
@@ -292,23 +390,23 @@ function getCount(num) {
         url: "/pos/count/" + num,
         success: function (result) {
             console.log("num : 3번 나와야돼" + num)
-            
-            if(num == 0) {
+            console.log("result :" + result);
+            if(num == '0') {
                 console.log("num = 0  : " + result);
                 $('.preparedOrder').text(result);
                 $('.reception-new').text("new");
             }
 
-            if(result = 0) {
+            if(result == 0) {
                 $('.reception-new').text("");
             }
 
-            if(num == 1) {
+            if(num == '1') {
                 console.log("num = 1  : " + result);
                 $('.processingOrder').text(result);
             }
 
-            if(num == 2) {
+            if(num == '2') {
                 console.log("num = 2  : " + result);
                 $('.completedOrder').text(result);
             }

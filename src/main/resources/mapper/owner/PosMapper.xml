@@ -24,7 +24,7 @@
             where tbp.BILL_STATUS = 1 OR tbp.BILL_STATUS = 2
         </if>
         <if test="billStatus.status3 != null">
-            where tbp.BILL_STATUS = 3
+            where tbp.BILL_STATUS = 3 OR tbp.BILL_STATUS = -1
         </if>
         and tsp.USER_NUM = #{userNum}
         ORDER BY 1 DESC limit #{criteria.limit}, 4
@@ -42,7 +42,7 @@
             where tbp.BILL_STATUS = 1 OR tbp.BILL_STATUS = 2
         </if>
         <if test="billStatus.status3 != null">
-            where tbp.BILL_STATUS = 3
+            where tbp.BILL_STATUS = 3 OR tbp.BILL_STATUS = -1
         </if>
         and tsp.USER_NUM = #{userNum}
     </select>
@@ -53,6 +53,27 @@
         SET BILL_COOKING_TIME = #{billCookingTime}, BILL_STATUS = 1
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </update>
+
+    <!--픽업 접수-->
+    <update id="updateBillStatusPickUp">
+        UPDATE TBL_BILLS_PRODUCT
+        SET BILL_STATUS = 3
+        WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
+    </update>
+
+    <!-- 자가라이더시 준비중 클릭 -> 배송중 -->
+    <update id="updateBillStatusSelfReady">
+        UPDATE TBL_BILLS_PRODUCT
+        SET BILL_STATUS = 2
+        WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
+    </update>
+
+<!--    &lt;!&ndash;자가라이더시 배송중 클릭 -> 배송완료 &ndash;&gt;-->
+<!--    <update id="updateBillStatusPickUp">-->
+<!--        UPDATE TBL_BILLS_PRODUCT-->
+<!--        SET BILL_STATUS = 3-->
+<!--        WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}-->
+<!--    </update>-->
 
     <!--주문 취소-->
     <update id="updateBillStatusCancel">
