@@ -48,7 +48,7 @@ public class ProductVO {
     private String sellProductPickup;
 
     @Column(name = "SELL_PRODUCT_DELIVERY_METHOD")
-    private String sellProductDelivery; // 0배달x, 1프레쉬라이더, 2자가라이더
+    private String sellProductDeliveryMethod; // 0배달x, 1프레쉬라이더, 2자가라이더
 
     @Column(name = "SELL_PRODUCT_DELIVERY_ADDRESS1")
     private String sellProductDeliveryAddress1;
@@ -60,7 +60,7 @@ public class ProductVO {
     private String sellProductDeliveryAddress3;
 
     @Column(name = "SELL_PRODUCT_SHIPPING_METHOD")
-    private String sellProductShipping; // 0배달x, 1프레쉬라이더, 2자가라이더
+    private String sellProductShippingMethod; // 0배달x, 1프레쉬라이더, 2자가라이더
 
     @Column(name = "SELL_PRODUCT_ADDRESS")
     private String sellProductAddress;
@@ -103,13 +103,13 @@ public class ProductVO {
 
     @Builder
     public ProductVO(Long sellProductNum, Long sellProductCategory, String sellProductName, Long sellProductOriginPrice,
-                       Long sellProductDiscountPrice, LocalDate sellProductExpireDay, Long sellProductStock,
-                       String sellProductStatus, String sellProductPickup, String sellProductDelivery,
-                       String sellProductDeliveryAddress1, String sellProductDeliveryAddress2, String sellProductDeliveryAddress3,
-                       String sellProductShipping, String sellProductAddress, String sellProductAddressDetail,
-                       String sellProductAddressPostNum, String sellProductDescription, String sellProductPhoneNum,
-                       String sellProductThumbnail, String sellProductImage, String sellProductImageUploadPath,
-                       String sellProductImageUuid) {
+                     Long sellProductDiscountPrice, LocalDate sellProductExpireDay, Long sellProductStock,
+                     String sellProductStatus, String sellProductPickup, String sellProductDelivery,
+                     String sellProductDeliveryAddress1, String sellProductDeliveryAddress2, String sellProductDeliveryAddress3,
+                     String sellProductShipping, String sellProductAddress, String sellProductAddressDetail,
+                     String sellProductAddressPostNum, String sellProductDescription, String sellProductPhoneNum,
+                     String sellProductThumbnail, String sellProductImage, String sellProductImageUploadPath,
+                     String sellProductImageUuid) {
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         this.sellProductNum = sellProductNum;
         this.sellProductCategory = sellProductCategory;
@@ -120,11 +120,11 @@ public class ProductVO {
         this.sellProductStock = sellProductStock;
         this.sellProductStatus = sellProductStatus;
         this.sellProductPickup = sellProductPickup;
-        this.sellProductDelivery = sellProductDelivery;
+        this.sellProductDeliveryMethod = sellProductDeliveryMethod;
         this.sellProductDeliveryAddress1 = sellProductDeliveryAddress1;
         this.sellProductDeliveryAddress2 = sellProductDeliveryAddress2;
         this.sellProductDeliveryAddress3 = sellProductDeliveryAddress3;
-        this.sellProductShipping = sellProductShipping;
+        this.sellProductDeliveryMethod = sellProductDeliveryMethod;
         this.sellProductAddress = sellProductAddress;
         this.sellProductAddressDetail = sellProductAddressDetail;
         this.sellProductAddressPostNum = sellProductAddressPostNum;

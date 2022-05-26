@@ -56,7 +56,8 @@
                             <p class="goods_price">
                                     <span class="position">
                                         <span class="dc">
-                                            <span class="dc_price" th:text="|${#numbers.formatInteger(proDetail.sellProductDiscountPrice, 0, 'COMMA')}원|">
+                                            <span class="dc_price"
+                                                  th:text="|${#numbers.formatInteger(proDetail.sellProductDiscountPrice, 0, 'COMMA')}원|">
                                                 "15,900"
                                                 <span class="won">원</span>
                                             </span>
@@ -80,7 +81,8 @@
                                     <dt class="tit">매장</dt>
                                     <dd class="desc" th:text="*{sellProductDescription}"></dd>
                                 </dl>
-                                <dl class="list" th:style="*{sellProductDelivery == '0' ? 'display:none;' : 'display:inline-block;'}">
+                                <dl class="list"
+                                    th:style="*{sellProductDeliveryMethod == '0' ? 'display:none;' : 'display:inline-block;'}">
                                     <dt class="tit">배달 가능 지역</dt>
                                     <dd class="desc" th:text="*{sellProductDeliveryAddress1}"></dd>
                                     <dt class="tit"></dt>
@@ -95,10 +97,13 @@
                                 <dl class="list">
                                     <dt class="tit">배송구분</dt>
                                     <span class="receiveMethod">
-									<button type="button" id="pickUpP" th:style="*{sellProductPickup == '1' ? 'display:none;' : 'display:inline-block;'}">픽업</button>
-									<button type="button" id="deliveryP" th:style="*{sellProductDelivery == '0' ? 'display:none;' : 'display:inline-block;'}">배달</button>
-                                    <button type="button" id="shippingP" th:style="*{sellProductShipping == '0' ? 'display:none;' : 'display:inline-block;'}">배송</button>
-								</span>
+									<button type="button" id="pickUpP"
+                                            th:style="*{sellProductPickup == '1' ? 'display:none;' : 'display:inline-block;'}">픽업</button>
+									<button type="button" id="deliveryP"
+                                            th:style="*{sellProductDeliveryMethod == '0' ? 'display:none;' : 'display:inline-block;'}">배달</button>
+                                    <button type="button" id="shippingP"
+                                            th:style="*{sellProductShippingMethod == '0' ? 'display:none;' : 'display:inline-block;'}">배송</button>
+                               </span>
                                 </dl>
                             </div>
                             <!---->
@@ -107,6 +112,7 @@
                     </div>
                     <div id="cartPut" th:object="${proDetail}">
                         <form name="form" method="get">
+
                             <div class="cart_option cartList cart_type2">
                                 <div class="inner_option">
                                     <!---->
@@ -131,10 +137,16 @@
                                                     <span class="tit_item">구매수량</span>
                                                     <div class="option">
                                                             <span class="count">
-                                                                <input th:value="*{sellProductDiscountPrice}" type=hidden name="sell_price">
-                                                                <button type="button" class="btn down on" data-opt="decrease" onclick="del();">수량내리기</button>
-                                                                <input type="text" name="amount"  class="inp" value="1" onchange="change();">
-                                                                <button type="button" class="btn up on" data-opt="increase" onclick="add();">수량올리기</button>
+                                                                <input th:value="*{sellProductDiscountPrice}"
+                                                                       type=hidden name="sell_price">
+                                                                <button type="button" class="btn down on"
+                                                                        data-opt="decrease"
+                                                                        onclick="del();">수량내리기</button>
+                                                                <input type="text" name="amount" class="inp" value="1"
+                                                                       onchange="change();">
+                                                                <button type="button" class="btn up on"
+                                                                        data-opt="increase"
+                                                                        onclick="add();">수량올리기</button>
                                                             </span>
                                                         <span class="price">
                                                                 <!---->
@@ -150,7 +162,7 @@
                                             <div class="price">
                                                 <!---->
                                                 <strong class="tit">총 상품금액 :</strong>
-                                                <input type="text" class="num" name="sum" style="width:125px" readonly >
+                                                <input type="text" class="num" name="sum" style="width:125px" readonly>
                                                 <span class="won">원</span>
                                             </div>
                                             <p class="txt_point">
@@ -158,45 +170,59 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <div class="cart_footer off">
-                                        <div class="functions"></div>
-                                        <div class="button_wrap">
-                                            <button type="button" class="base_button full"> 장바구니 담기 </button>
+                                    <form method="post" action="/product/productToBasketDetail" class="inner_option">
+                                        <div class="cart_footer off">
+                                            <div class="functions"></div>
+                                            <div class="button_wrap">
+                                                <button type="button" class="base_button full" onclick="sendBasket()">
+                                                    장바구니 담기
+                                                </button>
+                                                <input id="basketMaxQuantity" th:value="*{sellProductStock}"
+                                                       type="hidden" class="inp"/>
+                                                <input id="basketQuantity"
+                                                       type="hidden" class="inp"/>
+                                                <input id="sellProductDiscountPrice" th:value="*{sellProductDiscountPrice}"
+                                                       type=hidden />
+                                                <input id="sellProductNum" th:value="*{sellProductNum}" type=hidden
+                                                       name="basketPrice"/>
+                                                <input id="basketDeliveryMethod" class="receiveMethodHidden"
+                                                       style="display: none" type="hidden" name="basketDeliveryMethod"/>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </form>
                                     <!---->
                                     <!---->
                                 </div>
                             </div>
+                            <div class="cart_option cartList cart_type1">
+                                <div class="inner_option">
+                                    <!---->
+                                    <!---->
+                                    <div class="in_option">
+                                        <div class="list_goods">
+                                            <div class="bar_open">
+                                                <button type="button" class="btn_close">
+                                                    <span class="ico open">상품 선택</span>
+                                                </button>
+                                            </div>
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                        <!---->
+                                        <!---->
+                                        <!---->
+                                    </div>
+                                    <div class="cart_footer"></div>
+                                    <!---->
+                                    <!---->
+                                </div>
+                            </div>
+                            <div class="cart_option cart_type3 notify_option"></div>
+                            <div class="cart_option cart_result cart_type3"></div>
+                            <form name="frmBuyNow" method="post" action="/shop/order/order.php"></form>
+                            <form name="frmWishlist" method="post"></form>
                         </form>
-                        <div class="cart_option cartList cart_type1">
-                            <div class="inner_option">
-                                <!---->
-                                <!---->
-                                <div class="in_option">
-                                    <div class="list_goods">
-                                        <div class="bar_open">
-                                            <button type="button" class="btn_close">
-                                                <span class="ico open">상품 선택</span>
-                                            </button>
-                                        </div>
-                                        <!---->
-                                        <!---->
-                                        <!---->
-                                    </div>
-                                    <!---->
-                                    <!---->
-                                    <!---->
-                                </div>
-                                <div class="cart_footer"></div>
-                                <!---->
-                                <!---->
-                            </div>
-                        </div>
-                        <div class="cart_option cart_type3 notify_option"></div>
-                        <div class="cart_option cart_result cart_type3"></div>
-                        <form name="frmBuyNow" method="post" action="/shop/order/order.php"></form>
-                        <form name="frmWishlist" method="post"></form>
                     </div>
                 </div>
                 <div class="layout-wrapper goods-view-area">
