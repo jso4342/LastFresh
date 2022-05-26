@@ -891,6 +891,7 @@ strong {
     font-size: 28px;
     line-height: 32px;
     border: none;
+    text-align: end;
 }
 
 #cartPut .cart_option .total .won {

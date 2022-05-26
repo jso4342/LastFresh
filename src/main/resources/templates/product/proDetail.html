@@ -142,8 +142,8 @@
                                                                 <button type="button" class="btn down on"
                                                                         data-opt="decrease"
                                                                         onclick="del();">수량내리기</button>
-                                                                <input type="text" name="amount" class="inp" value="1"
-                                                                       onchange="change();">
+                                                                <input type="text" disabled name="amount" class="inp" value="1"
+                                                                       onchange="change(); ">
                                                                 <button type="button" class="btn up on"
                                                                         data-opt="increase"
                                                                         onclick="add();">수량올리기</button>
@@ -162,7 +162,7 @@
                                             <div class="price">
                                                 <!---->
                                                 <strong class="tit">총 상품금액 :</strong>
-                                                <input type="text" class="num" name="sum" style="width:125px" readonly>
+                                                <input type="text" class="num" name="sum" style="width:125px" readonly disabled>
                                                 <span class="won">원</span>
                                             </div>
                                             <p class="txt_point">
