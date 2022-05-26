@@ -50,6 +50,7 @@ div.cookingTime-TopBar{
 	line-height: 7vh;
 }
 
+
 /*쿠킹 타임 라디오 박스 css*/
 .cookingTime_select {
 	padding: 15px 10px;
@@ -122,7 +123,7 @@ div.sidebar-wrapper {
 	margin-top: 66px;
 }
 
-div.deliveryList, div.myDeliveryList, div.complete{
+a.deliveryList, a.myDeliveryList, div.complete{
 	height: 37.9vh;
 
 	text-align: center;
@@ -138,7 +139,7 @@ div.process, div.complete, div.orderhistoy {
 	color: #818181cc;
 }
 
-div.deliveryList-content, div.myDeliveryList-content{
+a.deliveryList-content, a.myDeliveryList-content{
 	margin-top: 121px;
 }
 
@@ -178,7 +179,7 @@ div.order-info1{
 	margin-top: 16px;
 }
 div.order-list {
-	height: 22vh;
+	height: 30vh;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -205,9 +206,20 @@ div.order-info2 p.order-menuInfo, p.storeName {
 div.order-accept {
 	display: flex;
 	line-height: 9;
-	margin-top: 8px;
+	margin-top: 51px;
 }
 
+div.order-accept input[type=submit] {
+	width: 8vw;
+	height: 16vh;
+	font-size: 1.4rem;
+	font-weight: bold;
+	color: #ffffffe0;
+	background-color: #DA291C;
+	box-shadow: 1px 1px 3px #da291c;
+	border: none;
+	margin: 15px;
+}
 div.order-accept input[type=button] {
 	width: 8vw;
 	height: 16vh;
@@ -221,7 +233,8 @@ div.order-accept input[type=button] {
 }
 
 div.order-time {
-	font-size: 3rem;
+	font-size: 26px;
+	margin-bottom: 9px !important;
 }
 
 div.order-method{
@@ -255,13 +268,14 @@ div.logoutBtn{
 div.order-address{
 	display: flex;
 	padding: 24px 0 0 0;
+	flex-direction: column;
 }
 div.addressWrap{
 	margin-top: -38px;
 	font-size: 25px;
 }
 div.addressTitle{
-	padding: 0 16px 0 0;
+	padding: 0 16px 13px 0;
 }
 div.callIcon {
 	margin: -190px 0 0 0;
@@ -279,7 +293,7 @@ div.logoutWrap{
 	text-align: center;
 
 }
-div.sideItem{
+a.sideItem{
 	background: #81818157;
 	color: #818181cc;
 }
@@ -316,9 +330,9 @@ input.deliveryFinishBtn.pc{
 	border: none;
 	margin: 15px;
 }
-input.deliveryFinishBtn.Mobile {
-	display: none;
-}
+/*input.deliveryFinishBtn.Mobile {*/
+/*	display: none;*/
+/*}*/
 .modifyBtn{
 	margin-top: 59px;
 	margin-right: 7px;
@@ -412,15 +426,15 @@ input.deliveryFinishBtn.Mobile {
 .order-timeTit{
 	text-align: center;
 	font-size: 21px;
-	border: 1px solid;
-	width: 75%;
-	margin: 31px 0 -22px 17px;
+	border: 1px solid #d9d9d9;
+	width: 97%;
+	margin: 31px  0 16px 4px;
 	border-bottom-left-radius: 20px;
 	border-bottom-right-radius: 20px;
 	border-top-left-radius: 20px;
 	border-top-right-radius: 20px;
-	background: #ff786e;
-
+	background: #d9d9d9 !important;
+	color: #818181cc;
 }
 @media screen and (max-width: 1000px) {
 
@@ -452,7 +466,7 @@ input.deliveryFinishBtn.Mobile {
 		position: fixed;
 		margin-top: 85px;
 	}
-	div.menuItem {
+	a.menuItem {
 		width: 50%;
 		text-align: center;
 		font-size: 39px;
@@ -468,7 +482,7 @@ input.deliveryFinishBtn.Mobile {
 		display: none;
 	}
 	div.order-list {
-		height: 22vh;
+		height: 28vh;
 		display: block;
 		flex-direction: row;
 		flex-wrap: wrap;
@@ -486,7 +500,7 @@ input.deliveryFinishBtn.Mobile {
 		line-height: 9;
 		flex-direction: column;
 		float: right;
-		margin-top: -271px;
+		margin-top: -325px;
 		width: 234px;
 	}
 	div.word{
@@ -499,6 +513,21 @@ input.deliveryFinishBtn.Mobile {
 		text-align: center;
 	}
 
+	div.order-accept input[type=submit] {
+		width: 16vw;
+		height: 6vh;
+		font-size: 2.4rem;
+		font-weight: bold;
+		color: #ffffffe0;
+		background-color: #DA291C;
+		box-shadow: 1px 1px 3px #da291c;
+		border: none;
+		margin: 15px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
 	div.order-accept input[type=button] {
 		width: 16vw;
 		height: 6vh;
@@ -513,6 +542,9 @@ input.deliveryFinishBtn.Mobile {
 		border-bottom-right-radius: 10px;
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
+	}
+	input#deliveryFinish{
+		margin: 72px 0px 0px -16px!important;
 	}
 	div.order-info1 {
 		padding: 21px 50px 28px 50px;
@@ -538,13 +570,14 @@ input.deliveryFinishBtn.Mobile {
 	div.order-address{
 		display: flex;
 		padding: 24px 0 0 0;
+		flex-direction: column;
 	}
 	div.addressWrap{
 		margin-top: -47px;
 		font-size: 36px;
 	}
 	div.addressTitle{
-		padding: 0 16px 0 0;
+		padding: 0 16px 13px 0;
 	}
 	div.callIcon{
 		margin: -176px 0 0 0;
@@ -567,11 +600,12 @@ input.deliveryFinishBtn.Mobile {
 		box-shadow: 1px 1px 3px #81818157!important;
 		height: 274px!important;
 	}
-	input.deliveryFinishBtn.pc{
-		display: none;
-	}
+	/*input.deliveryFinishBtn.pc{*/
+	/*	display: none;*/
+	/*}*/
 	div.myDeliveryBtn{
-		margin-right: 159px;
+		margin-right: 24px;
+		margin-top: -381px;
 	}
 	input.deliveryFinishBtn.Mobile{
 		display: block;
@@ -590,9 +624,9 @@ input.deliveryFinishBtn.Mobile {
 		border-top-left-radius: 10px;
 		border-top-right-radius: 10px;
 	}
-	input.deliveryFinishBtn.pc{
-		display: none;
-	}
+	/*input.deliveryFinishBtn.pc{*/
+	/*	display: none;*/
+	/*}*/
 	input.order-acceptBtn{height: 250px !important;}
 	div.modifyBtn{
 		margin: 67px 0 0 345px;
@@ -676,5 +710,40 @@ input.deliveryFinishBtn.Mobile {
 		border-top-right-radius: 20px;
 		background: #ff786e;
 
+	}
+	select option{
+		font-size: 28px;
+		font-weight: bold;
+	}
+	input[type=submit]{
+		width: 16vw;
+		height: 6vh;
+		font-size: 2.4rem;
+		font-weight: bold;
+		color: #ffffffe0;
+		background-color: #DA291C;
+		box-shadow: 1px 1px 3px #da291c;
+		border: none;
+		margin: 15px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
+	}
+
+	input[type=button]{
+		width: 16vw;
+		height: 6vh;
+		font-size: 2.4rem;
+		font-weight: bold;
+		color: #ffffffe0;
+		background-color: #DA291C;
+		box-shadow: 1px 1px 3px #da291c;
+		border: none;
+		margin: 15px;
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+		border-top-left-radius: 10px;
+		border-top-right-radius: 10px;
 	}
 }

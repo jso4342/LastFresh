@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>라스트프레시 | 라이더</title>
@@ -21,7 +21,8 @@
         <div class="modifyBtn" type="button">
             <a href="" id="modify">
                 <div style="margin: -56px 0 0 4px;">
-                    <img style="height: 61px;" src="https://cdn.discordapp.com/attachments/969471931575320587/972871638947360838/f1d4532d885acb34.png">
+                    <img style="height: 61px;"
+                         src="https://cdn.discordapp.com/attachments/969471931575320587/972871638947360838/f1d4532d885acb34.png">
                 </div>
             </a>
         </div>
@@ -29,15 +30,17 @@
             <a href="" id="logOut">
                 <div class="word">로그아웃</div>
                 <div style="margin: -56px 0 0 4px;">
-                    <img style="height: 61px;" src="https://cdn.discordapp.com/attachments/969471931575320587/970619206687141928/9c14c3a737a0671b.png">
+                    <img style="height: 61px;"
+                         src="https://cdn.discordapp.com/attachments/969471931575320587/970619206687141928/9c14c3a737a0671b.png">
                 </div>
             </a>
         </div>
     </div>
     <!-- menubar Wrapper-->
     <div class="menu-Bar">
-        <div type="button" class="menuItem list" style="background: white;color: #2C2929"> 배달 목록 </div>
-        <div type="button" class="menuItem myList">MY 배달 내역</div>
+        <a type="button" href="/rider/riderList" class="menuItem list" style="background: white;color: #2C2929"> 배달
+            목록</a>
+        <a type="button" href="/rider/riderMy" class="menuItem myList">MY 배달 내역</a>
     </div>
     <!-- 주문 내용 Wrapper-->
     <div class="content-wrapper">
@@ -48,17 +51,18 @@
                     <p style=" padding: 20px 0 0 0;">Last fresh</p>
                 </div>
             </div>
-            <div type="button" class="deliveryList sideItem" style="color: #2C2929; background: white">
+            <a type="button" href="/rider/riderList" class="deliveryList sideItem"
+               style="color: #2C2929; background: white">
                 <div class="deliveryList-content">
                     <p>배달 목록</p>
                 </div>
-            </div>
-            <div type="button" class="myDeliveryList sideItem">
+            </a>
+            <a type="button" href="/rider/riderMy" class="myDeliveryList sideItem">
                 <div class="myDeliveryList-content">
                     <p>MY 배달 내역</p>
                     <p>4</p>
                 </div>
-            </div>
+            </a>
             <div class="logoutWrap" type="button">
                 <div class="logout">
                     <p>로그아웃</p>
@@ -78,273 +82,102 @@
             <div class="order-content">
                 <!-- ajax로 가져올 데이터 접수 대기 -->
                 <div class="areabutton">
-                    <img src="../../static/front/assets/css/images/위치아이콘.png" class="imgIcon">
+                    <img src="https://cdn.discordapp.com/attachments/969471931575320587/978916005193613352/8a85695f2a269bb3.png" class="imgIcon">
                     지역을 선택해주세요
                 </div>
                 <div class="bg_loading" id="bgLoading" style="display: none;">
                     <div class="loading_show"></div>
                 </div>
-                <div class="order-list-wrapper">
-                    <hr>
-                    <div class="order-list">
-                        <!-- 시간&수령 방법-->
-                        <div class="orderWrap">
-                            <div class="order-timeTit">
-                                조리시간
+                    <div class="order-list-wrapper" th:each="order:${orders}">
+                        <form method="post" action="/rider/upDateStatusToTwo">
+                        <input type="hidden" th:value="${order.billProductListNum}" name="billProductListNum"/>
+                        <hr>
+                        <div class="order-list" th:object="${order}">
+                            <!-- 시간&수령 방법-->
+                            <div class="orderWrap">
+                                <div class="order-timeTit">
+                                    픽업가능시간
+                                </div>
+                                <div class="order-info1">
+                                    <div class="order-time" th:text="*{billCookingTime}"></div>
+                                    <div class=" noEx" style="display:none;"
+                                         th:text="*{billDeliveryMethod}"></div>
+                                    <div class="order-method delivery" style="display:none;">배달</div>
+                                    <div class=" order-method shipping" style="display:none;">배송</div>
+                                </div>
                             </div>
-                            <div class="order-info1">
-                                <div class="order-time">
-                                    18:41
+                            <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
+                            <div class="order-info2">
+                                <div class="order-menu">
+                                    <p class="order-menuInfo"
+                                       th:text="|*{sellProductName}*{billProductQuantity}개|"/> </p>
+                                    <p class="storeName" th:text="*{sellProductPhone}"></p>
                                 </div>
-                                <div class="order-method shipping">
-                                    배송
+                                <br>
+                                <div class="addressWrap">
+                                    <div class="order-address">
+                                        <div class="addressTitle">출발지:</div>
+                                        <div class="address"
+                                             th:text="|*{sellProductAddress}*{sellProductAddressDetail}*{sellProductAddressPostNum}|"></div>
+                                    </div>
+                                    <div class="order-address">
+                                        <div class="addressTitle">도착지:</div>
+                                        <div class="address"
+                                             th:text="|*{billDeliveryAddress}*{billDeliveryAddressDetail}*{billDeliveryAddressPostNum}|"></div>
+                                    </div>
                                 </div>
+                            </div>
+                            <!--주문 수락 및 취소-->
+                            <div class="order-accept ">
+                                <input class="order-acceptBtn" type="submit" value="접수하기"/>
                             </div>
                         </div>
-                        <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
-                        <div class="order-info2">
-                            <div class="order-menu">
-                                <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>
-                                <p class="storeName">코리아김치: 010-1234-1234</p>
-                            </div>
-                            <br>
-                            <div class="addressWrap">
-                                <div class="order-address">
-                                    <div class="addressTitle">출발지:</div>
-                                    <div class="address">배민동 배민 아파트 2동 101호</div>
-                                </div>
-                                <div class="order-address">
-                                    <div class="addressTitle">도착지:</div>
-                                    <div class="address">서울 송파구 방이동 999-9</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  주문 수락 및 취소-->
-                        <div class="order-accept ">
-                            <input class="order-acceptBtn" type="button" value="접수하기">
-                        </div>
+                        <hr>
+                </form>
                     </div>
-                    <hr>
-                </div>
-                <div class="order-list-wrapper">
-                    <hr>
-                    <div class="order-list">
-                        <!-- 시간&수령 방법-->
-                        <div class="order-info1">
-                            <div class="order-time">
-                                18:41
-                            </div>
-                            <div class="order-method delivery">
-                                배달
-                            </div>
-                        </div>
-                        <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
-                        <div class="order-info2">
-                            <div class="order-menu">
-                                <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>
-                                <p class="storeName">코리아김치: 010-1234-1234</p>
-                            </div>
-                            <br>
-                            <div class="addressWrap">
-                                <div class="order-address">
-                                    <div class="addressTitle">출발지:</div>
-                                    <div class="address">배민동 배민 아파트 2동 101호</div>
-                                </div>
-                                <div class="order-address">
-                                    <div class="addressTitle">도착지:</div>
-                                    <div class="address">서울 송파구 방이동 999-9</div>
-                                </div>
-                            </div>
-                        </div>
 
-                        <!--  주문 수락 및 취소-->
-                        <div class="order-accept ">
-                            <input class="order-acceptBtn" type="button" value="접수하기">
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <div class="order-list-wrapper">
-                    <hr>
-                    <div class="order-list">
-                        <!-- 시간&수령 방법-->
-                        <div class="order-info1">
-                            <div class="order-time">
-                                18:41
-                            </div>
-                            <div class="order-method shipping">
-                                배송
-                            </div>
-                        </div>
-                        <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
-                        <div class="order-info2">
-                            <div class="order-menu">
-                                <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>
-                                <p class="storeName">코리아김치: 010-1234-1234</p>
-                            </div>
-                            <br>
-                            <div class="addressWrap">
-                                <div class="order-address">
-                                    <div class="addressTitle">출발지:</div>
-                                    <div class="address">배민동 배민 아파트 2동 101호</div>
-                                </div>
-                                <div class="order-address">
-                                    <div class="addressTitle">도착지:</div>
-                                    <div class="address">서울 송파구 방이동 999-9</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  주문 수락 및 취소-->
-                        <div class="order-accept ">
-                            <input class="order-acceptBtn" type="button" value="접수하기">
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <div class="order-list-wrapper">
-                    <hr>
-                    <div class="order-list">
-                        <!-- 시간&수령 방법-->
-                        <div class="order-info1">
-                            <div class="order-time">
-                                18:41
-                            </div>
-                            <div class="order-method delivery">
-                                배달
-                            </div>
-                        </div>
-                        <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
-                        <div class="order-info2">
-                            <div class="order-menu">
-                                <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>
-                                <p class="storeName">코리아김치: 010-1234-1234</p>
-                            </div>
-                            <br>
-                            <div class="addressWrap">
-                                <div class="order-address">
-                                    <div class="addressTitle">출발지:</div>
-                                    <div class="address">배민동 배민 아파트 2동 101호</div>
-                                </div>
-                                <div class="order-address">
-                                    <div class="addressTitle">도착지:</div>
-                                    <div class="address">서울 송파구 방이동 999-9</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  주문 수락 및 취소-->
-                        <div class="order-accept ">
-                            <input class="order-acceptBtn" type="button" value="접수하기">
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <div class="order-list-wrapper">
-                    <hr>
-                    <div class="order-list">
-                        <!-- 시간&수령 방법-->
-                        <div class="order-info1">
-                            <div class="order-time">
-                                18:41
-                            </div>
-                            <div class="order-method shipping">
-                                배송
-                            </div>
-                        </div>
-                        <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
-                        <div class="order-info2">
-                            <div class="order-menu">
-                                <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>
-                                <p class="storeName">코리아김치: 010-1234-1234</p>
-                            </div>
-                            <br>
-                            <div class="addressWrap">
-                                <div class="order-address">
-                                    <div class="addressTitle">출발지:</div>
-                                    <div class="address">배민동 배민 아파트 2동 101호</div>
-                                </div>
-                                <div class="order-address">
-                                    <div class="addressTitle">도착지:</div>
-                                    <div class="address">서울 송파구 방이동 999-9</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  주문 수락 및 취소-->
-                        <div class="order-accept ">
-                            <input class="order-acceptBtn" type="button" value="접수하기">
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-                <div class="order-list-wrapper">
-                    <hr>
-                    <div class="order-list">
-                        <!-- 시간&수령 방법-->
-                        <div class="order-info1">
-                            <div class="order-time">
-                                18:41
-                            </div>
-                            <div class="order-method delivery">
-                                배달
-                            </div>
-                        </div>
-                        <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->
-                        <div class="order-info2">
-                            <div class="order-menu">
-                                <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>
-                                <p class="storeName">코리아김치: 010-1234-1234</p>
-                            </div>
-                            <br>
-                            <div class="addressWrap">
-                                <div class="order-address">
-                                    <div class="addressTitle">출발지:</div>
-                                    <div class="address">배민동 배민 아파트 2동 101호</div>
-                                </div>
-                                <div class="order-address">
-                                    <div class="addressTitle">도착지:</div>
-                                    <div class="address">서울 송파구 방이동 999-9</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--  주문 수락 및 취소-->
-                        <div class="order-accept ">
-                            <input class="order-acceptBtn" type="button" value="접수하기">
-                        </div>
-                    </div>
-                    <hr>
-                </div>
             </div>
         </div>
-        <div id="cartPut">
-            <div class="cart_option1 cartList cart_type3 off" style="opacity: 0;">
-                <div class="region_select modal">
-                    <select id="sido" name="sido" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
-                        <option value="" >'시/도'를 선택해주세요</option>
-                    </select>
-                    <select id="sigugun" name="sigugun" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
-                        <option value="" >'시/군/구'를 선택해주세요</option>
-                    </select>
-                    <select id="dong" name="dong" class="base_button1 cancel2 half" style="background-color: white; cursor:pointer;">
-                        <option value="">'동'을 선택해주세요</option>
-                    </select>
-                    <div>
-                        <!---->
-                        <div class="cart_modal_footer">
-                            <button type="button" class="base_button1 cancel1 half"> 확인 </button>
-                        </div>
-                        <!---->
+    </div>
+    <div id="cartPut">
+        <div class="cart_option1 cartList cart_type3 off" style="opacity: 0;display: none;">
+            <div class="region_select modal">
+                <select id="sido" name="sido" class="base_button1 cancel2 half"
+                        style="background-color: white; cursor:pointer;">
+                    <option value="">'시/도'를 선택해주세요</option>
+                </select>
+                <select id="sigugun" name="sigugun" class="base_button1 cancel2 half"
+                        style="background-color: white; cursor:pointer;">
+                    <option value="">'시/군/구'를 선택해주세요</option>
+                </select>
+                <select id="dong" name="dong" class="base_button1 cancel2 half"
+                        style="background-color: white; cursor:pointer;">
+                    <option value="">'동'을 선택해주세요</option>
+                </select>
+                <div>
+                    <!---->
+                    <div class="cart_modal_footer">
+                        <button type="button" class="base_button1 cancel1 half"> 확인</button>
                     </div>
+                    <!---->
                 </div>
             </div>
         </div>
     </div>
+</div>
 <!--<th:block th:insert="/fragments/footer.html :: footFragment"/>-->
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/riderFront/assets/js/rider.js"></script>
-<script type="application/javascript" src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
+<script type="application/javascript"
+        src="https://zelkun.tistory.com/attachment/cfile8.uf@99BB7A3D5D45C065343307.js"></script>
+<script th:inline="javascript">
+    //배달목록없음
+    if ($(".sidebar-content").hasClass("order-list-wrapper")) {
+        $(".noorder").css("display","none");
+    } else {
+        $(".noorder").css("display","");
+    }
+
+</script>
 </html>

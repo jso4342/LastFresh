@@ -1,23 +1,23 @@
-let $menuItemlist= $($(".menuItem.list"));
-let $menuItemmyList= $($(".menuItem.myList"));
-let $deliveryList= $($(".deliveryList.sideItem"));
-let $myDeliveryList= $($(".myDeliveryList.sideItem"));
+let $menuItemlist = $($(".menuItem.list"));
+let $menuItemmyList = $($(".menuItem.myList"));
+let $deliveryList = $($(".deliveryList.sideItem"));
+let $myDeliveryList = $($(".myDeliveryList.sideItem"));
 
-$menuItemlist.on("click",function () {
+$menuItemlist.on("click", function () {
     $menuItemmyList.css("background", "#d9d9d9").css("color", "#818181cc");
     $menuItemlist.css("background", "white").css("color", "#2C2929");
 })
 
-$menuItemmyList.on("click",function () {
+$menuItemmyList.on("click", function () {
     $menuItemlist.css("background", "#d9d9d9").css("color", "#818181cc");
     $menuItemmyList.css("background", "white").css("color", "#2C2929");
 })
-$deliveryList.on("click",function () {
+$deliveryList.on("click", function () {
     $myDeliveryList.css("background", "#d9d9d9").css("color", "#818181cc");
     $deliveryList.css("background", "white").css("color", "#2C2929");
 })
 
-$myDeliveryList.on("click",function () {
+$myDeliveryList.on("click", function () {
     $deliveryList.css("background", "#d9d9d9").css("color", "#818181cc");
     $myDeliveryList.css("background", "white").css("color", "#2C2929");
 })
@@ -26,13 +26,13 @@ $myDeliveryList.on("click",function () {
 var cart1 = $(".cart_option1");
 var button1 = $(".cancel1");
 
-$(".areabutton").click(function(){
+$(".areabutton").click(function () {
     $(cart1).removeClass("off");
     $(cart1).css("opacity", "1");
     $(".bg_loading").css("display", "block");
 });
 
-$(button1).click(function(){
+$(button1).click(function () {
     $(cart1).addClass("off");
     $(cart1).css("opacity", "0");
     $(".bg_loading").css("display", "none");
@@ -68,26 +68,27 @@ function find() {
     });
 
 }
-$(document).ready(function(){
+
+$(document).ready(function () {
     //sido option 추가
-    $.each(hangjungdong.sido, function(idx, code){
+    $.each(hangjungdong.sido, function (idx, code) {
         //append를 이용하여 option 하위에 붙여넣음
         $('#sido').append(fn_option(code.sido, code.codeNm));
     });
 
     //sido 변경시 시군구 option 추가
-    $('#sido').change(function(){
+    $('#sido').change(function () {
         $('#sigugun').show();
         $('#sigugun').empty();
-        $('#sigugun').append(fn_option('','선택')); //
-        $.each(hangjungdong.sigugun, function(idx, code){
-            if($('#sido > option:selected').val() == code.sido)
+        $('#sigugun').append(fn_option('', '선택')); //
+        $.each(hangjungdong.sigugun, function (idx, code) {
+            if ($('#sido > option:selected').val() == code.sido)
                 $('#sigugun').append(fn_option(code.sigugun, code.codeNm));
         });
 
         //세종특별자치시 예외처리
         //옵션값을 읽어 비교
-        if($('#sido option:selected').val() == '36'){
+        if ($('#sido option:selected').val() == '36') {
             $('#sigugun').hide();
             //index를 이용해서 selected 속성(attr)추가
             //기본 선택 옵션이 최상위로 index 0을 가짐
@@ -98,21 +99,21 @@ $(document).ready(function(){
     });
 
     //시군구 변경시 행정동 옵션추가
-    $('#sigugun').change(function(){
+    $('#sigugun').change(function () {
         //option 제거
         $('#dong').empty();
-        $.each(hangjungdong.dong, function(idx, code){
-            if($('#sido > option:selected').val() == code.sido && $('#sigugun > option:selected').val() == code.sigugun)
+        $.each(hangjungdong.dong, function (idx, code) {
+            if ($('#sido > option:selected').val() == code.sido && $('#sigugun > option:selected').val() == code.sigugun)
                 $('#dong').append(fn_option(code.dong, code.codeNm));
         });
         //option의 맨앞에 추가
-        $('#dong').prepend(fn_option('','선택'));
+        $('#dong').prepend(fn_option('', '선택'));
         //option중 선택을 기본으로 선택
         $('#dong option:eq("")').attr('selected', 'selected');
 
     });
 
-    $('#dong').change(function(){
+    $('#dong').change(function () {
         var sido = $('#sido option:selected').val();
         var sigugun = $('#sigugun option:selected').val();
         var dong = $('#dong option:selected').val();
@@ -121,6 +122,115 @@ $(document).ready(function(){
     });
 });
 
-function fn_option(code, name){
-    return '<option value="' + code +'">' + name +'</option>';
+function fn_option(code, name) {
+    return '<option value="' + code + '">' + name + '</option>';
 }
+
+/*1픽업 2배달 3배송*/
+$(".order-info1").each(function (i, item) {
+    let num = $(this).children(".noEx").text();
+
+    if (num == 2) {
+        $(this).children(".delivery").css("display", "block");
+    }
+    if (num == 3) {
+        $(this).children(".shipping").css("display", "block");
+    }
+})
+
+$(".areabutton").click(function (i, item) {
+    $(".cart_option1").show();
+})
+$("button.base_button1").click(function (i, item) {
+    $(".cart_option1").hide();
+})
+
+
+
+
+//
+// //my 목록
+// function getMyList() {
+//     $.ajax({
+//         type: "get",
+//         url: "/rider/riderMy",
+//         data: "data",
+//         success: showMyList
+//         , error: function (a, b, c) {
+//             console.log("오류" + c);
+//         }
+//     });
+// };
+//
+// function showMyList(orders) {
+//     let text = "";
+//     if (orders != null && orders.length != 0) {
+//         $.each(orders, function (index, info) {
+//             <!-- 접수 대기 목록이 있을 시-->
+//     text+='    <div class="order-content" >'
+//     text+='            <div class="order-list-wrapper">'
+//     text+='            <hr>'
+//     text+='            <div class="order-list myDeliveryInfo">'
+//     text+='            <!-- 시간&수령 방법-->'
+//     text+='        <div class="orderWrap">'
+//     text+='            <div class="order-timeTit">'
+//     text+='            조리시간'
+//     text+='            </div>'
+//     text+='            <div class="order-info1">'
+//     text+='            <div class="order-time">'
+//     text+='            18:41'
+//     text+='        </div>'
+//     text+='        <div class="order-method shipping">'
+//     text+='            배송'
+//     text+='            </div>'
+//     text+='            </div>'
+//     text+='            </div>'
+//     text+='            <!-- 주문 관련 정보 (가격, 메뉴이름, 수량, 주소)-->'
+//     text+='            <div class="order-info2">'
+//     text+='            <div class="order-menu">'
+//     text+='            <p class="order-menuInfo">엄~청 맛있는 김치찌개 2개</p>'
+//     text+='        <p class="storeName">코리아김치: 010-1234-1234</p>'
+//     text+='        </div>'
+//     text+='        <br>'
+//     text+='        <div class="addressWrap">'
+//     text+='            <div class="order-address">'
+//     text+='            <div class="addressTitle">출발지:</div>'
+//     text+='        <div class="address">배민동 배민 아파트 2동 101호</div>'
+//     text+='        </div>'
+//     text+='        <div class="order-address">'
+//     text+='            <div class="addressTitle">도착지:</div>'
+//     text+='        <div class="address">서울 송파구 방이동 999-9</div>'
+//     text+='        </div>'
+//     text+='        </div>'
+//     text+='        </div>'
+//     text+='        <!--  주문 수락 및 취소-->'
+//     text+='        <div class="btnWrap">'
+//     text+='            <div class="order-accept myDeliveryBtn">'
+//     text+='            <input type="button" class="deliveryFinishBtn pc" value="전달완료">'
+//     text+='            <input type="button" class="deliveryFinish" value="완료">'
+//     text+='            <input type="button" class="deliveryCancel" value="접수취소">'
+//     text+='            <a href="tel:01012341234">'
+//     text+='            <div class="callIconWrap">'
+//     text+='            <input type="button">'
+//     text+='            <div class="callIcon">'
+//     text+='            <img class="callImg" src="https://cdn.discordapp.com/attachments/969471931575320587/970637419240108072/4141.png">'
+//     text+='            </div>'
+//     text+='            </div>'
+//     text+='            </a>'
+//     text+='            </div>'
+//     text+='            <input type="button" class="deliveryFinishBtn Mobile" value="전달완료">'
+//     text+='            </div>'
+//     text+='            </div>'
+//     text+='            <hr>'
+//     text+='            </div>'
+//
+//         });
+//     } else {
+//         text +='<div class="noorder">'
+//         text +='    <img src="https://cdn.discordapp.com/attachments/969471931575320587/969481005150908456/7d8afc2c848b9d71.png">'
+//         text +='    <p>즐거운 하루 보내세요!</p>'
+//         text +='</div>'
+//     }
+//     $(".sidebar-content").html(text);
+// }
+
