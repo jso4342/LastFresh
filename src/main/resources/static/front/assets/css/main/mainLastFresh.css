@@ -842,12 +842,19 @@ li.on{
     font-size: 14px;
     letter-spacing: 0;
 }
-
+.newPro{
+    display: flex; justify-content: space-around ;
+}
 
 
 /*-----------반응형---------------------------------------------------*/
 @media screen and (max-width:768px) {
-
+    .newPro{
+        display: flex;
+        justify-content: center !important;
+        flex-wrap: wrap;
+        margin: 0 340px 0 -17px;
+    }
 
     /* ------------슬라이더 배너--------------*/
     [name="slide"] {display: none;}
@@ -1180,7 +1187,8 @@ li.on{
     .mainLastBox {
         text-align: left;
         float: left;
-        margin-left: -16.5%;
+        margin-left: -7.5%;
+        margin-right: 75px;
         position: relative;
     }
 
@@ -1595,8 +1603,7 @@ li.on{
     }
 
     .mainNew {
-        width: 420px;
-    }
+        width: 214px;    }
 
     .mainNewBox {
         margin-left: 24px;
