@@ -3,7 +3,7 @@
 
 let sell_price;
 let amount;
-
+let num=$('#basketMaxQuantity').val();
 function init () {
     sell_price = document.form.sell_price.value;
     amount = document.form.amount.value;
@@ -12,12 +12,18 @@ function init () {
 
     change();
 }
-
-
+$("#basketQuantity").val(1);
+let basketQuantity=$("#basketQuantity").val();
 function add() {
     hm = document.form.amount;
+    let stockNum=hm.value
+    console.log("hm",hm.value)
+    console.log("num",num)
     sum = document.form.sum;
-    hm.value ++ ;
+    if(num!=stockNum){
+        basketQuantity++;
+        hm.value ++ ;
+    }else {return}
     $('#finalPrice').val(sum);
     $("input[name=sum]").val((parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
     //  sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -31,6 +37,7 @@ function del() {
     hm = document.form.amount;
     sum = document.form.sum;
     if (hm.value > 1) {
+        basketQuantity--;
         hm.value -- ;
         $("input[name=sum]").val((parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
         //    sum.value = (parseInt(hm.value) * sell_price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -134,4 +141,18 @@ function  AddComma(num)
 {
     let regexp = /\B(?=(\d{3})+(?!\d))/g;
     return num.toString().replace(regexp, ',');
+}
+$("#basketDeliveryMethod").val(0);
+function sendBasket() {
+    let sellProductDiscountPrice = $("#sellProductDiscountPrice").val();
+    let sellProductNum = $("#sellProductNum").val();
+    let basketDeliveryMethod = $("#basketDeliveryMethod").val();
+    if(basketDeliveryMethod=="0"){
+        alert("옵션을 선택해주세요")
+        return false;
+    }else {
+        alert("장바구니에 상품을 담았습니다.")
+    }
+
+    window.location.href = "/product/productToBasket?basketQuantity=" + basketQuantity+"&sellProductDiscountPrice=" + sellProductDiscountPrice +"&sellProductNum=" + sellProductNum +"&basketDeliveryMethod=" + basketDeliveryMethod;
 }

@@ -89,11 +89,11 @@ public class OwnerService {
         productVO1.setSellProductExpireDay(productVO.getSellProductExpireDay());
         productVO1.setSellProductStock(productVO.getSellProductStock());
         productVO1.setSellProductPickup(productVO.getSellProductPickup());
-        productVO1.setSellProductDelivery(productVO.getSellProductDelivery());
+        productVO1.setSellProductDeliveryMethod(productVO.getSellProductDeliveryMethod());
         productVO1.setSellProductDeliveryAddress1(productVO.getSellProductDeliveryAddress1());
         productVO1.setSellProductDeliveryAddress2(productVO.getSellProductDeliveryAddress2());
         productVO1.setSellProductDeliveryAddress3(productVO.getSellProductDeliveryAddress3());
-        productVO1.setSellProductShipping(productVO.getSellProductShipping());
+        productVO1.setSellProductShippingMethod(productVO.getSellProductShippingMethod());
         productVO1.setSellProductAddress(productVO.getSellProductAddress());
         productVO1.setSellProductAddressDetail(productVO.getSellProductAddressDetail());
         productVO1.setSellProductAddressPostNum(productVO.getSellProductAddressPostNum());
