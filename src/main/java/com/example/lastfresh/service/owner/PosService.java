@@ -29,6 +29,16 @@ public class PosService {
         return posDAO.updateBillStatus(posDTO) == 1;
     }
     
+    /* 픽업 접수시 상태, 주문 상태 변경 */
+    public boolean modifyBillPickUp(PosDTO posDTO) {
+        return posDAO.updateBillStatusPickUp(posDTO) == 1;
+    }
+    
+    /* 자가라이더 준비중 시, 주문 상태 변경 */
+    public boolean modifyBillSelfReady(PosDTO posDTO) {
+        return posDAO.updateBillStatusSelfReady(posDTO) == 1;
+    }
+    
     /* 주문 취소시 상태 변경 */
     public boolean cancelBill(PosDTO posDTO) {
         return posDAO.updateBillStatusCancel(posDTO) == 1;
