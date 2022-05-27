@@ -112,6 +112,8 @@
                                                     <span class="name" th:text="*{sellProductName}"></span>
                                                     <span class="cost">
                                                         <!---->
+                                                        <span class="dc dcList" th:text="|*{(sellProductOriginPrice-sellProductDiscountPrice)*100 / sellProductOriginPrice}%|">20%</span>
+
                                                         <span class="price"
                                                               th:text="|${#numbers.formatInteger(product.sellProductDiscountPrice, 0, 'COMMA')}원|"></span>
                                                         <span class="original"
