@@ -80,4 +80,11 @@
         ]]>
     </update>
 
+<!--    어제 생성된 상품 조회-->
+    <select id="getOldFiles" resultType="productDTO">
+        SELECT SELL_PRODUCT_NUM, SELL_PRODUCT_THUMBNAIL, SELL_PRODUCT_IMAGE, SELL_PRODUCT_IMAGE_UPLOAD_PATH, SELL_PRODUCT_IMAGE_UUID
+        FROM TBL_SELL_PRODUCT
+        WHERE SELL_PRODUCT_IMAGE_UPLOAD_PATH = DATE_FORMAT(DATE_ADD(now(),interval - 1 DAY), '%Y/%m/%d');
+    </select>
+
 </mapper>

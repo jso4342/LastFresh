@@ -36,6 +36,8 @@ public class OwnerProductDAO {
 
     /* 마감기한 지난 상품 자동 업데이트*/
     public void updateExpireProduct() {ownerproductMapper.updateExpireProduct();}
+
+    public List<ProductDTO> getOldFiles () {return ownerproductMapper.getOldFiles();}
 }
 
 
