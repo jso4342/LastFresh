@@ -46,9 +46,12 @@ public class UserFindService {
         }
 
     }
-    public String selectId(String userPhone){
-        log.info("-----------------------------------");
-        log.info("서비스" + userFindDAO.selectId(userPhone));
-        log.info("-----------------------------------");
-        return userFindDAO.selectId(userPhone);};
+    /* 아이디,비밀번호 문자 */
+    public String selectId(String userPhone){return userFindDAO.selectId(userPhone);};
+
+    /* 아이디,비밀번호 이메일 */
+    public String findId(String email) {return userFindDAO.findId(email);}
+
+    /* 비밀번호 변경 */
+    public String changePw(String pw, String id){return userFindDAO.changePw(pw, id);}
 }

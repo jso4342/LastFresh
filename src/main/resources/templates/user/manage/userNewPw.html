@@ -15,20 +15,22 @@
     <div class="setup_title">비밀번호 재설정</div>
     <div class="setup_box">
         <form class="setup_form">
+            <input type="hidden" class="id" th:value="${id}">
             <div class="css-1blp8ou ex244l61">
-                <div class="regist_form"><label for="password" class="regist_label">새 비밀번호 등록</label>
-                    <div class="css-176lya2"><input type="password" data-testid="input-box" id="password"
-                                                              name="password" value="" placeholder="새 비밀번호를 입력해 주세요"
-                                                              class="setup_input"></div>
+                <div class="regist_form">
+                    <label for="password" class="regist_label">새 비밀번호 등록</label>
+                    <div class="css-176lya2">
+                        <input type="password" data-testid="input-box" id="password" name="password" value="" placeholder="새 비밀번호를 입력해 주세요" class="setup_input">
+                    </div>
                 </div>
             </div>
             <div class="css-1blp8ou ex244l61">
-                <div class="regist_form"><label for="passwordConfirm" class="regist_label">새 비밀번호
-                    확인</label>
-                    <div class="css-176lya2"><input type="password" data-testid="input-box"
-                                                              id="passwordConfirm" name="passwordConfirm" value=""
-                                                              placeholder="새 비밀번호를 한 번 더 입력해 주세요"
-                                                              class="setup_input"></div>
+                <div class="regist_form">
+                    <label for="passwordConfirm" class="regist_label">새 비밀번호 확인</label>
+                    <div class="css-176lya2">
+                        <input type="password" data-testid="input-box" id="passwordConfirm" name="passwordConfirm" value="" placeholder="새 비밀번호를 한 번 더 입력해 주세요" class="setup_input">
+                        <span id="result" style="font-size:0.7em"></span>
+                    </div>
                 </div>
             </div>
             <div class="setup_checkWrapper">
@@ -40,4 +42,5 @@
 </div>
 <th:block th:insert="/fragments/footer.html :: footFragment"/>
 </body>
+<script src="/front/assets/js/user/userNewPw.js"></script>
 </html>

@@ -174,4 +174,18 @@ public class UserManaingController {
     public void userLogin() {
     }
 
+    @GetMapping("/manage/userFindId")
+    public void userFindId(){}
+
+    @GetMapping("/manage/userFindPw")
+    public void userFindPw(){}
+
+    @GetMapping("/manage/userNewPw")
+    public void userNewPw(String id, Model model){
+        model.addAttribute("id", id);
+        log.info("--------------------");
+        log.info("받은아이디 : " + id);
+        log.info("--------------------");
+
+    }
 }
