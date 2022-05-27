@@ -38,6 +38,7 @@ function resetCooking() {
     cookingTime = 0;
     $cookingTime.find('.cookingTime-real').text(cookingTime);
 }
+
 // $resetBtn.on("click", function () {
 //     cookingTime = 0;
 //     $cookingTime.find('.cookingTime-real').text(cookingTime);
@@ -51,7 +52,9 @@ $plusBtn.on("click", function () {
 
 /* 조리 시간 줄이기*/
 $minusBtn.on("click", function () {
-    if(cookingTime == 0){return;}
+    if (cookingTime == 0) {
+        return;
+    }
     cookingTime -= 10;
     $cookingTime.find('.cookingTime-real').text(cookingTime);
 });
@@ -61,7 +64,7 @@ $.each($sideBars, function (i, e) {
     $(e).click(function () {
         index = i
 
-        for (let j = 0; j < $sideBars.length; j++){
+        for (let j = 0; j < $sideBars.length; j++) {
             $sideBars[j].classList.remove("sellClicked")
         }
 
@@ -72,6 +75,7 @@ $.each($sideBars, function (i, e) {
 let pageNum = 1;
 let amount = 4;
 let billStatus = 0;
+let currentCount = 0;
 
 showList(pageNum, billStatus);
 
@@ -103,11 +107,11 @@ function showList(page, billStatus) {
                 let month = "" + (date.getMonth() + 1);
                 let day = "" + (date.getDate());
 
-                if(month.length < 2) {
+                if (month.length < 2) {
                     month = '0' + month;
                 }
 
-                if(day.length <2 ) {
+                if (day.length < 2) {
                     day = '0' + day;
                 }
 
@@ -120,19 +124,19 @@ function showList(page, billStatus) {
                 let expectedMonth = "" + (date.getMonth() + 1);
                 let expectedDay = "" + date.getDate();
 
-                if(hour.length < 2) {
+                if (hour.length < 2) {
                     hour = '0' + hour;
                 }
 
-                if(minute.length <2 ) {
+                if (minute.length < 2) {
                     minute = '0' + minute;
                 }
 
-                if(expectedMonth.length < 2) {
+                if (expectedMonth.length < 2) {
                     expectedMonth = '0' + expectedMonth;
                 }
 
-                if(expectedDay.length <2 ) {
+                if (expectedDay.length < 2) {
                     expectedDay = '0' + expectedDay;
                 }
 
@@ -140,12 +144,11 @@ function showList(page, billStatus) {
                 let time = hour + ":" + minute;
 
 
-
                 str += '<div class="order-list-wrapper">';
                 str += '<div class="order-list">';
                 str += '<div class="order-info3">';
                 str += '<div class="order-years">';
-                if(item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
+                if (item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
                     str += '<p>' + years + '</p>';
                     str += '<p>' + days + '</p>';
                 } else if (item.billStatus == '1' || item.billStatus == '2') {
@@ -156,7 +159,7 @@ function showList(page, billStatus) {
                 str += '</div>';
                 str += '<div class="order-info1">';
                 str += '<div class="order-time">';
-                if(item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
+                if (item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
                     str += '<p>주문 접수 시간</p>';
                     str += '<p>' + item.billOrderDateTime + '</p>';
                 } else if (item.billStatus == '1' || item.billStatus == '2') {
@@ -165,13 +168,13 @@ function showList(page, billStatus) {
                 }
 
                 str += '</div>';
-                if(item.billDeliveryMethod == 1) {
+                if (item.billDeliveryMethod == 1) {
                     str += '<div class="order-method pickUp">';
                     str += '포장';
-                }else if(item.billDeliveryMethod == 2) {
+                } else if (item.billDeliveryMethod == 2) {
                     str += '<div class="order-method delivery">';
                     str += '배달';
-                }else if(item.billDeliveryMethod == 3) {
+                } else if (item.billDeliveryMethod == 3) {
                     str += '<div class="order-method shipping">';
                     str += '배송';
                 }
@@ -191,7 +194,7 @@ function showList(page, billStatus) {
                 str += '</div>';
                 str += '</div>';
                 str += '<div class="order-accept">';
-                if(item.billStatus == '0' && item.sellProductPickup == '0' && item.billDeliveryMethod == 1) {
+                if (item.billStatus == '0' && item.sellProductPickup == '0' && item.billDeliveryMethod == 1) {
                     str += '<button class="delivery-pickUp-btn"><a class="acceptPickUp" href="' + item.billProductListNum + '">픽업대기</a></button>';
                     str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '" data-stock="' + item.billProductQuantity + '" data-product="' + item.sellProductNum + '">취소</a></button>';
                 } else if (item.billStatus == '0') {
@@ -224,18 +227,18 @@ function showList(page, billStatus) {
             getCount(1);
             getCount(2);
 
-            if(result.orderCount == 0) {
+            if (result.orderCount == 0) {
                 str += '<img src="https://cdn.discordapp.com/attachments/969471931575320587/969481005150908456/7d8afc2c848b9d71.png">';
                 str += '<p>즐거운 하루 보내세요!</p>'
 
                 $noorder.html(str);
-            }else {
+            } else {
                 $orderList.html(str);
 
                 showOrderPage(result.orderCount);
             }
         },
-        error: function (error,status,msg) {
+        error: function (error, status, msg) {
             alert("상태코드 " + status + "에러메시지" + msg)
         }
     });
@@ -245,31 +248,31 @@ function showOrderPage(orderCount) {
     let endNum = Math.ceil(pageNum / 10.0) * 10;
     let startNum = endNum - 9;
     let realEnd = Math.ceil(orderCount / 4.0);
-    
+
     let str = "";
 
     const $pagingTag = $("div.paging");
 
-    if(endNum > realEnd) {
+    if (endNum > realEnd) {
         endNum = realEnd;
     }
 
     let prev = startNum > 1;
     let next = endNum * 4 < orderCount;
 
-    if(prev){
+    if (prev) {
         str += "<a class='changePage' href='" + (startNum - 1) + "'><code>&lt;</code></a>"
     }
 
-    for(let i=startNum; i<=endNum; i++){
-        if(pageNum == i){
+    for (let i = startNum; i <= endNum; i++) {
+        if (pageNum == i) {
             str += "<code class='selectedPage'>" + i + "</code>";
             continue;
         }
         str += "<a class='changePage' href='" + i + "'><code>" + i + "</code></a>";
     }
 
-    if(next){
+    if (next) {
         str += "<a class='changePage' href='" + (endNum + 1) + "'><code>&gt;</code></a>"
     }
 
@@ -277,14 +280,14 @@ function showOrderPage(orderCount) {
 }
 
 /*페이지 이동*/
-$(".paging").on("click", "a.changePage", function(e){
+$(".paging").on("click", "a.changePage", function (e) {
     e.preventDefault();
     pageNum = $(this).attr("href");
     showList(pageNum, billStatus);
 });
 
 //접수 창 열기
-$(".order-content").on("click", "button.order-reception-btn", function(e){
+$(".order-content").on("click", "button.order-reception-btn", function (e) {
     e.preventDefault();
     let billProductListNum = $(this).find('a').attr("href");
 
@@ -295,7 +298,7 @@ $(".order-content").on("click", "button.order-reception-btn", function(e){
 });
 
 //접수 하기
-$(".cookingTime-reception").on("click", function(e){
+$(".cookingTime-reception").on("click", function (e) {
 
     let billProductListNum = $('.billProductListNum').val();
 
@@ -304,13 +307,13 @@ $(".cookingTime-reception").on("click", function(e){
     $.ajax({
         type: "PATCH",
         url: "/pos/accept/",
-        data:JSON.stringify({"billProductListNum": billProductListNum, "billCookingTime": billCookingTime}),
+        data: JSON.stringify({"billProductListNum": billProductListNum, "billCookingTime": billCookingTime}),
         contentType: "application/json; charset=utf-8",
         success: function (result) {
             swal(result);
             showList(pageNum, billStatus);
         },
-        error: function (error,status,msg) {
+        error: function (error, status, msg) {
             swal("상태코드 " + status + "에러메시지" + msg)
         }
     });
@@ -320,84 +323,125 @@ $(".cookingTime-reception").on("click", function(e){
 });
 
 //취소 하기
-$(".order-content").on("click", "button.order-cancel-btn", function(e){
+$(".order-content").on("click", "button.order-cancel-btn", function (e) {
     e.preventDefault();
     let billProductListNum = $(this).find('a.cancelOrder').attr("href");
     let billProductQuantity = $($(this).find('a.cancelOrder')).data("stock");
     let sellProductNum = $($(this).find('a.cancelOrder')).data("product");
 
-    $.ajax({
-        type: "PATCH",
-        url: "/pos/cancel/",
-        data:JSON.stringify({"billProductListNum": billProductListNum, "billProductQuantity": billProductQuantity, "sellProductNum": sellProductNum}),
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            swal(result);
-            showList(pageNum, billStatus);
-        },
-        error: function (error,status,msg) {
-            swal("상태코드 " + status + "에러메시지" + msg)
+    swal({
+        title: "주문을 취소하시겠습니까",
+        text: "취소 시 되돌릴 수 없습니다",
+        buttons: ["아니오", "취소하기"]
+    }).then(function (result) {
+        console.log("swal result " + result);
+        if (result) {
+            $.ajax({
+                type: "PATCH",
+                url: "/pos/cancel/",
+                data: JSON.stringify({
+                    "billProductListNum": billProductListNum,
+                    "billProductQuantity": billProductQuantity,
+                    "sellProductNum": sellProductNum
+                }),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    swal(result);
+                    showList(pageNum, billStatus);
+                },
+                error: function (error, status, msg) {
+                    swal("상태코드 " + status + "에러메시지" + msg)
+                }
+            });
         }
     });
 });
 
 //픽업 접수 하기
-$(".order-content").on("click", "button.delivery-pickUp-btn", function(e){
+$(".order-content").on("click", "button.delivery-pickUp-btn", function (e) {
     e.preventDefault();
     let billProductListNum = $(this).find('a.acceptPickUp').attr("href");
 
-    $.ajax({
-        type: "PATCH",
-        url: "/pos/acceptPickUp/",
-        data:JSON.stringify({"billProductListNum": billProductListNum}),
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            swal(result);
-            showList(pageNum, billStatus);
-        },
-        error: function (error,status,msg) {
-            swal("상태코드 " + status + "에러메시지" + msg)
+    swal({
+        title: "포장 주문을 완료 하시겠습니까",
+        text: "포장 완료시 되돌릴 수 없습니다",
+        buttons: ["아니오", "포장완료"]
+    }).then(function (result) {
+        if (result) {
+            $.ajax({
+                type: "PATCH",
+                url: "/pos/acceptPickUp/",
+                data: JSON.stringify({"billProductListNum": billProductListNum}),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    swal(result);
+                    showList(pageNum, billStatus);
+                },
+                error: function (error, status, msg) {
+                    swal("상태코드 " + status + "에러메시지" + msg)
+                }
+            });
         }
     });
 });
 
 //자가 라이더시 준비중 클릭
-$(".order-content").on("click", "button.order-selfReady-btn", function(e){
+$(".order-content").on("click", "button.order-selfReady-btn", function (e) {
     e.preventDefault();
     let billProductListNum = $(this).find('a.selfReadyOrder').attr("href");
 
-    $.ajax({
-        type: "PATCH",
-        url: "/pos/selfReady/",
-        data:JSON.stringify({"billProductListNum": billProductListNum}),
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            swal(result);
-            showList(pageNum, billStatus);
-        },
-        error: function (error,status,msg) {
-            swal("상태코드 " + status + "에러메시지" + msg)
+    swal({
+        title: "주문 준비가 완료되었습니까",
+        text: "완료 시 배달 및 배송이 시작됩니다",
+        buttons: ["아니오", "완료"]
+    }).then(function (result) {
+        if (result) {
+            $.ajax({
+                type: "PATCH",
+                url: "/pos/selfReady/",
+                data: JSON.stringify({"billProductListNum": billProductListNum}),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    swal(result);
+                    showList(pageNum, billStatus);
+                },
+                error: function (error, status, msg) {
+                    swal("상태코드 " + status + "에러메시지" + msg)
+                }
+            });
         }
     });
 });
 
 //자가 라이더시 배송중 클릭
-$(".order-content").on("click", "button.order-selfDelivery-btn", function(e){
+$(".order-content").on("click", "button.order-selfDelivery-btn", function (e) {
     e.preventDefault();
     let billProductListNum = $(this).find('a.acceptSelfDeliveryOrder').attr("href");
 
-    $.ajax({
-        type: "PATCH",
-        url: "/pos/selfDelivery/",
-        data:JSON.stringify({"billProductListNum": billProductListNum}),
-        contentType: "application/json; charset=utf-8",
-        success: function (result) {
-            swal(result);
-            showList(pageNum, billStatus);
-        },
-        error: function (error,status,msg) {
-            swal("상태코드 " + status + "에러메시지" + msg)
+    swal({
+
+        title: "배송이 완료되었습니까",
+        text: "완료 시 주문이 되돌릴 수 없습니다",
+        buttons: ["아니오", "완료"]
+
+    }).then(function (result) {
+
+        if (result) {
+            $.ajax({
+                type: "PATCH",
+                url: "/pos/selfDelivery/",
+                data: JSON.stringify({"billProductListNum": billProductListNum}),
+                contentType: "application/json; charset=utf-8",
+                success: function (result) {
+                    swal(result);
+                    showList(pageNum, billStatus);
+                },
+                error: function (error, status, msg) {
+                    swal("상태코드 " + status + "에러메시지" + msg)
+                }
+            });
         }
+
     });
 });
 
@@ -428,27 +472,35 @@ function getCount(num) {
         type: "GET",
         url: "/pos/count/" + num,
         success: function (result) {
-            if(num == '0') {
+            if (num == '0') {
                 $('.preparedOrder').text(result);
                 $('.reception-new').text("new");
             }
 
-            if(result == 0) {
+            if (currentCount != result && num == '0') {
+                showList(pageNum, billStatus);
+                currentCount = result;
+            }
+
+            if (result == 0) {
                 $('.reception-new').text("");
             }
 
-            if(num == '1') {
+            if (num == '1') {
                 $('.processingOrder').text(result);
             }
 
-            if(num == '2') {
+            if (num == '2') {
                 $('.completedOrder').text(result);
             }
         },
-        error: function (error,status,msg) {
+        error: function (error, status, msg) {
             swal("상태코드 " + status + "에러메시지" + msg)
         }
     });
 }
+
+let time = 60000; //1초(1000) * 60
+setInterval("getCount(0)", time);
 
 
