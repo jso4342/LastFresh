@@ -118,14 +118,26 @@ $(document).ready(function () {
         var sigugun = $('#sigugun option:selected').val();
         var dong = $('#dong option:selected').val();
         var dongCode = sido + sigugun + dong + '00';
-
     });
 });
+
 
 function fn_option(code, name) {
     return '<option value="' + code + '">' + name + '</option>';
 }
 
+function filter() {
+    let sidoIdx=hangjungdong.sido.findIndex(i=>i.sido==$("#sido").val());
+    let sigugunIdx=hangjungdong.sigugun.findIndex(i=>i.sigugun==$("#sigugun").val()&&i.sido==$("#sido").val());
+    let dongIdx=hangjungdong.dong.findIndex(i=>i.dong==$("#dong").val()&&i.sigugun==$("#sigugun").val()&&i.sido==$("#sido").val());
+
+    let sido = hangjungdong.sido[sidoIdx].codeNm;//시
+    let sigungu = hangjungdong.sigugun[sigugunIdx].codeNm;//시군구
+    let dong = hangjungdong.dong[dongIdx].codeNm;//동
+
+    window.location.href = "/rider/riderListF?sido=" + sido+"&sigungu=" + sigungu +"&dong=" + dong;
+
+}
 /*1픽업 2배달 3배송*/
 $(".order-info1").each(function (i, item) {
     let num = $(this).children(".noEx").text();
@@ -157,7 +169,6 @@ $(".order-list-wrapper").each(function () {
 
     console.log($("#order-time").html());
 })
-
 
 //
 // //my 목록
