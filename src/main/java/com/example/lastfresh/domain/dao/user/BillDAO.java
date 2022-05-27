@@ -26,6 +26,7 @@ public class BillDAO {
         int orderNum = billMapper.getLastOrderNum();
         billMapper.insertBillProduct(userNum, orderNum);
     };
+    public void cancelOrder(Long billProductNum){billMapper.cancelOrder(billProductNum);}
 
   /*  public List<BillVO> getOrders(Long userNum){return billMapper.getOrders(userNum);}
 */

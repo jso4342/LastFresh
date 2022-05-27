@@ -102,8 +102,10 @@
                         </th>
                         <td>
                             <input type="text" name="userEmail" id="email" th:value="*{userEmail}" required="" option="regEmail" label="이메일" placeholder="예: marketkurly@kurly.com">
-                            <button class="btn default disabled" type="button" onclick="verifyEmail()">중복확인</button>
-                           <!-- <a href="#" class="btn default" onclick="verifyEmail()">중복확인</a>-->
+                           <!-- <button class="btn default disabled btn_check2" type="button">중복확인</button>-->
+                              <button class="btn default disabled btn_check2" type="button" onclick="verifyEmail()">중복확인</button>
+                            <!--        <a href="#" class="btn default" onclick="verifyEmail()">중복확인</a>-->
+                            <span id="resultEmail" style="font-size:0.7em"></span>
                             <p class="txt_guide square emailOk" style="display:none;">
                                 <span class="txt txt_case1 ok">사용 가능한 이메일 주소입니다</span>
                             </p>
@@ -121,7 +123,7 @@
                                 <input type="text" name="userPhone" id="auth_code" th:value="*{userPhone}" label="인증번호 확인" class="inp_confirm">
                                 <button id="btn_cert_confirm" name="btn_cert_confirm" class="btn default disabled" type="button" onclick="showPhoneCode()">인증번호 발송</button>
                                 <input type="text" name="auth_code_input" placeholder="인증번호를 입력해주세요" pattern="[0-9]*" class="inp_confirm_code" style="display:none">
-                                <button id="btn_code_confirm" name="btn_code_confirm" class="btn default disabled" type="bpattern="[0-9]*" utton" style="display:none;" onclick="verifyPhone()">인증하기</button>
+                                <button id="btn_code_confirm" name="btn_code_confirm" class="btn default disabled" style="display:none;" onclick="verifyPhone()">인증하기</button>
                                 <p id="countdown" class="count_down"></p>
                             </div>
                             <p class="txt_guide square phoneOk" style="display:none;">
@@ -203,7 +205,7 @@
                 </table>
                 <hr style="margin-top: 20px;">
                 <div id="formSubmit" class="form_footer">
-                    <a href="#" class="btn default">탈퇴하기</a>
+                    <a onclick="exit()" class="btn default">탈퇴하기</a>
                     <button type="submit" class="btn active">회원정보수정</button>
                 </div>
             </form>
@@ -233,6 +235,16 @@
         location.href = '/user/myPage/myCheckPw?userNum=' + userNum;
     }
 
+    function exit(){
+        if (!confirm("정말로 탈퇴하시겠습니까?\n한 번 탈퇴된 계정은 복구될 수 없습니다.")) {
+            return ;
+        } else {
+            alert("탈퇴가 완료되었습니다.");
+            location.href = '/user/myPage/exit?userNum=' + userNum;
+        }
+
+    }
+
     function showNewPwText(){
         $(".newPwText").css({
             "display":"block"
@@ -245,18 +257,6 @@
         });
     }
 
-    function verifyEmail(){
-        if(true){ //중복 X
-            $(".emailOk").css({
-                "display":"block"
-            });
-            $("input[name='userEmail']").attr("readonly", true);
-        }else{
-            $(".emailNotOk").css({
-                "display":"block"
-            });
-        }
-    }
 
     function verifyPhone(){
         if(true){ //핸드폰 인증
@@ -346,8 +346,48 @@
         return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
     });
 
+    //이메일 중복 키 이벤트
+    function verifyEmail(){
+        check = false;
+        checkEmail($("input#email").val());
+    };
 
 
 
+    //이메일 중복검사
+    function checkEmail(userEmail){
+        if(!userEmail){
+            $("#resultEmail").text("아이디를 입력해주세요.");
+            $("#resultEmail").css("color", "red");
+            return;
+        }
+
+        $.ajax({
+            url: "/user/manage/EmailCheck/" + userEmail,
+            type: "get",
+            dataType: "json",
+            success: function(resultEmail){
+                if(resultEmail.status == "ok"){ //중복 X
+                    $(".emailOk").css({
+                        "display":"block"
+                    });
+                    $(".emailNotOk").css({
+                        "display":"none"
+                    });
+                    $("input[name='userEmail']").attr("readonly", true);
+                }else{
+                    $(".emailNotOk").css({
+                        "display":"block"
+                    });
+                    $(".emailOk").css({
+                        "display":"none"
+                    });
+                }
+            },
+            error: function(){
+                console.log("중복검사 오류");
+            }
+        });
+    }
 </script>
 </html>

@@ -7,9 +7,17 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+import java.util.List;
+
 @Mapper
 public interface ReviewMapper {
     //    //댓글 등록(insert)
+    public void insert(Long userNum, Long productNum);
+    public List<ReviewVO> getUnWritten(Long userNum);
+    public List<ReviewVO> getWritten(Long userNum);
+    public void update(ReviewVO reviewVO);
+    public void delete(Long reviewNum);
+//    //댓글 등록(insert)
 //    public int insert( );
 //
     //리뷰 1개 조회(read)

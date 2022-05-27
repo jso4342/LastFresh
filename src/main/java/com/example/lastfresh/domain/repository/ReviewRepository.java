@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReviewRepository extends JpaRepository<ReviewVO, Long> {
     public List<ReviewVO> findAll();
+  //  public List<StudentEntity> findAllByOrderByIdAsc();
 }

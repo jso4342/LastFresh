@@ -1,9 +1,6 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "TBL_BILLS")
 @Getter
+@Setter
 @ToString(of={"billOrderNum", "billDeliveryAddress", "billDeliveryAddressDetail", "billDeliveryAddressPostNum", "billTotalPrice", "billOrderDate"})
 @NoArgsConstructor
 public class BillVO {
