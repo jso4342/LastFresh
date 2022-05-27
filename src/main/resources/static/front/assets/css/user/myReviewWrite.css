@@ -251,9 +251,9 @@ img, video, canvas {
 }
 
 .section_write .btn_reg.btn_disabled {
-    border: 1px solid #dddfe1;
+    border: 1px solid #DA291C;
     background-color: #fff;
-    color: #dddfe1;
+    color: #DA291C;
 }
 
 .section_write .btn_reg {
@@ -261,8 +261,8 @@ img, video, canvas {
     width: 200px;
     height: 48px;
     margin: 0 auto;
-    border: 1px solid #5f0080;
-    background-color: #5f0080;
+    border: 1px solid #DA291C;
+    background-color: #DA291C;
     font-size: 14px;
     color: #fff;
     line-height: 46px;
@@ -402,7 +402,7 @@ img, video, canvas {
         width: 95%;
         height: 148px;
         margin: 0 auto;
-        border: 1px solid #5f0080;
+        border: 1px solid #DA291C;
         background-color: #ff786e !important;
         font-size: 61px;
         font-weight: bold;

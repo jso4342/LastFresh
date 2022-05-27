@@ -1,9 +1,6 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.text.ParseException;
@@ -12,6 +9,7 @@ import java.text.SimpleDateFormat;
 @Entity
 @Table(name = "TBL_BILLS_PRODUCT")
 @Getter
+@Setter
 @ToString(of = {"billProductListNum", "billProductQuantity", "billProductPrice", "billDeliveryMethod", "billCookingTime", "billStatus"})
 @NoArgsConstructor
 public class BillProductVO {

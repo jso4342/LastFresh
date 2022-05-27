@@ -219,7 +219,7 @@
                     <!-- 버튼 -->
                     <div style="clear:both;"></div>
                     <div class="buyBtn" style="text-align: center; margin: 0 auto; font-size:15px">
-                        <input type="button" id="check_module" value="결제하기" class="btn_payment" style="width: 33%;" onclick="payment();">
+                        <input type="button" id="check_module" value="결제하기" class="btn_payment" style="width: 33%;" onclick="payment()">
                     </div>
                 </form>
 
@@ -319,13 +319,13 @@
 
         if(card.checked) {
             pay_text = 'card';
-        } else if (bank.checked)
+        } else if (bank.checked){
             pay_text = 'trans';
-        }else if(phone.checked){
+        } else if (phone.checked){
             pay_text = 'phone';
         }else{
             swal("결제 방법을 선택해주세요");
-            return;
+            return ;
         }
 
 

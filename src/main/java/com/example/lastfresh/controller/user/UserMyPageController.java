@@ -3,8 +3,10 @@ package com.example.lastfresh.controller.user;
 
 import com.example.lastfresh.domain.repository.BillRepository;
 import com.example.lastfresh.domain.repository.MemberRepository;
+import com.example.lastfresh.domain.vo.ReviewVO;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.MyPageService;
+import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Criteria;
@@ -27,6 +29,7 @@ import java.io.IOException;
 @RequestMapping("/user/myPage/*")
 public class UserMyPageController {
     private final MyPageService myPageService;
+    private final ReviewService reviewService;
 
 
 
@@ -34,6 +37,13 @@ public class UserMyPageController {
     @GetMapping("/myChangeInfo")
     public void myChangeInfo(Long userNum, HttpServletRequest request, Model model) throws Exception {
         model.addAttribute("user", myPageService.get(userNum));
+    };
+
+    //탈퇴
+    @GetMapping("/exit")
+    public RedirectView exit(Long userNum, HttpServletRequest request) throws Exception {
+        myPageService.exit(userNum);
+        return new RedirectView("/main/main");
     };
 
     //정보 수정
@@ -47,6 +57,34 @@ public class UserMyPageController {
 
         return new RedirectView("myChangeInfo");
     };
+
+
+    @PostMapping("/write")
+    public RedirectView write(Long reviewNum, String reviewTitle, String reviewContent, Long userNum, RedirectAttributes rttr) throws Exception{
+        ReviewVO reviewVO = new ReviewVO();
+
+        reviewVO.setReviewNum(reviewNum);
+        reviewVO.setReviewTitle(reviewTitle);
+        reviewVO.setReviewContent(reviewContent);
+
+        reviewService.update(reviewVO);
+
+        rttr.addAttribute("list", reviewService.getReview(userNum));
+        rttr.addAttribute("userNum", userNum);
+        //model.addAttribute("list", reviewService.update(userNum));
+        return new RedirectView("myReviewWritten");
+    }
+
+    @GetMapping("/delete")
+    public RedirectView delete(Long reviewNum, Long userNum, RedirectAttributes rttr) throws Exception{
+
+        reviewService.delete(reviewNum);
+
+        rttr.addAttribute("list", reviewService.getReview(userNum));
+        rttr.addAttribute("userNum", userNum);
+        //model.addAttribute("list", reviewService.update(userNum));
+        return new RedirectView("myReviewWritten");
+    }
 
 
     // 비밀번호 확인 페이지
@@ -94,18 +132,31 @@ public class UserMyPageController {
     };*/
 
     @GetMapping("/myReviewUnwritten")
-    public void myReviewUnwritten(){}
+    public void myReviewUnwritten(Long userNum, Model model) throws Exception{
+        model.addAttribute("list", reviewService.getReview(userNum));
+        model.addAttribute("userNum", userNum);
+    }
 
     @GetMapping("/myReviewWrite")
-    public void myReviewWrite(){}
+    public void myRevieWrite(Long userNum, Long reviewNum, Model model) throws Exception{
+        //model.addAttribute("list", reviewService.update(userNum));
+        model.addAttribute("userNum", userNum);
+        model.addAttribute("productVO", reviewService.getProduct(reviewNum));
+        model.addAttribute("review", reviewService.getOneReview(reviewNum));
+        model.addAttribute("reviewNum", reviewNum);
+    }
+
 
     @GetMapping("/myReviewWritten")
-    public void myReviewWritten(){}
+    public void myReviewWritten(Long userNum, Model model) throws Exception{
+        model.addAttribute("list", reviewService.getReview(userNum));
+        model.addAttribute("userNum", userNum);
+    }
 
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
-        //  return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
+       // return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
+          return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 }

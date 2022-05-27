@@ -1,9 +1,6 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,7 +8,8 @@ import java.util.Date;
 @Entity
 @Table(name = "TBL_REVIEW")
 @Getter
-@ToString
+@Setter
+@ToString(exclude ={"productVO", "userVO"})
 @NoArgsConstructor
 public class ReviewVO {
     @Id

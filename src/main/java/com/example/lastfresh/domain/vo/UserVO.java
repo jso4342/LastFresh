@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "TBL_USER")
 @Getter
 @Setter
-@ToString( exclude = {"basketVO", "productVO"})
+@ToString( exclude = {"basketVO", "productVO", "ReviewVO"})
 //@NoArgsConstructor
 public class UserVO {
     @Id
@@ -44,6 +44,10 @@ public class UserVO {
     List<BasketVO> baskets = new ArrayList<>();
    // private List<Baskes = new ArrayList<>();
 
+    @OrderBy("REVIEW_NUM DESC")
+    @OneToMany(mappedBy = "userVO") // 다대다
+    List<ReviewVO> reviews = new ArrayList<>();
+
     @OneToMany(mappedBy = "userVO") // 다대다
     List<BillVO> bills = new ArrayList<>();
 
@@ -58,6 +62,11 @@ public class UserVO {
         this.userKakao = userKakao;
         this.userStatus = userStatus;
     }
+
+    public void updateUserStatus(String userStatus){
+        this.userStatus = userStatus;
+    }
+
 
     @Builder
     public UserVO(Long userNum, String userId, String userPw, String userName, String userEmail, String userAddress, String userAddressDetail, String userAddressPostNum, String userPhone, String userKakao, String userStatus) {

@@ -37,10 +37,20 @@ public class MyPageService {
         return true;
     }
 
+    public void exit(Long userNum){
+        UserVO userVO =  userRepository.findById(userNum).get();
+        userVO.updateUserStatus("-1");
+        userRepository.save(userVO);
+    }
+
     public void cancelOrder(Long billProductNum){
-        BillProductVO billProductVO = billProductRepository.findById(billProductNum).get();
-        billProductVO.updateBillStatus("-1");
-        billProductRepository.save(billProductVO);
+        log.info("/////////////////////");
+
+        billDAO.cancelOrder(billProductNum);
+       // BillProductVO billProductVO = billProductRepository.findById(billProductNum).get();
+       // billProductVO.updateBillStatus("-1");
+
+        // billProductRepository.save(billProductVO);
     }
 
     public void cancelAll(Long billOrderNum){
