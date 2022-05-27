@@ -520,8 +520,7 @@ function riderReset() {
 
 /*라이더 사용 X */
 function riderNoUsing() {
-    riderReset()
-    $deliveryList.hide()
+    $deliveryList.show();
 }
 
 

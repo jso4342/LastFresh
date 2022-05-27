@@ -257,8 +257,8 @@ div.order-list {
 }
 
 div.order-info1 {
-    padding: 10px 50px 20px 50px;
-    width: 31%;
+    padding: 10px 50px 20px 0;
+    width: 20%;
 }
 
 div.order-info2 {
@@ -283,12 +283,20 @@ div.order-info2 p.order-price {
     color: #000000;
 }
 
+div.order-info3 {
+    padding: 10px 50px 20px 50px;
+    width: 17%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
 
 div.order-accept {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 27%;
+    width: 18%;
     line-height: 9;
 }
 
@@ -370,6 +378,12 @@ div.order-accept button.order-selfReady-btn, div.order-accept button.order-selfD
     box-shadow: 1px 1px 3px #a9a4a4;
     border: none;
     margin: 7px;
+}
+
+div.order-years p{
+    margin: 0;
+    font-size: 43px;
+    font-weight: bold;
 }
 
 div.order-time p:first-child {

@@ -79,14 +79,12 @@ function showList(page, billStatus) {
     pageNum = page || 1;
     let amount = 4;
     let limit = (page - 1) * amount;
-    console.log("들어옴1");
 
     $.ajax({
         type: "GET",
         url: "/pos/list/" + billStatus + "?pageNum=" + pageNum +
             "&amount=" + amount + "&limit=" + limit,
         success: function (result) {
-            console.log("들어옴3");
 
             let str = "";
             let $orderList = $('.order-content');
@@ -98,13 +96,64 @@ function showList(page, billStatus) {
             // }
 
             $.each(result.list, function (i, item) {
-                let str1 = item.billOrderDate + " " + item.billOrderDateTime;
-                let str2 = item.billCookingTime;
-                let date = new Date(str1);
-                date.setMinutes(date.getMinutes() + str2);
+                let orderDate = item.billOrderDate + " " + item.billOrderDateTime;
+                let orderCookingTime = item.billCookingTime;
+                let date = new Date(orderDate);
+                let years = date.getFullYear();
+                let month = "" + (date.getMonth() + 1);
+                let day = "" + (date.getDate());
+
+                if(month.length < 2) {
+                    month = '0' + month;
+                }
+
+                if(day.length <2 ) {
+                    day = '0' + day;
+                }
+
+                let days = month + "-" + day;
+
+                date.setMinutes(date.getMinutes() + orderCookingTime);
+                let hour = "" + date.getHours();
+                let minute = "" + date.getMinutes();
+                let expectedYears = date.getFullYear();
+                let expectedMonth = "" + (date.getMonth() + 1);
+                let expectedDay = "" + date.getDate();
+
+                if(hour.length < 2) {
+                    hour = '0' + hour;
+                }
+
+                if(minute.length <2 ) {
+                    minute = '0' + minute;
+                }
+
+                if(expectedMonth.length < 2) {
+                    expectedMonth = '0' + expectedMonth;
+                }
+
+                if(expectedDay.length <2 ) {
+                    expectedDay = '0' + expectedDay;
+                }
+
+                let expectedDays = expectedMonth + "-" + expectedDay;
+                let time = hour + ":" + minute;
+
+
 
                 str += '<div class="order-list-wrapper">';
                 str += '<div class="order-list">';
+                str += '<div class="order-info3">';
+                str += '<div class="order-years">';
+                if(item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
+                    str += '<p>' + years + '</p>';
+                    str += '<p>' + days + '</p>';
+                } else if (item.billStatus == '1' || item.billStatus == '2') {
+                    str += '<p>' + expectedYears + '</p>';
+                    str += '<p>' + expectedDays + '</p>';
+                }
+                str += '</div>';
+                str += '</div>';
                 str += '<div class="order-info1">';
                 str += '<div class="order-time">';
                 if(item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
@@ -112,7 +161,7 @@ function showList(page, billStatus) {
                     str += '<p>' + item.billOrderDateTime + '</p>';
                 } else if (item.billStatus == '1' || item.billStatus == '2') {
                     str += '<p>예상 완료 시간</p>';
-                    str += '<p>' + date.getHours() + ':' + date.getMinutes() + '</p>';
+                    str += '<p>' + time + '</p>';
                 }
 
                 str += '</div>';
@@ -149,13 +198,13 @@ function showList(page, billStatus) {
                     str += '<button class="order-reception-btn"><a class="acceptOrder" href="' + item.billProductListNum + '">접수하기</a></button>';
                     str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '" data-stock="' + item.billProductQuantity + '" data-product="' + item.sellProductNum + '">취소</a></button>';
                 } else if (item.billStatus == '1' && item.billDeliveryMethod == '2' && item.sellProductDeliveryMethod == '2') {
-                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배달 시작</a></button>';
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배달시작</a></button>';
                 } else if (item.billStatus == '1' && item.billDeliveryMethod == '3' && item.sellProductShippingMethod == '2') {
-                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송 시작</a></button>';
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송시작</a></button>';
                 } else if (item.billStatus == '2' && item.billDeliveryMethod == '2' && item.sellProductDeliveryMethod == '2') {
-                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배달 완료</a></button>';
-                } else if (item.billStatus == '2' && item.billDeliveryMethod == '2' && item.sellProductShippingMethod == '2') {
-                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송 완료</a></button>';
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배달완료</a></button>';
+                } else if (item.billStatus == '2' && item.billDeliveryMethod == '3' && item.sellProductShippingMethod == '2') {
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송완료</a></button>';
                 } else if (item.billStatus == '1') {
                     str += '<button class="order-ready-btn">준비중</button>';
                 } else if (item.billStatus == '2') {
@@ -196,8 +245,7 @@ function showOrderPage(orderCount) {
     let endNum = Math.ceil(pageNum / 10.0) * 10;
     let startNum = endNum - 9;
     let realEnd = Math.ceil(orderCount / 4.0);
-    console.log("realEnd :" + realEnd);
-    console.log("orderCount :" + orderCount);
+    
     let str = "";
 
     const $pagingTag = $("div.paging");
@@ -238,7 +286,6 @@ $(".paging").on("click", "a.changePage", function(e){
 //접수 창 열기
 $(".order-content").on("click", "button.order-reception-btn", function(e){
     e.preventDefault();
-    console.log("모달창");
     let billProductListNum = $(this).find('a').attr("href");
 
     $cookingModal.show();
@@ -253,8 +300,6 @@ $(".cookingTime-reception").on("click", function(e){
     let billProductListNum = $('.billProductListNum').val();
 
     let billCookingTime = $('.cookingTime-real').text();
-    console.log(billProductListNum);
-    console.log(billCookingTime);
 
     $.ajax({
         type: "PATCH",
@@ -276,7 +321,6 @@ $(".cookingTime-reception").on("click", function(e){
 
 //취소 하기
 $(".order-content").on("click", "button.order-cancel-btn", function(e){
-    console.log("오더 캔슬 들어옴");
     e.preventDefault();
     let billProductListNum = $(this).find('a.cancelOrder').attr("href");
     let billProductQuantity = $($(this).find('a.cancelOrder')).data("stock");
@@ -299,11 +343,8 @@ $(".order-content").on("click", "button.order-cancel-btn", function(e){
 
 //픽업 접수 하기
 $(".order-content").on("click", "button.delivery-pickUp-btn", function(e){
-    console.log("픽업 접수 들어옴");
     e.preventDefault();
     let billProductListNum = $(this).find('a.acceptPickUp').attr("href");
-
-    console.log(billProductListNum);
 
     $.ajax({
         type: "PATCH",
@@ -322,11 +363,8 @@ $(".order-content").on("click", "button.delivery-pickUp-btn", function(e){
 
 //자가 라이더시 준비중 클릭
 $(".order-content").on("click", "button.order-selfReady-btn", function(e){
-    console.log("자가라이더 준비 들어옴");
     e.preventDefault();
     let billProductListNum = $(this).find('a.selfReadyOrder').attr("href");
-
-    console.log(billProductListNum);
 
     $.ajax({
         type: "PATCH",
@@ -345,11 +383,8 @@ $(".order-content").on("click", "button.order-selfReady-btn", function(e){
 
 //자가 라이더시 배송중 클릭
 $(".order-content").on("click", "button.order-selfDelivery-btn", function(e){
-    console.log("자가라이더 배송 들어옴");
     e.preventDefault();
     let billProductListNum = $(this).find('a.acceptSelfDeliveryOrder').attr("href");
-
-    console.log(billProductListNum);
 
     $.ajax({
         type: "PATCH",
@@ -393,10 +428,7 @@ function getCount(num) {
         type: "GET",
         url: "/pos/count/" + num,
         success: function (result) {
-            console.log("num : 3번 나와야돼" + num)
-            console.log("result :" + result);
             if(num == '0') {
-                console.log("num = 0  : " + result);
                 $('.preparedOrder').text(result);
                 $('.reception-new').text("new");
             }
@@ -406,12 +438,10 @@ function getCount(num) {
             }
 
             if(num == '1') {
-                console.log("num = 1  : " + result);
                 $('.processingOrder').text(result);
             }
 
             if(num == '2') {
-                console.log("num = 2  : " + result);
                 $('.completedOrder').text(result);
             }
         },
