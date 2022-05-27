@@ -40,11 +40,14 @@ public class OrderService {
         return basketDAO.getListByDTO(userNum);
     }
 
+
     public void insert(OrderDTO orderDTO, Long userNum){
         billDAO.insertBill(orderDTO);
         billDAO.insertBillProduct(userNum);
         basketDAO.removeItems(userNum);
+        basketDAO.decreaseStock(userNum);
     }
+
 
 /*
     public List<BasketVO> getListOrder(Long userNum){

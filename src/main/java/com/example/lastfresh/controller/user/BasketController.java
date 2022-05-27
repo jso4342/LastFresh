@@ -52,9 +52,9 @@ public class BasketController {
         Long userNum = orderDTO.getUserNum();
         int totalPrice = orderDTO.getFinalPrice();
         String userName = orderDTO.getUserName();
-        log.info("############# userNum" +  userNum);
+        /*log.info("############# userNum" +  userNum);
         log.info("############# totalPrice" +  orderDTO.getFinalPrice());
-        log.info("############# userName" +  orderDTO.getUserName());
+        log.info("############# userName" +  orderDTO.getUserName());*/
 
         rttr.addFlashAttribute("userNum", userNum);
         rttr.addFlashAttribute("totalPrice", totalPrice);

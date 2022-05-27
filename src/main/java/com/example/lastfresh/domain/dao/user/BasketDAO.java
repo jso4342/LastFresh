@@ -25,6 +25,8 @@ public class BasketDAO {
 
     public void removeItems(Long userNum){basketMapper.removeItems(userNum);}
 
+    public void decreaseStock(Long userNum){basketMapper.decreaseStock(userNum);}
+
     public void remove(Long basketNum){basketMapper.remove(basketNum);}
 
     public void removeAll(Long userNum){basketMapper.removeAll(userNum);}

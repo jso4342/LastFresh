@@ -1,9 +1,17 @@
 package com.example.lastfresh.mapper.user;
 
+import com.example.lastfresh.domain.vo.ReviewVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 public interface ReviewMapper {
+    public void insert(Long userNum, Long productNum);
+    public List<ReviewVO> getUnWritten(Long userNum);
+    public List<ReviewVO> getWritten(Long userNum);
+    public void update(ReviewVO reviewVO);
+    public void delete(Long reviewNum);
 //    //댓글 등록(insert)
 //    public int insert( );
 //

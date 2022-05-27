@@ -10,6 +10,7 @@
         <typeAlias type="com.example.lastfresh.domain.vo.BasketVO" alias="BasketVO"/>
         <typeAlias type="com.example.lastfresh.domain.dto.BasketDTO" alias="BasketDTO"/>
         <typeAlias type="com.example.lastfresh.domain.vo.UserVO" alias="UserVO"/>
+        <typeAlias type="com.example.lastfresh.domain.vo.ReviewVO" alias="reviewVO"/>
         <typeAlias type="com.example.lastfresh.domain.dto.OrderDTO" alias="OrderDTO"/>
     </typeAliases>
 </configuration>
