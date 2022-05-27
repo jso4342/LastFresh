@@ -546,7 +546,6 @@ function deliveryNoUsing() {
     // $label2.css('border-bottom', '1px solid #e0e4e6');
 
     $RiderUsingBtn.prop('checked', false);
-
     riderReset();
 
     $RiderList.hide();
@@ -569,6 +568,11 @@ function riderUsing() {
     $deliveryList.show();
 }
 
+/*라이더 사용 X */
+function riderNoUsing() {
+    $deliveryList.show();
+}
+
 function riderReset() {
     for (let i = 0; i < 3; i++){
         console.log(i+1);
@@ -577,13 +581,6 @@ function riderReset() {
         $(".dong" + (i+1) + " option").prop("selected", false);
     }
 }
-
-/*라이더 사용 X */
-function riderNoUsing() {
-    riderReset()
-    $deliveryList.hide()
-}
-
 
 let $shippingRiderList = $('.menu-shippingRider-wrapper');
 let $label3 = $('label[for=sellProductShipping-false]');

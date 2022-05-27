@@ -30,6 +30,8 @@ public interface OwnerProductMapper {
 
     // 마감기한 지난 상품 업데이트
     void updateExpireProduct();
-//
+
+    // 어제 날짜 ProductDTO 조회
+    List<ProductDTO> getOldFiles();
 }
 

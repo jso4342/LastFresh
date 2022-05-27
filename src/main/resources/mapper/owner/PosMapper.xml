@@ -68,17 +68,17 @@
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </update>
 
-<!--    &lt;!&ndash;자가라이더시 배송중 클릭 -> 배송완료 &ndash;&gt;-->
-<!--    <update id="updateBillStatusPickUp">-->
-<!--        UPDATE TBL_BILLS_PRODUCT-->
-<!--        SET BILL_STATUS = 3-->
-<!--        WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}-->
-<!--    </update>-->
-
     <!--주문 취소-->
     <update id="updateBillStatusCancel">
         UPDATE TBL_BILLS_PRODUCT
         SET BILL_STATUS = -1
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
+    </update>
+
+    <!--상품 재고 복귀-->
+    <update id="updateSellStatusRestore">
+        UPDATE TBL_SELL_PRODUCT
+        SET SELL_PRODUCT_STATUS = 0, SELL_PRODUCT_STOCK = SELL_PRODUCT_STOCK + #{billProductQuantity}
+        WHERE SELL_PRODUCT_NUM = #{sellProductNum}
     </update>
 </mapper>

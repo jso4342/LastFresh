@@ -116,6 +116,11 @@ public class OwnerService {
         return ownerProductDAO.getTotalSold(map);
     }
 
+    /* 어제날짜 상품 조회 */
+    public List<ProductDTO> getOldFiles() {
+        return ownerProductDAO.getOldFiles();
+    }
+
     //    public PageDTO<ProductVO> getProductVOs(Pageable pageable, Long userNum) {
 //        UserVO userVO = userRepository.findById(userNum).get();
 //
