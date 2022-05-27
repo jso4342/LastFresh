@@ -815,7 +815,7 @@ button {
     float: left;
     width: 30px;
     height: 30px;
-    margin-right: -1px;
+    margin-right: -7px;
     padding: 0 0 4px;
     border: 0;
     background-color: #fff;
@@ -823,6 +823,7 @@ button {
     color: #000;
     line-height: 18px;
     text-align: center;
+    margin-left: 5px;
 }
 
 .cartPut .cart_option .list .up.on {
