@@ -145,7 +145,18 @@ $("button.base_button1").click(function (i, item) {
     $(".cart_option1").hide();
 })
 
+$(".order-list-wrapper").each(function () {
+    let OrderDateTime = $(this).find("#billOrderDateTime").val();
+    let billCookingTime = $(this).find("#billCookingTime").val();
 
+    let date = new Date(OrderDateTime);
+    date.setMinutes(date.getMinutes() + billCookingTime);
+    let time = ((date.getMonth()+1) +"월"+ " " + date.getDate() +"일"+ "  " + date.getHours() + ":" + date.getMinutes());
+
+    $(this).find("#order-time").html(time);
+
+    console.log($("#order-time").html());
+})
 
 
 //

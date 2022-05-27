@@ -91,6 +91,8 @@
                     <div class="order-list-wrapper" th:each="order:${orders}">
                         <form method="post" action="/rider/upDateStatusToTwo">
                         <input type="hidden" th:value="${order.billProductListNum}" name="billProductListNum"/>
+                            <input type="hidden" th:value="${order.billOrderDateTime}" id="billOrderDateTime"/>
+                            <input type="hidden" th:value="${order.billCookingTime}" id="billCookingTime"/>
                         <hr>
                         <div class="order-list" th:object="${order}">
                             <!-- 시간&수령 방법-->
@@ -99,7 +101,7 @@
                                     픽업가능시간
                                 </div>
                                 <div class="order-info1">
-                                    <div class="order-time" th:text="*{billCookingTime}"></div>
+                                    <div class="order-time" id="order-time"></div>
                                     <div class=" noEx" style="display:none;"
                                          th:text="*{billDeliveryMethod}"></div>
                                     <div class="order-method delivery" style="display:none;">배달</div>

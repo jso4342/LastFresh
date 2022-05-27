@@ -550,6 +550,7 @@ input.deliveryFinishBtn.pc{
 		padding: 21px 50px 28px 50px;
 		height: 112px;
 		display: flex;
+		width: 70%;
 	}
 	div.order-method{
 		font-size: 37px;
@@ -566,6 +567,7 @@ input.deliveryFinishBtn.pc{
 		width: 100%;
 		margin-top: -60px;
 		text-align: left;
+		width: 77%;
 	}
 	div.order-address{
 		display: flex;
