@@ -44,7 +44,14 @@ public class RiderController {
         Long userNum =1L;
         List<BillProductDTO> bills= riderService.getMyList(userNum);
         model.addAttribute("myOrders", bills);
+    }
+    @GetMapping("/riderListF")
+    public void riderFilter(Model model,String sido,String sigungu,String dong){
+        String sellProductAddress=sido+" "+sigungu+" "+dong;
+        log.info(sellProductAddress);
 
+        List<BillProductDTO> bills= riderService.selectFilter(sellProductAddress);
+        model.addAttribute("orders", bills);
     }
 
     @PostMapping("/upDateStatusToTwo")

@@ -24,5 +24,7 @@ public class RiderService {
     public void upDateStatusToTwo(BillProductDTO billProductDTO) {riderDAO.upDateStatusToTwo(billProductDTO);}
     public void upDateStatusToThree(BillProductDTO billProductDTO) {riderDAO.upDateStatusToThree(billProductDTO);}
     public void upDateStatusToMinus(BillProductDTO billProductDTO) {riderDAO.upDateStatusToMinus(billProductDTO);}
+    // 필터 목록
+    public List<BillProductDTO> selectFilter(String sellProductAddress){return riderDAO.selectFilter(sellProductAddress);}
 
 }

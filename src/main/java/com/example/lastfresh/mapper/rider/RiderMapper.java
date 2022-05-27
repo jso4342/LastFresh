@@ -15,11 +15,8 @@ public interface RiderMapper {
     public void upDateStatusToTwo(BillProductDTO billProductDTO);
     public void upDateStatusToThree(BillProductDTO billProductDTO);
     public void upDateStatusToMinus(BillProductDTO billProductDTO);
-
-//
-//
-//    //    특정 글 가져오기
-//    public  get( );
+    // 필터 목록
+    public List<BillProductDTO> selectFilter(String sellProductAddress);
 
 }
 
