@@ -83,7 +83,6 @@
                     <input type="hidden" th:value="${myOrder.billProductListNum}" name="billProductListNum"/>
                     <input type="hidden" th:value="${myOrder.billOrderDateTime}" id="billOrderDateTime"/>
                     <input type="hidden" th:value="${myOrder.billCookingTime}" id="billCookingTime"/>
-
                     <hr>
                     <div class="order-list myDeliveryInfo" th:object="${myOrder}">
                         <!-- 시간&수령 방법-->
@@ -125,7 +124,7 @@
                             <input type="hidden" style="display: none"
                                    th:value="*{billStatus}" class="billStatus"/>
                             <div class="order-accept myDeliveryBtn">
-                                <a th:href="@{/rider/upDateStatusToThree(billProductListNum=${myOrder.billProductListNum})}"
+                                <a th:href="@{/rider/upDateStatusToThree(billProductListNum=${myOrder.billProductListNum}, sellProductNum=${myOrder.sellProductNum})}"
                                    class="btnWrap">
                                     <input type="button" id="deliveryFinishBtn"
                                            class="deliveryFinishBtn pc"

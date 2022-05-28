@@ -4,7 +4,9 @@ package com.example.lastfresh.controller.rider;
 import com.example.lastfresh.domain.dto.BillProductDTO;
 import com.example.lastfresh.domain.repository.BillProductRepository;
 import com.example.lastfresh.domain.repository.ReviewRepository;
+import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.service.rider.RiderService;
+import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -29,6 +32,7 @@ import java.util.List;
 public class RiderController {
     @Autowired
     private RiderService riderService;
+    private final ReviewService reviewService;
     private BillProductRepository billProductRepository;
     private final ReviewRepository reviewRepository;
     @GetMapping("/riderList")
@@ -39,9 +43,9 @@ public class RiderController {
 
     @GetMapping("/riderMy")
     public void riderMy(Model model, HttpServletRequest request){
-        //        HttpSession session = request.getSession();
-//        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-        Long userNum =1L;
+        HttpSession session = request.getSession();
+        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
+
         List<BillProductDTO> bills= riderService.getMyList(userNum);
         model.addAttribute("myOrders", bills);
     }
@@ -56,41 +60,34 @@ public class RiderController {
 
     @PostMapping("/upDateStatusToTwo")
     public RedirectView upDateStatusToTwo(BillProductDTO billProductDTO, HttpServletRequest request){
-//        HttpSession session = request.getSession();
-//        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-        billProductDTO.setUserNum(1L);
+        HttpSession session = request.getSession();
+        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
+        billProductDTO.setUserNum(userNum);
         billProductDTO.setBillStatus("2");
 
         riderService.upDateStatusToTwo(billProductDTO);
         return new RedirectView("riderList");
     }
     @RequestMapping("/upDateStatusToThree")
-    public RedirectView upDateStatusToThree(Long billProductListNum, HttpServletRequest request){
-//        HttpSession session = request.getSession();
-//        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
+    public RedirectView upDateStatusToThree(Long billProductListNum,Long sellProductNum, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         BillProductDTO billProductDTO=new BillProductDTO();
-        billProductDTO.setUserNum(1L);
+        billProductDTO.setUserNum(userNum);
         billProductDTO.setBillStatus("3");
         billProductDTO.setBillProductListNum(billProductListNum);
-//        reviewService.insert(유저넘버, 셀프로덕트넘버);
+
+        reviewService.insert(userNum, sellProductNum);
         riderService.upDateStatusToThree(billProductDTO);
 
-        log.info("`````````````````````````````````````````````````");
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info(String.valueOf(billProductDTO.getBillProductListNum()));
-        log.info( billProductDTO.toString());
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info("`````````````````````````````````````````````````");
         return new RedirectView("riderMy");
     }
     @RequestMapping("/upDateStatusToMinus")
     public RedirectView upDateStatusToMinus(Long billProductListNum, HttpServletRequest request){
-//        HttpSession session = request.getSession();
-//        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
+        HttpSession session = request.getSession();
+        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         BillProductDTO billProductDTO=new BillProductDTO();
-        billProductDTO.setUserNum(1L);
+        billProductDTO.setUserNum(userNum);
         billProductDTO.setBillStatus("-1");
         billProductDTO.setBillProductListNum(billProductListNum);
 
