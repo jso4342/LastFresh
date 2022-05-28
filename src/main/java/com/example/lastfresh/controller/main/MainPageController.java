@@ -1,11 +1,11 @@
 package com.example.lastfresh.controller.main;
 
 
-import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.BasketVO;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.product.ProductService;
+import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
@@ -39,7 +39,7 @@ import java.util.UUID;
 @RequestMapping("/main/*")
 public class MainPageController {
     private final ProductService productService;
-    private final UserRepository userRepository;
+    private final ReviewService reviewService;
 
     @GetMapping("/main")
     public void main(Model model) {
@@ -50,27 +50,6 @@ public class MainPageController {
         model.addAttribute("saleList", productService.getListBySale());
         model.addAttribute("bestReviewList", productService.getListByReview());
     }
-    //현진용
-    @GetMapping("/moveMain")
-    public RedirectView moveMain(Model model, HttpServletRequest request){
-        HttpSession session = request.getSession();
-        Long userNumber = (Long)session.getAttribute("userNumber");
-        log.info("!!!!!!!!!!!!!!!!!!!!!"+userNumber);
-        if(userNumber!=null){
-            String userStatus = userRepository.getById(userNumber).getUserStatus();
-            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+userStatus);
-            if (userStatus.equals("1")) {
-                return new RedirectView("main");
-            } else if (userStatus.equals("2")) {
-                return new RedirectView("/sell/sellMain");
-            } else if (userStatus.equals("3")) {
-                return new RedirectView("/rider/riderList");
-            }
-        }
-
-        return new RedirectView("main");
-    }
-
 
     @GetMapping("/getAttachList")
     @ResponseBody
@@ -149,10 +128,9 @@ public class MainPageController {
     }
     @PostMapping("/productToBasket")
     public RedirectView productToBasket(ProductVO productVO,BasketVO basketVO,HttpServletRequest request) {
-                HttpSession session = request.getSession();
-//                Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-
-        productService.productToBasket(1L,basketVO,productVO);
+        HttpSession session = request.getSession();
+        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
+        productService.productToBasket(userNum,basketVO,productVO);
         return new RedirectView("main");
     }
 

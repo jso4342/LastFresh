@@ -150,6 +150,9 @@ function sendBasket() {
     if(basketDeliveryMethod=="0"){
         alert("옵션을 선택해주세요")
         return false;
+    }if(window.sessionStorage.getItem("userNumber")==null){
+        alert("로그인 후 이용하실 수 있습니다.");
+        return false;
     }else {
         alert("장바구니에 상품을 담았습니다.")
     }
