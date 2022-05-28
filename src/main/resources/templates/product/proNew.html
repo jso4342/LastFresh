@@ -52,8 +52,14 @@
                                         <!---->
                                         <!---->
                                         <ul class="list">
+                                            <form action="/product/proNew" th:object="${criteriaProduct}" name="selectPriceListForm">
+                                                <input type="hidden" th:field="*{pageNum}">
+                                                <input type="hidden" th:field="*{amount}">
+                                                <input type="hidden" name="type">
+                                            </form>
                                             <li class>
-                                                <a class="on">낮은가격</a>
+                                                <a class="selectPrice on" th:if="${check == '낮은가격'}">낮은가격</a>
+                                                <a class="selectPrice" th:unless="${check == '낮은가격'}">낮은가격</a>
                                                 <div class="recommend">
                                                     <!---->
                                                     <!---->
@@ -67,11 +73,13 @@
                                                 </div>
                                             </li>
                                             <li class>
-                                                <a class>높은가격</a>
+                                                <a class="selectPrice on" th:if="${check == '높은가격'}">높은가격</a>
+                                                <a class="selectPrice" th:unless="${check == '높은가격'}">높은가격</a>
                                                 <!---->
                                             </li>
                                             <li class>
-                                                <a class>신상품</a>
+                                                <a class="selectPrice on" th:if="${check == '신상품'}">신상품</a>
+                                                <a class="selectPrice" th:unless="${check == '신상품'}">신상품</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -92,9 +100,7 @@
                                                 <p class="stocks" type="hidden" style="display:none"
                                                    th:text="*{sellProductStock}"/>
                                                 <div class="thumb">
-                                                    <a class="img"
-                                                       style="background-image: url(https://img-cf.kurly.com/shop/data/goods/1649919206285l0.jpg);"
-                                                       th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
+                                                    <a class="img" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
                                                         <!---->
                                                         <!---->
                                                         <img class="mainNewImg"
@@ -285,4 +291,16 @@
 <script src="/front/assets/js/product/product.js"></script>
 <script src="/front/assets/js/product/proDeliveryStatus.js"></script>
 <script src="/front/assets/js/product/proPage.js"></script>
+<script>
+    $("a.selectPrice").on("click",function (e) {
+        e.preventDefault();
+        $("a.selectPrice").removeClass("on");
+        $(this).addClass("on");
+
+
+        $("input[name='type']").val($(this).text());
+        $("form[name='selectPriceListForm']").submit();
+
+    })
+</script>
 </html>

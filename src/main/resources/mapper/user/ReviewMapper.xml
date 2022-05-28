@@ -39,7 +39,7 @@
         SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
           T.*
         FROM  TBL_REVIEW T,(SELECT @ROWNUM := 0 ) TMP
-        WHERE SELL_PRODUCT_NUM = #{sellProductNum}
+        WHERE SELL_PRODUCT_NUM = #{sellProductNum} and REVIEW_TITLE!=''
         ORDER BY REVIEW_NUM desc
          limit #{criteriaProduct.limit},6
         ]]>

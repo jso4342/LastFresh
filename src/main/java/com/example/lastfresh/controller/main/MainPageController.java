@@ -1,7 +1,9 @@
 package com.example.lastfresh.controller.main;
 
 
+import com.example.lastfresh.domain.dto.ProductPageDTO;
 import com.example.lastfresh.domain.vo.BasketVO;
+import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.product.ProductService;
@@ -42,13 +44,16 @@ public class MainPageController {
     private final ReviewService reviewService;
 
     @GetMapping("/main")
-    public void main(Model model) {
+    public void main(CriteriaProduct criteriaProduct, Model model) {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         model.addAttribute("newListPercents", getPercentOfNew());
         model.addAttribute("saleListPercents", getListBySale());
         model.addAttribute("bestReviewListPercents", getListByReview());
         model.addAttribute("newList", productService.getListByNew());
         model.addAttribute("saleList", productService.getListBySale());
         model.addAttribute("bestReviewList", productService.getListByReview());
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
+        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
     @GetMapping("/getAttachList")
