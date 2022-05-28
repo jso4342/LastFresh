@@ -81,4 +81,11 @@
         SET SELL_PRODUCT_STATUS = 0, SELL_PRODUCT_STOCK = SELL_PRODUCT_STOCK + #{billProductQuantity}
         WHERE SELL_PRODUCT_NUM = #{sellProductNum}
     </update>
+
+    <!--유저넘버, 상품 넘버 가져오기 BY 주문 상품 넘버-->
+    <select id="getUserNumAndSellProductNumByBillProductNum" resultType="BillProductDTO">
+        SELECT USER_NUM, SELL_PRODUCT_NUM
+        FROM TBL_BILLS_PRODUCT
+        WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
+    </select>
 </mapper>

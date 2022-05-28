@@ -1,6 +1,7 @@
 package com.example.lastfresh.service.owner;
 
 import com.example.lastfresh.domain.dao.owner.PosDAO;
+import com.example.lastfresh.domain.dto.BillProductDTO;
 import com.example.lastfresh.domain.dto.PosDTO;
 import com.example.lastfresh.domain.vo.CriteriaPos;
 import lombok.RequiredArgsConstructor;
@@ -40,6 +41,11 @@ public class PosService {
         return posDAO.updateBillStatusSelfReady(posDTO) == 1;
     }
     
+    /* 유저넘버, 상품 넘버 가져오기*/
+    public BillProductDTO getNumsByBillProductListNum(Long billProductListNum) {
+        return posDAO.getUserNumAndSellProductNumByBillProductNum(billProductListNum);
+    }
+
     /* 주문 취소시 상태 변경 */
     @Transactional
     public boolean cancelBill(PosDTO posDTO) {

@@ -1,5 +1,6 @@
 package com.example.lastfresh.mapper.owner;
 
+import com.example.lastfresh.domain.dto.BillProductDTO;
 import com.example.lastfresh.domain.dto.BillSoldProductDTO;
 import com.example.lastfresh.domain.dto.PosDTO;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,4 +30,7 @@ public interface PosMapper {
 
     /*Pos 주문 취소시 상품 업데이트*/
     void updateSellStatusRestore(PosDTO posDTO);
+
+    /*Pos 주문 취소시 상품 업데이트*/
+    BillProductDTO getUserNumAndSellProductNumByBillProductNum(Long billProductListNum);
 }

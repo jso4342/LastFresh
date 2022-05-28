@@ -1,9 +1,11 @@
 package com.example.lastfresh.controller.sell;
 
+import com.example.lastfresh.domain.dto.BillProductDTO;
 import com.example.lastfresh.domain.dto.PosDTO;
 import com.example.lastfresh.domain.dto.PosPageDTO;
 import com.example.lastfresh.domain.vo.Criteria;
 import com.example.lastfresh.service.owner.PosService;
+import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ import java.util.Optional;
 @RequestMapping("/pos/*")
 public class PosController {
     private final PosService posService;
+    private final ReviewService reviewService;
 
     @GetMapping("/list/{billStatus}")
     public ResponseEntity<PosPageDTO> getList(@PathVariable("billStatus") Long billStatus, Criteria criteria, HttpServletRequest request) {
@@ -101,6 +104,10 @@ public class PosController {
     /* 픽업 접수 */
     @PatchMapping(value = {"/acceptPickUp"}, consumes = "application/json")
     public ResponseEntity<String> pickUpAccept(@RequestBody PosDTO posDTO){
+        log.info("픽업 완료 ");
+        BillProductDTO nums = posService.getNumsByBillProductListNum(posDTO.getBillProductListNum());
+        log.info("nums" + nums.toString());
+        reviewService.insert(nums.getUserNum(), nums.getSellProductNum());
         return ResponseEntity.ok(posService.modifyBillPickUp(posDTO) ? "픽업 완료" : "픽업 실패");
     }
 
@@ -113,6 +120,10 @@ public class PosController {
     /* 픽업 접수 */
     @PatchMapping(value = {"/selfDelivery"}, consumes = "application/json")
     public ResponseEntity<String> selfDelivery(@RequestBody PosDTO posDTO){
+        log.info("딜리버리 완료 ");
+        BillProductDTO nums = posService.getNumsByBillProductListNum(posDTO.getBillProductListNum());
+        log.info("nums" + nums.toString());
+        reviewService.insert(nums.getUserNum(), nums.getSellProductNum());
         return ResponseEntity.ok(posService.modifyBillPickUp(posDTO) ? "배송 완료 완료" : "배송 실패");
     }
 
