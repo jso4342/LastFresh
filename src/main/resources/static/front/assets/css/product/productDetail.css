@@ -238,9 +238,9 @@ img, video, canvas {
     float: left;
     width: 84px;
     height: 30px;
-    border: 1px solid #5f0080;
+    border: 1px solid #DA291C;
     font-size: 12px;
-    color: #5f0080;
+    color: #DA291C;
     line-height: 28px;
     text-align: center;
 }
@@ -746,7 +746,7 @@ strong {
     display: block;
     position: relative;
     height: 22px;
-    border-top: 2px solid #5f0080;
+    border-top: 2px solid #DA291C;
 }
 
 #cartPut .cart_type1 .list {
@@ -770,7 +770,7 @@ strong {
     margin-left: 280px;
     border: 0;
     border-radius: 3px 3px 0 0;
-    background-color: #5f0080;
+    background-color: #DA291C;
     text-align: center;
 }
 
@@ -1157,7 +1157,7 @@ body * {
 }
 
 .xans-board-listheader {
-    border-top: 2px solid #522772;
+    border-top: 2px solid #DA291C;
     font-size: 13px;
     line-height: 140%;
 }
@@ -1361,7 +1361,7 @@ script {
 
 .layout-pagination-number:hover, .layout-pagination-number.__active {
     background-color: #f7f7f7;
-    color: #5f0080;
+    color: #DA291C;
 }
 
 .layout-pagination-number {

@@ -91,7 +91,7 @@ body {
 
 #lnbMenu li a:hover, #lnbMenu li .on {
     font-weight: 700;
-    color: #5f0080;
+    color: #DA291C;
 }
 
 #lnbMenu li.bg {
@@ -503,7 +503,7 @@ a {
 
 .layout-pagination-number:hover, .layout-pagination-number.__active {
     background-color: #f7f7f7;
-    color: #5f0080;
+    color: #DA291C;
 }
 
 .layout-pagination-number {
