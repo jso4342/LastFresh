@@ -12,9 +12,11 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import javax.persistence.Column;
+import java.io.IOException;
 import java.sql.Array;
 import java.util.*;
 
@@ -27,6 +29,7 @@ public class UserService {
 
     private final UserDAO userDAO;
 
+
     //회원가입
     public void join(UserVO userVO) {
         String encodedPassword = passwordEncoder.encode(userVO.getUserPw());
@@ -35,23 +38,17 @@ public class UserService {
     }
 
     //복호화 ,로그인
-    public Long decryption(String userId, String userPw){
-        Long userNum = 0L;
+    public UserVO decryption(String userId, String userPw){
         UserVO userVO = userRepository.findByUserId(userId);
-        System.out.println(passwordEncoder.matches(userPw, userVO.getUserPw()));
-        if(!passwordEncoder.matches(userPw, userVO.getUserPw())){
-            System.out.println("비밀번호가 일치하지 않습니다.");
-            log.info("asd"+userNum);
+        if(Objects.isNull(userVO)){
             return null;
-        }
-        userNum = userVO.getUserNum();
-        log.info("로그인성공"+userNum);
-        return userNum;
-
+        }else if(!passwordEncoder.matches(userPw, userVO.getUserPw())){ return null; }
+        return userVO;
+        // 로그인 성공시 유저넘버 실패시 null
     }
 
 
-//휴대폰인증
+    //휴대폰인증
     public void certifiedPhoneNumber(String userPhone, String cerNum) {
 
         String api_key = "NCSZMN9NMV9PSDYK";
@@ -97,7 +94,7 @@ public class UserService {
     }
 
 
-//이메일 중복검사
+    //이메일 중복검사
     public boolean checkEmail(String userEmail) {
         boolean checkEmail=false;
         List<UserVO> email= userRepository.findAll();
@@ -115,6 +112,8 @@ public class UserService {
         return checkEmail;
     }
 
+    //유저넘버로(pk) 유저 VO가져오기
+//    public UserVO getUserVO(Long userNum){return userRepository.findById(userNum).get();}
 
 
 

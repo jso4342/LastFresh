@@ -87,11 +87,11 @@
                     </a>
 
                     <!--RestAPI-->
-<!--                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=cef762addd4feb67be52cfbee6c6ef04&redirect_uri=http://localhost:11111/user/auth/kakao/callback&response_type=code">-->
-<!--                        <img class="kakao_img" src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="358"/>-->
-<!--                    </a>-->
+                    <!--                    <a href="https://kauth.kakao.com/oauth/authorize?client_id=cef762addd4feb67be52cfbee6c6ef04&redirect_uri=http://localhost:11111/user/auth/kakao/callback&response_type=code">-->
+                    <!--                        <img class="kakao_img" src="//mud-kage.kakao.com/14/dn/btqbjxsO6vP/KPiGpdnsubSq3a0PHEGUK1/o.jpg" width="358"/>-->
+                    <!--                    </a>-->
                     <br>
-<!--                    <a href="/logout">로그아웃</a>-->
+                    <!--                    <a href="/logout">로그아웃</a>-->
                 </div>
             </div>
         </div>
@@ -127,9 +127,9 @@
                         var ac = res.kakao_account
                         var id = res.id;
 //               확인 출력
-              console.log(ac.email);
-              console.log(ac.profile.nickname);
-              console.log('카카오id : ' + id)
+                        console.log(ac.email);
+                        console.log(ac.profile.nickname);
+                        console.log('카카오id : ' + id)
 
 //               id/email/nickname db저장해서 사용하기
                         scope: 'account_email';

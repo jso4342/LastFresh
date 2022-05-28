@@ -1,6 +1,7 @@
 package com.example.lastfresh.controller.main;
 
 
+import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.BasketVO;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.domain.vo.UserVO;
@@ -38,6 +39,7 @@ import java.util.UUID;
 @RequestMapping("/main/*")
 public class MainPageController {
     private final ProductService productService;
+    private final UserRepository userRepository;
 
     @GetMapping("/main")
     public void main(Model model) {
@@ -48,6 +50,26 @@ public class MainPageController {
         model.addAttribute("saleList", productService.getListBySale());
         model.addAttribute("bestReviewList", productService.getListByReview());
     }
+    //현진용
+    @GetMapping("/moveMain")
+    public RedirectView moveMain(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Long userNumber = (Long)session.getAttribute("userNumber");
+
+        if(userNumber!=null){
+            String userStatus = userRepository.getById(userNumber).getUserStatus();
+            if (userStatus.equals("1")) {
+                return new RedirectView("main");
+            } else if (userStatus.equals("2")) {
+                return new RedirectView("/sell/sellMain");
+            } else if (userStatus.equals("3")) {
+                return new RedirectView("/rider/riderList");
+            }
+        }
+
+        return new RedirectView("main");
+    }
+
 
     @GetMapping("/getAttachList")
     @ResponseBody
