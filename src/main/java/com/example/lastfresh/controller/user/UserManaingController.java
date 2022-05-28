@@ -66,7 +66,8 @@ public class UserManaingController {
         UserVO userVO = userService.decryption(userId, userPw);
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-
+    log.info("로그인 실행");
+    log.info("userVO"+userVO.toString());
 
         if (userVO == null) {//로그인실패
 //            mav.setView(new RedirectView("userLogin"));
@@ -77,9 +78,9 @@ public class UserManaingController {
         }else {
 //           session.setAttribute("userVO", userVO);
             session.setAttribute("userNumber", userVO.getUserNum());
+
             session.setAttribute("userId", userVO.getUserId());
             session.setAttribute("userStatus", userVO.getUserStatus());
-            ;
 //            mav.setView(new RedirectView("/main/main"));
             return "redirect:/main/moveMain";
         }
@@ -93,8 +94,14 @@ public class UserManaingController {
         UserVO byUserKakao = userRepository.findByUserKakao(userKakao);
         HttpSession session = request.getSession();
         if(byUserKakao != null){
-            session.setAttribute("userNum", byUserKakao.getUserNum());
-            return "main/main";
+            session.setAttribute("userNumber", byUserKakao.getUserNum());
+            session.setAttribute("userVO", byUserKakao);
+
+            session.setAttribute("userId", byUserKakao.getUserId());
+            session.setAttribute("userStatus", byUserKakao.getUserStatus());
+//            mav.setView(new RedirectView("/main/main"));
+            return "redirect:/main/moveMain";
+
         }
 
         model.addAttribute("userKakao",userKakao);

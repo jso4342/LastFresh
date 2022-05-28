@@ -55,9 +55,10 @@ public class MainPageController {
     public RedirectView moveMain(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         Long userNumber = (Long)session.getAttribute("userNumber");
-
+        log.info("!!!!!!!!!!!!!!!!!!!!!"+userNumber);
         if(userNumber!=null){
             String userStatus = userRepository.getById(userNumber).getUserStatus();
+            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+userStatus);
             if (userStatus.equals("1")) {
                 return new RedirectView("main");
             } else if (userStatus.equals("2")) {
