@@ -13,7 +13,7 @@
 <style>
 
     div#wrapper {
-        height: 1600px;
+       /* height: 1600px; */
         overflow: scroll;
     }
 
@@ -33,6 +33,34 @@
         color: #333;
         font-size: 17px;
     }
+
+    .btn.noMinus, .btn.noMinus.off {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 30px 30px;
+        background-position: 50% 50%;
+        opacity: 0.2;
+        cursor: auto;
+    }
+
+    .btn.noMinus.off {
+        background-image: url(https://res.kurly.com/pc/ico/2010/ico_minus_on.svg);
+    }
+
+    .btn.noPlus, .stamper .btn.noPlus.off {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 30px 30px;
+        background-position: 50% 50%;
+        opacity: 0.2;
+        cursor: auto;
+        margin-left: -5px;
+    }
+
+    .btn.noPlus {
+        background-image: url(https://res.kurly.com/pc/service/common/2009/ico_plus_on.svg);
+    }
+
 </style>
 <body>
 <th:block th:insert="/fragments/header.html :: headFragment"/>
@@ -43,7 +71,7 @@
         <div id="title"><h2 style="font-weight: 500;" class="myCart">장바구니</h2></div>
 
         <!-- 박스 -->
-        <form name="form" method="get">
+        <div name="form">
             <div>
                 <!-- 왼쪽 | 상품 -->
                 <div class="leftBox">
@@ -51,7 +79,7 @@
 
                       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
                         <input type="checkbox" th:value="${userNum}" id="allCheck" name="productAll"/>
-                        <span class="selectAll" style="margin-left:0;">전체 선택 (<span id="howManyChecks">0</span>/<span id = "totalProduct"></span>) </span>
+                        <span class="selectAll" style="margin-left:0;">전체 선택 (<span id="howManyChecks">0</span>/<span id = "totalProduct">0</span>) </span>
                         <span class="slicer">&nbsp;&nbsp; I</span>
                         <a style="text-decoration: none; margin-left: -8px;">
                             <span class="selectAll selectDel" id="deleteAll" th:value="${userNum}">전체 삭제</span></a>
@@ -173,8 +201,10 @@
                                     </dd>
                                 </dl>
                             </div>
-                            <div class="btn_submit">
-                                <button type="submit" class="btn2 disabled">주문하기</button></div>
+                           <!-- <div class="btn_submit">-->
+                                <div>
+                                <a href="javascript:goOrder();">
+                                <button class="btn2 disabled">주문하기</button></a></div>
                             <div class="notice">
                                 <span class="txt mobileTxt"><span class="ico">·</span> [배송준비중] 이전까지 주문 취소 가능합니다.</span>
                                 <span class="txt2 mobileTxt"><span class="ico">·</span> [마이페이지 &gt; 주문내역 상세페이지] 에서 직접 취소하실 수 &nbsp; 있습니다.</span>
@@ -186,7 +216,7 @@
                 </div>
             </div>
 
-        </form>
+        </div>
     </div>
 
 </div>
@@ -199,6 +229,7 @@
 <script th:inline="javascript">
 
     let orderService = (function(){
+
 
 
         //장바구니 목록 pickUp
@@ -357,6 +388,12 @@
     showPickUpList();
     showDeliveryList();
     showShippingList();
+    doTotal();
+
+
+    function goOrder() {
+        location.href = '/user/order/order?userNum=' + userNum;
+    };
 
     function showPickUpList(){
        // console.log("enter showPicUPList");
@@ -385,16 +422,31 @@
                 str += "<a href='#'><img class='productPic' src='/user/order/display?fileName=" + item.sellProductImageUploadPath + "/"  + item.sellProductThumbnail + "'></a>";
                 str += "<span class='productName'>" + item.sellProductName + "</span>";
                 str += "<div class='delBtn'><button type='button' class='btn_delete' value='" + item.basketNum +"'></button></div>";
-                str += "<div class='price'><input type='text' class='priceNum' value='" + (item.sellProductDiscountPrice * item.basketQuantity) + "' name='sum' style='width:100px' readonly><span class='won2'>원</span></div>";
+                str += "<div class='price'><input type='text' class='priceNum' value='" + (item.sellProductDiscountPrice * item.basketQuantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "' name='sum' style='width:100px' readonly><span class='won2'>원</span></div>";
                 str += "<div class='stamper count'>";
-                str += "<button type='button' id='" + item.basketNum +"' class='btn minus off' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                if(item.basketQuantity == 1){
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn off noMinus' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                }else{
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn minus off' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                }
                 str += "<input type='text' name='amount' class='num amount2' value='" +item.basketQuantity +"'>";
-                str += "<button type='button' id='" + item.basketNum +"' class='btn plus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+              if(item.sellProductStock == item.basketQuantity){
+                  str += "<button type='button' id='" + item.basketNum +"' class='btn noPlus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+              }else{
+                  str += "<button type='button' id='" + item.basketNum +"' class='btn plus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+              }
                 str += "</div></div><hr class='productSlice'>";
 
             });
            str +="</div><br>";
             pickupList.html(str);
+            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+            $('#totalProduct').text($("input:checkbox[name=product]").length);
+            doTotal();
+
+           if($("input:checkbox[name=product]:checked").length == document.getElementsByName('product').length){$("#allCheck").prop('checked', true);
+           }else{ $("#allCheck").prop('checked', false);}
+
         })
     }
 
@@ -426,16 +478,30 @@
                 str += "<a href='#'><img class='productPic' src='/user/order/display?fileName=" + item.sellProductImageUploadPath + "/"  + item.sellProductThumbnail + "'></a>";
                 str += "<span class='productName'>" + item.sellProductName + "</span>";
                 str += "<div class='delBtn'><button type='button' class='btn_delete' value='" + item.basketNum +"'></button></div>";
-                str += "<div class='price'><input type='text' class='priceNum' value='" + (item.sellProductDiscountPrice * item.basketQuantity) + "' name='sum' style='width:100px' readonly><span class='won2'>원</span></div>";
+                str += "<div class='price'><input type='text' class='priceNum' value='" + (item.sellProductDiscountPrice * item.basketQuantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "' name='sum' style='width:100px' readonly><span class='won2'>원</span></div>";
                 str += "<div class='stamper count'>";
-                str += "<button type='button' id='" + item.basketNum +"' class='btn minus off' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                if(item.basketQuantity == 1){
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn off noMinus' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                }else{
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn minus off' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                }
                 str += "<input type='text' name='amount' class='num amount2' value='" +item.basketQuantity +"'>";
-                str += "<button type='button' id='" + item.basketNum +"' class='btn plus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+                if(item.sellProductStock == item.basketQuantity){
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn noPlus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+                }else{
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn plus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+                }
                 str += "</div></div><hr class='productSlice'>";
 
             });
             str +="</div><br>";
             deliveryList.html(str);
+            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+            $('#totalProduct').text($("input:checkbox[name=product]").length);
+            doTotal();
+
+            if($("input:checkbox[name=product]:checked").length == document.getElementsByName('product').length){$("#allCheck").prop('checked', true);
+            }else{ $("#allCheck").prop('checked', false);}
         })
     }
 
@@ -467,16 +533,30 @@
                 str += "<a href='#'><img class='productPic' src='/user/order/display?fileName=" + item.sellProductImageUploadPath + "/"  + item.sellProductThumbnail + "'></a>";
                 str += "<span class='productName'>" + item.sellProductName + "</span>";
                 str += "<div class='delBtn'><button type='button' class='btn_delete' value='" + item.basketNum +"'></button></div>";
-                str += "<div class='price'><input type='text' class='priceNum' value='" + (item.sellProductDiscountPrice * item.basketQuantity) + "' name='sum' style='width:100px' readonly><span class='won2' >원</span></div>";
+                str += "<div class='price'><input type='text' class='priceNum' value='" + (item.sellProductDiscountPrice * item.basketQuantity).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "' name='sum' style='width:100px' readonly><span class='won2' >원</span></div>";
                 str += "<div class='stamper count'>";
-                str += "<button type='button' id='" + item.basketNum +"' class='btn minus off' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                if(item.basketQuantity == 1){
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn off noMinus' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                }else{
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn minus off' data-opt='decrease' value='" + item.sellProductDiscountPrice + "'>감소</button>";
+                }
                 str += "<input type='text' name='amount' class='num amount2' value='" +item.basketQuantity +"'>";
-                str += "<button type='button' id='" + item.basketNum +"' class='btn plus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+                if(item.sellProductStock == item.basketQuantity){
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn noPlus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+                }else{
+                    str += "<button type='button' id='" + item.basketNum +"' class='btn plus' data-opt='increase' value='" + item.sellProductDiscountPrice + "'>추가</button>";
+                }
                 str += "</div></div><hr class='productSlice'>";
 
             });
             str +="</div><br>";
             shippingList.html(str);
+            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+            $('#totalProduct').text($("input:checkbox[name=product]").length);
+            doTotal();
+
+            if($("input:checkbox[name=product]:checked").length == document.getElementsByName('product').length){$("#allCheck").prop('checked', true);
+            }else{ $("#allCheck").prop('checked', false);}
         })
     }
 
@@ -567,7 +647,9 @@
         let basketNum = $(this).attr('id');
         orderService.check(basketNum, function(result){
             showPickUpList();
-            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+
+           // $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+           // $('#totalProduct').text($("input:checkbox[name=product]").length);
         })
     });
 
@@ -576,7 +658,8 @@
         let basketNum = $(this).attr('id');
         orderService.check(basketNum, function(result){
             showDeliveryList();
-            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+         //   $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+          //  $('#totalProduct').text($("input:checkbox[name=product]").length);
         })
     });
 
@@ -585,11 +668,12 @@
         let basketNum = $(this).attr('id');
         orderService.check(basketNum, function(result){
             showShippingList();
-            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+         //   $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+         //   $('#totalProduct').text($("input:checkbox[name=product]").length);
         })
     });
 
-    // selectAll
+
 
 
     $(document).ready(function() {
@@ -602,12 +686,18 @@
                     checkbox.checked = false;
                     orderService.unCheckAll(userNum, function(result){});
                     $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+               //     $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+                //    $('#totalProduct').text($("input:checkbox[name=product]").length);
+                    doTotal();
                 })
             } else { // not check -> check
                 checkboxes.forEach((checkbox) => {
                     checkbox.checked = true;
                     orderService.checkAll(userNum, function(result){});
                     $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+             //       $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+              //      $('#totalProduct').text($("input:checkbox[name=product]").length);
+                    doTotal();
                 })
             }
         }
@@ -616,13 +706,19 @@
             let userNum = $(this).attr('value');
          //   alert(userNum);
 
-            orderService.removeAll(userNum, function(result){});
-            showPickUpList();
-            showDeliveryList();
-            showShippingList();
+            if (!confirm("정말로 모든 제품을 삭제하시겠습니까?")) {
+                return ;
+            } else {
+                alert("모든 제품이 정상적으로 삭제되었습니다.");
+                orderService.removeAll(userNum, function(result){});
+                location.href = '/user/order/orderCart?userNum=' + userNum;
+            }
+
+          //  doTotal();
         });
 
        // $("#totalProduct").text(orderService.);
+
 
 
         // 체크박스, 콤마, 더하기
@@ -633,7 +729,7 @@
                   //  console.log("here : " + number);
                     if( $("input:checkbox[name=product]:checked").length == number){
                     document.getElementById('allCheck').checked === true;
-                        $('#totalProduct').text(number);
+                     //   $('#totalProduct').text(number);
 
                     };
                     return;
@@ -643,6 +739,23 @@
                    // console.log(str);
                 }
             })
+
+        doTotal();
+
+        /*div 높이 변화시, 전체 높이 변경*/
+       // let $pageDiv = $('#wrapper');
+
+
+       /*     let height = $('#wrapper').height() + 200;
+            $('#wrapper').css("height", height);
+        ;
+
+        $pageDiv.change(function () {
+            let height = $('#wrapper').height() + 200;
+            $('#wrapper').css("height", height);
+        });*/
+      //  $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
+        // $('#totalProduct').text($("input:checkbox[name=product]").length);
 
     });
 

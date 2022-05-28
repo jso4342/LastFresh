@@ -141,9 +141,10 @@ button, html input[type=button], input[type=reset], input[type=submit] {
     margin-top: 0;
 }
 #After {
-    border: 1px solid #DA291C;
-    background-color: #DA291C;
+    border: 1px solid #ddddde;
+    background-color: #ddddde;
     color: #fff;
+    cursor: auto;
 }
 .section_orderview .tbl_type1 .btn_cart {
     border: 1px solid #DA291C;

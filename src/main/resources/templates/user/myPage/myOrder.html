@@ -109,6 +109,7 @@
 <script th:inline="javascript">
     let userNum = [[${userNum}]];
 
+
     function goReview(){
         location.href = '/user/myPage/myReviewUnwritten?userNum=' + userNum;
     }
@@ -209,6 +210,15 @@
         // }
     });
 
+
+    $(document).ready(function() {
+        /*div 높이 변화시, 전체 높이 변경*/
+        let $pageDiv = $('.page_myPage');
+
+
+            let height = $('.list_order').height() + 300;
+            $('.page_myPage').css("height", height);
+        });
 
 
 

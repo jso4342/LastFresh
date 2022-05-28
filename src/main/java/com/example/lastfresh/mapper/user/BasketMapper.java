@@ -25,6 +25,10 @@ public interface BasketMapper {
 
     public void decreaseStock(Long userNum);
 
+    public void soldOut();
+
+    public void restock();
+
     public void remove(Long basketNum);
 
     public void removeAll(Long userNum);

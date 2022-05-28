@@ -42,10 +42,13 @@ public class OrderService {
 
 
     public void insert(OrderDTO orderDTO, Long userNum){
+
         billDAO.insertBill(orderDTO);
         billDAO.insertBillProduct(userNum);
-        basketDAO.removeItems(userNum);
         basketDAO.decreaseStock(userNum);
+        basketDAO.soldOut();
+        basketDAO.removeItems(userNum);
+
     }
 
 

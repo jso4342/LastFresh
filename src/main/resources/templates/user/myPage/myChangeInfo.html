@@ -41,7 +41,7 @@
             <h2 class="tit">개인 정보 수정</h2>
         </div>
         <div class="type_form member_join member_mod">
-            <form id="form" name="frmMember" method="post" action="/user/myPage/modify" th:object="${user}" onsubmit="submitCheck();">
+            <form id="form" name="frmMember" method="post" action="/user/myPage/modify" th:object="${user}">
               <!--  <input type="hidden" th:field="${userNum}">-->
                 <input type="hidden" name="userNum" th:value="*{userNum}"/>
                 <input type="hidden" name="userKakao" th:value="*{userKakao}"/>
@@ -60,7 +60,7 @@
                     <tr>
                         <th>현재 비밀번호</th>
                         <td>
-                            <input type="password" name="originalPassword" id="originalPassword" th:value="*{userPw}">
+                            <input type="password" name="originalPassword" id="originalPassword" th:value="*{userPw}" readonly>
                           <!--  <input type="hidden" name="originalPasswordCheck" th:value="*{userPw}">-->
                             <p class="txt_guide square" style="display: none;">
                                 <span class="txt txt_case4 bad">현재 비밀번호를 확인해주세요</span>
@@ -70,19 +70,18 @@
                     <tr class="member_pwd">
                         <th>새 비밀번호</th>
                         <td>
-                            <input type="password" name="newPassword" id="newPassword" label="새 비밀번호" option="regPass" class="reg_pw bad" onclick="showNewPwText()">
+                            <input type="password" name="newPassword" id="newPassword" label="새 비밀번호" option="regPass" onchange="pw()" class="reg_pw bad" onclick="showNewPwText()">
                             <input type="hidden" name="newPasswordCheck" value="0">
                             <p class="txt_guide square newPwText" style="display: none;">
-                                <span class="txt txt_case4">현재 비밀번호와 다르게 입력</span>
-                                <span class="txt txt_case1">10자 이상 입력</span>
-                                <span class="txt txt_case2">영문/숫자/특수문자(공백 제외)만 허용하며, 2개 이상 조합</span>
+                                <span class="txt txt_case1">8자 이상 입력</span>
+                                <span class="txt txt_case2">영문/숫자/특수문자 모두 포함해야 합니다.</span>
                             </p>
                         </td>
                     </tr>
                     <tr class="member_pwd">
                         <th>새 비밀번호 확인</th>
                         <td>
-                            <input type="password" name="userPw" id="confirmPassword" label="새 비밀번호" option="regPass" class="confirm_pw bad" onclick="showRePwText()">
+                            <input type="password" name="userPw" id="confirmPassword" label="새 비밀번호" option="regPass" onchange="pw()" class="confirm_pw bad" onclick="showRePwText()">
                             <p class="txt_guide square rePwText" style="display: none;">
                                 <span class="txt txt_case1">동일한 비밀번호를 입력해주세요.</span>
                             </p>
@@ -101,7 +100,7 @@
                             이메일
                         </th>
                         <td>
-                            <input type="text" name="userEmail" id="email" th:value="*{userEmail}" required="" option="regEmail" label="이메일" placeholder="예: marketkurly@kurly.com">
+                            <input type="text" name="userEmail" id="email" th:value="*{userEmail}" required="" option="regEmail" label="이메일" onchange="changeEmail()" placeholder="예: marketkurly@kurly.com">
                            <!-- <button class="btn default disabled btn_check2" type="button">중복확인</button>-->
                               <button class="btn default disabled btn_check2" type="button" onclick="verifyEmail()">중복확인</button>
                             <!--        <a href="#" class="btn default" onclick="verifyEmail()">중복확인</a>-->
@@ -120,10 +119,10 @@
                         </th>
                         <td>
                             <div id="codeNum" class="code_num">
-                                <input type="text" name="userPhone" id="auth_code" th:value="*{userPhone}" label="인증번호 확인" class="inp_confirm">
+                                <input type="text" name="userPhone" id="auth_code" th:value="*{userPhone}" label="인증번호 확인" onchange="changePhone()" class="inp_confirm">
                                 <button id="btn_cert_confirm" name="btn_cert_confirm" class="btn default disabled" type="button" onclick="showPhoneCode()">인증번호 발송</button>
                                 <input type="text" name="auth_code_input" placeholder="인증번호를 입력해주세요" pattern="[0-9]*" class="inp_confirm_code" style="display:none">
-                                <button id="btn_code_confirm" name="btn_code_confirm" class="btn default disabled" style="display:none;" onclick="verifyPhone()">인증하기</button>
+                                <button type="button" id="btn_code_confirm" name="btn_code_confirm" class="btn default disabled" style="display:none;">인증하기</button>
                                 <p id="countdown" class="count_down"></p>
                             </div>
                             <p class="txt_guide square phoneOk" style="display:none;">
@@ -206,7 +205,7 @@
                 <hr style="margin-top: 20px;">
                 <div id="formSubmit" class="form_footer">
                     <a onclick="exit()" class="btn default">탈퇴하기</a>
-                    <button type="submit" class="btn active">회원정보수정</button>
+                    <button type="button" class="btn active" onclick="sendSubmit()">회원정보수정</button>
                 </div>
             </form>
         </div>
@@ -218,10 +217,18 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/user/myChangeInfo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="/front/assets/js/user/myPageListMenuSelect.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/inko@1.1.1/inko.min.js"></script>
 <script th:inline="javascript">
     let userNum = [[${user.userNum}]];
     let userPw = [[${user.userPw}]];
+    var frmMember = document.frmMember;
+    var emailCheck = true;
+    var phoneCheck = true;
+    var passwordCheck = true;
+    var pwCheck = /^(?=.*?[a-zA-Z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-.]).{8,}$/;
+    var hangleCheck = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 
     function goReview(){
         location.href = '/user/myPage/myReviewUnwritten?userNum=' + userNum;
@@ -245,51 +252,40 @@
 
     }
 
+    function pw(){
+        passwordCheck = false;
+    }
+
     function showNewPwText(){
         $(".newPwText").css({
             "display":"block"
         });
     }
 
+    function changeEmail(){
+        emailCheck = false;
+    }
+
+    function changePhone(){
+        phoneCheck = false;
+    }
+
+    //비밀번호 유효성 검사
+
+    //8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함되어 있는 지 검사
+    //(?=.*?문자) : 각각의 모든 대상을 '문자'로 검사한다.
     function showRePwText(){
         $(".rePwText").css({
             "display":"block"
         });
+
     }
 
-
-    function verifyPhone(){
-        if(true){ //핸드폰 인증
-            $(".phoneOk").css({
-                "display":"block"
-            });
-            $("input[name='userPhone']").attr("readonly", true);
-        }else{
-            $(".phoneNotOk").css({
-                "display":"block"
-            });
+    document.querySelector("input[name='newPassword']").addEventListener("blur", function(){
+        if(pwCheck.test(inko.ko2en(form.newPassword.value))){
+            passwordCheck = true;
         }
-    }
-
-    function showPhoneCode(){
-        $("button[name='btn_code_confirm']").css({
-            "display":"block",
-            "margin-top":"9px"
-        })
-
-        $("button[name='btn_cert_confirm']").css({
-            "display":"none"
-        })
-
-
-        $(".inp_confirm_code").css({
-            "display":"block",
-            "margin-top":"9px",
-            "margin-right": "8px",
-            "float": "left"
-        });
-    }
-
+    });
 
 
     // 주소 찾기(Daum API)
@@ -320,12 +316,52 @@
         });
     }
 
-    function submitCheck(){
+    // check verification
+    function sendSubmit(){
         //let form = $(document.frmMember);
-        if(document.getElementById("confirmPassword").value == ""){ // no input
-            $('input[name=userPw]').attr('value',userPw);
+
+        if(document.getElementById("newPassword").value != null){ // password input exists
+           if(document.getElementById("newPassword").value == null){
+               alert("새 비밀번호를 입력해주세요.");
+               return;
+           }
+            if(document.getElementById("confirmPassword").value == null){
+                alert("새 비밀번호 확인을 입력해주세요.");
+                return;
+            }
+            if(document.getElementById("confirmPassword").value != document.getElementById("newPassword").value){
+                alert("새 비밀번호가 일치하지 않습니다.");
+                return;
+            }
+            if(document.getElementById("confirmPassword").value == document.getElementById("newPassword").value){
+                passwordCheck = true;
+            }
         }
+
+        if(document.getElementById("confirmPassword").value == null){ // no password input
+            $('input[name=userPw]').attr('value',userPw);
+            passwordCheck = true;
+        }
+
+        if( passwordCheck == false){
+            alert("올바르지 않은 비밀번호 형식입니다.");
+            return;
+        }
+
+        if(emailCheck == false) {
+                alert("이메일 중복확인 오류");
+                return;
+            }
+
+        if(phoneCheck == false) {
+            alert("휴대폰 인증 오류");
+            return;
+        }
+
+
         alert("회원정보가 정상적으로 수정되었습니다.");
+        frmMember.submit();
+
     }
 
     /*핸드폰 번호 하이푼*/
@@ -355,39 +391,113 @@
 
 
     //이메일 중복검사
-    function checkEmail(userEmail){
-        if(!userEmail){
-            $("#resultEmail").text("아이디를 입력해주세요.");
-            $("#resultEmail").css("color", "red");
-            return;
-        }
+    function checkEmail(userEmail) {
+        emailCheck = false;
 
         $.ajax({
             url: "/user/manage/EmailCheck/" + userEmail,
             type: "get",
             dataType: "json",
-            success: function(resultEmail){
-                if(resultEmail.status == "ok"){ //중복 X
+            success: function (resultEmail) {
+                if (resultEmail.status == "ok") { //중복 X
                     $(".emailOk").css({
-                        "display":"block"
+                        "display": "block"
                     });
                     $(".emailNotOk").css({
-                        "display":"none"
+                        "display": "none"
                     });
                     $("input[name='userEmail']").attr("readonly", true);
-                }else{
+                    emailCheck = true;
+                } else {
                     $(".emailNotOk").css({
-                        "display":"block"
+                        "display": "block"
                     });
                     $(".emailOk").css({
-                        "display":"none"
+                        "display": "none"
                     });
                 }
             },
-            error: function(){
+            error: function () {
                 console.log("중복검사 오류");
             }
         });
     }
+
+
+
+
+    //휴대폰인증
+    $('#btn_cert_confirm').click(function(){
+        let userPhone = $('#auth_code').val();
+        Swal.fire('인증번호 발송 완료!')
+        phoneCheck = false;
+
+        showPhoneCode();
+
+
+
+        $.ajax({
+            type: "GET",
+            url: "/user/manage/phoneCheck",
+            data: {
+                "userPhone" : userPhone
+            },
+            success: function(res){
+                $('#btn_code_confirm').click(function(){
+                    if($.trim(res) ==$('.inp_confirm_code').val()){
+                        Swal.fire(
+                            '인증성공!',
+                            '휴대폰 인증이 정상적으로 완료되었습니다.',
+                            'success',
+
+                        )
+                        check4=false;
+
+                        $("input[name='userPhone']").attr("readonly", true); $(".phoneOk").css({
+                            "display":"block"
+                        });
+                        $("input[name='userPhone']").attr("readonly", true);
+
+                        //document.location.href="/user/manage/userJoin";
+                        phoneCheck = true;
+                    }else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: '인증오류',
+                            text: '인증번호가 올바르지 않습니다!'
+                        });
+                        $(".phoneNotOk").css({
+                            "display":"block"
+                        });
+                    }
+
+                })
+
+            }
+        })
+    });
+
+        function showPhoneCode(){
+            $("button[name='btn_code_confirm']").css({
+                "display":"block",
+                "margin-top":"9px"
+            })
+
+            $("button[name='btn_cert_confirm']").css({
+                "display":"none"
+            })
+
+
+            $(".inp_confirm_code").css({
+                "display":"block",
+                "margin-top":"9px",
+                "margin-right": "8px",
+                "float": "left"
+            });
+        }
+
+
+
+
 </script>
 </html>

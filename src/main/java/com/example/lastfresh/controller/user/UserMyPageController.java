@@ -3,6 +3,7 @@ package com.example.lastfresh.controller.user;
 
 import com.example.lastfresh.domain.repository.BillRepository;
 import com.example.lastfresh.domain.repository.MemberRepository;
+import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.ReviewVO;
 import com.example.lastfresh.domain.vo.UserVO;
 import com.example.lastfresh.service.user.MyPageService;
@@ -10,7 +11,9 @@ import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.Criteria;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -22,6 +25,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 /*유저 마이 페이지*/
 
 @Controller
@@ -31,6 +35,8 @@ import java.io.IOException;
 public class UserMyPageController {
     private final MyPageService myPageService;
     private final ReviewService reviewService;
+    private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
 
 
@@ -52,6 +58,9 @@ public class UserMyPageController {
     public RedirectView modify(UserVO userVO, RedirectAttributes rttr) throws Exception {
         String result = null;
         Long userNum = userVO.getUserNum();
+        String encodedPassword = passwordEncoder.encode(userVO.getUserPw());
+        userVO.setUserPw(encodedPassword);
+
 
         rttr.addAttribute("userNum", userNum);
         rttr.addAttribute("result", myPageService.modify(userVO, userNum) ? "success" : "failure");
@@ -85,6 +94,24 @@ public class UserMyPageController {
         rttr.addAttribute("userNum", userNum);
         //model.addAttribute("list", reviewService.update(userNum));
         return new RedirectView("myReviewWritten");
+    }
+
+
+    @PostMapping("/pwCheck/{password}/{userNum}")
+    @ResponseBody
+    public JSONObject checkPw(HttpServletRequest req, @PathVariable("password") String password, @PathVariable("userNum") Long userNum) {
+        //파라미터는 form태그처럼 페이지 이동으로 받을때, pathVariable은 페이지이동 없는 ajax로 받을때. @ResponseBody 줘야함
+        JSONObject obj = new JSONObject();
+
+        String userPw = userRepository.getById(userNum).getUserPw();
+        log.info("들어ㅗㅁㅇ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+        if(passwordEncoder.matches(password, userPw)){
+            obj.put("status", "ok");
+        }else{
+            obj.put("status", "not-ok");
+        }
+        return obj;
     }
 
 
@@ -159,7 +186,7 @@ public class UserMyPageController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-       // return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
+      //  return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
           return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 }

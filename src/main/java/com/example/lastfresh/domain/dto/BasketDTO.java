@@ -29,10 +29,12 @@ public class BasketDTO {
     private Long sellProductDiscountPrice;
     private String sellProductThumbnail;
     private String sellProductImageUploadPath;
+    //
+    private Long sellProductStock;
 
     public BasketDTO(){;}
 
-    public BasketDTO(Long basketNum, Long basketQuantity, String basketDeliveryMethod, Long basketGoOrder, Long userNum, Long sellProductNun, String sellProductName, Long sellProductDiscountPrice, String sellProductThumbnail, String sellProductImageUploadPath) {
+    public BasketDTO(Long basketNum, Long basketQuantity, String basketDeliveryMethod, Long basketGoOrder, Long userNum, Long sellProductNun, String sellProductName, Long sellProductDiscountPrice, String sellProductThumbnail, String sellProductImageUploadPath, Long sellProductStock) {
         this.basketNum = basketNum;
         this.basketQuantity = basketQuantity;
         this.basketDeliveryMethod = basketDeliveryMethod;
@@ -43,5 +45,6 @@ public class BasketDTO {
         this.sellProductDiscountPrice = sellProductDiscountPrice;
         this.sellProductThumbnail = sellProductThumbnail;
         this.sellProductImageUploadPath = sellProductImageUploadPath;
+        this.sellProductStock = sellProductStock;
     }
 }

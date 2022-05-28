@@ -24,6 +24,12 @@
         SET BILL_STATUS="-1"
         WHERE BILL_PRODUCT_LIST_NUM=#{billProductNum}
     </update>
+
+    <update id="addStock">
+        UPDATE TBL_SELL_PRODUCT
+        SET SELL_PRODUCT_STOCK = SELL_PRODUCT_STOCK + #{quantity}
+        WHERE SELL_PRODUCT_NUM = #{sellProductNum}
+    </update>
 <!--    <insert id="insert">-->
 <!--    </insert>-->
 

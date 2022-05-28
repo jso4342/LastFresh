@@ -48,6 +48,7 @@ public class UserVO {
     @OneToMany(mappedBy = "userVO") // 다대다
     List<ReviewVO> reviews = new ArrayList<>();
 
+    @OrderBy("BILL_ORDER_NUM DESC")
     @OneToMany(mappedBy = "userVO") // 다대다
     List<BillVO> bills = new ArrayList<>();
 

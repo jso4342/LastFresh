@@ -5,6 +5,8 @@
     text-align: center;
     margin: 0 auto;
     width: 56em;
+    overflow: hidden !important;
+    margin-bottom: 55px;
 }
 
 .hrUp{
