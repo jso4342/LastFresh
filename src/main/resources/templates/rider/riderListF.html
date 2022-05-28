@@ -27,7 +27,7 @@
             </a>
         </div>
         <div class="logoutBtn" type="button">
-            <a href="" id="logOut">
+            <a href="javascript:logout();">
                 <div class="word">로그아웃</div>
                 <div style="margin: -56px 0 0 4px;">
                     <img style="height: 61px;"
@@ -64,9 +64,11 @@
                 </div>
             </a>
             <div class="logoutWrap" type="button">
+                <a href="javascript:logout();" id="logOut">
                 <div class="logout">
                     <p>로그아웃</p>
                 </div>
+                </a>
             </div>
         </div>
 
@@ -183,5 +185,20 @@
         $(".noorder").css("display","");
     }
 
+</script>
+
+<script th:inline="javascript">
+    //페이지 이동
+    function goMypage() {
+        // location.href = "/user/myPage/myCheckPw";
+        window.location.href = "/user/myPage/myCheckPw?userNum=" + userNumber;
+    }
+    function logout() {
+        location.href = "/user/manage/logout";
+    }
+</script>
+<script th:inline="javascript">
+    let userNumber =[[${session.userNumber}]];
+    console.log(userNumber);
 </script>
 </html>

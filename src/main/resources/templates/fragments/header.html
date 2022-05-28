@@ -40,8 +40,13 @@
             <div style="margin-top: -39px;"><p>&nbsp;</p></div>
             <div style="margin: 0 auto;">
 
-                <a href="main.html"><img id="logo"
-                                         src="https://cdn.discordapp.com/attachments/969471931575320587/969513952226738196/logo.png"></a>
+                <a href="main.html">
+                    <a href="/main/main">
+                    <img id="logo" src="https://cdn.discordapp.com/attachments/969471931575320587/969513952226738196/logo.png">
+                    <img id="logoSell" src="https://cdn.discordapp.com/attachments/969471931575320587/980093289028001802/logo_3.png" style="width: 110px; margin-top: -15px; display: none">
+                    <img id="logoRider" src="https://cdn.discordapp.com/attachments/969471931575320587/980092769378922636/logo_1.png" style="width: 110px; margin-top: -15px; display: none">
+                    </a>
+                </a>
             </div>
             <!-- Nav -->
             <nav id="nav">
@@ -63,9 +68,7 @@
                     </li>
                 </ul>
             </nav>
-
-
-        </section>
+    </section>
     </div>
 
     <!-- 전체 카테고리 -->
@@ -74,7 +77,7 @@
             <div class="inner_sub">
                 <ul data-default="219" data-min="219" data-max="731" class="gnb_menu cate" style="height: 440px;">
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_veggies_inactive_pc@2x.1586324570.png"
                                  alt="카테고리 아이콘">
@@ -85,7 +88,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_meat_inactive_pc@2x.1568684452.png"
                                  alt="카테고리 아이콘">
@@ -96,7 +99,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_seafood_inactive_pc@2x.1568684352.png"
                                  alt="카테고리 아이콘">
@@ -107,7 +110,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_convenient_inactive_pc@2x.1572243542.png"
                                  alt="카테고리 아이콘">
@@ -118,7 +121,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_cookie_inactive_pc.1610074008.png"
                                  alt="카테고리 아이콘">
@@ -129,7 +132,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_health_inactive_pc@2x.1574645922.png"
                                  alt="카테고리 아이콘">
@@ -140,7 +143,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_side_inactive_pc@2x.1572243579.png"
                                  alt="카테고리 아이콘">
@@ -151,7 +154,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/category/icon/pc/9bead7b8-2a7e-4a2f-910a-ebe5c8f5f4f0"
                                  alt="카테고리 아이콘">
@@ -162,7 +165,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_kitchen_inactive_pc@2x.1574646457.png"
                                  alt="카테고리 아이콘">
@@ -173,7 +176,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_sauce_inactive_pc@2x.1572243594.png"
                                  alt="카테고리 아이콘">
@@ -184,7 +187,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://img-cf.kurly.com/shop/data/category/icon_snacks_inactive_pc@2x.1572243615.png"
                                  alt="카테고리 아이콘">
@@ -195,7 +198,7 @@
                         </a>
                     </li>
                     <li class>
-                        <a class="menu">
+                        <a class="menu categoryChoice">
                          <span class="ico">
                             <img src="https://res.kurly.com/pc/service/common/1908/ico_recommend_v2.png" alt="카테고리 아이콘">
                          </span>
@@ -206,6 +209,11 @@
                     </li>
                 </ul>
             </div>
+<!--            <form action="/product/categorySort" th:object="${criteriaProduct}" name="selectPriceListForm">-->
+<!--                <input type="hidden" th:field="*{pageNum}">-->
+<!--                <input type="hidden" th:field="*{amount}">-->
+<!--                <input type="hidden" name="categoryName">-->
+<!--            </form>-->
         </div>
     </div>
 
@@ -263,6 +271,12 @@
 
 
         const userStatus = [[${session.userStatus}]]
+        if(userStatus.valueOf('2')){
+            $("#nav").hide();
+            $("#logo").hide();
+            $("#logoSell").show();
+        }
+
         //세션코드
         const userId = [[${session.userId}]]
         console.log('jsTest' + userId)
@@ -273,6 +287,8 @@
             $("#world").hide();
             $("#status").show();
         }
+
+
 
         function send() {
             if (check == false) {
@@ -298,8 +314,51 @@
             })
         });
 
+        function send(){
+            if(check == false) {
+                $('.gnb_sub').show();
+                /*	$('#allCategory').css({
+                        "color" : "#DA291C",
+                        "font-weight" : "600"
+                    });*/
+                check = true;
+            }else {
+                $('.gnb_sub').hide();
+                /*$('#allCategory').css({
+                    "color" : "#333",
+                    "font-weight" : "500"
+                });*/
+                check = false;
+            }
+        }
+
+        function send_catagory(){
+            if(check == false) {
+                $('.media_catagory').show();
+                /*	$('#allCategory').css({
+                        "color" : "#DA291C",
+                        "font-weight" : "600"
+                    });*/
+                check = true;
+            }else {
+                $('.media_catagory').hide();
+                /*$('#allCategory').css({
+                    "color" : "#333",
+                    "font-weight" : "500"
+                });*/
+                check = false;
+            }
+        }
 
         /*]]>*/
+
+        $("a.categoryChoice").on("click",function (e) {
+            e.preventDefault();
+            $("div.inner_sub").hide();
+            console.log($(this).find("span.txt").text());
+            location.href = "/product/categorySort?categoryName=" + $(this).find("span.txt").text() +"&type=";
+            $("input[name='categoryName']").val($(this).text());
+        })
 
     </script>
     <script th:inline="javascript">
@@ -313,7 +372,7 @@
         }
 
         function goJoin() {
-            location.href = "/user/manage/userJoin";
+            location.href = "/user/manage/userSelect";
         }
 
         function logout() {
