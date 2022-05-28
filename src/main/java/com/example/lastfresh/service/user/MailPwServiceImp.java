@@ -50,9 +50,8 @@ public class MailPwServiceImp implements MailPwService{
                         "    height: 50px;" +
                         "    font-size: 12px;" +
                         "    font-weight: 900;" +
-                        "    background-color: #DA291C;' onclick= 'send();'>비밀번호 재설정</button>" +
+                        "    background-color: #DA291C;'><a href='user/manage/userNewPw?id ="+id+"'>비밀번호 재설정</a></button>" +
                         "</div>" +
-                        "<script src='/front/assets/js/user/userNewPw.js'></script>" +
                         "</div>" +
                         "</body>" +
                         "</html>", true);
