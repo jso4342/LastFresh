@@ -90,9 +90,7 @@ public class UserMyPageController {
 
     // 비밀번호 확인 페이지
     @GetMapping("/myCheckPw")
-    public void myCheckPw(Long userNum, HttpServletRequest request, Model model) throws Exception {
-        HttpSession session = request.getSession();
-        session.getAttribute(String.valueOf(userNum));
+    public void myCheckPw(Long userNum,Model model) throws Exception {
         model.addAttribute("user", myPageService.get(userNum));
     }
 

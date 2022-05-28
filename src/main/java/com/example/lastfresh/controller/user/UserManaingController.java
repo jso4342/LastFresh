@@ -66,25 +66,18 @@ public class UserManaingController {
         UserVO userVO = userService.decryption(userId, userPw);
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-    log.info("로그인 실행");
-    log.info("userVO"+userVO.toString());
+//    log.info("로그인 실행");
+//    log.info("userVO"+userVO.toString());
 
         if (userVO == null) {//로그인실패
-//            mav.setView(new RedirectView("userLogin"));
-
             rttr.addFlashAttribute("msg", "로그인실패");
-//            mav.setView(new RedirectView("userLogin"));
             return "redirect:userLogin";
         }else {
-//           session.setAttribute("userVO", userVO);
             session.setAttribute("userNumber", userVO.getUserNum());
-
             session.setAttribute("userId", userVO.getUserId());
             session.setAttribute("userStatus", userVO.getUserStatus());
-//            mav.setView(new RedirectView("/main/main"));
             return "redirect:/main/moveMain";
         }
-//        return mav;
     }
 
 
@@ -109,8 +102,6 @@ public class UserManaingController {
         return "user/manage/userSelect";
     }
 
-
-
     //회원유형
     @PostMapping("/manage/userSelect")
     public String userSelect(String userKakao, String selector, Model model) {
@@ -121,8 +112,6 @@ public class UserManaingController {
         model.addAttribute("userStatus", userStatus);
         return "user/manage/userJoin";
     }
-
-    ;
 
     private String getUserStatus(String selector) {
         if ("일반회원".equals(selector)) {
@@ -142,7 +131,7 @@ public class UserManaingController {
     }
 
     //휴대폰인증
-    @GetMapping("/manage/phoneCheck")
+    @PostMapping("/manage/phoneCheck")
     public @ResponseBody
     String sendSMS(String userPhone) {
 
@@ -189,6 +178,10 @@ public class UserManaingController {
 
 
     //단순페이지 이동
+//    @GetMapping("manage/userSelect")
+//    public void userSelect(){
+//    }
+
 
     @GetMapping("/manage/userJoin")
     public void userJoin() {

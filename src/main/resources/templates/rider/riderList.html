@@ -22,7 +22,7 @@
             <a href="" id="modify">
                 <div style="margin: -56px 0 0 4px;">
                 <!--사람모양-->
-                    <h2 th:text="${session.userNumber}"></h2>
+<!--                    <h2 th:text="${session.userNumber}"></h2>-->
                     <a href="javascript:goMypage();">
                     <img style="height: 61px;"
                          src="https://cdn.discordapp.com/attachments/969471931575320587/972871638947360838/f1d4532d885acb34.png">
@@ -194,7 +194,8 @@
 <script th:inline="javascript">
     //페이지 이동
     function goMypage() {
-        location.href = "/user/myPage/myCheckPw";
+        // location.href = "/user/myPage/myCheckPw";
+        window.location.href = "/user/myPage/myCheckPw?userNum=" + userNumber;
     }
     function logout() {
         location.href = "/user/manage/logout";
