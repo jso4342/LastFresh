@@ -19,6 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 /*유저 마이 페이지*/
@@ -90,6 +91,8 @@ public class UserMyPageController {
     // 비밀번호 확인 페이지
     @GetMapping("/myCheckPw")
     public void myCheckPw(Long userNum, HttpServletRequest request, Model model) throws Exception {
+        HttpSession session = request.getSession();
+        session.getAttribute(String.valueOf(userNum));
         model.addAttribute("user", myPageService.get(userNum));
     }
 

@@ -21,13 +21,17 @@
         <div class="modifyBtn" type="button">
             <a href="" id="modify">
                 <div style="margin: -56px 0 0 4px;">
+                <!--사람모양-->
+                    <h2 th:text="${session.userNumber}"></h2>
+                    <a href="javascript:goMypage();">
                     <img style="height: 61px;"
                          src="https://cdn.discordapp.com/attachments/969471931575320587/972871638947360838/f1d4532d885acb34.png">
+                    </a>
                 </div>
             </a>
         </div>
         <div class="logoutBtn" type="button">
-            <a href="" id="logOut">
+            <a href="javascript:logout();" id="logOut">
                 <div class="word">로그아웃</div>
                 <div style="margin: -56px 0 0 4px;">
                     <img style="height: 61px;"
@@ -63,11 +67,13 @@
                     <p>4</p>
                 </div>
             </a>
+            <a href="javascript:logout();">
             <div class="logoutWrap" type="button">
                 <div class="logout">
                     <p>로그아웃</p>
                 </div>
             </div>
+            </a>
         </div>
 
         <!-- 주문 사이드바에 맞는 콘텐츠-->
@@ -183,5 +189,19 @@
         $(".noorder").css("display","");
     }
 
+</script>
+
+<script th:inline="javascript">
+    //페이지 이동
+    function goMypage() {
+        location.href = "/user/myPage/myCheckPw";
+    }
+    function logout() {
+        location.href = "/user/manage/logout";
+    }
+</script>
+<script th:inline="javascript">
+    let userNumber =[[${session.userNumber}]];
+    console.log(userNumber);
 </script>
 </html>
