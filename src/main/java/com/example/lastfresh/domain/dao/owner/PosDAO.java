@@ -1,5 +1,6 @@
 package com.example.lastfresh.domain.dao.owner;
 
+import com.example.lastfresh.domain.dto.BillProductDTO;
 import com.example.lastfresh.domain.dto.PosDTO;
 import com.example.lastfresh.mapper.owner.PosMapper;
 import lombok.RequiredArgsConstructor;
@@ -33,4 +34,7 @@ public class PosDAO {
 
     /*Pos 주문 취소 시 상품 스테이터스, 수량 변경*/
     public void updateSellStatusRestore(PosDTO posDTO){posMapper.updateSellStatusRestore(posDTO);}
+
+    /*Pos 주문 취소 시 상품 스테이터스, 수량 변경*/
+    public BillProductDTO getUserNumAndSellProductNumByBillProductNum(Long billProductListNum){return posMapper.getUserNumAndSellProductNumByBillProductNum(billProductListNum);}
 }

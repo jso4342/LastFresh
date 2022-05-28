@@ -5,6 +5,7 @@
         <typeAlias type="com.example.lastfresh.domain.dto.ProductListDTO" alias="ProductListDTO"/>
         <typeAlias type="com.example.lastfresh.domain.dto.BillSoldProductDTO" alias="BillSoldProductDTO"/>
         <typeAlias type="com.example.lastfresh.domain.dto.PosDTO" alias="PosDTO"/>
+        <typeAlias type="com.example.lastfresh.domain.dto.BillProductDTO" alias="BillProductDTO"/>
         <typeAlias type="com.example.lastfresh.domain.vo.ProductVO" alias="ProductVO"/>
         <typeAlias type="com.example.lastfresh.domain.dto.ProductDTO" alias="ProductDTO"/>
         <typeAlias type="com.example.lastfresh.domain.vo.BasketVO" alias="BasketVO"/>
