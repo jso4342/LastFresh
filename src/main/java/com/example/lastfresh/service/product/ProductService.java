@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -27,9 +28,40 @@ public class ProductService{
     private final BasketRepository basketRepository;
 
     private final ProductDAO productDAO;
+
+    public List<ProductVO> proAddressListPickup(HashMap<String, Object> map) {
+        return productDAO.proAddressListPickup(map);
+    }
+
+    public int getTotalProListPickup(HashMap<String, Object> map) {
+        return productDAO.getTotalProListPickup(map);
+    }
+    public List<ProductVO> proAddressListList(HashMap<String, Object> map) {
+        return productDAO.proAddressListList(map);
+    }
+
+    public int getTotalAddressCategory(HashMap<String, Object> map) {
+        return productDAO.getTotalAddressCategory(map);
+    }
+
+    public List<ProductVO> getCategoryList( HashMap<String, Object> categoryMap) {
+        return productDAO.getCategoryList(categoryMap);
+    }
+    public int getTotalCategory(HashMap<String, Object> categoryMap) {
+        return productDAO.getTotalCategory(categoryMap);
+    }
+
+    //    카테고리 가져오기
+    public Long getCategoryNum(String categoryName) {
+        Long categoryNum = productDAO.getCategoryNum(categoryName);
+        log.info("카테고리넘버 서비스 들어옴"+categoryNum);
+        return categoryNum;
+    }
+
+
     // 신상품 상품 목록
-    public List<ProductVO> getList(CriteriaProduct criteriaProduct) {
-        return productDAO.getList(criteriaProduct);
+    public List<ProductVO> getList(HashMap<String,Object> map) {
+        return productDAO.getList(map);
 //        List<ProductVO> products = productRepository.findAll();
 //        return products;
     }
@@ -42,16 +74,16 @@ public class ProductService{
         return productDAO.getTotal(criteriaProduct);
     }
     // 픽업 상품 목록
-    public List<ProductVO> getPickupList(CriteriaProduct criteriaProduct) {
-        return productDAO.getPickupList(criteriaProduct);
+    public List<ProductVO> getPickupList(HashMap<String,Object> map) {
+        return productDAO.getPickupList(map);
     }
     // 픽업 상품 전체 갯수
     public int getPickupTotal(CriteriaProduct criteriaProduct) {
         return productDAO.getPickupTotal(criteriaProduct);
     }
     // 배달 상품 목록
-    public List<ProductVO> getDeliveryList(CriteriaProduct criteriaProduct) {
-        return productDAO.getDeliveryList(criteriaProduct);
+    public List<ProductVO> getDeliveryList(HashMap<String,Object> map) {
+        return productDAO.getDeliveryList(map);
     }
     // 배달 상품 전체 갯수
     public int getDeliveryTotal(CriteriaProduct criteriaProduct) {
@@ -59,8 +91,8 @@ public class ProductService{
     }
 
     // 배송 상품 목록
-    public List<ProductVO> getShippingList(CriteriaProduct criteriaProduct) {
-        return productDAO.getShippingList(criteriaProduct);
+    public List<ProductVO> getShippingList(HashMap<String,Object> map) {
+        return productDAO.getShippingList(map);
     }
     // 배송 상품 전체 갯수
     public int getShippingTotal(CriteriaProduct criteriaProduct) {

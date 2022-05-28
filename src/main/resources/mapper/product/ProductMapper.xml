@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lastfresh.mapper.product.ProductMapper">
+    <select id="proAddressListPickup" resultType="ProductVO">
+        select *
+        from TBL_SELL_PRODUCT
+        where SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductAddress}
+        or	SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductAddress}
+        or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
+        <if test="type.status1 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
+    </select>
+
+    <select id="getTotalProListPickup" resultType="_int">
+        select
+COUNT(SELL_PRODUCT_NUM)
+from TBL_SELL_PRODUCT
+where SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductAddress}
+or	SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductAddress}
+or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
+    </select>
+    <select id="proAddressListList" resultType="ProductVO">
+        select *
+        from TBL_SELL_PRODUCT
+        where SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductAddress}
+        or	SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductAddress}
+        or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
+        <if test="type.status1 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
+    </select>
+
+    <select id="getTotalAddressCategory" resultType="_int">
+        select
+COUNT(SELL_PRODUCT_NUM)
+from TBL_SELL_PRODUCT
+where SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductAddress}
+or	SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductAddress}
+or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
+    </select>
+
+    <select id="getCategoryList" resultType="ProductVO">
+        select *
+        from TBL_SELL_PRODUCT
+        inner join TBL_PRODUCT_CATEGORY
+        on TBL_SELL_PRODUCT.SELL_PRODUCT_CATEGORY = TBL_PRODUCT_CATEGORY.CATEGORY_NUM
+        where TBL_SELL_PRODUCT.SELL_PRODUCT_CATEGORY = #{categoryNum}
+        <if test="type.status1 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
+    </select>
+
+    <select id="getTotalCategory" resultType="_int">
+       select COUNT(*)
+    from TBL_SELL_PRODUCT
+    inner join TBL_PRODUCT_CATEGORY
+    on TBL_SELL_PRODUCT.SELL_PRODUCT_CATEGORY = TBL_PRODUCT_CATEGORY.CATEGORY_NUM
+    where TBL_SELL_PRODUCT.SELL_PRODUCT_CATEGORY = #{categoryNum}
+    </select>
+
+    <select id="getCategoryNum" resultType="_int">
+        select CATEGORY_NUM from TBL_PRODUCT_CATEGORY
+        where CATEGORY_NAME = #{categoryName}
+    </select>
+
     <select id="getList" resultType="ProductVO">
-        <![CDATA[
-        SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
-          T.*
-        FROM  TBL_SELL_PRODUCT T,(SELECT @ROWNUM := 0 ) TMP
-        ORDER BY SELL_PRODUCT_NUM desc
-         limit #{limit},6
-        ]]>
+        SELECT * FROM TBL_SELL_PRODUCT
+        <if test="type.status1 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
     </select>
 
     <select id="get" resultType="ProductVO">
@@ -22,18 +122,25 @@
     </select>
 
     <select id="getPickupTotal" resultType="_int">
-       SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_SELL_PRODUCT WHERE SELL_PRODUCT_PICKUP = 0
+       SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_SELL_PRODUCT WHERE SELL_PRODUCT_PICKUP = 1
     </select>
 
     <select id="getPickupList" resultType="ProductVO">
-        <![CDATA[
-        SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
-          T.*
-        FROM  TBL_SELL_PRODUCT T,(SELECT @ROWNUM := 0 ) TMP
-        WHERE SELL_PRODUCT_PICKUP =0
-        ORDER BY SELL_PRODUCT_NUM desc
-         limit #{limit},6
-        ]]>
+        SELECT * FROM TBL_SELL_PRODUCT
+        WHERE SELL_PRODUCT_PICKUP =1
+        <if test="type.status1 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
     </select>
 
     <select id="getDeliveryTotal" resultType="_int">
@@ -41,14 +148,21 @@
     </select>
 
     <select id="getDeliveryList" resultType="ProductVO">
-        <![CDATA[
-        SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
-          T.*
-        FROM  TBL_SELL_PRODUCT T,(SELECT @ROWNUM := 0 ) TMP
+        SELECT * FROM TBL_SELL_PRODUCT
         WHERE SELL_PRODUCT_DELIVERY_METHOD in(1,2)
-        ORDER BY SELL_PRODUCT_NUM desc
-         limit #{limit},6
-        ]]>
+        <if test="type.status1 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
     </select>
 
     <select id="getShippingTotal" resultType="_int">
@@ -56,14 +170,21 @@
     </select>
 
     <select id="getShippingList" resultType="ProductVO">
-        <![CDATA[
-        SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
-          T.*
-        FROM  TBL_SELL_PRODUCT T,(SELECT @ROWNUM := 0 ) TMP
+        SELECT * FROM TBL_SELL_PRODUCT
         WHERE SELL_PRODUCT_SHIPPING_METHOD in(1,2)
-        ORDER BY SELL_PRODUCT_NUM desc
-         limit #{limit},6
-        ]]>
+        <if test="type.status1 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE
+        </if>
+        <if test="type.status2 != null">
+            ORDER BY SELL_PRODUCT_DISCOUNT_PRICE desc
+        </if>
+        <if test="type.status3 != null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        <if test="type.status1 = null and type.status2 = null and type.status3 = null">
+            ORDER BY SELL_PRODUCT_NUM desc
+        </if>
+        limit #{criteriaProduct.limit},6
     </select>
     <select id="getListByReview" resultType="productVO">
         select p.SELL_PRODUCT_NUM, p.USER_NUM,p.SELL_PRODUCT_CATEGORY,p.SELL_PRODUCT_NAME,

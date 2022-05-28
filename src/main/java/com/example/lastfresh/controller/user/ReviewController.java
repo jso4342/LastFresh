@@ -18,21 +18,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReviewController {
     private final ReviewService reviewService;
 
-//    리뷰 전체 조회
+    //    리뷰 전체 조회
     @GetMapping("/list/{sellProductNum}/{pageNum}")
     public ReviewPageDTO getReviewList(@PathVariable("sellProductNum") Long sellProductNum, @PathVariable("pageNum") int pageNum){
         log.info("getReviewList............"+ sellProductNum +"," + pageNum);
         return new ReviewPageDTO(reviewService.getTotal(sellProductNum), reviewService.getReviewList(sellProductNum, new CriteriaProduct(pageNum,6)));
     }
-//    리뷰 한개 조회
+
+    //    리뷰 한개 조회
     @GetMapping("/{reviewNum}")
     public ReviewVO readReview(@PathVariable("reviewNum") Long reviewNum){
         log.info("readReview....." + reviewNum);
         return reviewService.readReview(reviewNum);
     }
 
-        @GetMapping("/total/{sellProductNum}")
-        public Integer getTotal(@PathVariable Long sellProductNum){
+    @GetMapping("/total/{sellProductNum}")
+    public Integer getTotal(@PathVariable Long sellProductNum){
         return reviewService.getTotal(sellProductNum);
-        }
+    }
 }

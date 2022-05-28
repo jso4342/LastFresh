@@ -17,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 
 @Controller
 @Slf4j
@@ -26,41 +27,409 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/proDelivery")
-    public void proDelivery(CriteriaProduct criteriaProduct, Model model) {
+    @GetMapping("/categorySort")
+    public void categorySort(String categoryName,CriteriaProduct criteriaProduct,String type, Model model){
         criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
-        model.addAttribute("deliveryList", productService.getDeliveryList(criteriaProduct));
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getDeliveryTotal(criteriaProduct)));
-        model.addAttribute("getDeliveryTotal",productService.getDeliveryTotal(criteriaProduct));
+        Long categoryNum = productService.getCategoryNum(categoryName);
+        log.info("카테고리솔트 들어옴------------------------------------------------------------------------------------");
+        log.info("/pos/getList실행");
+
+        log.info("criteria : " + criteriaProduct.toString() + type);
+        log.info("카테고리 이름: " + categoryName);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------"+type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------"+type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("카테고리넘버" +categoryNum + "-----------");
+        log.info("카테고리프로덕트" +criteriaProduct + "-----------");
+
+
+
+        HashMap<String, Object> categoryMap = new HashMap<>();
+        categoryMap.put("criteriaProduct", criteriaProduct);
+        categoryMap.put("type", typeList);
+        categoryMap.put("categoryNum", categoryNum);
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("categoryName",categoryName);
+        model.addAttribute("list", productService.getCategoryList(categoryMap));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotalCategory(categoryMap)));
+        model.addAttribute("getTotal",productService.getTotalCategory(categoryMap));
     }
 
+    @GetMapping("/proDelivery")
+    public void proDelivery(CriteriaProduct criteriaProduct, String type, Model model)throws Exception {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+
+        log.info("/pos/getList실행");
+        log.info("criteria : " + criteriaProduct.toString() + type);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------" + type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------" + type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("상태1" + status1 + "-----------");
+        log.info("상태2" + status2 + "-----------");
+        log.info("상태3" + status3 + "-----------");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("criteriaProduct", criteriaProduct);
+        map.put("type", typeList);
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("deliveryList", productService.getDeliveryList(map));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getDeliveryTotal(criteriaProduct)));
+        model.addAttribute("getDeliveryTotal", productService.getDeliveryTotal(criteriaProduct));
+    }
+    //    public void proDelivery(CriteriaProduct criteriaProduct, Model model) {
+//        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+//        model.addAttribute("deliveryList", productService.getDeliveryList(criteriaProduct));
+//        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getDeliveryTotal(criteriaProduct)));
+//        model.addAttribute("getDeliveryTotal",productService.getDeliveryTotal(criteriaProduct));
+//    }
+    @GetMapping("/proAddressList")
+    public void proAddressList(CriteriaProduct criteriaProduct, String type,String sido,String sigungu,String dong, Model model)throws Exception {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+        String sellProductAddress = sido+" "+sigungu+" "+dong;
+
+        log.info(sellProductAddress);
+
+        log.info("/pos/getList실행");
+        log.info("criteria : " + criteriaProduct.toString() + type);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------" + type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------" + type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("상태1" + status1 + "-----------");
+        log.info("상태2" + status2 + "-----------");
+        log.info("상태3" + status3 + "-----------");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("criteriaProduct", criteriaProduct);
+        map.put("type", typeList);
+        map.put("sellProductAddress", sellProductAddress);
+
+        log.info("맵 확인-------------------"+String.valueOf(map));
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("proAddressListList", productService.proAddressListList(map));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotalAddressCategory(map)));
+        model.addAttribute("getTotalAddressCategory", productService.getTotalAddressCategory(map));
+    }
+    //    public void proDelivery(CriteriaProduct criteriaProduct, Model model) {
+//        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+//        model.addAttribute("deliveryList", productService.getDeliveryList(criteriaProduct));
+//        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getDeliveryTotal(criteriaProduct)));
+//        model.addAttribute("getDeliveryTotal",productService.getDeliveryTotal(criteriaProduct));
+//    }
+    @GetMapping("/proAddressListPickup")
+    public void proAddressListPickup(CriteriaProduct criteriaProduct, String type,String sido,String sigungu,String dong, Model model)throws Exception {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+        String sellProductAddress = sido+" "+sigungu+" "+dong;
+
+        log.info(sellProductAddress);
+
+        log.info("/pos/getList실행");
+        log.info("criteria : " + criteriaProduct.toString() + type);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------" + type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------" + type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("상태1" + status1 + "-----------");
+        log.info("상태2" + status2 + "-----------");
+        log.info("상태3" + status3 + "-----------");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("criteriaProduct", criteriaProduct);
+        map.put("type", typeList);
+        map.put("sellProductAddress", sellProductAddress);
+
+        log.info("맵 확인-------------------"+String.valueOf(map));
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("proAddressListPickup", productService.proAddressListPickup(map));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotalProListPickup(map)));
+        model.addAttribute("getTotalProListPickup", productService.getTotalProListPickup(map));
+    }
+//    public void proDelivery(CriteriaProduct criteriaProduct, Model model) {
+//        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+//        model.addAttribute("deliveryList", productService.getDeliveryList(criteriaProduct));
+//        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getDeliveryTotal(criteriaProduct)));
+//        model.addAttribute("getDeliveryTotal",productService.getDeliveryTotal(criteriaProduct));
+//    }
+
     @GetMapping("/proDetail")
-    public void proDetail(Long sellProductNum, Model model){
+    public void proDetail(Long sellProductNum, Model model, CriteriaProduct criteriaProduct){
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         model.addAttribute("proDetail", productService.get(sellProductNum));
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
+        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
     @GetMapping("/proNew")
-    public void list(CriteriaProduct criteriaProduct, Model model) {
+    public void list(CriteriaProduct criteriaProduct, String type, Model model)throws Exception {
         criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
-        model.addAttribute("list", productService.getList(criteriaProduct));
+        log.info("~!~!~!~!~!~!~!~!~!~!~!~!프로뉴들어옴------------------------------------------------------------------------------------");
+        log.info("/pos/getList실행");
+        log.info("criteria : " + criteriaProduct.toString() + type);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------"+type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------"+type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("상태1" +status1 + "-----------");
+        log.info("상태2" +status2 + "-----------");
+        log.info("상태3" +status3 + "-----------");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("criteriaProduct", criteriaProduct);
+        map.put("type", typeList);
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("list", productService.getList(map));
         model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
         model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
     @GetMapping("/proPickup")
-    public void proPickup(CriteriaProduct criteriaProduct, Model model) {
+    public void proPickup(CriteriaProduct criteriaProduct, String type, Model model)throws Exception {
         criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
-        model.addAttribute("pickupList", productService.getPickupList(criteriaProduct));
+
+        log.info("/pos/getList실행");
+        log.info("criteria : " + criteriaProduct.toString() + type);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------" + type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------" + type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("상태1" + status1 + "-----------");
+        log.info("상태2" + status2 + "-----------");
+        log.info("상태3" + status3 + "-----------");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("criteriaProduct", criteriaProduct);
+        map.put("type", typeList);
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("pickupList", productService.getPickupList(map));
         model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getPickupTotal(criteriaProduct)));
-        model.addAttribute("getPickupTotal",productService.getPickupTotal(criteriaProduct));
+        model.addAttribute("getPickupTotal", productService.getPickupTotal(criteriaProduct));
     }
 
+//    public void proPickup(CriteriaProduct criteriaProduct, Model model) {
+//        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+//        model.addAttribute("pickupList", productService.getPickupList(criteriaProduct));
+//        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getPickupTotal(criteriaProduct)));
+//        model.addAttribute("getPickupTotal",productService.getPickupTotal(criteriaProduct));
+//    }
+
     @GetMapping("/proShipping")
-    public void proShipping(CriteriaProduct criteriaProduct, Model model) {
+    public void proShipping(CriteriaProduct criteriaProduct, String type, Model model)throws Exception {
         criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
-        model.addAttribute("shippingList", productService.getShippingList(criteriaProduct));
+
+        log.info("/pos/getList실행");
+        log.info("criteria : " + criteriaProduct.toString() + type);
+
+        String status1 = null;
+        String status2 = null;
+        String status3 = "true";
+        String check = null;
+        log.info("비교 들어가기전---------" + type);
+        log.info(type);
+        if (type != null) {
+            status3 = null;
+            if (type.equals("낮은가격")) {
+                status1 = "true";
+                check = "낮은가격";
+            }
+            if (type.equals("높은가격")) {
+                status2 = "true";
+                check = "높은가격";
+            }
+            if (type.equals("신상품")) {
+                status3 = "true";
+                check = "신상품";
+            }
+        }
+
+        log.info("비교 들어간후---------" + type);
+        HashMap<String, String> typeList = new HashMap<>();
+        typeList.put("status1", status1);
+        typeList.put("status2", status2);
+        typeList.put("status3", status3);
+
+        log.info("상태1" + status1 + "-----------");
+        log.info("상태2" + status2 + "-----------");
+        log.info("상태3" + status3 + "-----------");
+
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("criteriaProduct", criteriaProduct);
+        map.put("type", typeList);
+
+
+        model.addAttribute("check", check);
+        model.addAttribute("shippingList", productService.getShippingList(map));
         model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getShippingTotal(criteriaProduct)));
-        model.addAttribute("getShippingTotal",productService.getShippingTotal(criteriaProduct));
+        model.addAttribute("getShippingTotal", productService.getShippingTotal(criteriaProduct));
     }
 
     ///////////////////////////////

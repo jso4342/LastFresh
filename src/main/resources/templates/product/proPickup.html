@@ -48,8 +48,14 @@
                                         <!---->
                                         <!---->
                                         <ul class="list">
+                                            <form action="/product/proPickup" th:object="${criteriaProduct}" name="selectPriceListForm">
+                                                <input type="hidden" th:field="*{pageNum}">
+                                                <input type="hidden" th:field="*{amount}">
+                                                <input type="hidden" name="type">
+                                            </form>
                                             <li class>
-                                                <a class="on">낮은가격</a>
+                                                <a class="selectPrice on" th:if="${check == '낮은가격'}">낮은가격</a>
+                                                <a class="selectPrice" th:unless="${check == '낮은가격'}">낮은가격</a>
                                                 <div class="recommend">
                                                     <!---->
                                                     <!---->
@@ -63,10 +69,16 @@
                                                 </div>
                                             </li>
                                             <li class>
-                                                <a class>높은가격</a>
+                                                <a class="selectPrice on" th:if="${check == '높은가격'}">높은가격</a>
+                                                <a class="selectPrice" th:unless="${check == '높은가격'}">높은가격</a>
+                                                <!---->
                                             </li>
                                             <li class>
-                                                <a class>신상품</a>
+                                                <a class="selectPrice on" th:if="${check == '신상품'}">신상품</a>
+                                                <a class="selectPrice" th:unless="${check == '신상품'}">신상품</a>
+                                            </li>
+                                            <li class>
+                                                <a class="areabutton">지역선택</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -256,7 +268,7 @@
             <div>
                 <!---->
                 <div class="cart_modal_footer">
-                    <button type="button" class="base_button1 cancel1 half"> 확인 </button>
+                    <button type="button" class="base_button1 cancel1 half" onclick="filter()"> 확인 </button>
                 </div>
                 <!---->
             </div>
@@ -275,4 +287,29 @@
 <script src="/front/assets/js/product/product.js"></script>
 <script src="/front/assets/js/product/proDeliveryStatus.js"></script>
 <script src="/front/assets/js/product/proPage.js"></script>
+<script>
+    $("a.selectPrice").on("click",function (e) {
+        e.preventDefault();
+        $("a.selectPrice").removeClass("on");
+        $(this).addClass("on");
+
+
+        $("input[name='type']").val($(this).text());
+        $("form[name='selectPriceListForm']").submit();
+
+    })
+
+    function filter() {
+        let sidoIdx=hangjungdong.sido.findIndex(i=>i.sido==$("#sido").val());
+        let sigugunIdx=hangjungdong.sigugun.findIndex(i=>i.sigugun==$("#sigugun").val()&&i.sido==$("#sido").val());
+        let dongIdx=hangjungdong.dong.findIndex(i=>i.dong==$("#dong").val()&&i.sigugun==$("#sigugun").val()&&i.sido==$("#sido").val());
+
+        let sido = hangjungdong.sido[sidoIdx].codeNm;//시
+        let sigungu = hangjungdong.sigugun[sigugunIdx].codeNm;//시군구
+        let dong = hangjungdong.dong[dongIdx].codeNm;//동
+
+        window.location.href = "/product/proAddressListPickup?sido=" + sido+"&sigungu=" + sigungu +"&dong=" + dong;
+
+    }
+</script>
 </html>
