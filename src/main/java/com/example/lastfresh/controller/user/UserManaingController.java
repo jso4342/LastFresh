@@ -51,25 +51,41 @@ public class UserManaingController {
         return "user/manage/userJoin";
     }
 
+    //로그아웃
+    @GetMapping("/manage/logout")
+    public String logout(HttpServletRequest request) throws Exception{
+        HttpSession session = request.getSession();
+        session.invalidate(); //세션 삭제
+        return "user/manage/userLogin";
+    }
+
 
     //로그인
     @PostMapping("/manage/userLogin")
-    public ModelAndView login(@RequestParam String userId, String userPw, HttpServletRequest request, Model model, RedirectAttributes rttr) throws Exception {
-        Long userNumber = userService.decryption(userId, userPw);
+    public String login(@RequestParam String userId, String userPw, HttpServletRequest request, Model model, RedirectAttributes rttr) throws Exception {
+        UserVO userVO = userService.decryption(userId, userPw);
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
-        if (userNumber == null) {//로그인실패
-            mav.setView(new RedirectView("userLogin"));
+
+
+        if (userVO == null) {//로그인실패
+//            mav.setView(new RedirectView("userLogin"));
 
             rttr.addFlashAttribute("msg", "로그인실패");
-            mav.setView(new RedirectView("userLogin"));
-            return mav;
+//            mav.setView(new RedirectView("userLogin"));
+            return "redirect:userLogin";
+        }else {
+//           session.setAttribute("userVO", userVO);
+            session.setAttribute("userNumber", userVO.getUserNum());
+            session.setAttribute("userId", userVO.getUserId());
+            session.setAttribute("userStatus", userVO.getUserStatus());
+            ;
+//            mav.setView(new RedirectView("/main/main"));
+            return "redirect:/main/moveMain";
         }
-        session.setAttribute("userNumber", userNumber);
-        mav.setView(new RedirectView("/main/main"));
-        log.info("로그인성공"+userNumber);
-        return mav;
+//        return mav;
     }
+
 
     //카카오 + 회원유형
     @GetMapping("/manage/userSelect")
@@ -85,6 +101,7 @@ public class UserManaingController {
         log.info(userKakao);
         return "user/manage/userSelect";
     }
+
 
 
     //회원유형
@@ -113,7 +130,7 @@ public class UserManaingController {
             return "3";
         }
 
-        return "0";
+        return "1";
 
     }
 
