@@ -27,6 +27,10 @@ public class BasketDAO {
 
     public void decreaseStock(Long userNum){basketMapper.decreaseStock(userNum);}
 
+    public void soldOut(){basketMapper.soldOut();}
+
+    public void restock(){basketMapper.restock();}
+
     public void remove(Long basketNum){basketMapper.remove(basketNum);}
 
     public void removeAll(Long userNum){basketMapper.removeAll(userNum);}

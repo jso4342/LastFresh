@@ -28,6 +28,8 @@ public class BillDAO {
     };
     public void cancelOrder(Long billProductNum){billMapper.cancelOrder(billProductNum);}
 
+    public void addStock(Long sellProductNum, Long quantity){billMapper.addStock(sellProductNum, quantity);}
+
   /*  public List<BillVO> getOrders(Long userNum){return billMapper.getOrders(userNum);}
 */
 

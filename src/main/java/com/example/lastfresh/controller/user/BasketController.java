@@ -83,7 +83,7 @@ public class BasketController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-       // return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
+      //  return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
         return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 

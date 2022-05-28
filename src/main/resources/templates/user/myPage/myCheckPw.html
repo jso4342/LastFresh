@@ -64,12 +64,12 @@
                                 비밀번호
                             </th>
                             <td>
-                                <input type="hidden" name="mode" id="userPwOrigin" th:value="*{userPw}">
+                               <!-- <input type="hidden" name="mode" id="userPwOrigin" th:value="*{userPw}">-->
                                 <input type="password" name="userPw" id="confirm_password" class="inp_pw">
                             </td>
                         </tr>
                         </tbody></table>
-                    <button type="submit" class="btn active submit">확인</button>
+                    <button type="button" class="btn active submit">확인</button>
                 </form>
             </div>
         </div>
@@ -98,10 +98,13 @@
     $("input[type='submit']").click(function(e){
         let form = $(document.confirmForm);
         e.preventDefault();
-        form.submit();
+       // form.submit();
     });
 
-    $(".submit").click(function(e){
+
+
+
+ /*   $(".submit").click(function(e){
         e.preventDefault();
         let userPw = [[${user.userPw}]];
         let userPwInput = document.getElementById('confirm_password').value;
@@ -112,8 +115,35 @@
         }
         location.href = '/user/myPage/myChangeInfo?userNum=' + userNum;
     });
+*/
 
- /*   $(document).ready(function(){
+
+    $(".submit").click(function(e){
+        let password = document.getElementById('confirm_password').value;
+
+        $.ajax({
+            url: "/user/myPage/pwCheck/" + password + "/" + userNum,
+            type: "post",
+            dataType: "json",
+            success: function (result) {
+                if (result.status == "ok") { //matched
+                    location.href = '/user/myPage/myChangeInfo?userNum=' + userNum;
+                } else {
+                    alert("입력하신 비밀번호가 일치하지 않습니다");
+                    return ;
+                }
+            },
+            error: function () {
+                console.log("중복검사 오류");
+            }
+        });
+    });
+
+
+
+
+
+    /*   $(document).ready(function(){
        if (result != null){
            alert("회원정보가 수정되었습니다");
        }

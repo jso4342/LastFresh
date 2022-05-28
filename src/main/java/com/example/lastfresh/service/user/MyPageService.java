@@ -1,5 +1,6 @@
 package com.example.lastfresh.service.user;
 
+import com.example.lastfresh.domain.dao.user.BasketDAO;
 import com.example.lastfresh.domain.dao.user.BillDAO;
 import com.example.lastfresh.domain.dao.user.UserDAO;
 import com.example.lastfresh.domain.repository.BillProductRepository;
@@ -23,6 +24,7 @@ import java.util.Optional;
 public class MyPageService {
     private final UserDAO userDAO;
     private final BillDAO billDAO;
+    private final BasketDAO basketDAO;
     private final UserRepository userRepository;
     private final BillRepository billRepository;
     private final BillProductRepository billProductRepository;
@@ -44,9 +46,15 @@ public class MyPageService {
     }
 
     public void cancelOrder(Long billProductNum){
-        log.info("/////////////////////");
+
+        Long quantity = billProductRepository.getById(billProductNum).getBillProductQuantity();
+        Long sellProductNum = billProductRepository.getById(billProductNum).getProductVO().getSellProductNum();
 
         billDAO.cancelOrder(billProductNum);
+        billDAO.addStock(sellProductNum, quantity);
+        basketDAO.restock();
+
+
        // BillProductVO billProductVO = billProductRepository.findById(billProductNum).get();
        // billProductVO.updateBillStatus("-1");
 

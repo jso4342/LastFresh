@@ -242,8 +242,6 @@
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
-
-
     /**
      * 결제창 JS
      */
@@ -335,39 +333,7 @@
         // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
         IMP.request_pay({
 
-            /*
-            *
-            *
 
-            create table TBL_BILLS(
-
-
-
-       USER_NUM int unsigned,                    유저넘
-       BILL_DELIVERY_ADDRESS varchar(500),         주소
-       BILL_DELIVERY_ADDRESS_DETAIL varchar(500), 상세주소
-       BILL_DELIVERY_ADDRESS_POST_NUM varchar(500), 우편번호
-       BILL_TOTAL_PRICE int unsigned,               총 가격
-       BILL_ORDER_DATE date, //insert시 now()        날짜
-
-
-        //주문 상세(상품목록)
-        create table TBL_BILLS_PRODUCT(
-
-            SELL_PRODUCT_NUM int unsigned,          상품명  > BASKET
-            BILL_ORDER_NUM int unsigned,            위 오더 테이블 넘
-            USER_NUM int unsigned, //라이더 USER_NUM   라이더 유저넘 : /n
-            BILL_PRODUCT_QUANTITY int unsigned,       구매 수량  > BASKET
-            BILL_PRODUCT_PRICE int unsigned,           가격  > BASKET
-            BILL_DELIVERY_METHOD varchar(10),           배송 방법 > BASKET
-            BILL_COOKING_TIME int unsigned,             시간 / null
-            BILL_STATUS varchar(10) default '0',        // 0
-            constraint BILL_SELL_PRODUCT_NUM foreign key(SELL_PRODUCT_NUM) references TBL_SELL_PRODUCT (SELL_PRODUCT_NUM) on delete cascade,
-            constraint BILL_ORDER_NUM foreign key(BILL_ORDER_NUM) references TBL_BILLS(BILL_ORDER_NUM) on delete cascade,
-            constraint RIDER_USER_NUM foreign key(USER_NUM) references TBL_USER(USER_NUM) on delete cascade
-    );
-
-            * */
 
             pg: 'inicis', // version 1.1.0부터 지원.
             pay_method: pay_text,

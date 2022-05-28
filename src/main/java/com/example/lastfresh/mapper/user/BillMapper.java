@@ -15,6 +15,8 @@ public interface BillMapper {
 
     public void cancelOrder(Long billProductNum);
 
+    public void addStock(Long sellProductNum, Long quantity);
+
     public void insertBillProduct(@Param("userNum") Long userNum, @Param("orderNum") int orderNum);
 
     public List<OrderDTO> getOrders(Long userNum);
