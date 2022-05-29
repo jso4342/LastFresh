@@ -50,4 +50,8 @@ public class ProductDAO {
     public  List<ProductVO> getListByReview(){return productMapper.getListByReview();};
     //이미지
     public  List<ProductVO> getImages(Long pno){ return productMapper.getImages(pno);}
+
+    public int checkExistenceBasket(Long userNum, Long sellProductNum, String basketDeliveryMethod){return productMapper.checkExistenceBasket(userNum, sellProductNum, basketDeliveryMethod);}
+
+    public void addQuantityToBasket(Long basketQuantity, Long userNum, Long sellProductNum, String basketDeliveryMethod){productMapper.addQuantityToBasket(basketQuantity, userNum, sellProductNum, basketDeliveryMethod);}
 }

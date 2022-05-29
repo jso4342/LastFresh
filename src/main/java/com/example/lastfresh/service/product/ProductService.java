@@ -138,12 +138,23 @@ public class ProductService{
 
     //상품 담기
     public  void productToBasket(Long userNum, BasketVO basketVO,ProductVO productVO){
+        log.info(userNum + "userNum +++++++++++++++++++++++++++++++++++++++" );
+        log.info(basketVO.toString() + "basketVO +++++++++++++++++++++++++++++++++++++++" );
+        log.info(productVO.toString() + "productVO +++++++++++++++++++++++++++++++++++++++" );
+        Long basketQuantity = basketVO.getBasketQuantity();
+        Long sellProductNum = productVO.getSellProductNum();
+        String basketDeliveryMethod = basketVO.getBasketDeliveryMethod();
+        if (productDAO.checkExistenceBasket(userNum, productVO.getSellProductNum(), basketDeliveryMethod) != 0){ // basket is already existed
+            productDAO.addQuantityToBasket(basketQuantity, userNum, sellProductNum, basketDeliveryMethod);
+        }else{
+            UserVO userVO = userRepository.findById(userNum).get();
+            basketVO.setProductVO(productVO);
+            basketVO.setUserVO(userVO);
+            basketVO.setBasketGoOrder(0L);
+            basketVO.setBasketGoOrder(1L);
+            basketRepository.save(basketVO);
+        }
 
-        UserVO userVO = userRepository.findById(userNum).get();
-        basketVO.setProductVO(productVO);
-        basketVO.setUserVO(userVO);
-        basketVO.setBasketGoOrder(0L);
-        basketRepository.save(basketVO);
     }
 
 }
