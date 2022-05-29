@@ -392,7 +392,12 @@
 
 
     function goOrder() {
-        location.href = '/user/order/order?userNum=' + userNum;
+        if($("input:checkbox[name=product]:checked").length == 0){
+            alert("선택된 상품이 없습니다.");
+            return ;
+        }else {
+            location.href = '/user/order/order?userNum=' + userNum;
+        }
     };
 
     function showPickUpList(){

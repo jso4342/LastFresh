@@ -258,7 +258,12 @@
     }
 
     function pw(){
-        passwordCheck = false;
+        if((document.getElementById("confirmPassword").value == document.getElementById("newPassword").value)){
+            console.log("들어와야하는데..?");
+            passwordCheck = true;
+        }else{
+            passwordCheck = false;
+        }
     }
 
     function showNewPwText(){
@@ -285,12 +290,15 @@
         });
 
     }
+/*
 
     document.querySelector("input[name='newPassword']").addEventListener("blur", function(){
         if(pwCheck.test(inko.ko2en(form.newPassword.value))){
             passwordCheck = true;
+            console.log(passwordCheck);
         }
     });
+*/
 
 
 
@@ -327,6 +335,8 @@
         //let form = $(document.frmMember);
 
         if((document.getElementById("newPassword").value != null) && (passwordCheck != true)){ // password input exists
+            console.log("존재한다");
+            console.log(passwordCheck);
            if(document.getElementById("newPassword").value == null){
                alert("새 비밀번호를 입력해주세요.");
                return;
@@ -339,9 +349,18 @@
                 alert("새 비밀번호가 일치하지 않습니다.");
                 return;
             }
-         /*   if(document.getElementById("confirmPassword").value == document.getElementById("newPassword").value){
+            /*if(passwordCheck == true && (document.getElementById("confirmPassword").value == document.getElementById("newPassword").value)){
+                console.log("들어와야하는데..?");
                 passwordCheck = true;
+            }else{
+                passwordCheck = false;
             }*/
+            if(pwCheck.test(inko.ko2en(form.newPassword.value))){
+                passwordCheck = true;
+                console.log(passwordCheck);
+            }else{
+                passwordCheck = false;
+            }
         }
 
         if(document.getElementById("confirmPassword").value == null){ // no password input
