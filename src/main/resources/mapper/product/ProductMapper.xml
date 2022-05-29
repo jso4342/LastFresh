@@ -215,6 +215,16 @@ or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
         VALUES(	#{USER_NUM}, #{SELL_PRODUCT_NUM}, #{BASKET_QUANTITY}, #{BASKET_DELIVERY_METHOD}, 1);
     </insert>
 
+    <select id="checkExistenceBasket" resultType="_int">
+         SELECT COUNT(*) FROM TBL_BASKET
+            WHERE USER_NUM=#{userNum} AND SELL_PRODUCT_NUM = #{sellProductNum} AND BASKET_DELIVERY_METHOD = #{basketDeliveryMethod}
+    </select>
+
+    <update id="addQuantityToBasket">
+        UPDATE TBL_BASKET
+        SET BASKET_QUANTITY = BASKET_QUANTITY + #{basketQuantity}
+        WHERE USER_NUM=#{userNum} AND SELL_PRODUCT_NUM = #{sellProductNum} AND BASKET_DELIVERY_METHOD = #{basketDeliveryMethod}
+    </update>
 <!--    <update id="updateReplyCount">-->
 <!--    </update>-->
 </mapper>
