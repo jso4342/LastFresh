@@ -88,7 +88,7 @@ ul#list-policy {
 a.btn.btn_orderlist {
     border: solid 1px #ddd;
     border-radius: 5px;
-    padding: 21px 115px;
+    padding: 21px 112px;
     cursor: pointer;
     color: #333;
     text-decoration: none;
@@ -98,7 +98,7 @@ a.btn.btn_orderlist {
 a.btn.btn_positive {
     border: solid 1px #DA291C;
     border-radius: 5px;
-    padding: 21px 109px;
+    padding: 21px 106px;
     cursor: pointer;
     color: white;
     text-decoration: none;
