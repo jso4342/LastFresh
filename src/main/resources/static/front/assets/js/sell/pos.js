@@ -232,9 +232,10 @@ function showList(page, billStatus) {
                 str += '<p>즐거운 하루 보내세요!</p>'
 
                 $noorder.html(str);
+                $orderList.html("");
             } else {
                 $orderList.html(str);
-
+                $noorder.html("");
                 showOrderPage(result.orderCount);
             }
         },
@@ -482,7 +483,7 @@ function getCount(num) {
                 currentCount = result;
             }
 
-            if (result == 0) {
+            if (result == 0 && num == '0') {
                 $('.reception-new').text("");
             }
 

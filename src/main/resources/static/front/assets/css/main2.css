@@ -2779,3 +2779,9 @@ ul.social li a.fa-google-plus:hover {
 
 
 }
+
+/* 로고  */
+#logo img {
+	width: 110px;
+	margin-top: -15px;
+}

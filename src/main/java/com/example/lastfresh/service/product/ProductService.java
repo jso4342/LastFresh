@@ -1,6 +1,7 @@
 package com.example.lastfresh.service.product;
 
 import com.example.lastfresh.domain.dao.product.ProductDAO;
+import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.repository.BasketRepository;
 import com.example.lastfresh.domain.repository.ProductRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
@@ -66,7 +67,7 @@ public class ProductService{
 //        return products;
     }
     // 해당 게시글 가져오기
-    public ProductVO get(Long sellProductNum) {
+    public ProductDTO get(Long sellProductNum) {
         return productDAO.get(sellProductNum);
     }
     // 신상품 상품 전체 갯수

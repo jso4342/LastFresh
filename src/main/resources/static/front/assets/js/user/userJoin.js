@@ -19,30 +19,30 @@ $('#phoneCheckButton').click(function(){
         type: "GET",
         url: "/user/manage/phoneCheck",
         data: {
-            "userPhone" : userPhone
+            "userPhone": userPhone
         },
-        success: function(res){
-            $('#phoneCheck').click(function(){
-                if($.trim(res) ==$('#checkCN').val()){
+        success: function (res) {
+            console.log("결과값 받음")
+            $('#phoneCheck').click(function () {
+                if ($.trim(res) == $('#checkCN').val()) {
                     Swal.fire(
                         '인증성공!',
                         '휴대폰 인증이 정상적으로 완료되었습니다.',
                         'success',
-
                     )
-                    check4=false;
-                    $('#phoneCheck').css('display','none');
-                    $('#phoneCheckButton').css('display','none');
+                    check4 = false;
+                    $('#phoneCheck').css('display', 'none');
+                    $('#phoneCheckButton').css('display', 'none');
 
                     $.ajax({
                         type: "GET",
                         url: "/update/phone",
                         data: {
-                            "userPhone" : $('#userPhone').val()
+                            "userPhone": $('#userPhone').val()
                         }
                     })
                     //document.location.href="/user/manage/userJoin";
-                }else{
+                } else {
                     Swal.fire({
                         icon: 'error',
                         title: '인증오류',
@@ -50,13 +50,16 @@ $('#phoneCheckButton').click(function(){
                         footer: '<a href="/user/manage/userJoin">다음에 인증하기</a>'
 
                     });
-                    check4=true;
+                    check4 = true;
                 }
 
             })
 
+        },
+        error: function (error, status, msg) {
+            alert("상태코드 " + status + "에러메시지" + msg)
         }
-    })
+    });
 });
 
 
@@ -311,7 +314,7 @@ document.querySelector("input[name='userPw']").addEventListener("blur", function
     }else{
         $("#result2").text("사용가능한 비밀번호입니다.");
         $("#result2").css("color", "#03c75a");
-        form.rePw.focus();
+        // form.rePw.focus();
         check = true;
     }
 });

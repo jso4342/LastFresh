@@ -143,19 +143,4 @@ function  AddComma(num)
     return num.toString().replace(regexp, ',');
 }
 $("#basketDeliveryMethod").val(0);
-function sendBasket() {
-    let sellProductDiscountPrice = $("#sellProductDiscountPrice").val();
-    let sellProductNum = $("#sellProductNum").val();
-    let basketDeliveryMethod = $("#basketDeliveryMethod").val();
-    if(basketDeliveryMethod=="0"){
-        alert("옵션을 선택해주세요")
-        return false;
-    }if(window.sessionStorage.getItem("userNumber")==null){
-        alert("로그인 후 이용하실 수 있습니다.");
-        return false;
-    }else {
-        alert("장바구니에 상품을 담았습니다.")
-    }
 
-    window.location.href = "/product/productToBasket?basketQuantity=" + basketQuantity+"&sellProductDiscountPrice=" + sellProductDiscountPrice +"&sellProductNum=" + sellProductNum +"&basketDeliveryMethod=" + basketDeliveryMethod;
-}

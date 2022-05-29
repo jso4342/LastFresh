@@ -1,6 +1,7 @@
 package com.example.lastfresh.domain.dao.product;
 
 
+import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
 import com.example.lastfresh.mapper.product.ProductMapper;
@@ -30,7 +31,7 @@ public class ProductDAO {
     // 신상품 전체 개수
     public int getTotal(CriteriaProduct criteriaProduct) {return productMapper.getTotal(criteriaProduct);}
     // 해당 상품 상세 페이지
-    public ProductVO get(Long sellProductNum) {return productMapper.get(sellProductNum);}
+    public ProductDTO get(Long sellProductNum) {return productMapper.get(sellProductNum);}
     // 픽업 상품 전체 목록
     public List<ProductVO> getPickupList(HashMap<String, Object> map) {return productMapper.getPickupList(map);}
     // 픽업 전체 개수

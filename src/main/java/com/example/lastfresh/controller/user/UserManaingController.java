@@ -63,6 +63,8 @@ public class UserManaingController {
     //로그인
     @PostMapping("/manage/userLogin")
     public String login(@RequestParam String userId, String userPw, HttpServletRequest request, Model model, RedirectAttributes rttr) throws Exception {
+        log.info("Post 로그인 실행");
+
         UserVO userVO = userService.decryption(userId, userPw);
         ModelAndView mav = new ModelAndView();
         HttpSession session = request.getSession();
@@ -84,9 +86,23 @@ public class UserManaingController {
     //카카오 + 회원유형
     @GetMapping("/manage/userSelect")
     public String userSelectwithKakao(String userKakao, Model model, HttpServletRequest request){
-        UserVO byUserKakao = userRepository.findByUserKakao(userKakao);
+        log.info("userSelect 실행");
+        log.info(("userKakao" + userKakao));
+
+        UserVO byUserKakao = new UserVO();
+
+        if(userKakao != null) {
+            byUserKakao = userRepository.findByUserKakao(userKakao);
+        }
+
+        log.info(("userKakao객체" + byUserKakao.toString()));
+        log.info(("userKakao" + byUserKakao));
         HttpSession session = request.getSession();
-        if(byUserKakao != null){
+
+
+        log.info("userNull 실행1");
+        if(byUserKakao.getUserKakao() != null){
+            log.info("userNotNull 실행");
             session.setAttribute("userNumber", byUserKakao.getUserNum());
             session.setAttribute("userVO", byUserKakao);
 
@@ -94,11 +110,12 @@ public class UserManaingController {
             session.setAttribute("userStatus", byUserKakao.getUserStatus());
 //            mav.setView(new RedirectView("/main/main"));
             return "redirect:/main/moveMain";
-
         }
 
+        log.info("userNull 실행2");
+
         model.addAttribute("userKakao",userKakao);
-        log.info(userKakao);
+        log.info("userKakao" + userKakao);
         return "user/manage/userSelect";
     }
 
@@ -131,7 +148,7 @@ public class UserManaingController {
     }
 
     //휴대폰인증
-    @PostMapping("/manage/phoneCheck")
+    @GetMapping("/manage/phoneCheck")
     public @ResponseBody
     String sendSMS(String userPhone) {
 

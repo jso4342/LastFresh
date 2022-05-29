@@ -104,9 +104,9 @@ public class ProductVO {
     @Builder
     public ProductVO(Long sellProductNum, Long sellProductCategory, String sellProductName, Long sellProductOriginPrice,
                      Long sellProductDiscountPrice, LocalDate sellProductExpireDay, Long sellProductStock,
-                     String sellProductStatus, String sellProductPickup, String sellProductDelivery,
+                     String sellProductStatus, String sellProductPickup, String sellProductDeliveryMethod,
                      String sellProductDeliveryAddress1, String sellProductDeliveryAddress2, String sellProductDeliveryAddress3,
-                     String sellProductShipping, String sellProductAddress, String sellProductAddressDetail,
+                     String sellProductShippingMethod, String sellProductAddress, String sellProductAddressDetail,
                      String sellProductAddressPostNum, String sellProductDescription, String sellProductPhoneNum,
                      String sellProductThumbnail, String sellProductImage, String sellProductImageUploadPath,
                      String sellProductImageUuid) {
@@ -124,7 +124,7 @@ public class ProductVO {
         this.sellProductDeliveryAddress1 = sellProductDeliveryAddress1;
         this.sellProductDeliveryAddress2 = sellProductDeliveryAddress2;
         this.sellProductDeliveryAddress3 = sellProductDeliveryAddress3;
-        this.sellProductDeliveryMethod = sellProductDeliveryMethod;
+        this.sellProductShippingMethod = sellProductShippingMethod;
         this.sellProductAddress = sellProductAddress;
         this.sellProductAddressDetail = sellProductAddressDetail;
         this.sellProductAddressPostNum = sellProductAddressPostNum;

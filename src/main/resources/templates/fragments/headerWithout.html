@@ -141,10 +141,10 @@
         <nav id="navMOBILE-media">
             <ul style="float: left; padding: 11px 0; background: white; width: 100%;    border-bottom: solid 1px #ddd;">
                 <li class="allCategory myli" onclick="send_catagory()" style="margin-left:23px;"><a>전체 카테고리</a></li>
-                <li class="myli"><a href="#" class="aa">신상품</a></li>
-                <li class="myli"><a href="#" class="aa">픽업</a></li>
-                <li class="myli"><a href="#" class="aa">배달</a></li>
-                <li class="myli"><a href="#" class="aa">배송</a></li>
+                <li class="myli"><a class="aa" href="/product/proNew">신상품</a></li>
+                <li class="myli"><a class="aa" href="/product/proPickup">픽업</a></li>
+                <li class="myli"><a class="aa" href="/product/proDelivery">배달</a></li>
+                <li class="myli"><a class="aa" href="/product/proShipping">배송</a></li>
             </ul>
         </nav>
     </div>
@@ -167,7 +167,7 @@
                         <li class="list_menu_li">
                             <th:block>
                                 <span th:if="${session.userStatus == '1'}" class="userStatus">일반</span>
-                                <a th:if="${session.userStatus == '2'}" class="userStatus" onclick="window.open('/sell/pos', 'pop01', 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no');"><strong>Pos 이동</strong></a>
+                                <a th:if="${session.userStatus == '2'}" class="userStatus" onclick="window.open('/sell/pos', 'pop01', 'height=' + screen.height + 'width=' + screen.width + 'fullscreen=yes');"><strong>Pos 이동</strong></a>
                             </th:block>
                             <a href="javascript:goLogin();" class="list_menu_txt" id="welcome">로그인</a>
                         </li>
@@ -191,12 +191,15 @@
                 <!-- Logo -->
                 <div style="margin-top: -39px;"><p>&nbsp;</p></div>
                 <div style ="margin: 0 auto;">
-
                     <a href="main.html">
-                        <a href="/main/main">
-                        <img id="logo" src ="https://cdn.discordapp.com/attachments/969471931575320587/969513952226738196/logo.png">
-                        <img id="logoSell" src="https://cdn.discordapp.com/attachments/969471931575320587/980093289028001802/logo_3.png" style="width: 110px; margin-top: -15px; display: none">
-                        <img id="logoRider" src="https://cdn.discordapp.com/attachments/969471931575320587/980092769378922636/logo_1.png" style="width: 110px; margin-top: -15px; display: none">
+                        <a id="logo" href="/main/main">
+                        <img  src ="https://cdn.discordapp.com/attachments/969471931575320587/969513952226738196/logo.png">
+                        </a>
+                        <a id="logoSell" href="/sell/sellMain">
+                            <img  src="https://cdn.discordapp.com/attachments/969471931575320587/980093289028001802/logo_3.png" style="width: 110px; margin-top: -15px; display: none">
+                        </a>
+                        <a id="logoRider" href="/rider/riderList">
+                        <img  src="https://cdn.discordapp.com/attachments/969471931575320587/980092769378922636/logo_1.png" style="width: 110px; margin-top: -15px; display: none">
                         </a>
                     </a>
                 </div>
@@ -210,7 +213,7 @@
                         <li><a href="/product/proShipping">집 앞까지 배송</a></li>
                     </ul>
                     <ul>
-                        <li class="cart"><a><img width="40px" src ="https://cdn.discordapp.com/attachments/969471931575320587/969802537794420767/2022-04-29_3.23.52.png"
+                        <li class="cart"><a onclick="goBasket()"><img width="40px" src ="https://cdn.discordapp.com/attachments/969471931575320587/969802537794420767/2022-04-29_3.23.52.png"
                                                  onmouseover="this.src='https://cdn.discordapp.com/attachments/969471931575320587/969800742623916042/2022-04-29_3.23.52.png'",
                                                  onmouseout="this.src='https://cdn.discordapp.com/attachments/969471931575320587/969802537794420767/2022-04-29_3.23.52.png'"></a></li>
                     </ul>
@@ -371,20 +374,32 @@
 
     <script th:inline="javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script th:inline="javascript">
+        let userNumber = [[${session.userNumber}]];
 
+        // console.log(userNumber);
+
+        function goBasket() {
+            if (userNumber == null) {
+                alert("로그인 후 이용하실 수 있습니다.");
+            } else {
+                location.href = '/user/order/orderCart?userNum=' + userNumber;
+            }
+        }
 
 
         const userStatus = [[${session.userStatus}]]
-        if(userStatus.valueOf('2')){
+        if(userStatus == '2' ){
             $("#nav").hide();
             $("#logo").hide();
+            $("#logoSell img").show();
             $("#logoSell").show();
         }
-        if(userStatus.valueOf('3')){
+        if(userStatus == '3'){
             $("#nav").hide();
             $("#logo").hide();
-            $("#logoSell").hide();
+            $("#logoSell img").hide();
             $("#logoRider").show();
+            $("#logoRider img").show();
         }
 
         //세션코드
@@ -506,6 +521,7 @@
         /*]]>*/
         $("a.categoryChoice").on("click",function (e) {
             e.preventDefault();
+            console.log("카테고리 클릭 들어옴")
             $("div.inner_sub").hide();
             console.log($(this).find("span.txt").text());
             location.href = "/product/categorySort?categoryName=" + $(this).find("span.txt").text() +"&type=";
