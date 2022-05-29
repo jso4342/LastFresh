@@ -167,7 +167,7 @@
                         <li class="list_menu_li">
                             <th:block>
                                 <span th:if="${session.userStatus == '1'}" class="userStatus">일반</span>
-                                <a th:if="${session.userStatus == '2'}" class="userStatus" onclick="window.open('/sell/pos', 'pop01', 'height=' + screen.height + 'width=' + screen.width + 'fullscreen=yes');"><strong>Pos 이동</strong></a>
+                                <a th:if="${session.userStatus == '2'}" class="userStatus" onclick="window.open('/sell/pos', '라스트 POS', 'height=' + screen.height + ',width=' + screen.width + 'fullscreen=yes');"><strong>Pos 이동</strong></a>
                             </th:block>
                             <a href="javascript:goLogin();" class="list_menu_txt" id="welcome">로그인</a>
                         </li>

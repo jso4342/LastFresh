@@ -84,8 +84,10 @@
 
     <!--유저넘버, 상품 넘버 가져오기 BY 주문 상품 넘버-->
     <select id="getUserNumAndSellProductNumByBillProductNum" resultType="BillProductDTO">
-        SELECT USER_NUM, SELL_PRODUCT_NUM
-        FROM TBL_BILLS_PRODUCT
+        SELECT tb.USER_NUM as userNum, sell_product_num
+        FROM tbl_bills_product tbp
+        join tbl_bills tb
+        on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </select>
 </mapper>

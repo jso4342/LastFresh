@@ -63,7 +63,6 @@ public class RiderController {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         billProductDTO.setUserNum(userNum);
-        billProductDTO.setBillStatus("2");
 
         riderService.upDateStatusToTwo(billProductDTO);
         return new RedirectView("riderList");
@@ -74,7 +73,6 @@ public class RiderController {
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         BillProductDTO billProductDTO=new BillProductDTO();
         billProductDTO.setUserNum(userNum);
-        billProductDTO.setBillStatus("3");
         billProductDTO.setBillProductListNum(billProductListNum);
 
         reviewService.insert(userNum, sellProductNum);
@@ -88,7 +86,6 @@ public class RiderController {
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         BillProductDTO billProductDTO=new BillProductDTO();
         billProductDTO.setUserNum(userNum);
-        billProductDTO.setBillStatus("-1");
         billProductDTO.setBillProductListNum(billProductListNum);
 
         riderService.upDateStatusToMinus(billProductDTO);

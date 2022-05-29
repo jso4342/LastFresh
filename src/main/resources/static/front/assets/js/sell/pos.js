@@ -231,7 +231,10 @@ function showList(page, billStatus) {
                 str += '<img src="https://cdn.discordapp.com/attachments/969471931575320587/969481005150908456/7d8afc2c848b9d71.png">';
                 str += '<p>즐거운 하루 보내세요!</p>'
 
+                let $pagingTag = $("div.paging");
+
                 $noorder.html(str);
+                $pagingTag.html("");
                 $orderList.html("");
             } else {
                 $orderList.html(str);
@@ -252,7 +255,7 @@ function showOrderPage(orderCount) {
 
     let str = "";
 
-    const $pagingTag = $("div.paging");
+    let $pagingTag = $("div.paging");
 
     if (endNum > realEnd) {
         endNum = realEnd;

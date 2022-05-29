@@ -198,7 +198,7 @@
             $(this).children('.status').text("주문 취소");
         } else if (len == countZero){
             $(this).children('.status').text("접수 대기중");
-        }else if (len == countThree){
+        }else if (len == countThree || len == countThree + countMinus){
             $(this).children('.status').text("배송 완료");
         }else if (countTwo == 0){
             $(this).children('.status').text("준비중");
