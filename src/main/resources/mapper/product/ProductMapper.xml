@@ -188,6 +188,7 @@ or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
         </if>
         limit #{criteriaProduct.limit},6
     </select>
+
     <select id="getListByReview" resultType="productVO">
         select p.SELL_PRODUCT_NUM, p.USER_NUM,p.SELL_PRODUCT_CATEGORY,p.SELL_PRODUCT_NAME,
          p.SELL_PRODUCT_ORIGIN_PRICE,p.SELL_PRODUCT_DISCOUNT_PRICE,p.SELL_PRODUCT_EXPIRE_DATE,SELL_PRODUCT_STOCK
@@ -211,7 +212,7 @@ or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
     <insert id="getBasketInfo" >
         INSERT INTO tbl_basket
         (USER_NUM, SELL_PRODUCT_NUM, BASKET_QUANTITY, BASKET_DELIVERY_METHOD, BASKET_GO_ORDER)
-        VALUES(	#{USER_NUM}, #{SELL_PRODUCT_NUM}, #{BASKET_QUANTITY}, #{BASKET_DELIVERY_METHOD}, 0);
+        VALUES(	#{USER_NUM}, #{SELL_PRODUCT_NUM}, #{BASKET_QUANTITY}, #{BASKET_DELIVERY_METHOD}, 1);
     </insert>
 
 <!--    <update id="updateReplyCount">-->
