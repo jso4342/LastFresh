@@ -124,7 +124,7 @@
                 Kakao.API.request({
                     url : '/v2/user/me',
                     success : function(res) {
-                        var ac = res.kakao_account
+                        var ac = res.kakao_account;
                         var id = res.id;
 //               확인 출력
                         console.log(ac.email);
@@ -134,7 +134,7 @@
 //               id/email/nickname db저장해서 사용하기
                         scope: 'account_email';
                         alert('성공'); //확인
-                        location.href ="/user/manage/userSelect?userKakao="+ac.email;
+                        location.href ="/user/manage/userSelect?userKakao="+id;
                     }
                 })
                 var token = authObj.access_token;
