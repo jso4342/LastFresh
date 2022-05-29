@@ -90,7 +90,8 @@ public class BasketController {
     }
 
     @GetMapping("/orderFinish")
-    public void orderFinish(){
+    public void orderFinish(Long userNum, RedirectAttributes rttr){
+        rttr.addFlashAttribute("userNum", userNum);
     }
 
 

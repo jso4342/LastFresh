@@ -8,8 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
     <link rel="stylesheet" href="/front/assets/css/user/orderFinish.css">
-
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
 </head>
+<style>
+    *{
+        font-family: 'Noto Sans KR','Noto Sans', sans-serif
+    }
+</style>
 <body>
 <th:block th:insert="/fragments/header.html :: headFragment"/>
 <div id="content">
@@ -49,9 +55,9 @@
 
                 </ul>
 
-                <a href="#" class="btn btn_orderlist">주문 상세보기</a>
+                <a onclick="goBasket()" class="btn btn_orderlist">주문 목록 가기</a>
                 <br><br><br><br>
-                <a class="btn btn_positive" href="#">쇼핑 계속하기</a>
+                <a class="btn btn_positive" href="/main/main">메인페이지 가기</a>
             </div>
             <span class="bg"></span>
             <span class="bg lst"></span>
@@ -60,5 +66,14 @@
 </div>
 <th:block th:insert="/fragments/footer.html :: footFragment"/>
 </body>
-
+<script th:inline="javascript">
+    let userNum = [[${userNum}]];
+    function goBasket(){
+        if (userNum == null){
+            alert("로그인 후 이용하실 수 있습니다.")}
+        else{
+            location.href='/user/myPage/myOrder?userNum=' + userNum;
+        }
+    }
+</script>
 </html>

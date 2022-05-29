@@ -110,8 +110,7 @@ public class UserMyPageController {
         JSONObject obj = new JSONObject();
 
         String userPw = userRepository.getById(userNum).getUserPw();
-        log.info("들어ㅗㅁㅇ@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
+      
         if(passwordEncoder.matches(password, userPw)){
             obj.put("status", "ok");
         }else{
@@ -123,43 +122,34 @@ public class UserMyPageController {
 
     // 비밀번호 확인 페이지
     @GetMapping("/myCheckPw")
-    public void myCheckPw(Long userNum,Model model, CriteriaProduct criteriaProduct) throws Exception {
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+    public void myCheckPw(Long userNum, Model model) throws Exception {
         model.addAttribute("user", myPageService.get(userNum));
     }
 
 
     @GetMapping("/myOrder")
-    public void myOrder(Long userNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+    public void myOrder(Long userNum, Model model) throws Exception{
         model.addAttribute("bills", myPageService.getBills(userNum));
         model.addAttribute("userNum", userNum);
     }
 
     @GetMapping("/myOrderDetail")
-    public void myOrderDetail(Long userNum, Long billOrderNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+    public void myOrderDetail(Long userNum, Long billOrderNum, Model model) throws Exception{
         model.addAttribute("bill", myPageService.getBill(billOrderNum));
         model.addAttribute("userNum", userNum);
         model.addAttribute("user", myPageService.get(userNum));
         model.addAttribute("billOrderNum", billOrderNum);
-
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
-        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
         // log.info("ffffffffffffffffff" + myPageService.getBill(billOrderNum).toString());
     }
 
     //cancel one item
     @GetMapping("/cancelOrder")
-    public RedirectView cancelOrder(Long billProductNum, Long userNum, Model model, Long billOrderNum, RedirectAttributes rttr, CriteriaProduct criteriaProduct) throws Exception {
+    public RedirectView cancelOrder(Long billProductNum, Long userNum, Long billOrderNum, RedirectAttributes rttr) throws Exception {
         myPageService.cancelOrder(billProductNum);
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         rttr.addAttribute("bill", myPageService.getBill(billOrderNum));
         rttr.addAttribute("userNum", userNum);
         rttr.addAttribute("user", myPageService.get(userNum));
         rttr.addAttribute("billOrderNum", billOrderNum);
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
-        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
         return new RedirectView("myOrderDetail");
     };
 
@@ -175,35 +165,26 @@ public class UserMyPageController {
     };*/
 
     @GetMapping("/myReviewUnwritten")
-    public void myReviewUnwritten(Long userNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+    public void myReviewUnwritten(Long userNum, Model model) throws Exception{
         model.addAttribute("list", reviewService.getReview(userNum));
         model.addAttribute("userNum", userNum);
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
-        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
-    }
+        }
 
     @GetMapping("/myReviewWrite")
-    public void myRevieWrite(Long userNum, Long reviewNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+    public void myRevieWrite(Long userNum, Long reviewNum, Model model) throws Exception{
         //model.addAttribute("list", reviewService.update(userNum));
         model.addAttribute("userNum", userNum);
         model.addAttribute("productVO", reviewService.getProduct(reviewNum));
         model.addAttribute("review", reviewService.getOneReview(reviewNum));
         model.addAttribute("reviewNum", reviewNum);
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
-        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
-    }
+       }
 
 
     @GetMapping("/myReviewWritten")
-    public void myReviewWritten(Long userNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
-        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+    public void myReviewWritten(Long userNum, Model model) throws Exception{
         model.addAttribute("list", reviewService.getReview(userNum));
         model.addAttribute("userNum", userNum);
-        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
-        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
-    }
+       }
 
     @GetMapping("/display")
     @ResponseBody
