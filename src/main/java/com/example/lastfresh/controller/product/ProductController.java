@@ -265,11 +265,18 @@ public class ProductController {
 //    }
 
     @GetMapping("/proDetail")
-    public void proDetail(Long sellProductNum, Model model, CriteriaProduct criteriaProduct){
+    public void proDetail(Long sellProductNum, Model model, CriteriaProduct criteriaProduct, HttpServletRequest request){
+        log.info("productDetail실행");
         criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+
+        HttpSession session = request.getSession();
+
+        Object userNumber = session.getAttribute("userNumber");
+        log.info("userNumber" + userNumber);
         model.addAttribute("proDetail", productService.get(sellProductNum));
         model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
         model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
+        model.addAttribute("userNumber", (Long) userNumber);
     }
 
     @GetMapping("/proNew")

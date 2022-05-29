@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.awt.print.Pageable;
 import java.io.File;
 import java.io.IOException;
@@ -40,12 +41,15 @@ public class SellController {
     public void pos(){}
 
     @GetMapping("/sellMain")
-    public void sellMain(Criteria criteria, Model model){
+    public void sellMain(Criteria criteria, Model model, HttpServletRequest request){
         log.info("sellMain실행");
         log.info("form Criteria : " + criteria.toString());
 
+        HttpSession session = request.getSession();
+        Object userNumber = session.getAttribute("userNumber");
+
         /*세션으로 받아올 값*/
-        Long userNum = 6L;
+        Long userNum = (Long)userNumber;
 
         if(criteria.getPageNum() == 0) {
             criteria = new Criteria(1, 10, 0);
@@ -72,12 +76,15 @@ public class SellController {
 //    }
 
     @GetMapping("/sellMenuList")
-    public void sellMenuList(Criteria criteria,  Model model){
+    public void sellMenuList(Criteria criteria,  Model model, HttpServletRequest request){
 //        log.info("sellMenuList실행");
 //        log.info("form Criteria : " + criteria.toString());
 
+        HttpSession session = request.getSession();
+        Object userNumber = session.getAttribute("userNumber");
+
         /*세션으로 받아올 값*/
-        Long userNum = 6L;
+        Long userNum = (Long)userNumber;
 
         if(criteria.getPageNum() == 0) {
             criteria = new Criteria(1, 10, 0);
@@ -110,11 +117,17 @@ public class SellController {
         log.info("ProductVO : " + productVO);
         log.info("-----------------------------------------------------");
 
+        HttpSession session = request.getSession();
+        Object userNumber = session.getAttribute("userNumber");
+
+        /*세션으로 받아올 값*/
+        Long userNum = (Long)userNumber;
+
 //        HttpSession session = request.getSession();
 //        session.setAttribute();
 //        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNum")));
 
-        ownerService.register(productVO, 6L);
+        ownerService.register(productVO, userNum);
 
         return new RedirectView("sellMenuList");
     }

@@ -24,7 +24,7 @@
                     <a href="/sell/sellMenuList">상품 목록</a>
                 </li>
                 <li>
-                    <a href="#">개인 정보 수정</a>
+                    <a th:href="@{/user/myPage/myCheckPw(userNum=${session.userNumber})}">개인 정보 수정</a>
                 </li>
             </ul>
         </div>

@@ -536,7 +536,7 @@ function shippingNoUsing() {
     $shippingRiderList.hide()
 }
 
-$('input[name=sellProductShipping]').change(function () {
+$('input[name=sellProductShippingMethod]').change(function () {
     let inputCheck1 = $('#sellProductShippingRider-true').is(':checked');
     let inputCheck2 = $('#sellProductShippingRider-false').is(':checked');
     let inputCheck3 = $('#sellProductShipping-true').is(':checked');
@@ -555,7 +555,7 @@ $('input[name=sellProductShipping]').change(function () {
 
 });
 
-$('input[name=sellProductDelivery]').change(function () {
+$('input[name=sellProductDeliveryMethod]').change(function () {
     let inputCheck1 = $('#sellProductDeliveryRider-true').is(':checked');
     let inputCheck2 = $('#sellProductDeliveryRider-false').is(':checked');
     let inputCheck3 = $('#sellProductDelivery-true').is(':checked');
@@ -652,8 +652,8 @@ function menuModify() {
         return;
     }
 
-    let $sellProductDelivery = $('input[name=sellProductDelivery]:checked');
-    if($sellProductDelivery.val() == "" || $sellProductDelivery.val() == null) {
+    let $sellProductDeliveryMethod = $('input[name=sellProductDeliveryMethod]:checked');
+    if($sellProductDeliveryMethod.val() == "" || $sellProductDeliveryMethod.val() == null) {
         swal("라이더 이용 유무 선택 해주세요");
         return;
     }
@@ -688,8 +688,8 @@ function menuModify() {
     }
 
 
-    let $sellProductShipping = $('input[name=sellProductShipping]:checked');
-    if($sellProductShipping.val() == "" || $sellProductShipping.val() == null) {
+    let $sellProductShippingMethod = $('input[name=sellProductShippingMethod]:checked');
+    if($sellProductShippingMethod.val() == "" || $sellProductShippingMethod.val() == null) {
         swal("라이더 이용 유무 선택 해주세요");
         return;
     }

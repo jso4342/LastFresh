@@ -167,9 +167,9 @@
                 <div class="menu-register-info sellProductDelivery">
                     <div class="menu-delivery-wrapper">
                         <div class="input-group sell-delivery">
-                            <input type="radio" name="sellProductDelivery" id="sellProductDelivery-true" value="">
+                            <input type="radio" name="sellProductDeliveryMethod" id="sellProductDelivery-true" value="">
                             <label for="sellProductDelivery-true" onclick="deliveryUsing()">배달 가능</label>
-                            <input type="radio" name="sellProductDelivery" id="sellProductDelivery-false" value="0">
+                            <input type="radio" name="sellProductDeliveryMethod" id="sellProductDelivery-false" value="0">
                             <label for="sellProductDelivery-false" onclick="deliveryNoUsing()">배달 불가능</label>
                         </div>
                     </div>
@@ -178,9 +178,9 @@
                             라스트 라이더 이용 유무
                         </div>
                         <div class="input-group  sell-deliveryRider rider-radio-input">
-                            <input type="radio" name="sellProductDelivery" id="sellProductDeliveryRider-true" value="1">
+                            <input type="radio" name="sellProductDeliveryMethod" id="sellProductDeliveryRider-true" value="1">
                             <label for="sellProductDeliveryRider-true" onclick="riderUsing()">라이더 이용</label>
-                            <input type="radio" name="sellProductDelivery" id="sellProductDeliveryRider-false" value="2">
+                            <input type="radio" name="sellProductDeliveryMethod" id="sellProductDeliveryRider-false" value="2">
                             <label for="sellProductDeliveryRider-false" onclick="riderNoUsing()">라이더 미이용</label>
                         </div>
                     </div>
@@ -251,9 +251,9 @@
                 <div class="menu-register-info sellProductShipping">
                     <div class="menu-shipping-wrapper">
                         <div class="input-group sell-shipping">
-                            <input type="radio" name="sellProductShipping" id="sellProductShipping-true" value="">
+                            <input type="radio" name="sellProductShippingMethod" id="sellProductShipping-true" value="">
                             <label for="sellProductShipping-true" onclick="shippingUsing()">배송 가능</label>
-                            <input type="radio" name="sellProductShipping" id="sellProductShipping-false" value="0">
+                            <input type="radio" name="sellProductShippingMethod" id="sellProductShipping-false" value="0">
                             <label for="sellProductShipping-false" onclick="shippingNoUsing()">배송 불가능</label>
                         </div>
                     </div>
@@ -263,9 +263,9 @@
                             라스트 라이더 이용 유무
                         </div>
                         <div class="input-group sell-deliveryRider rider-radio-input">
-                            <input type="radio" name="sellProductShipping" id="sellProductShippingRider-true" value="1">
+                            <input type="radio" name="sellProductShippingMethod" id="sellProductShippingRider-true" value="1">
                             <label for="sellProductShippingRider-true">라이더 이용</label>
-                            <input type="radio" name="sellProductShipping" id="sellProductShippingRider-false" value="2">
+                            <input type="radio" name="sellProductShippingMethod" id="sellProductShippingRider-false" value="2">
                             <label for="sellProductShippingRider-false">라이더 불이용</label>
                         </div>
                     </div>
@@ -449,7 +449,7 @@
 
         function shippingSelected() {
             let sellProductShippingMethod = [[${list.sellProductShippingMethod}]];
-            $("input[name='sellProductShipping'][value= " + sellProductShippingMethod + "]").prop("checked", true);
+            $("input[name='sellProductShippingMethod'][value= " + sellProductShippingMethod + "]").prop("checked", true);
         }
 
         shippingSelected();
@@ -457,7 +457,7 @@
 
         function deliverySelected() {
             let sellProductDeliveryMethod = [[${list.sellProductDeliveryMethod}]];
-            $("input[name='sellProductDelivery'][value= " + sellProductDeliveryMethod + "]").prop("checked", true);
+            $("input[name='sellProductDeliveryMethod'][value= " + sellProductDeliveryMethod + "]").prop("checked", true);
         }
 
         deliverySelected();

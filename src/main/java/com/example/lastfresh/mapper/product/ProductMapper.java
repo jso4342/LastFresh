@@ -1,5 +1,6 @@
 package com.example.lastfresh.mapper.product;
 
+import com.example.lastfresh.domain.dto.ProductDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -22,7 +23,7 @@ public interface ProductMapper {
     public List<ProductVO> getList(HashMap<String, Object> map);
 
     //    특정 게시글 가져오기
-    public ProductVO get(Long sellProductNum);
+    public ProductDTO get(Long sellProductNum);
 
     //    신상품 게시글 전체 개수
     public int getTotal(CriteriaProduct criteriaProduct);

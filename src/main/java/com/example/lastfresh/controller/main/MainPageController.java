@@ -2,6 +2,7 @@ package com.example.lastfresh.controller.main;
 
 
 import com.example.lastfresh.domain.dto.ProductPageDTO;
+import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.BasketVO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ProductVO;
@@ -42,10 +43,15 @@ import java.util.UUID;
 public class MainPageController {
     private final ProductService productService;
     private final ReviewService reviewService;
+    private final UserRepository userRepository;
 
     @GetMapping("/main")
-    public void main(CriteriaProduct criteriaProduct, Model model) {
+    public void main(CriteriaProduct criteriaProduct, Model model, HttpServletRequest request) {
         criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
+
+        HttpSession session = request.getSession();
+        Object userNumber = session.getAttribute("userNumber");
+
         model.addAttribute("newListPercents", getPercentOfNew());
         model.addAttribute("saleListPercents", getListBySale());
         model.addAttribute("bestReviewListPercents", getListByReview());
@@ -54,6 +60,8 @@ public class MainPageController {
         model.addAttribute("bestReviewList", productService.getListByReview());
         model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
         model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
+        model.addAttribute("userNumber", userNumber);
+
     }
 
     @GetMapping("/getAttachList")
@@ -136,6 +144,27 @@ public class MainPageController {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         productService.productToBasket(userNum,basketVO,productVO);
+        return new RedirectView("main");
+    }
+
+    /*유저 상태 검사 후 개별 페이지 이동*/
+    @GetMapping("/moveMain")
+    public RedirectView moveMain(Model model, HttpServletRequest request){
+        HttpSession session = request.getSession();
+        Long userNumber = (Long)session.getAttribute("userNumber");
+        log.info("!!!!!!!!!!!!!!!!!!!!!"+userNumber);
+        if(userNumber!=null){
+            String userStatus = userRepository.getById(userNumber).getUserStatus();
+            log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+userStatus);
+            if (userStatus.equals("1")) {
+                return new RedirectView("main");
+            } else if (userStatus.equals("2")) {
+                return new RedirectView("/sell/sellMain");
+            } else if (userStatus.equals("3")) {
+                return new RedirectView("/rider/riderList");
+            }
+        }
+
         return new RedirectView("main");
     }
 

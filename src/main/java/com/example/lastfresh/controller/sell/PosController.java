@@ -14,6 +14,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +31,9 @@ public class PosController {
     public ResponseEntity<PosPageDTO> getList(@PathVariable("billStatus") Long billStatus, Criteria criteria, HttpServletRequest request) {
         log.info("/pos/getList실행");
         log.info("criteria : " + criteria.toString() + billStatus);
+
+        HttpSession session = request.getSession();
+        Object userNumber = session.getAttribute("userNumber");
 
         String status1 = null;
         String status2 = null;
@@ -50,7 +54,7 @@ public class PosController {
 
         try {
             HashMap<String, Object> map = new HashMap<>();
-            map.put("userNum", 6L);
+            map.put("userNum", userNumber);
             map.put("criteria", criteria);
 
             map.put("billStatus", billStatuses);
@@ -69,6 +73,10 @@ public class PosController {
     public ResponseEntity<Integer> getCount(@PathVariable("billStatus") Long billStatus, HttpServletRequest request) {
         log.info("count 실행");
         log.info("billStatus : " + billStatus);
+
+        HttpSession session = request.getSession();
+        Object userNumber = session.getAttribute("userNumber");
+
         String status1 = null;
         String status2 = null;
         String status3 = null;
@@ -87,7 +95,7 @@ public class PosController {
         billStatuses.put("status3", status3);
 
         HashMap<String, Object> map = new HashMap<>();
-        map.put("userNum", 6L);
+        map.put("userNum", userNumber);
         map.put("billStatus", billStatuses);
 
         return ResponseEntity.ok(posService.getTotalPreparing(map));

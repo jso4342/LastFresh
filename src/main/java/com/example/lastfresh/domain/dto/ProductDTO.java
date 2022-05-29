@@ -60,4 +60,6 @@ public class ProductDTO {
     private String sellProductImageUploadPath;
 
     private String sellProductImageUuid;
+
+    private String userName;
 }
