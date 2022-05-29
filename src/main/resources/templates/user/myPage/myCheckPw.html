@@ -22,17 +22,17 @@
 <div class="page_myPage myPage_type1">
     <div id="snb" class="snb_my">
         <th:block th:object="${user}">
-            <h2 th:if="*{userStatus == '2'}" class="tit_snb">마이페이지</h2>
-            <h2 th:if="*{userStatus == '1'}" class="tit_snb">판매자 페이지</h2>
+            <h2 th:if="*{userStatus == '1'}" class="tit_snb">마이페이지</h2>
+            <h2 th:if="*{userStatus == '2'}" class="tit_snb">판매자 페이지</h2>
             <div class="inner_snb">
                 <ul class="list_menu">
                     <li>
-                        <a th:if="*{userStatus == '2'}" href="javascript:goOrder();">주문 내역</a>
-                        <a th:if="*{userStatus == '1'}" class="menuClicked" href="/sell/sellMain">판매 내역</a>
+                        <a th:if="*{userStatus == '1'}" href="javascript:goOrder();">주문 내역</a>
+                        <a th:if="*{userStatus == '2'}" class="menuClicked" href="/sell/sellMain">판매 내역</a>
                     </li>
                     <li>
-                        <a th:if="*{userStatus == '2'}" href="javascript:goReview();">상품 후기</a>
-                        <a th:if="*{userStatus == '1'}" href="/sell/sellMenuList">상품 목록</a>
+                        <a th:if="*{userStatus == '1'}" href="javascript:goReview();">상품 후기</a>
+                        <a th:if="*{userStatus == '2'}" href="/sell/sellMenuList">상품 목록</a>
                     </li>
                     <li>
                         <a href="javascript:goInfo();" class="on">개인 정보 수정</a>
@@ -95,12 +95,18 @@
     }
 
 
+
+    ///
+
+/*
+
     $("input[type='submit']").click(function(e){
         let form = $(document.confirmForm);
         e.preventDefault();
        // form.submit();
     });
 
+*/
 
 
 

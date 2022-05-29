@@ -1,11 +1,14 @@
 package com.example.lastfresh.controller.user;
 
 
+import com.example.lastfresh.domain.dto.ProductPageDTO;
 import com.example.lastfresh.domain.repository.BillRepository;
 import com.example.lastfresh.domain.repository.MemberRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
+import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
 import com.example.lastfresh.domain.vo.UserVO;
+import com.example.lastfresh.service.product.ProductService;
 import com.example.lastfresh.service.user.MyPageService;
 import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -37,12 +40,14 @@ public class UserMyPageController {
     private final ReviewService reviewService;
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
+    private final ProductService productService;
 
 
 
     //회원 정보 수정 페이지
     @GetMapping("/myChangeInfo")
-    public void myChangeInfo(Long userNum, HttpServletRequest request, Model model) throws Exception {
+    public void myChangeInfo(Long userNum, HttpServletRequest request, Model model, CriteriaProduct criteriaProduct) throws Exception {
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         model.addAttribute("user", myPageService.get(userNum));
     };
 
@@ -72,6 +77,7 @@ public class UserMyPageController {
     @PostMapping("/write")
     public RedirectView write(Long reviewNum, String reviewTitle, String reviewContent, Long userNum, RedirectAttributes rttr) throws Exception{
         ReviewVO reviewVO = new ReviewVO();
+
 
         reviewVO.setReviewNum(reviewNum);
         reviewVO.setReviewTitle(reviewTitle);
@@ -117,7 +123,7 @@ public class UserMyPageController {
 
     // 비밀번호 확인 페이지
     @GetMapping("/myCheckPw")
-    public void myCheckPw(Long userNum,Model model) throws Exception {
+    public void myCheckPw(Long userNum, Model model) throws Exception {
         model.addAttribute("user", myPageService.get(userNum));
     }
 
@@ -160,25 +166,34 @@ public class UserMyPageController {
     };*/
 
     @GetMapping("/myReviewUnwritten")
-    public void myReviewUnwritten(Long userNum, Model model) throws Exception{
+    public void myReviewUnwritten(Long userNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         model.addAttribute("list", reviewService.getReview(userNum));
         model.addAttribute("userNum", userNum);
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
+        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
     @GetMapping("/myReviewWrite")
-    public void myRevieWrite(Long userNum, Long reviewNum, Model model) throws Exception{
+    public void myRevieWrite(Long userNum, Long reviewNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         //model.addAttribute("list", reviewService.update(userNum));
         model.addAttribute("userNum", userNum);
         model.addAttribute("productVO", reviewService.getProduct(reviewNum));
         model.addAttribute("review", reviewService.getOneReview(reviewNum));
         model.addAttribute("reviewNum", reviewNum);
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
+        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
 
     @GetMapping("/myReviewWritten")
-    public void myReviewWritten(Long userNum, Model model) throws Exception{
+    public void myReviewWritten(Long userNum, Model model, CriteriaProduct criteriaProduct) throws Exception{
+        criteriaProduct = new CriteriaProduct(criteriaProduct.getPageNum(), criteriaProduct.getAmount());
         model.addAttribute("list", reviewService.getReview(userNum));
         model.addAttribute("userNum", userNum);
+        model.addAttribute("ProductPageDTO", new ProductPageDTO(criteriaProduct, productService.getTotal(criteriaProduct)));
+        model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
     @GetMapping("/display")

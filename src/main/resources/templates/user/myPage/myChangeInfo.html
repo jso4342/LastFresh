@@ -21,20 +21,25 @@
 <th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
 <div class="page_myPage myPage_type1">
     <div id="snb" class="snb_my">
-        <h2 class="tit_snb">마이페이지</h2>
-        <div class="inner_snb">
-            <ul class="list_menu">
-                <li>
-                    <a href="javascript:goOrder();">주문 내역</a>
-                </li>
-                <li>
-                    <a href="javascript:goReview();">상품 후기</a>
-                </li>
-                <li>
-                    <a href="javascript:goInfo();" class="on">개인 정보 수정</a>
-                </li>
-            </ul>
-        </div>
+        <th:block th:object="${user}">
+            <h2 th:if="*{userStatus == '1'}" class="tit_snb">마이페이지</h2>
+            <h2 th:if="*{userStatus == '2'}" class="tit_snb">판매자 페이지</h2>
+            <div class="inner_snb">
+                <ul class="list_menu">
+                    <li>
+                        <a th:if="*{userStatus == '1'}" href="javascript:goOrder();">주문 내역</a>
+                        <a th:if="*{userStatus == '2'}" class="menuClicked" href="/sell/sellMain">판매 내역</a>
+                    </li>
+                    <li>
+                        <a th:if="*{userStatus == '1'}" href="javascript:goReview();">상품 후기</a>
+                        <a th:if="*{userStatus == '2'}" href="/sell/sellMenuList">상품 목록</a>
+                    </li>
+                    <li>
+                        <a href="javascript:goInfo();" class="on">개인 정보 수정</a>
+                    </li>
+                </ul>
+            </div>
+        </th:block>
     </div>
     <div class="page_section section_myinfo">
         <div class="head_aticle">
@@ -288,6 +293,7 @@
     });
 
 
+
     // 주소 찾기(Daum API)
     var width = 500; //팝업의 너비
     var height = 600; //팝업의 높이
@@ -320,7 +326,7 @@
     function sendSubmit(){
         //let form = $(document.frmMember);
 
-        if(document.getElementById("newPassword").value != null){ // password input exists
+        if((document.getElementById("newPassword").value != null) && (passwordCheck != true)){ // password input exists
            if(document.getElementById("newPassword").value == null){
                alert("새 비밀번호를 입력해주세요.");
                return;
@@ -333,9 +339,9 @@
                 alert("새 비밀번호가 일치하지 않습니다.");
                 return;
             }
-            if(document.getElementById("confirmPassword").value == document.getElementById("newPassword").value){
+         /*   if(document.getElementById("confirmPassword").value == document.getElementById("newPassword").value){
                 passwordCheck = true;
-            }
+            }*/
         }
 
         if(document.getElementById("confirmPassword").value == null){ // no password input

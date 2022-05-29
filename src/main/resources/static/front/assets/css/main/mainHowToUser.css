@@ -16,7 +16,7 @@ ul.list {
 }
 
 #title{
-    margin-top:100px;
+    margin-top:56px;
     margin-bottom:70px;
     font-size: 22px;
 }
@@ -41,7 +41,7 @@ ul.list {
 }
 .page_guide .service_info .list {
     float: left;
-    width: 100%;
+   /* width: 100%;*/
     list-style: none;
 }
 .page_guide .service_info .guide1 {
@@ -64,7 +64,7 @@ ul.list {
 }
 .page_guide .service_info li {
     float: left;
-    width: 505px;
+    width: 480px;
     height: 394px;
     padding: 58px 0 0 60px;
     margin: 0 10px 20px 10px;

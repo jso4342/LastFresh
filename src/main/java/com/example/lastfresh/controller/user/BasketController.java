@@ -3,8 +3,11 @@ package com.example.lastfresh.controller.user;
 
 import com.example.lastfresh.domain.dto.BasketDTO;
 import com.example.lastfresh.domain.dto.OrderDTO;
+import com.example.lastfresh.domain.dto.ProductPageDTO;
 import com.example.lastfresh.domain.vo.BasketVO;
+import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.UserVO;
+import com.example.lastfresh.service.product.ProductService;
 import com.example.lastfresh.service.user.MyPageService;
 import com.example.lastfresh.service.user.OrderService;
 import com.example.lastfresh.service.user.ReviewService;
@@ -32,6 +35,7 @@ public class BasketController {
     private final OrderService orderService;
     private final MyPageService myPageService;
     private final ReviewService reviewService;
+    private final ProductService productService;
 
     // 주문서 페이지
     @GetMapping("/order")
@@ -76,7 +80,8 @@ public class BasketController {
     }
 
     @GetMapping("/orderFinish")
-    public void orderFinish(){
+    public void orderFinish(Long userNum, RedirectAttributes rttr){
+        rttr.addFlashAttribute("userNum", userNum);
     }
 
 
