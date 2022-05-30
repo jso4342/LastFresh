@@ -126,7 +126,7 @@
                                                               th:text="|${#numbers.formatInteger(product.sellProductOriginPrice, 0, 'COMMA')}원|"></span>
                                                         <!---->
                                                     </span>
-                                                    <!--                                                    <span class="desc">푸짐하게 즐기는 대용량 동태탕</span>-->
+                                                    <span class="desc" th:text="*{sellProductDescription}"></span>
                                                     <span class="tag">
                                                          <span class="ico2 limit tag_type2"
                                                                th:style="${product.sellProductPickup == '1' ? 'display:none;' : 'display:inline-block;'}">픽업</span>

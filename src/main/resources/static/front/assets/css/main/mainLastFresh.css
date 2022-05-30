@@ -1,4 +1,10 @@
-
+img.mainNewImg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
 
 /* ------------슬라이더 배너--------------*/
 [name="slide"] {
@@ -262,6 +268,7 @@ label.right {
     float: left;
     margin-right: 1.4%;
     position: relative;
+    height: 321px;
 }
 
 .mainNewBoxLast {
@@ -333,6 +340,9 @@ div.mainNewTxt p, div.mainNewTxtLast p {
     margin-bottom: 125px;
 
 }
+.mini1{
+    margin-top: 206px;
+}
 
 /* -----------오늘 마감-------- */
 .imgLastChanceBox {
@@ -381,6 +391,7 @@ div.mainNewTxt p, div.mainNewTxtLast p {
     float: right;
     margin-left: 1.5%;
     position: relative;
+    height: 436px ;
 }
 
 .innerLatChanceCart {
@@ -528,8 +539,7 @@ button {
 }
 
 .secondBanner {
-
-    margin-top: 70px;
+    margin-top: 242px;
 }
 
 #cartPut .cart_type3 .list_nopackage {
@@ -853,6 +863,7 @@ li.on{
         justify-content: center !important;
         flex-wrap: wrap;
         margin: 0 340px 0 -17px;
+        padding-left: 17px;
     }
 
     /* ------------슬라이더 배너--------------*/
@@ -1067,6 +1078,7 @@ li.on{
         position: relative;
         margin-left: 13px;
         margin-bottom: 50px;
+        height: 218px;
     }
 
     .mainNewBoxLast {
@@ -1087,6 +1099,7 @@ li.on{
     .mainNewImg {
         width: 100%;
         object-fit: cover;
+        height: 282px;
     }
 
     .mainNewImg:hover {
@@ -1138,7 +1151,9 @@ li.on{
     .miniBanner {
         margin-bottom: 30px;
     }
-
+    .mini1{
+        margin-top:-27px;
+    }
     /* -----------오늘 마감-------- */
     .imgLastChanceBox {
         width: 220px;
@@ -1158,7 +1173,9 @@ li.on{
         float: left;
         margin-right: 1.4%;
     }
-
+    .mainLastBox{
+        height: 267px;
+    }
     .lastIcon {
         width: 24px;
         float: left;
@@ -1598,7 +1615,7 @@ li.on{
 
     .secondBanner {
 
-        margin-bottom: 10px; margin-top: 30px;
+        margin-bottom: 10px;     margin-top: 168px;
     }
 
     .mainNew {

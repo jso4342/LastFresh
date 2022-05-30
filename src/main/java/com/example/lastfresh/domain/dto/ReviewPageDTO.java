@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ReviewPageDTO {
     private int reviewCount;
-    private List<ReviewVO> list;
+    private List<ReviewDTO> list;
 
     public ReviewPageDTO(){;}
 }

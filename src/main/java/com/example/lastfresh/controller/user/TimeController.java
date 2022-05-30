@@ -3,7 +3,6 @@ package com.example.lastfresh.controller.user;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.text.ParseException;
@@ -13,18 +12,28 @@ import java.util.Date;
 
 @Controller
 @Slf4j
-@RequestMapping("/time")
 public class TimeController {
-    @GetMapping("")
+
+    @GetMapping("/time")
     @ResponseBody
     public String getReviewDate(String reviewDate) throws ParseException {
+
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
         Date today = new Date();
+
         Date rDate = sdf.parse(reviewDate);
+
         Calendar rCalendar = Calendar.getInstance();
+
         rCalendar.setTime(rDate);
 
+        log.info("리뷰 시간 컨트롤러--------------------------" +reviewDate);
+
+        log.info("리뷰 시간 컨트롤러 알데이트 확인------------------"+ rDate);
+
         long gap = today.getTime() - rDate.getTime();
+
         int h = rCalendar.get(Calendar.HOUR_OF_DAY);
         int mm = rCalendar.get(Calendar.MINUTE);
         int s = rCalendar.get(Calendar.SECOND);

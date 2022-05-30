@@ -100,7 +100,8 @@
                                                    th:text="*{sellProductStock}"/>
                                                 <div class="thumb">
                                                     <a class="img" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                                        <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+                                                        <img class="mainNewImg"
+                                                                th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
                                                         <!--                                                        <img src="https://img-cf.kurly.com/shop/data/goods/1649919206285l0.jpg" alt="푸짐하게 즐기는 대용량 동태탕">-->
                                                     </a>
                                                     <div class="group_btn">
@@ -126,12 +127,8 @@
                                                     <span class="tag">
                                                          <span class="ico2 limit tag_type2"
                                                                th:style="${product.sellProductPickup == '1' ? 'display:none;' : 'display:inline-block;'}">픽업</span>
-                                                         <span class="ico3 limit tag_type2"
-                                                               th:style="${product.sellProductShippingMethod == '0' ? 'display:none;' : 'display:inline-block;'}">배송</span>
-                                                         <span class="ico1 limit tag_type2"
-                                                               th:style="${product.sellProductDeliveryMethod == '0' ? 'display:none;' : 'display:inline-block;'}">배달</span>
                                                         <p class="pickUpStatus" type="hidden" style="display:none"
-                                                       th:text="${product.sellProductPickup}"/>
+                                                           th:text="${product.sellProductPickup}"/>
                                                             <p class="deliveryStatus" type="hidden" style="display:none"
                                                                th:text="${product.sellProductDeliveryMethod}"/>
                                                             <p class="shippingStatus" type="hidden" style="display:none"

@@ -277,29 +277,26 @@
                                         <table class="xans-board-listheader" width="100%" border="0" cellpadding="0" cellspacing="0">
                                             <caption style="display:none">구매후기 제목</caption>
                                             <colgroup>
-                                                <col style="width:70px;">
                                                 <col style="width:134px;">
                                                 <col style="width:384px;">
                                                 <col style="width:60px;">
                                                 <col style="width:76px;">
                                                 <col style="width:80px;">
-
                                             </colgroup>
                                             <tbody>
                                             <tr>
-                                                <th scope="col" class="input_txt">번호</th>
                                                 <th scope="col" class="input_txt">제목</th>
                                                 <th scope="col" class="input_txt">내용</th>
                                                 <th scope="col" class="input_txt">
                                                 </th>
                                                 <th scope="col" class="input_txt" align="left">작성자</th>
                                                 <th scope="col" class="input_txt">작성일</th>
-
                                             </tr>
                                             </tbody>
                                         </table>
                                         <div class="tr_line">
                                         </div>
+                                        <br>
                                         <div class="board_pg_area">
                                         </div>
                                 </div>
@@ -313,7 +310,9 @@
         </div>
         <th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
         <script src="/front/assets/js/product/proDetail.js"></script>
+        <script src="/front/assets/js/product/proTime.js"></script>
         <script src="/front/assets/js/user/review.js"></script>
 </body>
 <script th:inline="javascript">
@@ -337,9 +336,9 @@
                 str += "<table class='xans-board-listheaderd tbl_newtype1' width='100%' border='0' cellpadding='0' cellspacing='0' onclick='view_content'(this,'event','notice')'>";
                 str += "<caption style='display:none'>구매후기 제목</caption>";
                 str += "<colgroup>";
-                str += "<col style='width:140px;'>";
-                str += "<col style='width:259px;'>";
-                str += "<col style='width:545px;'>";
+                // str += "<col style='width:140px;'>";
+                str += "<col style='width:325px;'>";
+                str += "<col style='width:555px;'>";
                 str += "<col style='width:237px;'>";
                 str += "<col style='width:184px;'>";
                 str += " <col style='width:108px;'>";
@@ -351,14 +350,16 @@
                 str += "<input type='hidden' name='grade' value='0'>";
                 str += "<input type='hidden' name='best' value='false'>";
                 str += "<input type='hidden' name='pNo' value>";
-                str += "<td align='center'>"+ item.reviewNum+"</td>";
+                // str += "<td align='center'>"+ item.reviewNum+"</td>";
                 str += "<td class='subject'>";
-                str += "<div class='fst'>"+ item.reviewTitle+ "</div>";
+                str += "<div class='fst' style='font-weight: 800;'>"+ item.reviewTitle+ "</div>";
                 str += "</td>";
                 str += "<td>" + item.reviewContent + "</td>";
                 str += "<td></td>";
-                str += "<td class='user_grade'>" + item.userName + "</td>";
-                str += "<td class='time'>" + item.reviewDate + "</td>";
+                str += "<td class='user_grade'>" + item.userId + "</td>";
+                str += "<td id='proListTime' class='time'>"
+                str += reviewService.getReviewDateByJavascript(item.reviewDate)
+                str += "</td>";
                 str += "<tr>";
                 str += "</tbody>";
                 str += "</table>";
@@ -383,7 +384,7 @@
     function showReviewPage(reviewCount) {
         let endNum = Math.ceil(page / 10.0)*10;
         let startNum = endNum - 9;
-        let realEnd = Math.ceil(reviewCount / 10.0);
+        let realEnd = Math.ceil(reviewCount / 6.0);
         let str = "";
         const $pagingTag = $("div.board_pg_area");
 
@@ -391,8 +392,8 @@
             endNum = realEnd
         }
 
-        let prev = startNum >= 1;
-        let next = endNum * 10 >= reviewCount;
+        let prev = startNum > 1;
+        let next = endNum * 6 < reviewCount;
 
         if(matchMedia("screen and (max-width:918px)").matches){
 
@@ -402,8 +403,8 @@
                 str += "<a href='" + (startNum - 1) + "' class='layout-pagination-button layout-pagination-prev-page layout-pagination-number'>이전 페이지로 가기</a>"
             }
             for (let i=startNum; i<=endNum; i++){
-                if (page == 1){
-                    str += "<a class='layout-pagination-button layout-pagination-number pagination-number' href='" + i + "'><code>" + i + "</code></a>";
+                if (page == i){
+                    str += "<code class='layout-pagination-button layout-pagination-number pagination-number __active'>" + i + "</code>";
                     continue;
                 }
                 str += "<a class='layout-pagination-button layout-pagination-number pagination-number' href='" + i + "'><code>" + i + "</code></a>";
@@ -418,7 +419,7 @@
 
     $(".board_pg_area").on("click", "a.layout-pagination-number", function (e) {
         e.preventDefault();
-        $("a.pagination-number").addClass(".__active");
+        $("code.layout-pagination-number").addClass("__active");
         page = $(this).attr("href");
         showList(page);
     });
