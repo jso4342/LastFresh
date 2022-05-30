@@ -5,6 +5,7 @@ import com.example.lastfresh.domain.dto.BillProductDTO;
 import com.example.lastfresh.domain.repository.BillProductRepository;
 import com.example.lastfresh.domain.repository.ReviewRepository;
 import com.example.lastfresh.domain.vo.ProductVO;
+import com.example.lastfresh.service.owner.PosService;
 import com.example.lastfresh.service.rider.RiderService;
 import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/rider/*")
 public class RiderController {
+    private final PosService posService;
+
     @Autowired
     private RiderService riderService;
     private final ReviewService reviewService;
@@ -75,7 +78,9 @@ public class RiderController {
         billProductDTO.setUserNum(userNum);
         billProductDTO.setBillProductListNum(billProductListNum);
 
-        reviewService.insert(userNum, sellProductNum);
+        BillProductDTO nums=posService.getNumsByBillProductListNum(billProductListNum);
+
+        reviewService.insert(nums.getUserNum(), nums.getSellProductNum());
         riderService.upDateStatusToThree(billProductDTO);
 
         return new RedirectView("riderMy");
