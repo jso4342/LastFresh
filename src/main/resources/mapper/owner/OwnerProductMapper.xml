@@ -49,7 +49,7 @@
         DATE_FORMAT(tb.BILL_ORDER_DATE,'%H:%i') as Bill_ORDER_DATE_TIME,
         tsp.SELL_PRODUCT_THUMBNAIL, tsp.SELL_PRODUCT_IMAGE_UPLOAD_PATH, tb.BILL_DELIVERY_ADDRESS,
         tb.BILL_DELIVERY_ADDRESS_DETAIL, tb.BILL_DELIVERY_ADDRESS_POST_NUM, tsp.SELL_PRODUCT_NAME, tu.USER_PHONE
-        from tbl_bills_product tbp
+        from TBL_BILLS_PRODUCT tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         left join TBL_BILLS tb
@@ -63,7 +63,7 @@
     <!-- 판맨 완료된 상품 총개수-->
     <select id="getTotalSold" resultType="_int">
         select count(tbp.BILL_PRODUCT_LIST_NUM)
-        from tbl_bills_product tbp
+        from TBL_BILLS_PRODUCT tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         where tbp.BILL_STATUS = 3 and tsp.USER_NUM = #{userNum}
@@ -83,7 +83,7 @@
 <!--    어제 생성된 상품 조회-->
     <select id="getOldFiles" resultType="productDTO">
         SELECT SELL_PRODUCT_NUM, SELL_PRODUCT_THUMBNAIL, SELL_PRODUCT_IMAGE, SELL_PRODUCT_IMAGE_UPLOAD_PATH, SELL_PRODUCT_IMAGE_UUID
-        FROM TBL_SELL_PRODUCT
+        FROM tbl_sell_product
         WHERE SELL_PRODUCT_IMAGE_UPLOAD_PATH = DATE_FORMAT(DATE_ADD(now(),interval - 1 DAY), '%Y/%m/%d');
     </select>
     

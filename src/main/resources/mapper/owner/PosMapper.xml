@@ -10,7 +10,7 @@
         tb.BILL_DELIVERY_ADDRESS_DETAIL, tb.BILL_DELIVERY_ADDRESS_POST_NUM, tsp.SELL_PRODUCT_NAME,
         tu.USER_PHONE, tsp.SELL_PRODUCT_DELIVERY_METHOD, tsp.SELL_PRODUCT_SHIPPING_METHOD,
         tsp.SELL_PRODUCT_PICKUP
-        from tbl_bills_product tbp
+        from TBL_BILLS_PRODUCT tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         left join TBL_BILLS tb
@@ -32,7 +32,7 @@
     
     <select id="getTotalPreparing" resultType="_int">
         select count(tbp.BILL_PRODUCT_LIST_NUM)
-        from tbl_bills_product tbp
+        from TBL_BILLS_PRODUCT tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         <if test="billStatus.status1 != null">
@@ -77,7 +77,7 @@
 
     <!--상품 재고 복귀-->
     <update id="updateSellStatusRestore">
-        UPDATE TBL_SELL_PRODUCT
+        UPDATE tbl_sell_product
         SET SELL_PRODUCT_STATUS = 0, SELL_PRODUCT_STOCK = SELL_PRODUCT_STOCK + #{billProductQuantity}
         WHERE SELL_PRODUCT_NUM = #{sellProductNum}
     </update>
@@ -85,8 +85,8 @@
     <!--유저넘버, 상품 넘버 가져오기 BY 주문 상품 넘버-->
     <select id="getUserNumAndSellProductNumByBillProductNum" resultType="BillProductDTO">
         SELECT tb.USER_NUM as userNum, sell_product_num
-        FROM tbl_bills_product tbp
-        join tbl_bills tb
+        FROM TBL_BILLS_PRODUCT tbp
+        join TBL_BILLS tb
         on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </select>

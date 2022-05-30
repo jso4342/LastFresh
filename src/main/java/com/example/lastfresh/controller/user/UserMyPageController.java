@@ -1,9 +1,6 @@
 package com.example.lastfresh.controller.user;
 
 
-import com.example.lastfresh.domain.dto.ProductPageDTO;
-import com.example.lastfresh.domain.repository.BillRepository;
-import com.example.lastfresh.domain.repository.MemberRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
@@ -13,9 +10,7 @@ import com.example.lastfresh.service.user.MyPageService;
 import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Criteria;
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +20,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 /*유저 마이 페이지*/
 
 @Controller

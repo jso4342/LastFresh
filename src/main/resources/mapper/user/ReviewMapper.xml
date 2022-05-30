@@ -2,35 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.lastfresh.mapper.user.ReviewMapper">
     <insert id="insert">
-        INSERT INTO TBL_REVIEW
+        INSERT INTO tbl_review
         (SELL_PRODUCT_NUM, USER_NUM, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_DATE)
         VALUES(#{productNum}, #{userNum}, '', '', now())
     </insert>
 
     <select id="getUnWritten" resultType="reviewVO">
-        SELECT * FROM TBL_REVIEW
+        SELECT * FROM tbl_review
         WHERE REVIEW_TITLE = "" AND USER_NUM=#{userNum}
     </select>
 
     <select id="getWritten" resultType="reviewVO">
-        SELECT * FROM TBL_REVIEW
+        SELECT * FROM tbl_review
         WHERE REVIEW_TITLE != "" AND USER_NUM=#{userNum}
     </select>
 
     <update id="update">
-        UPDATE TBL_REVIEW
+        UPDATE tbl_review
         SET REVIEW_TITLE=#{reviewTitle}, REVIEW_CONTENT=#{reviewContent}, REVIEW_DATE=now()
         WHERE REVIEW_NUM=#{reviewNum}
     </update>
 
     <delete id="delete">
-        delete from TBL_REVIEW
+        delete from tbl_review
           WHERE REVIEW_NUM=#{reviewNum}
     </delete>
 
     <select id="readReview" resultType="ReviewVO">
         SELECT REVIEW_NUM, SELL_PRODUCT_NUM, USER_NUM, REVIEW_TITLE, REVIEW_CONTENT, REVIEW_DATE
-        FROM TBL_REVIEW
+        FROM tbl_review
         WHERE REVIEW_NUM = #{reviewNum}
     </select>
 
@@ -38,7 +38,7 @@
         <![CDATA[
         SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
           T.*
-        FROM  TBL_REVIEW T,(SELECT @ROWNUM := 0 ) TMP
+        FROM  tbl_review T,(SELECT @ROWNUM := 0 ) TMP
         WHERE SELL_PRODUCT_NUM = #{sellProductNum} and REVIEW_TITLE!=''
         ORDER BY REVIEW_NUM desc
          limit #{criteriaProduct.limit},6
@@ -52,6 +52,6 @@
 
 
     <select id="getTotal" resultType="_int">
-        SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_REVIEW WHERE SELL_PRODUCT_NUM = ${sellProductNum}
+        SELECT COUNT(SELL_PRODUCT_NUM) FROM tbl_review WHERE SELL_PRODUCT_NUM = ${sellProductNum}
     </select>
 </mapper>

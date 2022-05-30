@@ -8,11 +8,11 @@
     </select>
     <select id="findId" resultType="String">
         SELECT	USER_ID
-        FROM	TBL_USER
+        FROM	tbl_user
         WHERE	USER_EMAIL = #{email}
     </select>
     <update id="changePw">
-        UPDATE TBL_USER
+        UPDATE tbl_user
         SET USER_PW = #{pw}
         WHERE USER_ID = #{id}
     </update>

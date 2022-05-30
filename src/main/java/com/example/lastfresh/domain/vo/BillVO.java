@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "TBL_BILLS")
+@Table(name = "tbl_bills")
 @Getter
 @Setter
 @ToString(of={"billOrderNum", "billDeliveryAddress", "billDeliveryAddressDetail", "billDeliveryAddressPostNum", "billTotalPrice", "billOrderDate"})
