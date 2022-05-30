@@ -53,5 +53,10 @@ public interface ProductMapper {
       public List<ProductVO> getListByReview();
     //이미지
     public  List<ProductVO> getImages(Long pno);
+
+    //    장바구니 유무
+    public int checkExistenceBasket(Long userNum, Long sellProductNum, String basketDeliveryMethod);
+
+    public void addQuantityToBasket(Long basketQuantity, Long userNum, Long sellProductNum, String basketDeliveryMethod);
 }
 
