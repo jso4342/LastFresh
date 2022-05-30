@@ -134,11 +134,11 @@
         <div class="upper-gnb">
             <div class="logo-wrapper">
                 <img class="media-log-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973236493160173659/2022-05-09_11.54.16.png" alt="">
-                <img class="media-basket-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973289654080139354/2022-05-10_3.22.50.png" alt="">
-                <img class="media-my-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973289653627133992/2022-05-10_3.23.55.png" alt="">
+                <img th:if="${session.userStatus == '1'}" class="media-basket-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973289654080139354/2022-05-10_3.22.50.png" alt="">
+                <img th:if="${session.userStatus == '1'}" class="media-my-img" src="https://cdn.discordapp.com/attachments/969471931575320587/973289653627133992/2022-05-10_3.23.55.png" alt="">
             </div>
         </div>
-        <nav id="navMOBILE-media">
+        <nav id="navMOBILE-media" th:if="${session.userStatus == '1'}">
             <ul style="float: left; padding: 11px 0; background: white; width: 100%;    border-bottom: solid 1px #ddd;">
                 <li class="allCategory myli" onclick="send_catagory()" style="margin-left:23px;"><a>전체 카테고리</a></li>
                 <li class="myli"><a class="aa" href="/product/proNew">신상품</a></li>

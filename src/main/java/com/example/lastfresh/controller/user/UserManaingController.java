@@ -89,19 +89,15 @@ public class UserManaingController {
         log.info("userSelect 실행");
         log.info(("userKakao" + userKakao));
 
-        UserVO byUserKakao = new UserVO();
+        UserVO byUserKakao = userRepository.findByUserKakao(userKakao);
 
-        if(userKakao != null) {
-            byUserKakao = userRepository.findByUserKakao(userKakao);
-        }
-
-        log.info(("userKakao객체" + byUserKakao.toString()));
-        log.info(("userKakao" + byUserKakao));
+//        log.info(("userKakao" + byUserKakao));
+//        log.info(("userKakao객체" + byUserKakao.toString()));
         HttpSession session = request.getSession();
 
 
         log.info("userNull 실행1");
-        if(byUserKakao.getUserKakao() != null){
+        if(byUserKakao != null){
             log.info("userNotNull 실행");
             session.setAttribute("userNumber", byUserKakao.getUserNum());
             session.setAttribute("userVO", byUserKakao);
