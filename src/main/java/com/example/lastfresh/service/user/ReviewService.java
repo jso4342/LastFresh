@@ -1,6 +1,7 @@
 package com.example.lastfresh.service.user;
 
 import com.example.lastfresh.domain.dao.user.ReviewDAO;
+import com.example.lastfresh.domain.dto.ReviewDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.repository.ReviewRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
@@ -26,7 +27,7 @@ public class ReviewService {
     }
 
     //리뷰 목록(getList)
-    public List<ReviewVO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct) {
+    public List<ReviewDTO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct) {
         return reviewDAO.getReviewList(sellProductNum, criteriaProduct);
     }
     //리뷰 전체 조회(getTotal)

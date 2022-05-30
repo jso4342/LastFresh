@@ -1,5 +1,6 @@
 package com.example.lastfresh.mapper.user;
 
+import com.example.lastfresh.domain.dto.ReviewDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
 import org.apache.ibatis.annotations.Mapper;
@@ -35,7 +36,7 @@ public interface ReviewMapper {
 //    별도의 객체로 구성하거나 Map을 이용, @Param을 이용한다.
 //    2.6.6버전에서는 처리를 안해도 자동으로 매핑된다.
 //    public List<ReviewVO> getReviewList(@Param("sellProductNum") Long sellProductNum, @Param("criteriaProduct") CriteriaProduct criteriaProduct);
-    public List<ReviewVO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct);
+    public List<ReviewDTO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct);
     //
     //댓글 개수(getTotal)
     public int getTotal(Long sellProductNum);

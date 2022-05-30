@@ -87,5 +87,5 @@ let reviewService = (function () {
             return [y, '-', (m < 10 ? '0' : '') + m, '-', (d < 10 ? '0' : '') + d].join("");
         }
     }
-    return {reviewGetList: reviewGetList, readReview: readReview, getReviewDateByController: getReviewDateByController, getReviewDateByJavascript: getReviewDateByJavascript()}
+    return {reviewGetList: reviewGetList, readReview: readReview, getReviewDateByController: getReviewDateByController, getReviewDateByJavascript: getReviewDateByJavascript}
 })();
