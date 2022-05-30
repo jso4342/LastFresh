@@ -103,8 +103,8 @@ const $review = $("#review")
 const $a1 = $("#infomation_a");
 const $a2 = $("#review_a");
 
-console.log($a1);
-console.log($a2);
+console.log("a1"+$a1);
+console.log("a2"+$a2);
 $infomation.click(function (){
     $a1.addClass("__active");
     $a2.removeClass("__active");
