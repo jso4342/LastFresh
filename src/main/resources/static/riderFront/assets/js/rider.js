@@ -162,12 +162,24 @@ $(".order-list-wrapper").each(function () {
     let billCookingTime = $(this).find("#billCookingTime").val();
 
     let date = new Date(OrderDateTime);
-    date.setMinutes(date.getMinutes() + billCookingTime);
-    let time = ((date.getMonth()+1) +"월"+ " " + date.getDate() +"일"+ "  " + date.getHours() + ":" + date.getMinutes());
 
+    date.setMinutes(date.getMinutes() + billCookingTime);
+    let time;
+    let hr = "" + date.getHours();
+    let min = "" + date.getMinutes();
+
+    console.log(date.getHours);
+
+    if (hr.length < 2) {
+        hr = '0' + hr;
+    }
+    if (min.length < 2) {
+        min = '0' + min;
+    }
+
+    time = ((date.getMonth() + 1) + "월" + " " + date.getDate() + "일" + "  " + hr + "시" + ":" + min + "분");
     $(this).find("#order-time").html(time);
 
-    console.log($("#order-time").html());
 })
 
 //
