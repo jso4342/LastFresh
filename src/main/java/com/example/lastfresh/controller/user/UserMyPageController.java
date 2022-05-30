@@ -63,7 +63,7 @@ public class UserMyPageController {
         rttr.addAttribute("userNum", userNum);
         rttr.addAttribute("result", myPageService.modify(userVO, userNum) ? "success" : "failure");
 
-        return new RedirectView("myChangeInfo");
+        return new RedirectView("/main/moveMain");
     };
 
 

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import net.nurigo.java_sdk.api.Message;
 
@@ -21,6 +22,7 @@ public class UserFindService {
 
     private final UserFindDAO userFindDAO;
     private final UserFindRepository userFindRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public void certifiedPhoneNumber(String phoneNumber, String cerNum) {
 
@@ -53,5 +55,8 @@ public class UserFindService {
     public String findId(String email) {return userFindDAO.findId(email);}
 
     /* 비밀번호 변경 */
-    public String changePw(String pw, String id){return userFindDAO.changePw(pw, id);}
+    public String changePw(String pw, String id){
+        String encodedPassword = passwordEncoder.encode(pw);
+        pw = encodedPassword;
+        return userFindDAO.changePw(pw, id);}
 }
