@@ -91,7 +91,7 @@
                     <div class="loading_show"></div>
                 </div>
                     <div class="order-list-wrapper" th:each="order:${orders}">
-                        <form method="post" action="/rider/upDateStatusToTwo">
+                        <form method="post" action="/rider/upDateStatusToFour">
                         <input type="hidden" th:value="${order.billProductListNum}" name="billProductListNum"/>
                             <input type="hidden" th:value="${order.billOrderDateTime}" id="billOrderDateTime"/>
                             <input type="hidden" th:value="${order.billCookingTime}" id="billCookingTime"/>

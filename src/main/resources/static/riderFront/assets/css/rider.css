@@ -318,6 +318,12 @@ input.deliveryFinish {
 	color: #818181cc!important;
 	box-shadow: 1px 1px 3px #81818157!important;
 }
+input.deliveryStart {
+	display: none;
+	background: #DA291C !important;
+	color: #ffffffe0!important;
+	box-shadow: 1px 1px 3px #da291c!important;
+}
 input.deliveryFinishBtn.pc{
 	display: block;
 	width: 8vw;
@@ -546,6 +552,9 @@ input.deliveryFinishBtn.pc{
 	input#deliveryFinish{
 		margin: 72px 0px 0px -16px!important;
 	}
+	input#deliveryStart{
+		margin: 72px 0px 0px -16px!important;
+	}
 	div.order-info1 {
 		padding: 21px 50px 28px 50px;
 		height: 112px;
@@ -600,6 +609,13 @@ input.deliveryFinishBtn.pc{
 		background: #81818157 !important;
 		color: #818181cc!important;
 		box-shadow: 1px 1px 3px #81818157!important;
+		height: 274px!important;
+	}
+	input.deliveryStart {
+		display: none;
+		background: #DA291C !important;
+		color: #ffffffe0!important;
+		box-shadow: 1px 1px 3px #da291c!important;
 		height: 274px!important;
 	}
 	/*input.deliveryFinishBtn.pc{*/

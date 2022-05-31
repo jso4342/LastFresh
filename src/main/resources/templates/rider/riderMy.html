@@ -140,6 +140,11 @@
                                     <input type="button" id="deliveryCancel"
                                            class="deliveryCancel" value="접수취소"/>
                                 </a>
+                                <a th:href="@{/rider/upDateStatusToTwo(billProductListNum=${myOrder.billProductListNum})}"
+                                   class="btnWrap">
+                                    <input type="button" id="deliveryStart"
+                                           style="margin: 5px 74px 0px 149px;" class="deliveryStart" value="배달출발"/>
+                                </a>
                                 <div class="callIconBtnWrap" id="callIconBtnWrap">
                                     <input type="button" class="callIconBtn">
                                     <a th:href="@{tel:(${myOrder.sellProductPhone})}">
@@ -177,6 +182,31 @@
             $(this).find("#deliveryCancel").css("display", "none");
             $(this).find("#callIconBtnWrap").css("display", "none");
             $(this).find("#deliveryFinish").css("display", "block");
+            $(this).find("#deliveryStart").css("display", "none");
+        }
+    })
+    //배달진행중
+    $(".btnWrap").each(function (i, item) {
+        let billStatuses = $(this).children($("input.billStatus"))
+        let statusVal = billStatuses.val()
+        if (statusVal == 2) {
+            $(this).find("#deliveryFinishBtn").css("display", "block");
+            $(this).find("#deliveryCancel").css("display", "block");
+            $(this).find("#callIconBtnWrap").css("display", "block");
+            $(this).find("#deliveryFinish").css("display", "none");
+            $(this).find("#deliveryStart").css("display", "none");
+        }
+    })
+    //배달시작전
+    $(".btnWrap").each(function (i, item) {
+        let billStatuses = $(this).children($("input.billStatus"))
+        let statusVal = billStatuses.val()
+        if (statusVal == 4) {
+            $(this).find("#deliveryFinishBtn").css("display", "none");
+            $(this).find("#deliveryCancel").css("display", "none");
+            $(this).find("#callIconBtnWrap").css("display", "none");
+            $(this).find("#deliveryFinish").css("display", "none");
+            $(this).find("#deliveryStart").css("display", "block");
         }
     })
 
