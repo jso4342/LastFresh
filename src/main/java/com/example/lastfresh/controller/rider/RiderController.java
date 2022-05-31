@@ -38,71 +38,84 @@ public class RiderController {
     private final ReviewService reviewService;
     private BillProductRepository billProductRepository;
     private final ReviewRepository reviewRepository;
+
     @GetMapping("/riderList")
-    public void riderList(Model model){
-        List<BillProductDTO> bills= riderService.getList();
+    public void riderList(Model model) {
+        List<BillProductDTO> bills = riderService.getList();
         model.addAttribute("orders", bills);
     }
 
     @GetMapping("/riderMy")
-    public void riderMy(Model model, HttpServletRequest request){
+    public void riderMy(Model model, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
 
-        List<BillProductDTO> bills= riderService.getMyList(userNum);
+        List<BillProductDTO> bills = riderService.getMyList(userNum);
         model.addAttribute("myOrders", bills);
     }
+
     @GetMapping("/riderListF")
-    public void riderFilter(Model model,String sido,String sigungu,String dong){
-        String sellProductAddress=sido+" "+sigungu+" "+dong;
+    public void riderFilter(Model model, String sido, String sigungu, String dong) {
+        String sellProductAddress = sido + " " + sigungu + " " + dong;
         log.info(sellProductAddress);
 
-        List<BillProductDTO> bills= riderService.selectFilter(sellProductAddress);
+        List<BillProductDTO> bills = riderService.selectFilter(sellProductAddress);
         model.addAttribute("orders", bills);
     }
 
-    @PostMapping("/upDateStatusToTwo")
-    public RedirectView upDateStatusToTwo(BillProductDTO billProductDTO, HttpServletRequest request){
+    //가게에서 픽업전
+    @PostMapping("/upDateStatusToFour")
+    public RedirectView upDateStatusToFour(BillProductDTO billProductDTO, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
         billProductDTO.setUserNum(userNum);
 
-        riderService.upDateStatusToTwo(billProductDTO);
+        riderService.upDateStatusToFour(billProductDTO);
         return new RedirectView("riderList");
     }
-    @RequestMapping("/upDateStatusToThree")
-    public RedirectView upDateStatusToThree(Long billProductListNum,Long sellProductNum, HttpServletRequest request){
+
+    //가계에서 픽업하고
+    @RequestMapping("/upDateStatusToTwo")
+    public RedirectView upDateStatusToTwo(Long billProductListNum, Long sellProductNum, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-        BillProductDTO billProductDTO=new BillProductDTO();
+        BillProductDTO billProductDTO = new BillProductDTO();
         billProductDTO.setUserNum(userNum);
         billProductDTO.setBillProductListNum(billProductListNum);
 
-        BillProductDTO nums=posService.getNumsByBillProductListNum(billProductListNum);
+        BillProductDTO nums = posService.getNumsByBillProductListNum(billProductListNum);
+
+        reviewService.insert(nums.getUserNum(), nums.getSellProductNum());
+        riderService.upDateStatusToTwo(billProductDTO);
+
+        return new RedirectView("riderMy");
+    }
+
+    @RequestMapping("/upDateStatusToThree")
+    public RedirectView upDateStatusToThree(Long billProductListNum, Long sellProductNum, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
+        BillProductDTO billProductDTO = new BillProductDTO();
+        billProductDTO.setUserNum(userNum);
+        billProductDTO.setBillProductListNum(billProductListNum);
+
+        BillProductDTO nums = posService.getNumsByBillProductListNum(billProductListNum);
 
         reviewService.insert(nums.getUserNum(), nums.getSellProductNum());
         riderService.upDateStatusToThree(billProductDTO);
 
         return new RedirectView("riderMy");
     }
+
     @RequestMapping("/upDateStatusToMinus")
-    public RedirectView upDateStatusToMinus(Long billProductListNum, HttpServletRequest request){
+    public RedirectView upDateStatusToMinus(Long billProductListNum, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-        BillProductDTO billProductDTO=new BillProductDTO();
+        BillProductDTO billProductDTO = new BillProductDTO();
         billProductDTO.setUserNum(userNum);
         billProductDTO.setBillProductListNum(billProductListNum);
 
         riderService.upDateStatusToMinus(billProductDTO);
-
-        log.info("`````````````````````````````````````````````````");
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info(String.valueOf(billProductDTO.getBillProductListNum()));
-        log.info( billProductDTO.toString());
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info("들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴들어옴ㅍ");
-        log.info("`````````````````````````````````````````````````");
         return new RedirectView("riderMy");
     }
 }

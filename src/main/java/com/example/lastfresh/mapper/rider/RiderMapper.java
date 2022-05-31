@@ -12,6 +12,7 @@ public interface RiderMapper {
     public List<BillProductDTO> getBillProductMyInfo(Long userNum);
 
     //    접수상태 변화
+    public void upDateStatusToFour(BillProductDTO billProductDTO);
     public void upDateStatusToTwo(BillProductDTO billProductDTO);
     public void upDateStatusToThree(BillProductDTO billProductDTO);
     public void upDateStatusToMinus(BillProductDTO billProductDTO);
