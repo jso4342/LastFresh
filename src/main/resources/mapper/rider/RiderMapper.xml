@@ -98,7 +98,7 @@
 
     <update id="upDateStatusToMinus">
         UPDATE tbl_bills_product
-        set BILL_STATUS=0, USER_NUM = null
+        set BILL_STATUS=1, USER_NUM = null
         WHERE BILL_PRODUCT_LIST_NUM=#{billProductListNum} and USER_NUM=#{userNum}
     </update>
 
