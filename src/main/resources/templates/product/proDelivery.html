@@ -278,7 +278,7 @@
 <script src="/front/assets/js/product/product.js"></script>
 <script src="/front/assets/js/product/proDeliveryStatus.js"></script>
 <script src="/front/assets/js/product/proPage.js"></script>
-<script>
+<script th:inline="javascript">
     $("a.selectPrice").on("click",function (e) {
         e.preventDefault();
         $("a.selectPrice").removeClass("on");
@@ -299,5 +299,6 @@
         window.location.href = "/product/proAddressList?sido=" + sido+"&sigungu=" + sigungu +"&dong=" + dong;
 
     }
+    let userNumber = [[${userNumber}]];
 </script>
 </html>
