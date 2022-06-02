@@ -49,10 +49,10 @@
         DATE_FORMAT(tb.BILL_ORDER_DATE,'%H:%i') as Bill_ORDER_DATE_TIME,
         tsp.SELL_PRODUCT_THUMBNAIL, tsp.SELL_PRODUCT_IMAGE_UPLOAD_PATH, tb.BILL_DELIVERY_ADDRESS,
         tb.BILL_DELIVERY_ADDRESS_DETAIL, tb.BILL_DELIVERY_ADDRESS_POST_NUM, tsp.SELL_PRODUCT_NAME, tu.USER_PHONE
-        from TBL_BILLS_PRODUCT tbp
+        from tbl_bills_product tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
-        left join TBL_BILLS tb
+        left join tbl_bills tb
         on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         left join tbl_user tu
         on tb.USER_NUM = tu.USER_NUM
@@ -63,7 +63,7 @@
     <!-- 판맨 완료된 상품 총개수-->
     <select id="getTotalSold" resultType="_int">
         select count(tbp.BILL_PRODUCT_LIST_NUM)
-        from TBL_BILLS_PRODUCT tbp
+        from tbl_bills_product tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         where tbp.BILL_STATUS = 3 and tsp.USER_NUM = #{userNum}

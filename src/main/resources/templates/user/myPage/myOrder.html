@@ -13,7 +13,7 @@
     }
 </style>
 <body>
-<th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
+<th:block th:insert="fragments/headerWithout.html :: headWithoutFragment"/>
 <div class="page_myPage myPage_type1">
     <div id="snb" class="snb_my">
         <h2 class="tit_snb">마이페이지</h2>
@@ -48,13 +48,13 @@
                         <!--<a class="goodsNum" th:text="|주문번호 *{billOrderNum}|"></a>-->
                     </div>
                         <div class="order_info">
-                            <div class="thumb">
+                            <div class="thumb">                                    <dd class="orderNum" th:text="*{billOrderNum}"></dd>
+
                                 <img th:src="'/user/order/display?fileName=' + *{products[0].productVO.sellProductImageUploadPath} + '/' + *{products[0].productVO.sellProductThumbnail}">
                             </div>
                             <div class="desc">
                                 <dl style="padding-top: 5px;">
                                     <dt >주문번호</dt>
-                                    <dd class="orderNum" th:text="*{billOrderNum}"></dd>
                                 </dl>
                                 <dl>
                                     <dt>결제금액</dt>
@@ -102,7 +102,7 @@
     </div>
 </div>
 
-<th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
+<th:block th:insert="fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/user/myPageListMenuSelect.js"></script>

@@ -48,11 +48,6 @@ public class BasketController {
         model.addAttribute("getTotal",productService.getTotal(criteriaProduct));
     }
 
-  /*  @GetMapping("/order2")
-    public List<BasketDTO> getListByDTO(@PathVariable("userNum") Long userNum){
-        return orderService.getListByDTO(userNum);
-    }*/
-
 
     // 주문 완료 시
     @PostMapping("/order")
@@ -98,8 +93,8 @@ public class BasketController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException {
-        //  return FileCopyUtils.copyToByteArray(new File("/Users/macintoshhd/Desktop/upload/" + fileName));
-        return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/C:/upload/" + fileName));
+       // return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 
 }

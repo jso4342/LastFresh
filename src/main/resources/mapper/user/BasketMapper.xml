@@ -51,13 +51,13 @@
     </delete>
 
     <update id="addQuantity">
-        UPDATE LastFresh.tbl_basket
+        UPDATE tbl_basket
         SET BASKET_QUANTITY=BASKET_QUANTITY+1
         WHERE BASKET_NUM=#{basketNum}
     </update>
 
     <update id="subtractQuantity">
-        UPDATE LastFresh.tbl_basket
+        UPDATE tbl_basket
         SET BASKET_QUANTITY=BASKET_QUANTITY-1
         WHERE BASKET_NUM=#{basketNum}
     </update>

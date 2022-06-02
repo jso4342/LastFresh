@@ -10,10 +10,10 @@
         tb.BILL_DELIVERY_ADDRESS_DETAIL, tb.BILL_DELIVERY_ADDRESS_POST_NUM, tsp.SELL_PRODUCT_NAME,
         tu.USER_PHONE, tsp.SELL_PRODUCT_DELIVERY_METHOD, tsp.SELL_PRODUCT_SHIPPING_METHOD,
         tsp.SELL_PRODUCT_PICKUP
-        from TBL_BILLS_PRODUCT tbp
+        from tbl_bills_product tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
-        left join TBL_BILLS tb
+        left join tbl_bills tb
         on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         left join tbl_user tu
         on tb.USER_NUM = tu.USER_NUM
@@ -32,7 +32,7 @@
     
     <select id="getTotalPreparing" resultType="_int">
         select count(tbp.BILL_PRODUCT_LIST_NUM)
-        from TBL_BILLS_PRODUCT tbp
+        from tbl_bills_product tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
         <if test="billStatus.status1 != null">
@@ -49,28 +49,28 @@
 
     <!--주문 접수-->
     <update id="updateBillStatus">
-        UPDATE TBL_BILLS_PRODUCT
+        UPDATE tbl_bills_product
         SET BILL_COOKING_TIME = #{billCookingTime}, BILL_STATUS = 1
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </update>
 
     <!--픽업 접수-->
     <update id="updateBillStatusPickUp">
-        UPDATE TBL_BILLS_PRODUCT
+        UPDATE tbl_bills_product
         SET BILL_STATUS = 3
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </update>
 
     <!-- 자가라이더시 준비중 클릭 -> 배송중 -->
     <update id="updateBillStatusSelfReady">
-        UPDATE TBL_BILLS_PRODUCT
+        UPDATE tbl_bills_product
         SET BILL_STATUS = 2
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </update>
 
     <!--주문 취소-->
     <update id="updateBillStatusCancel">
-        UPDATE TBL_BILLS_PRODUCT
+        UPDATE tbl_bills_product
         SET BILL_STATUS = -1
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </update>
@@ -85,8 +85,8 @@
     <!--유저넘버, 상품 넘버 가져오기 BY 주문 상품 넘버-->
     <select id="getUserNumAndSellProductNumByBillProductNum" resultType="BillProductDTO">
         SELECT tb.USER_NUM as userNum, sell_product_num
-        FROM TBL_BILLS_PRODUCT tbp
-        join TBL_BILLS tb
+        FROM tbl_bills_product tbp
+        join tbl_bills tb
         on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         WHERE BILL_PRODUCT_LIST_NUM = #{billProductListNum}
     </select>
