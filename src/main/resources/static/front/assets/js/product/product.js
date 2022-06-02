@@ -95,17 +95,18 @@ var button1 = $(".cancel1");
 let submit = $(".submit");
 $(submit).click(function () {
     let receiveMethod=parseInt($(".receiveMethodHidden").val());
-    console.log(receiveMethod)
+
     if(receiveMethod=="0") {
         alert("옵션을 선택해주세요");
         return false;
-    }if(window.sessionStorage.getItem("userNumber")==null){
+    }if(userNumber==null){
         alert("로그인 후 이용하실 수 있습니다.");
         return false;
     }else {
         alert("장바구니에 상품을 담았습니다.")
     }
 });
+
 $(".group_btn").click(function(){
     $(cart).removeClass("off");
     $(cart).css("opacity", "1");
