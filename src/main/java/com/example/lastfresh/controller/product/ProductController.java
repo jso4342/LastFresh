@@ -444,8 +444,11 @@ public class ProductController {
     public RedirectView productToBasketNew(ProductVO productVO, BasketVO basketVO, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-        productService.productToBasket(userNum,basketVO,productVO);
-
+        log.info("```````````````````````````````````````````````````````");
+        log.info("```````````````````````````````````````````````````````");
+        log.info(String.valueOf(basketVO.getBasketQuantity()));
+        log.info("```````````````````````````````````````````````````````");
+        log.info("```````````````````````````````````````````````````````");
         productService.productToBasket(userNum,basketVO,productVO);
         return new RedirectView("proNew");
     }
@@ -453,7 +456,11 @@ public class ProductController {
     public RedirectView productToBasketPickup(ProductVO productVO,BasketVO basketVO,HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-
+        log.info("```````````````````````````````````````````````````````");
+        log.info("```````````````````````````````````````````````````````");
+        log.info(String.valueOf(basketVO.getBasketQuantity()));
+        log.info("```````````````````````````````````````````````````````");
+        log.info("```````````````````````````````````````````````````````");
         productService.productToBasket(userNum,basketVO,productVO);
         return new RedirectView("proPickup");
     }
@@ -461,21 +468,15 @@ public class ProductController {
     public RedirectView productToBasketShipping(ProductVO productVO, BasketVO basketVO, HttpServletRequest request) {
         HttpSession session = request.getSession();
         Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-
+        log.info("```````````````````````````````````````````````````````");
+        log.info("```````````````````````````````````````````````````````");
+        log.info(String.valueOf(basketVO.getBasketQuantity()));
+        log.info("```````````````````````````````````````````````````````");
+        log.info("```````````````````````````````````````````````````````");
         productService.productToBasket(userNum,basketVO,productVO);
         return new RedirectView("proShipping");
     }
 
-    @PostMapping("/productToBasketShippingDetail")
-    public void productToBasketShippingDetail(ProductVO productVO,BasketVO basketVO,HttpServletRequest request) {
-    Long productNum=productVO.getSellProductNum();
-
-        HttpSession session = request.getSession();
-        Long userNum = Long.valueOf(String.valueOf(session.getAttribute("userNumber")));
-
-        productService.productToBasket(userNum,basketVO,productVO);
-    }
-    //    private final ProductService productService;
     @RequestMapping("/productToBasket")
     public RedirectView productToBasket(Long sellProductDiscountPrice, Long sellProductNum,String basketDeliveryMethod,Long basketQuantity,
                                         HttpServletRequest request) {
