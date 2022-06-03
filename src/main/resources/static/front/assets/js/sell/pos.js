@@ -124,6 +124,7 @@ function showList(page, billStatus) {
                 let expectedMonth = "" + (date.getMonth() + 1);
                 let expectedDay = "" + date.getDate();
 
+
                 if (hour.length < 2) {
                     hour = '0' + hour;
                 }
@@ -143,7 +144,6 @@ function showList(page, billStatus) {
                 let expectedDays = expectedMonth + "-" + expectedDay;
                 let time = hour + ":" + minute;
 
-
                 str += '<div class="order-list-wrapper">';
                 str += '<div class="order-list">';
                 str += '<div class="order-info3">';
@@ -151,7 +151,7 @@ function showList(page, billStatus) {
                 if (item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
                     str += '<p>' + years + '</p>';
                     str += '<p>' + days + '</p>';
-                } else if (item.billStatus == '1' || item.billStatus == '2') {
+                } else if (item.billStatus == '1' || item.billStatus == '2' || item.billStatus == '4') {
                     str += '<p>' + expectedYears + '</p>';
                     str += '<p>' + expectedDays + '</p>';
                 }
@@ -162,7 +162,7 @@ function showList(page, billStatus) {
                 if (item.billStatus == '0' || item.billStatus == '3' || item.billStatus == '-1') {
                     str += '<p>주문 접수 시간</p>';
                     str += '<p>' + item.billOrderDateTime + '</p>';
-                } else if (item.billStatus == '1' || item.billStatus == '2') {
+                } else if (item.billStatus == '1' || item.billStatus == '2' || item.billStatus == '4') {
                     str += '<p>예상 완료 시간</p>';
                     str += '<p>' + time + '</p>';
                 }
@@ -195,27 +195,38 @@ function showList(page, billStatus) {
                 str += '</div>';
                 str += '<div class="order-accept">';
                 if (item.billStatus == '0' && item.sellProductPickup == '0' && item.billDeliveryMethod == 1) {
-                    str += '<button class="delivery-pickUp-btn"><a class="acceptPickUp" href="' + item.billProductListNum + '">픽업대기</a></button>';
+                    str += '<button class="delivery-pickUp-btn"><a class="acceptPickUp" href="' + item.billProductListNum + '">픽업' +
+                        '대기</a></button>';
                     str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '" data-stock="' + item.billProductQuantity + '" data-product="' + item.sellProductNum + '">취소</a></button>';
                 } else if (item.billStatus == '0') {
-                    str += '<button class="order-reception-btn"><a class="acceptOrder" href="' + item.billProductListNum + '">접수하기</a></button>';
+                    str += '<button class="order-reception-btn"><a class="acceptOrder" href="' + item.billProductListNum + '">접수' +
+                        '하기</a></button>';
                     str += '<button class="order-cancel-btn"><a class="cancelOrder" href="' + item.billProductListNum + '" data-stock="' + item.billProductQuantity + '" data-product="' + item.sellProductNum + '">취소</a></button>';
                 } else if (item.billStatus == '1' && item.billDeliveryMethod == '2' && item.sellProductDeliveryMethod == '2') {
-                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배달시작</a></button>';
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배달' +
+                        '시작</a></button>';
                 } else if (item.billStatus == '1' && item.billDeliveryMethod == '3' && item.sellProductShippingMethod == '2') {
-                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송시작</a></button>';
+                    str += '<button class="order-selfReady-btn"><a class="selfReadyOrder" href="' + item.billProductListNum + '">배송' +
+                        '시작</a></button>';
                 } else if (item.billStatus == '2' && item.billDeliveryMethod == '2' && item.sellProductDeliveryMethod == '2') {
-                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배달완료</a></button>';
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배달' +
+                        '완료</a></button>';
                 } else if (item.billStatus == '2' && item.billDeliveryMethod == '3' && item.sellProductShippingMethod == '2') {
-                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송완료</a></button>';
+                    str += '<button class="order-selfDelivery-btn"><a class="acceptSelfDeliveryOrder" href="' + item.billProductListNum + '">배송' +
+                        '완료</a></button>';
                 } else if (item.billStatus == '1') {
                     str += '<button class="order-ready-btn">준비중</button>';
+                } else if (item.billStatus == '4') {
+                    str += '<button class="order-riderReady-btn">라이더' +
+                        '대기</button>';
                 } else if (item.billStatus == '2') {
                     str += '<button class="order-delivery-btn">배송중</button>';
                 } else if (item.billStatus == '3') {
-                    str += '<button class="delivery-complete-btn">주문완료</button>';
+                    str += '<button class="delivery-complete-btn">주문' +
+                        '완료</button>';
                 } else if (item.billStatus == '-1') {
-                    str += '<button class="delivery-cancel-btn">주문취소</button>';
+                    str += '<button class="delivery-cancel-btn">주문' +
+                        '취소</button>';
                 }
                 str += '</div>';
                 str += '</div>';
@@ -253,6 +264,7 @@ function showOrderPage(orderCount) {
     let startNum = endNum - 9;
     let realEnd = Math.ceil(orderCount / 4.0);
 
+
     let str = "";
 
     let $pagingTag = $("div.paging");
@@ -263,7 +275,6 @@ function showOrderPage(orderCount) {
 
     let prev = startNum > 1;
     let next = endNum * 4 < orderCount;
-
     if (prev) {
         str += "<a class='changePage' href='" + (startNum - 1) + "'><code>&lt;</code></a>"
     }
@@ -338,7 +349,6 @@ $(".order-content").on("click", "button.order-cancel-btn", function (e) {
         text: "취소 시 되돌릴 수 없습니다",
         buttons: ["아니오", "취소하기"]
     }).then(function (result) {
-        console.log("swal result " + result);
         if (result) {
             $.ajax({
                 type: "PATCH",
