@@ -21,7 +21,7 @@
             where tbp.BILL_STATUS = 0
         </if>
         <if test="billStatus.status2 != null">
-            where tbp.BILL_STATUS = 1 OR tbp.BILL_STATUS = 2
+            where tbp.BILL_STATUS = 1 OR tbp.BILL_STATUS = 2 OR tbp.BILL_STATUS = 4
         </if>
         <if test="billStatus.status3 != null">
             where tbp.BILL_STATUS = 3 OR tbp.BILL_STATUS = -1
@@ -39,7 +39,7 @@
             where tbp.BILL_STATUS = 0
         </if>
         <if test="billStatus.status2 != null">
-            where tbp.BILL_STATUS = 1 OR tbp.BILL_STATUS = 2
+            where tbp.BILL_STATUS = 1 OR tbp.BILL_STATUS = 2 OR tbp.BILL_STATUS = 4
         </if>
         <if test="billStatus.status3 != null">
             where tbp.BILL_STATUS = 3 OR tbp.BILL_STATUS = -1
