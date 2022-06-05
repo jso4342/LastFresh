@@ -35,9 +35,9 @@ $(button).click(function () {
     $(cart).css("opacity", "0");
     $(".bg_loading").css("display", "none");
     $(".basketQuantity").val(1);
-    $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
-    $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
-    $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     parseInt($(".receiveMethodHidden").val(0));
     //픽업 status
         $("#pickUpB").css("display", "");
@@ -159,22 +159,22 @@ function count(type) {
 // 전달방식
 document.getElementById("pickUpB").addEventListener("click", function () {
     $("#pickUpB").css("opacity", "1").css("border", "2px solid  #DA291C").css("background-color", "#DA291C")
-    $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
-    $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     $(".receiveMethodHidden").val(1)
    
 })
 document.getElementById("deliveryB").addEventListener("click", function () {
     $("#deliveryB").css("opacity", "1").css("border", "2px solid  #DA291C").css("background-color", "#DA291C")
-    $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
-    $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#shippingB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     $(".receiveMethodHidden").val(2)
    
 })
 document.getElementById("shippingB").addEventListener("click", function () {
     $("#shippingB").css("opacity", "1").css("border", "2px solid  #DA291C").css("background-color", "#DA291C")
-    $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
-    $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
+    $("#pickUpB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#deliveryB").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     $(".receiveMethodHidden").val(3)
 
 })
