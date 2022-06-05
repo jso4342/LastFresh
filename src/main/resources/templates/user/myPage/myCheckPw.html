@@ -127,6 +127,8 @@
     $(".submit").click(function(e){
         let password = document.getElementById('confirm_password').value;
 
+        console.log(userNum)
+
         $.ajax({
             url: "/user/myPage/pwCheck/" + password + "/" + userNum,
             type: "post",

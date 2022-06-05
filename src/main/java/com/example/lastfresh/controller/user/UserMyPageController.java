@@ -109,8 +109,14 @@ public class UserMyPageController {
         //파라미터는 form태그처럼 페이지 이동으로 받을때, pathVariable은 페이지이동 없는 ajax로 받을때. @ResponseBody 줘야함
         JSONObject obj = new JSONObject();
 
+        log.info("111111111111111111111111111111111111");
+        log.info(password);
+
         String userPw = userRepository.getById(userNum).getUserPw();
-      
+
+        log.info("111111111111111111111111111111111111");
+        log.info(userPw);
+
         if(passwordEncoder.matches(password, userPw)){
             obj.put("status", "ok");
         }else{

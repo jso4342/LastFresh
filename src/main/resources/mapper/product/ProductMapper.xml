@@ -4,9 +4,7 @@
     <select id="proAddressListPickup" resultType="ProductVO">
         select *
         from TBL_SELL_PRODUCT
-        where SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductAddress}
-        or	SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductAddress}
-        or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
+        where SELL_PRODUCT_ADDRESS = #{sellProductAddress}
         <if test="type.status1 != null">
             ORDER BY TBL_SELL_PRODUCT.SELL_PRODUCT_DISCOUNT_PRICE
         </if>
@@ -26,9 +24,7 @@
         select
 COUNT(SELL_PRODUCT_NUM)
 from TBL_SELL_PRODUCT
-where SELL_PRODUCT_DELIVERY_ADDRESS1 = #{sellProductAddress}
-or	SELL_PRODUCT_DELIVERY_ADDRESS2 = #{sellProductAddress}
-or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
+where SELL_PRODUCT_ADDRESS = #{sellProductAddress}
     </select>
     <select id="proAddressListList" resultType="ProductVO">
         select *

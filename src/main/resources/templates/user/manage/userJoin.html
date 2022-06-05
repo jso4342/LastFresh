@@ -63,7 +63,10 @@
                 </td>
             </tr>
             <tr>
-                <th>이름
+                <th  th:unless="${userStatus == '2'}">이름
+                    <span class="icon">*</span>
+                </th>
+                <th  th:if="${userStatus == '2'}">가계 이름
                     <span class="icon">*</span>
                 </th>
                 <td>
@@ -93,7 +96,10 @@
                 </td>
             </tr>
             <tr>
-                <th>주소(우편번호)
+                <th th:unless="${userStatus == '2'}">주소(우편번호)
+                    <span class="icon">*</span>
+                </th>
+                <th th:if="${userStatus == '2'}">매장주소(우편번호)
                     <span class="icon">*</span>
                 </th>
                 <td>
