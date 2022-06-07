@@ -267,7 +267,7 @@
                                     >수량내리기</button>
 									<input type="number" readonly="readonly" onfocus="this.blur()"  class="inp basketQuantity">
 									<button type="button" class="btn up on"onclick='count("plus")'
-                                    >수량올리기</button>
+                                    style="    margin-top: -30px;">수량올리기</button>
 								</span>
                                 <span class="price">
 									<span class="dc_price"></span>
@@ -324,18 +324,13 @@
     $(submit).click(function (e) {
         let receiveMethod=parseInt($(".receiveMethodHidden").val());
 
-        console.log(receiveMethod)
-
         if(receiveMethod == "0") {
             alert("옵션을 선택해주세요");
             return false;
-
         }
-
+        console.log("유져"+window.sessionStorage.getItem("userNumber"));
         let userNumber = [[${userNumber}]];
-
         console.log("유저넘버"+userNumber);
-
         if(userNumber == null){
             alert("로그인 후 이용하실 수 있습니다.");
             return false;

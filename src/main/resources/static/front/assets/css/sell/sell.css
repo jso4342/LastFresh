@@ -325,7 +325,12 @@ div.order-accept button a:visited {
     text-decoration: none;
 }
 
+.delivery-pickUp-btn {
+    white-space: pre;
+ }
+
 div.order-accept button.delivery-complete-btn, div.order-accept button.delivery-cancel-btn{
+    white-space: pre;
     width: 6vw;
     height: 15vh;
     font-size: 1.8rem;
@@ -339,10 +344,25 @@ div.order-accept button.delivery-complete-btn, div.order-accept button.delivery-
 }
 
 div.order-accept button.delivery-cancel-btn {
+    white-space: pre;
     color: #d26f6f;
 }
 
 div.order-accept button.order-ready-btn {
+    white-space: pre;
+    width: 6vw;
+    height: 15vh;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffffffe0;
+    background-color: rgba(203, 87, 77, 0.72);
+    box-shadow: 1px 1px 3px #da291c;
+    border: none;
+    margin: 7px;
+    cursor: unset;
+}
+
+div.order-accept button.order-riderReady-btn {
     width: 6vw;
     height: 15vh;
     font-size: 1.8rem;
@@ -356,6 +376,7 @@ div.order-accept button.order-ready-btn {
 }
 
 div.order-accept button.order-delivery-btn {
+    white-space: pre;
     width: 6vw;
     height: 15vh;
     font-size: 1.8rem;
@@ -369,6 +390,7 @@ div.order-accept button.order-delivery-btn {
 }
 
 div.order-accept button.order-selfReady-btn, div.order-accept button.order-selfDelivery-btn {
+    white-space: pre;
     width: 6vw;
     height: 15vh;
     font-size: 1.8rem;

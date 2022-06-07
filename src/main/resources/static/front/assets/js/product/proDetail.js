@@ -116,23 +116,23 @@ $review.click(function (){
 
 // 전달방식
 document.getElementById("pickUpP").addEventListener("click", function () {
-    $("#pickUpP").css("opacity", "1").css("border", "none").css("background-color", "#8BC34A")
-    $("#deliveryP").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
-    $("#shippingP").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $("#pickUpP").css("opacity", "1").css("border", "none").css("background-color", "#DA291C")
+    $("#deliveryP").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#shippingP").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     $(".receiveMethodHidden").val(1)
 
 })
 document.getElementById("deliveryP").addEventListener("click", function () {
-    $("#deliveryP").css("opacity", "1").css("border", "none").css("background-color", "#03A9F4")
-    $("#pickUpP").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
-    $("#shippingP").css("opacity", "0.2").css("border", "none").css("background-color", "#FFC107")
+    $("#deliveryP").css("opacity", "1").css("border", "none").css("background-color", "#DA291C")
+    $("#pickUpP").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#shippingP").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     $(".receiveMethodHidden").val(2)
 
 })
 document.getElementById("shippingP").addEventListener("click", function () {
-    $("#shippingP").css("opacity", "1").css("border", "none").css("background-color", "#FFC107")
-    $("#pickUpP").css("opacity", "0.2").css("border", "none").css("background-color", "#8BC34A")
-    $("#deliveryP").css("opacity", "0.2").css("border", "none").css("background-color", "#03A9F4")
+    $("#shippingP").css("opacity", "1").css("border", "none").css("background-color", "#DA291C")
+    $("#pickUpP").css("opacity", "0.2").css("border", "none").css("background-color", "black")
+    $("#deliveryP").css("opacity", "0.2").css("border", "none").css("background-color", "black")
     $(".receiveMethodHidden").val(3)
 
 })
