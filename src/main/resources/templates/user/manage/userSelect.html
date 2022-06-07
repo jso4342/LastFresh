@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<th:block th:insert="/fragments/headerWithout.html :: headWithoutFragment"/>
+<th:block th:insert="fragments/headerWithout.html :: headWithoutFragment"/>
 
 <div class="data_method">
     <form th:action="@{/user/manage/userSelect}" th:method="post" name="selectForm">
@@ -73,7 +73,7 @@
         </div>
     </form>
 </div>
-<th:block th:insert="/fragments/footerWithout.html :: footWithoutFragment"/>
+<th:block th:insert="fragments/footerWithout.html :: footWithoutFragment"/>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <!--th문을 console로 뽑을때 쓰는 문법-->

@@ -17,7 +17,7 @@
     }
 </style>
 <body>
-<th:block th:insert="/fragments/header.html :: headFragment"/>
+<th:block th:insert="fragments/header.html :: headFragment"/>
 <div id="content">
     <div>
         <div class="page_aticle section_end">
@@ -64,7 +64,7 @@
         </div>
     </div>
 </div>
-<th:block th:insert="/fragments/footer.html :: footFragment"/>
+<th:block th:insert="fragments/footer.html :: footFragment"/>
 </body>
 <script th:inline="javascript">
     let userNum = [[${userNum}]];

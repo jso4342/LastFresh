@@ -52,7 +52,7 @@
         from tbl_bills_product tbp
         left join tbl_sell_product tsp
         on tbp.SELL_PRODUCT_NUM = tsp.SELL_PRODUCT_NUM
-        left join TBL_BILLS tb
+        left join tbl_bills tb
         on tbp.BILL_ORDER_NUM = tb.BILL_ORDER_NUM
         left join tbl_user tu
         on tb.USER_NUM = tu.USER_NUM
@@ -83,7 +83,7 @@
 <!--    어제 생성된 상품 조회-->
     <select id="getOldFiles" resultType="productDTO">
         SELECT SELL_PRODUCT_NUM, SELL_PRODUCT_THUMBNAIL, SELL_PRODUCT_IMAGE, SELL_PRODUCT_IMAGE_UPLOAD_PATH, SELL_PRODUCT_IMAGE_UUID
-        FROM TBL_SELL_PRODUCT
+        FROM tbl_sell_product
         WHERE SELL_PRODUCT_IMAGE_UPLOAD_PATH = DATE_FORMAT(DATE_ADD(now(),interval - 1 DAY), '%Y/%m/%d');
     </select>
     
