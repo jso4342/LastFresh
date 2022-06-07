@@ -73,7 +73,8 @@ public class MainPageController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String sellProductThumbnail) throws IOException {
-        return FileCopyUtils.copyToByteArray(new File("C:/upload/" + sellProductThumbnail));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/C:/upload/" + sellProductThumbnail));
+        // return FileCopyUtils.copyToByteArray(new File("C:/upload/" + sellProductThumbnail));
     }
 
     @GetMapping("/mainTerm")

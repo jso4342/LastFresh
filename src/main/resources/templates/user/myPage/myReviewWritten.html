@@ -155,5 +155,15 @@
         $('#noReviews').text("작성한 후기가 없습니다.");
       }
     });
-    </script>
+
+    $(document).ready(function() {
+      /*div 높이 변화시, 전체 높이 변경*/
+      let $pageDiv = $('.page_myPage');
+
+
+      let height = $('.list_order').height() + 300;
+      $('.page_myPage').css("height", height);
+    });
+
+  </script>
 </html>

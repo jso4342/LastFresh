@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "TBL_USER")
+@Table(name = "tbl_user")
 @Getter
 @Setter
 @ToString( exclude = {"basketVO", "productVO", "ReviewVO"})

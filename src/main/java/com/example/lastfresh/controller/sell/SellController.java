@@ -194,7 +194,8 @@ public class SellController {
     @PostMapping("/uploadAjaxAction")
     @ResponseBody
     public ImageDTO uploadAjaxPost(MultipartFile[] uploadFile) throws IOException {
-        String uploadFolder = "C:/upload";
+      //  String uploadFolder = "C:/upload";
+        String uploadFolder = "/home/ubuntu/C:/upload";
 //        UUID(Universally unique identifier) : 범용 고유 식별자
 //        네트워크 상에서 각각의 개체들을 식별하기 위하여 사용되었다.
 //        중복될 가능성이 거의 없다고 인정되기 때문에 많이 사용된다.
@@ -248,6 +249,7 @@ public class SellController {
     @GetMapping("/display")
     @ResponseBody
     public byte[] getFile(String fileName) throws IOException{
-        return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
+        return FileCopyUtils.copyToByteArray(new File("/home/ubuntu/C:/upload/" + fileName));
+        //  return FileCopyUtils.copyToByteArray(new File("C:/upload/" + fileName));
     }
 }

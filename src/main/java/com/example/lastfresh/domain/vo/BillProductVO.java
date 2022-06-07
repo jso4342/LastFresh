@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 @Entity
-@Table(name = "TBL_BILLS_PRODUCT")
+@Table(name = "tbl_bills_product")
 @Getter
 @Setter
 @ToString(of = {"billProductListNum", "billProductQuantity", "billProductPrice", "billDeliveryMethod", "billCookingTime", "billStatus"})

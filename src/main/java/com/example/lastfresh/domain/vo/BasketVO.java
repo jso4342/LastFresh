@@ -9,10 +9,10 @@ import java.util.List;
 @Component
 @Data
 @Entity
-@Table(name = "TBL_BASKET")
+@Table(name = "tbl_basket")
 @Getter
 @Setter
-@ToString(of={"basketNum", "basketQuantity", "basketDeliveryMethod", "basketGoOrder"})
+@ToString(of={"basketNum", "basketQuantity", "basketDeliveryMethod", "basketGoOrder", "basketPrice"})
 @NoArgsConstructor
 public class BasketVO {
     @Id
@@ -37,10 +37,6 @@ public class BasketVO {
 
     @ManyToOne // 다대일
     @JoinColumn(name = "SELL_PRODUCT_NUM")
-/*    @JoinTable(name = "BASKET_PRODUCT", //조인테이블명
-            joinColumns = @JoinColumn(name="BASKET_SELL_PRODUCT_NUM"),  //외래키
-            inverseJoinColumns = @JoinColumn(name="SELL_PRODUCT_NUM") //반대 엔티티의 외래키
-    )*/
     private ProductVO productVO;
 
 

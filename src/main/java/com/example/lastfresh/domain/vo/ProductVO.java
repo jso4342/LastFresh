@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 @Entity
-@Table(name = "TBL_SELL_PRODUCT")
+@Table(name = "tbl_sell_product")
 @Getter
 @Setter
 @ToString( exclude = {"userVO", "basketVO"})

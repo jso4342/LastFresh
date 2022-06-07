@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "TBL_REVIEW")
+@Table(name = "tbl_review")
 @Getter
 @Setter
 @ToString(exclude ={"productVO", "userVO"})
