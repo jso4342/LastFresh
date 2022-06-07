@@ -1360,6 +1360,7 @@ script {
 }
 
 .layout-pagination-number:hover, .layout-pagination-number.__active {
+    font-weight: 900;
     background-color: #f7f7f7;
     color: #DA291C;
 }

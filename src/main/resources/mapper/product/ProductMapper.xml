@@ -124,12 +124,21 @@ or SELL_PRODUCT_DELIVERY_ADDRESS3 = #{sellProductAddress}
     </select>
 
     <select id="getPickupTotal" resultType="_int">
+<<<<<<< HEAD
        SELECT COUNT(SELL_PRODUCT_NUM) FROM tbl_sell_product WHERE SELL_PRODUCT_PICKUP = 1
     </select>
 
     <select id="getPickupList" resultType="ProductVO">
         SELECT * FROM tbl_sell_product
         WHERE SELL_PRODUCT_PICKUP =1
+=======
+       SELECT COUNT(SELL_PRODUCT_NUM) FROM TBL_SELL_PRODUCT WHERE SELL_PRODUCT_PICKUP = 0
+    </select>
+
+    <select id="getPickupList" resultType="ProductVO">
+        SELECT * FROM TBL_SELL_PRODUCT
+        WHERE SELL_PRODUCT_PICKUP =0
+>>>>>>> 09ab8f78deeab736ad0ed88e751f1b0fe9e0fa62
         <if test="type.status1 != null">
             ORDER BY SELL_PRODUCT_DISCOUNT_PRICE
         </if>

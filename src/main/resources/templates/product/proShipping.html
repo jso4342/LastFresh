@@ -92,7 +92,8 @@
                                                    th:text="*{sellProductStock}"/>
                                                 <div class="thumb">
                                                     <a class="img" th:href="@{/product/proDetail(sellProductNum=*{sellProductNum})}">
-                                                        <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+                                                        <img class="mainNewImg"
+                                                                th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
                                                     </a>
                                                     <div class="group_btn">
                                                         <button type="button" class="btn btn_cart">
@@ -115,12 +116,8 @@
                                                     </span>
                                                     <span class="desc" th:text="*{sellProductDescription}"></span>
                                                     <span class="tag">
-                                                        <span class="ico2 limit tag_type2"
-                                                              th:style="${product.sellProductPickup == '1' ? 'display:none;' : 'display:inline-block;'}">픽업</span>
                                                          <span class="ico3 limit tag_type2"
                                                                th:style="${product.sellProductShippingMethod == '0' ? 'display:none;' : 'display:inline-block;'}">배송</span>
-                                                         <span class="ico1 limit tag_type2"
-                                                               th:style="${product.sellProductDeliveryMethod == '0' ? 'display:none;' : 'display:inline-block;'}">배달</span>
                                                     <p class="pickUpStatus" type="hidden" style="display:none"
                                                        th:text="${product.sellProductPickup}"/>
                                                             <p class="deliveryStatus" type="hidden" style="display:none"
@@ -251,6 +248,7 @@
 <script th:inline="javascript">
     let pageNum = [[${criteriaProduct.pageNum}]]
     console.log(pageNum);
+    let userNumber = [[${userNumber}]];
 </script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="/front/assets/js/product/product.js"></script>

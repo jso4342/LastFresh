@@ -5,7 +5,10 @@ img.mainNewImg{
     width: 100%;
     height: 100%
 }
+.np{
 
+    margin-bottom: 245px !important;
+}
 /* ------------슬라이더 배너--------------*/
 [name="slide"] {
     display: none;
@@ -862,8 +865,10 @@ li.on{
         display: flex;
         justify-content: center !important;
         flex-wrap: wrap;
-        margin: 0 340px 0 -17px;
-        padding-left: 17px;
+        margin: 0 339px 0 -82px;
+    }
+    .np {
+         margin-bottom: 30px !important;
     }
 
     /* ------------슬라이더 배너--------------*/
@@ -1050,7 +1055,7 @@ li.on{
     }
 
     .newProduct {
-        margin-bottom: 88px;
+        margin-bottom: -279px;
     }
 
     .mainTitle {
@@ -1203,8 +1208,8 @@ li.on{
     .mainLastBox {
         text-align: left;
         float: left;
-        margin-left: -7.5%;
-        margin-right: 75px;
+        margin-left: -16.5%;
+        margin-right: 169px;
         position: relative;
     }
 
@@ -1619,7 +1624,7 @@ li.on{
     }
 
     .mainNew {
-        width: 214px;    }
+        width: 192px;    }
 
     .mainNewBox {
         margin-left: 24px;

@@ -1,6 +1,7 @@
 package com.example.lastfresh.domain.dao.user;
 
 
+import com.example.lastfresh.domain.dto.ReviewDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
 import com.example.lastfresh.mapper.user.ReviewMapper;
@@ -40,7 +41,7 @@ public class ReviewDAO {
         return reviewMapper.readReview(reviewNum);
     }
 
-    public List<ReviewVO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct){
+    public List<ReviewDTO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct){
         log.info("getReviewList...."+ sellProductNum);
         return reviewMapper.getReviewList(sellProductNum, criteriaProduct);
     }

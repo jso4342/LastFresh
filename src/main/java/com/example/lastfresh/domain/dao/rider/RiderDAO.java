@@ -17,6 +17,7 @@ public class RiderDAO {
     public List<BillProductDTO> getMyList(Long userNum){return riderBoardMapper.getBillProductMyInfo(userNum);}
 
     //접수상태 변화
+    public void upDateStatusToFour(BillProductDTO billProductDTO) {riderBoardMapper.upDateStatusToFour(billProductDTO);}
     public void upDateStatusToTwo(BillProductDTO billProductDTO) {riderBoardMapper.upDateStatusToTwo(billProductDTO);}
     public void upDateStatusToThree(BillProductDTO billProductDTO) {riderBoardMapper.upDateStatusToThree(billProductDTO);}
     public void upDateStatusToMinus(BillProductDTO billProductDTO) {riderBoardMapper.upDateStatusToMinus(billProductDTO);}

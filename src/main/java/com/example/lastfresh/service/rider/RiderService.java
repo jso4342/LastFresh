@@ -21,6 +21,7 @@ public class RiderService {
     public List<BillProductDTO> getList(){return riderDAO.getList();}
     public List<BillProductDTO> getMyList(Long userNum){return riderDAO.getMyList(userNum);}
     //접수 상태 변화
+    public void upDateStatusToFour(BillProductDTO billProductDTO) {riderDAO.upDateStatusToFour(billProductDTO);}
     public void upDateStatusToTwo(BillProductDTO billProductDTO) {riderDAO.upDateStatusToTwo(billProductDTO);}
     public void upDateStatusToThree(BillProductDTO billProductDTO) {riderDAO.upDateStatusToThree(billProductDTO);}
     public void upDateStatusToMinus(BillProductDTO billProductDTO) {riderDAO.upDateStatusToMinus(billProductDTO);}

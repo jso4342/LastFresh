@@ -1038,3 +1038,10 @@ button {
     font-size: 14px;
     letter-spacing: 0;
 }
+img.mainNewImg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}

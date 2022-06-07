@@ -34,15 +34,23 @@
         WHERE REVIEW_NUM = #{reviewNum}
     </select>
 
+<<<<<<< HEAD
     <select id="getReviewList" resultType="ReviewVO">
         <![CDATA[
         SELECT  @ROWNUM := @ROWNUM + 1 AS ROWNUM,
           T.*
         FROM  tbl_review T,(SELECT @ROWNUM := 0 ) TMP
+=======
+    <select id="getReviewList" resultType="ReviewDTO">
+        SELECT
+          T.*, U.USER_ID
+        FROM  TBL_REVIEW T
+        inner join tbl_user U
+        on U.USER_NUM = T.USER_NUM
+>>>>>>> 09ab8f78deeab736ad0ed88e751f1b0fe9e0fa62
         WHERE SELL_PRODUCT_NUM = #{sellProductNum} and REVIEW_TITLE!=''
         ORDER BY REVIEW_NUM desc
          limit #{criteriaProduct.limit},6
-        ]]>
     </select>
     <!--    <delete id="delete">-->
     <!--    </delete>-->
