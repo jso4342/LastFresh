@@ -8,14 +8,14 @@
     <link rel="stylesheet" href="/front/assets/css/user/myReviewUnwritten.css">
 </head>
 <style>
-    .myPage_type1{
-        height: 921px;
-    }
-    @media screen and (max-width: 1000px) {
-        .myPage_type1{
-            height: 0px;
-        }
-    }
+    /*.myPage_type1{*/
+    /*    height: 921px;*/
+    /*}*/
+    /*@media screen and (max-width: 1000px) {*/
+    /*    .myPage_type1{*/
+    /*        height: 0px;*/
+    /*    }*/
+    /*}*/
 
     .description{
         padding-bottom: 4px;
@@ -160,11 +160,9 @@
 
     $(document).ready(function() {
         /*div 높이 변화시, 전체 높이 변경*/
-        let $pageDiv = $('.page_myPage');
 
-
-        let height = $('.list_order').height() + 300;
-        $('.page_myPage').css("height", height);
+        let height = $('.section_review').height() + 300;
+        $('.myPage_type1').css("height", height);
     });
 
 </script>
