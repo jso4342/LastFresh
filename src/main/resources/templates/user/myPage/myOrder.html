@@ -42,14 +42,16 @@
                 <li th:object="${bill}">
                     <div class="date orderDate" th:text="*{billOrderDate}"></div>
                     <div class="order_goods"><div class="name">
-                       <!-- <a th:text="*{#lists.size(products)}"></a>-->
-                        <a class="goodsName" th:href="*{billOrderNum}" th:if="*{#lists.size(products) == 1}" th:text="|*{products[0].productVO.sellProductName}|"></a>
-                        <a class="goodsName" th:href="*{billOrderNum}" th:if="*{#lists.size(products) != 1}" th:text="|*{products[0].productVO.sellProductName} 외 *{#lists.size(products) -1}건|"></a>
-                        <!--<a class="goodsNum" th:text="|주문번호 *{billOrderNum}|"></a>-->
+
+                        <a class="goodsName" th:href="*{billOrderNum}" th:if="*{#lists.size(products) == 1}" th:text="|*{products.get(0).productVO.sellProductName}|"></a>
+                        <a class="goodsName" th:href="*{billOrderNum}" th:unless="*{#lists.size(products) == 1}" th:text="|*{products.get(0).productVO.sellProductName} 외 *{#lists.size(products) -1}건|"></a>
+
                     </div>
                         <div class="order_info">
                             <div class="thumb">
-                                <img th:src="'/user/order/display?fileName=' + *{products[0].productVO.sellProductImageUploadPath} + '/' + *{products[0].productVO.sellProductThumbnail}">
+
+                                <img th:src="'/user/order/display?fileName=' + *{products.get(0).productVO.sellProductImageUploadPath} + '/' + *{products.get(0).productVO.sellProductThumbnail}">
+
                             </div>
                             <div class="desc">
                                 <dl style="padding-top: 5px;">

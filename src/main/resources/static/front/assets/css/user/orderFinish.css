@@ -113,3 +113,9 @@ div#userMenuMOBILE {
 ul.menuMOBILE {
     top: 16px !important;
 }
+
+#logo {
+    width: 110px;
+    margin-top: 30px !important;
+    margin-left: 272px !important;
+}

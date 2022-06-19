@@ -49,7 +49,7 @@
                     <div id="sectionView" th:object="${proDetail}">
                         <div class="inner_view">
                             <div class="thumb">
-                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}">
+                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}" style="width:100%">
                             </div>
                             <input type="hidden" th:value="*{sellProductNum}">
                             <p class="goods_name">
@@ -244,7 +244,7 @@
                         <div class="goods-view-infomation-content __active" id="goods-description" th:object="${proDetail}">
                             <div id="giftNotice"></div>
                             <div class="goods_wrap">
-                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductImage}">
+                                <img th:src="'/sell/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductImage}" style="width: 100%;">
                             </div>
                         </div>
 
