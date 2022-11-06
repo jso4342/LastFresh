@@ -33,4 +33,4 @@
 - AWS 배포 
 
 # ERD
-![ERD](https://user-images.githubusercontent.com/57066693/200182696-316fd95c-a5d8-4fe6-8e37-18c4fb4e3966.png)
+![ERD](https://user-images.githubusercontent.com/57066693/200187939-4a967f14-b120-40b8-bb50-0a494da38b24.png)
