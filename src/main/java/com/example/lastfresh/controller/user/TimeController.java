@@ -17,27 +17,16 @@ public class TimeController {
     @GetMapping("/time")
     @ResponseBody
     public String getReviewDate(String reviewDate) throws ParseException {
-
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
         Date today = new Date();
-
         Date rDate = sdf.parse(reviewDate);
-
         Calendar rCalendar = Calendar.getInstance();
-
         rCalendar.setTime(rDate);
 
-        log.info("리뷰 시간 컨트롤러--------------------------" +reviewDate);
-
-        log.info("리뷰 시간 컨트롤러 알데이트 확인------------------"+ rDate);
-
         long gap = today.getTime() - rDate.getTime();
-
         int h = rCalendar.get(Calendar.HOUR_OF_DAY);
         int mm = rCalendar.get(Calendar.MINUTE);
         int s = rCalendar.get(Calendar.SECOND);
-
         int y = rCalendar.get(Calendar.YEAR);
         int m = rCalendar.get(Calendar.MONTH) + 1;
         int d = rCalendar.get(Calendar.DATE);
