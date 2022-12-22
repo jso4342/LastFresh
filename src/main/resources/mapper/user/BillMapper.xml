@@ -30,12 +30,4 @@
         SET SELL_PRODUCT_STOCK = SELL_PRODUCT_STOCK + #{quantity}
         WHERE SELL_PRODUCT_NUM = #{sellProductNum}
     </update>
-<!--    <insert id="insert">-->
-<!--    </insert>-->
-
-<!--    <delete id="delete">-->
-<!--    </delete>-->
-
-<!--    <select id="select" resultType="">-->
-<!--    </select>-->
 </mapper>
