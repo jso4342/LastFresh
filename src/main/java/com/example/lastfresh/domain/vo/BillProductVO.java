@@ -1,10 +1,12 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @Entity
 @Table(name = "tbl_bills_product")
@@ -30,15 +32,15 @@ public class BillProductVO {
     /*(0: 대기중  1:준비중(수락 시) 2:배송중 3:배송완료 -1:취소) */
     private String billStatus;
 
-    @ManyToOne // 다대일
+    @ManyToOne
     @JoinColumn(name = "SELL_PRODUCT_NUM")
     private ProductVO productVO;
 
-    @ManyToOne // 다대일
+    @ManyToOne
     @JoinColumn(name = "BILL_ORDER_NUM")
     private BillVO billVO;
 
-    @ManyToOne // 다대일
+    @ManyToOne
     @JoinColumn(name = "USER_NUM")
     private UserVO userVO;
 

@@ -1,6 +1,10 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,7 +33,7 @@ public class BillVO {
     @Column(name = "BILL_ORDER_DATE")
     private Date billOrderDate;
 
-    @ManyToOne // 다대일
+    @ManyToOne
     @JoinColumn(name = "USER_NUM")
     private UserVO userVO;
 

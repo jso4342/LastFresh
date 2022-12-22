@@ -1,10 +1,14 @@
 package com.example.lastfresh.domain.vo;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Component
 @Data
@@ -31,14 +35,13 @@ public class BasketVO {
     @Column(name = "BASKET_PRICE")
     private Long basketPrice;
 
-    @ManyToOne // 다대일
+    @ManyToOne
     @JoinColumn(name = "USER_NUM")
     private UserVO userVO;
 
-    @ManyToOne // 다대일
+    @ManyToOne 
     @JoinColumn(name = "SELL_PRODUCT_NUM")
     private ProductVO productVO;
-
 
     @Builder
     public BasketVO(Long basketNum, Long basketQuantity, String basketDeliveryMethod, Long basketGoOrder, UserVO userVO, ProductVO productVO) {
@@ -50,5 +53,4 @@ public class BasketVO {
         this.productVO = productVO;
     }
 
-   // public BasketVO(){;}
 }
