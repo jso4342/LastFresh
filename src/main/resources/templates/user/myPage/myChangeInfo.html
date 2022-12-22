@@ -47,7 +47,6 @@
         </div>
         <div class="type_form member_join member_mod">
             <form id="form" name="frmMember" method="post" action="/user/myPage/modify" th:object="${user}">
-              <!--  <input type="hidden" th:field="${userNum}">-->
                 <input type="hidden" name="userNum" th:value="*{userNum}"/>
                 <input type="hidden" name="userKakao" th:value="*{userKakao}"/>
                 <input type="hidden" name="userStatus" th:value="*{userStatus}"/>
@@ -59,14 +58,12 @@
                         </th>
                         <td>
                             <input type="text" name="userId" th:value="*{userId}" class="inp_read" id="id" readonly/>
-                         <!--   <input type="text" value="rhdehdbs" readonly="" class="inp_read">-->
                         </td>
                     </tr>
                     <tr>
                         <th>현재 비밀번호</th>
                         <td>
                             <input type="password" name="originalPassword" id="originalPassword" th:value="*{userPw}" readonly>
-                          <!--  <input type="hidden" name="originalPasswordCheck" th:value="*{userPw}">-->
                             <p class="txt_guide square" style="display: none;">
                                 <span class="txt txt_case4 bad">현재 비밀번호를 확인해주세요</span>
                             </p>
@@ -106,9 +103,7 @@
                         </th>
                         <td>
                             <input type="text" name="userEmail" id="email" th:value="*{userEmail}" required="" option="regEmail" label="이메일" onchange="changeEmail()" placeholder="예: marketkurly@kurly.com">
-                           <!-- <button class="btn default disabled btn_check2" type="button">중복확인</button>-->
                               <button class="btn default disabled btn_check2" type="button" onclick="verifyEmail()">중복확인</button>
-                            <!--        <a href="#" class="btn default" onclick="verifyEmail()">중복확인</a>-->
                             <span id="resultEmail" style="font-size:0.7em"></span>
                             <p class="txt_guide square emailOk" style="display:none;">
                                 <span class="txt txt_case1 ok">사용 가능한 이메일 주소입니다</span>
@@ -144,7 +139,6 @@
                         </th>
                         <td>
                             <div id="codeNum2" class="code_num">
-
                                 <input type="text" name="userAddressPostNum" id="zipcode" th:field="*{userAddressPostNum}" label="우편번호" class="inp_confirm")>
                                 <button id="btn_find_adrs" class="btn default disabled" type="button" onclick="find()">우편번호 검색</button>
                             </div>
@@ -156,55 +150,11 @@
                         </th>
                         <td>
                             <div id="codeNum3" class="code_num">
-
                                 <input type="text" name="userAddress" id="address" th:field="*{userAddress}" label="주소" placeholder="주소를 입력해주세요" style="margin-top: -15px; margin-bottom: 5px;">
                                 <input type="text" name="userAddressDetail" id="addressDetail" th:field="*{userAddressDetail}" label="userStatus" placeholder="상세 주소를 입력해주세요">
                             </div>
                         </td>
                     </tr>
-
-
-
-
-
-
-                    <!--<tr class="select_sex">
-                        <th>성별</th>
-                        <td>
-                            <label class="">
-                                <input type="radio" name="sex" value="m">
-                                <span class="ico"></span>
-                                남자
-                            </label>
-                            <label class="checked">
-                                <input type="radio" name="sex" value="w" checked="checked">
-                                <span class="ico"></span>
-                                여자
-                            </label>
-                            <label class="">
-                                <input type="radio" name="sex" value="n">
-                                <span class="ico"></span>
-                                선택안함
-                            </label>
-                        </td>
-                    </tr>-->
-                   <!-- <tr class="birth field_birth">
-                        <th>생년월일</th>
-                        <td>
-                            <div class="birth_day">
-                                <input type="text" name="birth_year" id="birth_year" pattern="[0-9]*" value="1999" label="생년월일" size="4" maxlength="4" placeholder="YYYY">
-                                <span class="bar"></span>
-                                <input type="text" name="birth[]" id="birth_month" pattern="[0-9]*" value="05" label="생년월일" size="2" maxlength="2" placeholder="MM">
-                                <span class="bar"></span>
-                                <input type="text" name="birth[]" id="birth_day" pattern="[0-9]*" value="31" label="생년월일" size="2" maxlength="2" placeholder="DD">
-                            </div>
-                            <p class="txt_guide">
-                                <span class="txt bad"></span>
-                            </p>
-                        </td>
-                    </tr>-->
-
-
                     </tbody>
                 </table>
                 <hr style="margin-top: 20px;">
@@ -254,7 +204,6 @@
             alert("탈퇴가 완료되었습니다.");
             location.href = '/user/myPage/exit?userNum=' + userNum;
         }
-
     }
 
     function pw(){
@@ -280,27 +229,11 @@
         phoneCheck = false;
     }
 
-    //비밀번호 유효성 검사
-
-    //8자리 이상, 대문자/소문자/숫자/특수문자 모두 포함되어 있는 지 검사
-    //(?=.*?문자) : 각각의 모든 대상을 '문자'로 검사한다.
     function showRePwText(){
         $(".rePwText").css({
             "display":"block"
         });
-
     }
-/*
-
-    document.querySelector("input[name='newPassword']").addEventListener("blur", function(){
-        if(pwCheck.test(inko.ko2en(form.newPassword.value))){
-            passwordCheck = true;
-            console.log(passwordCheck);
-        }
-    });
-*/
-
-
 
     // 주소 찾기(Daum API)
     var width = 500; //팝업의 너비
@@ -332,8 +265,6 @@
 
     // check verification
     function sendSubmit(){
-        //let form = $(document.frmMember);
-
         if((document.getElementById("newPassword").value != null) && (passwordCheck != true)){ // password input exists
             console.log("존재한다");
             console.log(passwordCheck);
@@ -349,12 +280,6 @@
                 alert("새 비밀번호가 일치하지 않습니다.");
                 return;
             }
-            /*if(passwordCheck == true && (document.getElementById("confirmPassword").value == document.getElementById("newPassword").value)){
-                console.log("들어와야하는데..?");
-                passwordCheck = true;
-            }else{
-                passwordCheck = false;
-            }*/
             if(pwCheck.test(inko.ko2en(form.newPassword.value))){
                 passwordCheck = true;
                 console.log(passwordCheck);
@@ -362,36 +287,28 @@
                 passwordCheck = false;
             }
         }
-
         if(document.getElementById("confirmPassword").value == null){ // no password input
             $('input[name=userPw]').attr('value',userPw);
             passwordCheck = true;
         }
-
         if( passwordCheck == false){
             alert("올바르지 않은 비밀번호 형식입니다.");
             return;
         }
-
         if(emailCheck == false) {
-                alert("이메일 중복확인 오류");
-                return;
-            }
-
+            alert("이메일 중복확인 오류");
+            return;
+        }
         if(phoneCheck == false) {
             alert("휴대폰 인증 오류");
             return;
         }
-
-
         alert("회원정보가 정상적으로 수정되었습니다.");
         frmMember.submit();
-
     }
 
     /*핸드폰 번호 하이푼*/
     $('input[id=auth_code]').keydown(function(event) {
-
         let key = event.charCode || event.keyCode || 0;
         $text = $(this);
         $text *= 1;
@@ -403,7 +320,6 @@
                 $text.val($text.val() + '-');
             }
         }
-
         return (key == 8 || key == 9 || key == 46 || (key >= 48 && key <= 57) || (key >= 96 && key <= 105));
     });
 
@@ -418,7 +334,6 @@
     //이메일 중복검사
     function checkEmail(userEmail) {
         emailCheck = false;
-
         $.ajax({
             url: "/user/manage/EmailCheck/" + userEmail,
             type: "get",
@@ -449,17 +364,12 @@
     }
 
 
-
-
     //휴대폰인증
     $('#btn_cert_confirm').click(function(){
         let userPhone = $('#auth_code').val();
         Swal.fire('인증번호 발송 완료!')
         phoneCheck = false;
-
         showPhoneCode();
-
-
 
         $.ajax({
             type: "GET",
@@ -474,16 +384,12 @@
                             '인증성공!',
                             '휴대폰 인증이 정상적으로 완료되었습니다.',
                             'success',
-
                         )
                         check4=false;
-
                         $("input[name='userPhone']").attr("readonly", true); $(".phoneOk").css({
                             "display":"block"
                         });
                         $("input[name='userPhone']").attr("readonly", true);
-
-                        //document.location.href="/user/manage/userJoin";
                         phoneCheck = true;
                     }else{
                         Swal.fire({
@@ -495,34 +401,26 @@
                             "display":"block"
                         });
                     }
-
                 })
-
             }
         })
     });
 
-        function showPhoneCode(){
-            $("button[name='btn_code_confirm']").css({
-                "display":"block",
-                "margin-top":"9px"
-            })
-
-            $("button[name='btn_cert_confirm']").css({
-                "display":"none"
-            })
-
-
-            $(".inp_confirm_code").css({
-                "display":"block",
-                "margin-top":"9px",
-                "margin-right": "8px",
-                "float": "left"
-            });
-        }
-
-
-
+    function showPhoneCode(){
+        $("button[name='btn_code_confirm']").css({
+            "display":"block",
+            "margin-top":"9px"
+        })
+        $("button[name='btn_cert_confirm']").css({
+            "display":"none"
+        })
+        $(".inp_confirm_code").css({
+            "display":"block",
+            "margin-top":"9px",
+            "margin-right": "8px",
+            "float": "left"
+        });
+    }
 
 </script>
 </html>

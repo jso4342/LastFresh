@@ -11,9 +11,7 @@
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
 </head>
 <style>
-
     div#wrapper {
-       /* height: 1600px; */
         overflow: scroll;
     }
 
@@ -88,94 +86,13 @@
 
                     <!-- 픽업 -->
                     <div class="pickupList"></div>
-                   <!-- <hr class="hrSlicer">
-                    <div>
-                        <div style="margin-bottom:60px;">
-                            <img class="deliveryIcon" src = "https://cdn.discordapp.com/attachments/969471931575320587/970768590053720075/shop-2.png">
-                            <span class="deliveryTitle">픽업 상품</span>
-                            <br></div>-->
-                        <!-- 상품 목록 -->
-                        <!--<div class="pickupList"></div>-->
-                      <!--  <th:block th:each="pickUp:${pickUpList}">
-                            <div class="prod" th:object="${pickUp}" style="margin: 40px 0px;">
-                                <input th:checked="*{basketGoOrder == 1}" style="float:left" type="checkbox" name="product" class="chekbox" th:value="*{sellProductDiscountPrice}"/>
-                                <a href="#"><img class="productPic" th:src="'/user/order/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}"></a>
-                                <span class="productName" th:text="*{sellProductName}"></span>
-                                &lt;!&ndash; 수량 / 가격 / 삭제&ndash;&gt;
-                                <div class="delBtn"><button type="button" class="btn_delete"></button></div>
-                                <div class="price"><input type="text" class="priceNum" th:value="*{sellProductDiscountPrice}" name="sum"  style="width:100px" readonly><span class="won2">원</span></div>
-                                &lt;!&ndash; 수량 완료!!!!!!!! &ndash;&gt;
-                                <div class="stamper count">
-                                    <input type=hidden name="sell_price" value="20000">
-                                    <button type="button" class="btn minus off" data-opt="decrease" th:value="*{sellProductDiscountPrice}">감소</button>
-                                    <input type="text" name="amount" class="num amount2" th:value="*{basketQuantity}">
-                                    <button type="button" class="btn plus" data-opt="increase" th:value="*{sellProductDiscountPrice}">추가</button>
-                                </div>
-                            </div>
-                            <hr class="productSlice ">
-                        </th:block>
-
-                    </div>
-                    <br>-->
 
                     <!-- 배달 -->
                     <div class="deliveryList"></div>
-                   <!-- <hr style="border-top: solid 1px black; margin: 1em 0 1em 0;" class="mobileSlicer">
-                    <div>
-                        <div style="margin-bottom:60px;">
-                            <img class="deliveryIcon" src = "https://cdn.discordapp.com/attachments/932592448335671310/971193990831570984/rider-11.png">
-                            <span class="deliveryTitle">배달 상품</span>
-                            <br></div>
-                        &lt;!&ndash; 상품 목록 &ndash;&gt;
-                        <th:block th:each="delivery:${deliveryList}">
-                            <div class="prod" th:object="${delivery}" style="margin: 40px 0px;">
-                                <input th:checked="*{basketGoOrder == 1}" style="float:left" type="checkbox" name="product" class="chekbox" th:value="*{sellProductDiscountPrice}"/>
-                                <a href="#"><img class="productPic" th:src="'/user/order/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}"></a>
-                                <span class="productName" th:text="*{sellProductName}"></span>
-                                &lt;!&ndash; 수량 / 가격 / 삭제&ndash;&gt;
-                                <div class="delBtn"><button type="button" class="btn_delete"></button></div>
-                                <div class="price"><input type="text" class="priceNum" th:value="*{sellProductDiscountPrice}" name="sum"  style="width:100px" readonly><span class="won2">원</span></div>
-                                &lt;!&ndash; 수량 완료!!!!!!!! &ndash;&gt;
-                                <div class="stamper count">
-                                    <input type=hidden name="sell_price" value="20000">
-                                    <button type="button" class="btn minus off" data-opt="decrease" th:value="*{sellProductDiscountPrice}">감소</button>
-                                    <input type="text" name="amount" class="num amount2" th:value="*{basketQuantity}">
-                                    <button type="button" class="btn plus" data-opt="increase" th:value="*{sellProductDiscountPrice}">추가</button>
-                                </div>
-                            </div>
-                            <hr class="productSlice ">
-                        </th:block>
-                    </div>
-                    <br>-->
 
                     <!-- 배송 -->
                     <div class="shippingList"></div>
                     <hr style="border-top: solid 1px black; margin: 1em 0 1em 0;" class="mobileSlicer">
-                   <!-- <div>
-                        <div style="margin-bottom:60px;">
-                            <img class="deliveryIcon" src = "https://cdn.discordapp.com/attachments/932592448335671310/971193912834269264/ship-2-2.png">
-                            <span class="deliveryTitle">배송 상품</span>
-                            <br></div>
-                        &lt;!&ndash; 상품 목록 &ndash;&gt;
-                        <th:block th:each="shipping:${shippingList}">
-                            <div class="prod" th:object="${shipping}" style="margin: 40px 0px;">
-                                <input th:checked="*{basketGoOrder == 1}" style="float:left" type="checkbox" name="product" class="chekbox" th:value="*{sellProductDiscountPrice}"/>
-                                <a href="#"><img class="productPic" th:src="'/user/order/display?fileName=' + *{sellProductImageUploadPath} + '/' + *{sellProductThumbnail}"></a>
-                                <span class="productName" th:text="*{sellProductName}"></span>
-                                &lt;!&ndash; 수량 / 가격 / 삭제&ndash;&gt;
-                                <div class="delBtn"><button type="button" class="btn_delete"></button></div>
-                                <div class="price"><input type="text" class="priceNum" th:value="*{sellProductDiscountPrice}" name="sum"  style="width:100px" readonly><span class="won2">원</span></div>
-                                &lt;!&ndash; 수량 완료!!!!!!!! &ndash;&gt;
-                                <div class="stamper count">
-                                    <input type=hidden name="sell_price" value="20000">
-                                    <button type="button" class="btn minus off" data-opt="decrease" th:value="*{sellProductDiscountPrice}">감소</button>
-                                    <input type="text" name="amount" class="num amount2" th:value="*{basketQuantity}">
-                                    <button type="button" class="btn plus" data-opt="increase" th:value="*{sellProductDiscountPrice}">추가</button>
-                                </div>
-                            </div>
-                            <hr class="productSlice ">
-                        </th:block>
-                    </div>-->
 
                 </div>
                 <!-- 오른쪽 | 금액 -->
@@ -201,7 +118,6 @@
                                     </dd>
                                 </dl>
                             </div>
-                           <!-- <div class="btn_submit">-->
                                 <div>
                                 <a href="javascript:goOrder();">
                                 <button class="btn2 disabled">주문하기</button></a></div>
@@ -220,7 +136,6 @@
     </div>
 
 </div>
-
 <th:block th:insert="fragments/footer.html :: footFragment"/>
 
 </body>
@@ -229,8 +144,6 @@
 <script th:inline="javascript">
 
     let orderService = (function(){
-
-
 
         //장바구니 목록 pickUp
         function getPickUpList(param, callback, error) {
@@ -278,8 +191,6 @@
             $.ajax({
                 type: "PATCH",
                 url: "/user/cart/orderCart/add/" + basketNum,
-               // data: JSON.stringify(basketNum),
-               // contentType: "application/json; charset=utf-8",
                 success: function (result) {
                     if (callback) {callback(result);}
                 },
@@ -401,12 +312,10 @@
     };
 
     function showPickUpList(){
-       // console.log("enter showPicUPList");
         orderService.getPickUpList({
             userNum : userNum
         }, function(list){
             let str = "";
-      //      console.log("enter");
             if(list == null || list.length == 0){
                 pickupList.html("");
                 return;
@@ -451,18 +360,14 @@
 
            if($("input:checkbox[name=product]:checked").length == document.getElementsByName('product').length){$("#allCheck").prop('checked', true);
            }else{ $("#allCheck").prop('checked', false);}
-
         })
     }
 
-
     function showDeliveryList(){
-       // console.log("enter deliveryList");
         orderService.getDeliveryList({
             userNum : userNum
         }, function(list){
             let str = "";
-       //     console.log("enter");
             if(list == null || list.length == 0){
                 deliveryList.html("");
                 return;
@@ -512,12 +417,10 @@
 
 
     function showShippingList(){
-        // console.log("enter deliveryList");
         orderService.getShippingList({
             userNum : userNum
         }, function(list){
             let str = "";
-         //   console.log("enter");
             if(list == null || list.length == 0){
                 shippingList.html("");
                 return;
@@ -619,8 +522,6 @@
         })
     });
 
-
-
     //subtract one item
     $(".pickupList").on("click", ".minus", function(e){
         e.preventDefault();
@@ -652,9 +553,6 @@
         let basketNum = $(this).attr('id');
         orderService.check(basketNum, function(result){
             showPickUpList();
-
-           // $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-           // $('#totalProduct').text($("input:checkbox[name=product]").length);
         })
     });
 
@@ -663,8 +561,6 @@
         let basketNum = $(this).attr('id');
         orderService.check(basketNum, function(result){
             showDeliveryList();
-         //   $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-          //  $('#totalProduct').text($("input:checkbox[name=product]").length);
         })
     });
 
@@ -673,8 +569,6 @@
         let basketNum = $(this).attr('id');
         orderService.check(basketNum, function(result){
             showShippingList();
-         //   $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-         //   $('#totalProduct').text($("input:checkbox[name=product]").length);
         })
     });
 
@@ -691,17 +585,13 @@
                     checkbox.checked = false;
                     orderService.unCheckAll(userNum, function(result){});
                     $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-               //     $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-                //    $('#totalProduct').text($("input:checkbox[name=product]").length);
                     doTotal();
                 })
-            } else { // not check -> check
+            } else {
                 checkboxes.forEach((checkbox) => {
                     checkbox.checked = true;
                     orderService.checkAll(userNum, function(result){});
                     $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-             //       $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-              //      $('#totalProduct').text($("input:checkbox[name=product]").length);
                     doTotal();
                 })
             }
@@ -709,8 +599,6 @@
 
         $("#deleteAll").on("click", function(e) {
             let userNum = $(this).attr('value');
-         //   alert(userNum);
-
             if (!confirm("정말로 모든 제품을 삭제하시겠습니까?")) {
                 return ;
             } else {
@@ -718,83 +606,25 @@
                 orderService.removeAll(userNum, function(result){});
                 location.href = '/user/order/orderCart?userNum=' + userNum;
             }
-
-          //  doTotal();
         });
-
-       // $("#totalProduct").text(orderService.);
-
-
 
         // 체크박스, 콤마, 더하기
             orderService.count(userNum, function(number) {
                 console.log("yeah");
                 let str = "";
                 if (number != 0) {
-                  //  console.log("here : " + number);
                     if( $("input:checkbox[name=product]:checked").length == number){
-                    document.getElementById('allCheck').checked === true;
-                     //   $('#totalProduct').text(number);
-
+                        document.getElementById('allCheck').checked === true;
                     };
                     return;
                 } else {
                     str += "<p class='noitems'>장바구니에 담긴 상품이 없습니다</p>";
                     $(".deliveryList").html(str);
-                   // console.log(str);
                 }
             })
 
         doTotal();
 
-        /*div 높이 변화시, 전체 높이 변경*/
-       // let $pageDiv = $('#wrapper');
-
-
-       /*     let height = $('#wrapper').height() + 200;
-            $('#wrapper').css("height", height);
-        ;
-
-        $pageDiv.change(function () {
-            let height = $('#wrapper').height() + 200;
-            $('#wrapper').css("height", height);
-        });*/
-      //  $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-        // $('#totalProduct').text($("input:checkbox[name=product]").length);
-
     });
-
-
-
-
-
-   /* $("#allCheck").on("onchange", function(e){
-        e.preventDefault();
-        let userNum = $(this).attr('value');
-        const checkboxes
-            = document.getElementsByName('product');
-
-        if(document.getElementById('allCheck').checked === true){
-            alert("not checked");
-        }else{
-            alert("checked");
-        }
-
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked;
-            $('#howManyChecks').text($("input:checkbox[name=product]:checked").length);
-            doTotal();
-        })
-
-
-    });*/
-
-
-
-
-    // check = go order
-    // total price
-    // sum price
-
 </script>
 </html>

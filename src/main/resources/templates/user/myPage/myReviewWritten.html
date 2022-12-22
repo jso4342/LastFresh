@@ -8,14 +8,6 @@
     <link rel="stylesheet" href="/front/assets/css/fragments.css">
   </head>
   <style>
-    /*.myPage_type1{*/
-    /*  height: 981px;*/
-    /*}*/
-    /*@media screen and (max-width: 1000px) {*/
-    /*  .myPage_type1{*/
-    /*    height: 0px;*/
-    /*  }*/
-    /*}*/
     .description{
       font-size: 12px;
       line-height: 18px;
@@ -135,17 +127,9 @@
 
     // 날짜 처리
     $('.date').each(function () {
-      //   console.log("ff : " + $(this).text());
       var dataOrder = $(this).text();
       var dateSplit = dataOrder.split(' ');
-
-      // console.log(dateSplit[0]);
-
-      //console.log(dateSplit[0]);
-      //var timeSplit = dateSplit[0].split('-');
       var dateInfo = dateSplit[0] + " 작성";
-      // console.log(dateInfo);
-
       $(this).text(dateInfo);
     });
 
@@ -157,8 +141,6 @@
     });
 
     $(document).ready(function() {
-      /*div 높이 변화시, 전체 높이 변경*/
-
       let height = $('.section_review').height() + 300;
       $('.myPage_type1').css("height", height);
     });

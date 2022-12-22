@@ -253,54 +253,14 @@
     const $pay_method = $('.payment_method_select');
 
     var check = false;
-
-   /* $pay_method_button.on('click', function(){
-        if(check == false){
-            $pay_method_list.html(text);
-            check = true;
-        }else{
-            $pay_method_list.html("");
-            check = false;
-        }
-    });
-*/
-
     var pay_text = "";
-
-   /* function methodChange(element) {
-        console.log("클릭! " + $("input[name='selector']:checked").val());
-
-        console.log("클릭2! " + element);
-        console.log("클릭3! " + element.value);
-        if ($("input[name='selector']:checked").val() == "신용카드") {
-            pay_text = 'card';
-        }
-        if ($("input[name='selector']:checked").val() == "계좌") {
-            pay_text = 'bank';
-        }
-        if ($("input[name='selector']:checked").val() == "휴대폰") {
-            pay_text = 'phone';
-        }
-
-        console.log("pay_text : " + pay_text);
-        check = false;
-    }*/
-
-
-
-
     let frmOrder = $("form#form");
 
-
-    /////////////////////////////////////////////
     // 결제 api
     function payment() {
-
         const card = document.getElementById('card');
         const bank = document.getElementById('bank');
         const phone = document.getElementById('phone');
-        /*const product_num = ;*/
-//        const product_name = document.getElementsByClassName('inner_name').item(0)
         if (document.getElementsByClassName('inner_name').length - 1 == 0) {
             var product_name = document.getElementsByClassName('inner_name').textContent;
         }else{
@@ -313,8 +273,6 @@
         const orderer_address = $("input[name='userAddress']").val() + " " + $("input[name='userAddressDetail']").val();
         const orderer_zipcode = $("input[name='userAddressPostNum']").val();
 
-
-
         if(card.checked) {
             pay_text = 'card';
         } else if (bank.checked){
@@ -326,20 +284,14 @@
             return ;
         }
 
-
-        var IMP = window.IMP; // 생략가능
+        var IMP = window.IMP;
         IMP.init('imp08993582');
-        // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-        // i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
         IMP.request_pay({
-
-
-
-            pg: 'inicis', // version 1.1.0부터 지원.
+            pg: 'inicis',
             pay_method: pay_text,
             merchant_uid: 'merchant_' + new Date().getTime(),
             name: product_name,
-            amount: 100,        //amount 가격
+            amount: 100,
             buyer_email: orderer_email,
             buyer_name: orderer_name,
             buyer_tel: orderer_phone,
@@ -350,7 +302,6 @@
             console.log(rsp);
             if (rsp.success) {
                 var msg = orderer_name + "님의 결제가 완료되었습니다.\n";
-                   // "결제 금액 : " + amount + "원";
 
                 frmOrder.submit();
             } else {

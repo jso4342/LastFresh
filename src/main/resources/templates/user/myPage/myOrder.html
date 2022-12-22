@@ -41,17 +41,14 @@
             <th:block th:each="bill:${bills}">
                 <li th:object="${bill}">
                     <div class="date orderDate" th:text="*{billOrderDate}"></div>
-                    <div class="order_goods"><div class="name">
-
-                        <a class="goodsName" th:href="*{billOrderNum}" th:if="*{#lists.size(products) == 1}" th:text="|*{products.get(0).productVO.sellProductName}|"></a>
-                        <a class="goodsName" th:href="*{billOrderNum}" th:unless="*{#lists.size(products) == 1}" th:text="|*{products.get(0).productVO.sellProductName} 외 *{#lists.size(products) -1}건|"></a>
-
-                    </div>
+                    <div class="order_goods">
+                        <div class="name">
+                            <a class="goodsName" th:href="*{billOrderNum}" th:if="*{#lists.size(products) == 1}" th:text="|*{products.get(0).productVO.sellProductName}|"></a>
+                            <a class="goodsName" th:href="*{billOrderNum}" th:unless="*{#lists.size(products) == 1}" th:text="|*{products.get(0).productVO.sellProductName} 외 *{#lists.size(products) -1}건|"></a>
+                        </div>
                         <div class="order_info">
                             <div class="thumb">
-
                                 <img th:src="'/user/order/display?fileName=' + *{products.get(0).productVO.sellProductImageUploadPath} + '/' + *{products.get(0).productVO.sellProductThumbnail}">
-
                             </div>
                             <div class="desc">
                                 <dl style="padding-top: 5px;">
@@ -62,33 +59,19 @@
                                     <dt>결제금액</dt>
                                     <dd th:text="|*{#numbers.formatInteger(billTotalPrice, 0, 'COMMA')}원|"></dd>
                                 </dl>
-                             <!--   <dl>
-                                    <dt>상품명</dt>
-                                    <dd>[우주] 프리미엄 손질 생새우살 200g (냉동) 외 4건</dd>
-                                </dl>-->
-                              <!--  <dl>
-                                    <dt>결제일시</dt>
-                                    <dd class="orderDate" th:text="*{billOrderDate}"></dd>
-                                </dl>-->
-
                                  <dl class="orderBill">
                                      <dt>주문상태</dt>
                                      <dd class="status"></dd>
                                      <th:block th:each="product:*{products}">
                                          <span th:object="${product}">
                                              <span class="orderBillStatus" style="font-size:0px;" th:text="*{billStatus}"></span>
-                                            <!-- <p th:text="*{billStatus}"></p>-->
                                          </span>
                                      </th:block>
-                                     <!--<dd class="status end">배송완료</dd>-->
                                  </dl>
                             </div>
                         </div>
                     </div>
                 </li>
-                <!--            <li class="no_data">-->
-                <!--        주문내역이 없습니다.-->
-                <!-- </li>-->
             </th:block>
         </ul>
         <div class="layout-pagination">
@@ -111,7 +94,6 @@
 <script th:inline="javascript">
     let userNum = [[${userNum}]];
 
-
     function goReview(){
         location.href = '/user/myPage/myReviewUnwritten?userNum=' + userNum;
     }
@@ -129,25 +111,14 @@
         location.href = "/user/myPage/myOrderDetail?billOrderNum=" + $(this).attr("href") + "&userNum=" + userNum;
     });
 
-    let dateOrder;
-
     // 날짜 처리
     $('.orderDate').each(function () {
-        //   console.log("ff : " + $(this).text());
         var dataOrder = $(this).text();
         var dateSplit = dataOrder.split(' ');
         dateSplit[0].replace("-", ".");
 
-        //console.log(dateSplit[0]);
         var timeSplit = dateSplit[1].split(':');
-        //console.log(timeSplit[0]);
-        //console.log(timeSplit[1]);
-        /* for ( var i in dateSplit ) {
-             document.write( '<p>' + dateSplit[i] + '</p>' );
-         }*/
         var dateInfo = dateSplit[0] + " (" + timeSplit[0] + "시 " + timeSplit[1] +"분)";
-        //console.log(dateInfo);
-
         $(this).text(dateInfo);
     });
 
@@ -174,8 +145,6 @@
         var countThree = 0; // finished
         var countMinus = 0; //cancel
         var len = $(this).children().children().length;
-        //   console.log($(this).children().children()[0]).text();
-        //  for (var i = 0; i < $(this).children().children().length; i++){
         for(var i = 0; i < $(this).children().children().text().length; i++){
             if ($(this).children().children().text().charAt(i) == 0){
                 countZero++;
@@ -189,13 +158,6 @@
                 countMinus++;
             }
         }
-
-        /*   console.log("my len : " + len);
-       console.log("my countZero : " + countZero);
-       console.log("my countOne : " + countOne);
-       console.log("my countTwo : " + countTwo);
-       console.log("my countThree : " + countThree);
-       console.log("my countMinus : " + countMinus);*/
         if (len == countMinus){
             $(this).children('.status').text("주문 취소");
         } else if (len == countZero){
@@ -207,22 +169,14 @@
         }else{
             $(this).children('.status').text("배송 대기중");
         }
-
-        //  console.log("gg : " + $(this).children().children().text());
-        // }
     });
-
 
     $(document).ready(function() {
         /*div 높이 변화시, 전체 높이 변경*/
         let $pageDiv = $('.page_myPage');
-
-
             let height = $('.list_order').height() + 300;
             $('.page_myPage').css("height", height);
         });
-
-
 
 </script>
 </html>
