@@ -30,29 +30,23 @@ public class ReviewService {
     public List<ReviewDTO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct) {
         return reviewDAO.getReviewList(sellProductNum, criteriaProduct);
     }
+
     //리뷰 전체 조회(getTotal)
     public int getTotal(Long sellProductNum) {
         return reviewDAO.getTotal(sellProductNum);
     }
 
-
     public void insert(Long userNum, Long productNum){
         reviewDAO.insert(userNum, productNum);
     }
 
-    public List<ReviewVO> getReview(Long userNum){
-        //return reviewDAO.getUnWritten(userNum);
-        return userRepository.getById(userNum).getReviews();
-    }
+    public List<ReviewVO> getReview(Long userNum){ return userRepository.getById(userNum).getReviews(); }
 
     public ProductVO getProduct(Long reviewNum){
         return reviewRepository.getById(reviewNum).getProductVO();
     }
 
-    public ReviewVO getOneReview(Long reviewNum){
-        //return reviewDAO.getUnWritten(userNum);
-        return reviewRepository.getById(reviewNum);
-    }
+    public ReviewVO getOneReview(Long reviewNum){ return reviewRepository.getById(reviewNum); }
 
     public void update(ReviewVO reviewVO){
         reviewDAO.update(reviewVO);
