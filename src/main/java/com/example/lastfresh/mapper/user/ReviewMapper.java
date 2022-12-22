@@ -4,9 +4,6 @@ import com.example.lastfresh.domain.dto.ReviewDTO;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 import java.util.List;
 

@@ -17,7 +17,6 @@ import java.util.List;
 public class ReviewDAO {
     private final ReviewMapper reviewMapper;
 
-
     public void insert(Long userNum, Long productNum) { reviewMapper.insert(userNum, productNum); }
 
     public void update(ReviewVO reviewVO){reviewMapper.update(reviewVO);}

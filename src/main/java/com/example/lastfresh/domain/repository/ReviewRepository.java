@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface ReviewRepository extends JpaRepository<ReviewVO, Long> {
     public List<ReviewVO> findAll();
-  //  public List<StudentEntity> findAllByOrderByIdAsc();
 }

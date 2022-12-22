@@ -5,7 +5,6 @@ import com.example.lastfresh.domain.repository.UserRepository;
 import com.example.lastfresh.domain.vo.CriteriaProduct;
 import com.example.lastfresh.domain.vo.ReviewVO;
 import com.example.lastfresh.domain.vo.UserVO;
-import com.example.lastfresh.service.product.ProductService;
 import com.example.lastfresh.service.user.MyPageService;
 import com.example.lastfresh.service.user.ReviewService;
 import lombok.RequiredArgsConstructor;

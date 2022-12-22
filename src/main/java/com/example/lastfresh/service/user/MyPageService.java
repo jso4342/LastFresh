@@ -2,11 +2,9 @@ package com.example.lastfresh.service.user;
 
 import com.example.lastfresh.domain.dao.user.BasketDAO;
 import com.example.lastfresh.domain.dao.user.BillDAO;
-import com.example.lastfresh.domain.dao.user.UserDAO;
 import com.example.lastfresh.domain.repository.BillProductRepository;
 import com.example.lastfresh.domain.repository.BillRepository;
 import com.example.lastfresh.domain.repository.UserRepository;
-import com.example.lastfresh.domain.vo.BillProductVO;
 import com.example.lastfresh.domain.vo.BillVO;
 import com.example.lastfresh.domain.vo.UserVO;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +23,6 @@ public class MyPageService {
     private final UserRepository userRepository;
     private final BillRepository billRepository;
     private final BillProductRepository billProductRepository;
-
 
     public boolean modify(UserVO userVO, Long userNum) throws Exception{
         UserVO originalUserVO = userRepository.findById(userNum).get();
