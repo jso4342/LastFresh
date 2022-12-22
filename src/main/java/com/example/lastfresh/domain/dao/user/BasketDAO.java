@@ -1,6 +1,5 @@
 package com.example.lastfresh.domain.dao.user;
 
-
 import com.example.lastfresh.domain.dto.BasketDTO;
 import com.example.lastfresh.domain.vo.BasketVO;
 import com.example.lastfresh.mapper.user.BasketMapper;
@@ -16,12 +15,10 @@ import java.util.List;
 public class BasketDAO {
     private final BasketMapper basketMapper;
 
-    public List<BasketVO> getListByUserNum(Long userNum) {return basketMapper.getListByUserNum(userNum);}
     public List<BasketDTO> getListByDTO(Long userNum){return basketMapper.getListByDTO(userNum);}
     public List<BasketDTO> getListPickUp(Long userNum){return basketMapper.getListPickUp(userNum);}
     public List<BasketDTO> getListDelivery(Long userNum){return basketMapper.getListDelivery(userNum);}
     public List<BasketDTO> getListShipping(Long userNum){return basketMapper.getListShipping(userNum);}
-
 
     public void removeItems(Long userNum){basketMapper.removeItems(userNum);}
 
@@ -49,11 +46,6 @@ public class BasketDAO {
 
     //  장바구니에 상품 담기
     public void insert(BasketVO basketVO){basketMapper.insert(basketVO);}
-
-//    public  getList( ) {}
-//    public void insert( ) {}
-//    public  get( ) {}
-
 }
 
 

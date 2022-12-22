@@ -20,43 +20,19 @@ public class ReviewDAO {
 
     public void insert(Long userNum, Long productNum) { reviewMapper.insert(userNum, productNum); }
 
-    public List<ReviewVO> getUnWritten(Long userNum){return reviewMapper.getUnWritten(userNum);}
-
-    public List<ReviewVO> getWritten(Long userNum){return reviewMapper.getWritten(userNum);}
-
     public void update(ReviewVO reviewVO){reviewMapper.update(reviewVO);}
 
     public void delete(Long reviewNum){reviewMapper.delete(reviewNum);}
 
-//    public int register( ){
-//
-//    }
-//
-//    public void read( ){
-//
-//    }
-//
     public ReviewVO readReview(Long reviewNum){
-        log.info("readReview...."+ reviewNum);
         return reviewMapper.readReview(reviewNum);
     }
 
     public List<ReviewDTO> getReviewList(Long sellProductNum, CriteriaProduct criteriaProduct){
-        log.info("getReviewList...."+ sellProductNum);
         return reviewMapper.getReviewList(sellProductNum, criteriaProduct);
     }
-    //
-//    public int remove( ){
-//
-//    }
-//
-//    public int modify( ){
-//
-//    }
-//
-//
+
     public int getTotal(Long sellProductNum){
-        log.info("review get total.....");
         return reviewMapper.getTotal(sellProductNum);
     }
 
