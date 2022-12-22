@@ -39,7 +39,7 @@ public class BasketVO {
     @JoinColumn(name = "USER_NUM")
     private UserVO userVO;
 
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "SELL_PRODUCT_NUM")
     private ProductVO productVO;
 

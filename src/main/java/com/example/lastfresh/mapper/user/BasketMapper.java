@@ -8,9 +8,6 @@ import java.util.List;
 
 @Mapper
 public interface BasketMapper {
-    //    userNum 별 게시글 목록
-    public List<BasketVO> getListByUserNum(Long userNum);
-
     public List<BasketDTO> getListByDTO(Long uerNum);
 
     public List<BasketDTO> getList(Long uerNum);
@@ -47,14 +44,5 @@ public interface BasketMapper {
 
     //  장바구니에 상품 담기
     public void insert(BasketVO basketVO);
-
-//
-//    //    사기
-
-//    public void insert(String hi);
-//
-//
-//    //    특정 글 가져오기
-//    public  get( );
 }
 
