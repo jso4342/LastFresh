@@ -1,6 +1,5 @@
 package com.example.lastfresh.domain.dto;
 
-import com.example.lastfresh.domain.vo.ReviewVO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Component;

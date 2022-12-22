@@ -24,12 +24,11 @@ public class BasketDTO {
     private Long userNum;
     private Long sellProductNun;
 
-
     private String sellProductName;
     private Long sellProductDiscountPrice;
     private String sellProductThumbnail;
     private String sellProductImageUploadPath;
-    //
+
     private Long sellProductStock;
 
     public BasketDTO(){;}
