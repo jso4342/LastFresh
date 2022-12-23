@@ -1,11 +1,24 @@
-# 🍅 LastFresh
+<div align="center">
+
+<h1 align="center">LastFresh</h1>
+<h3 align="center"> 자영업자를 위한 오픈 마켓 플랫폼 </h3> 
+<br />
+
+</div>
+
+- 팀 명 : 세미콜론(Semicolon)
+- 팀 원 : 심창환(팀장), 장서영, 진세종, 공도윤, 최동영, 현진용 
+- 개발 기간 : 2022/05/02 ~ 2022/06/01 (30일)
 - [라스트프레시 바로가기](http://15.164.255.162:11111/main/main)
-- 자영업자를 위한 오픈 마켓 플랫폼
-<br>
+  <br />
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 📝 프로젝트 소개
 라스트프레시는 소비자와 자영업자, 모두에게 win-win 관계를 위해 만들어진 남은 음식 오픈 마켓 플랫폼 입니다. 판매자는 유통기한이 얼마 남지 않은 제품을 마감 세일가로 판매할 수 있는 기회 제공을, 구매자게에게는 저렴한 가격으로 제품을 구매할 수 있다는 장점을 제공합니다. 또한 택배 배송뿐만 아니라 픽업 및 배달 및 라이더 매칭 서비스를 같이 지원하고 있기 때문에 다양한 타겟을 설정할 수 있습니다. 
-<br><br>
+<br>
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 🙋‍♀️ [jso4342(장서영)](https://github.com/jso4342)이 프로젝트에서 맡은 역할 
 - 서비스 기획부터 전반적인 페이지 프론트엔드 업무수행
@@ -17,8 +30,8 @@
 - 구매한 상품의 리뷰 (작성 가능 리뷰 / 작성한 리뷰) 기능 구현 
 - Spring Security를 이용한 비밀번호 인증, 회원 정보 수정 및 탈퇴 기능 구현
 - AWS 서버 구축 및 배포 
-<br>
 
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 🧐 기존 업체들의 문제점
 <details>
@@ -46,7 +59,8 @@
 - 택배사 지원이 없기 때문에 배달 중개 어플들의 문제와는 다르게 배송 업무의 위탁 관리가 어려움 
 </div>
 </details>
-    <br>
+    
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
     
 ## 💡 Solution
 <details>
@@ -77,8 +91,8 @@
 - 일반 오토바이 라이더 뿐만 아니라, 화물차 등의 택배 기사 매칭 시스템도 지원
 </div>
 </details>
-<br>
 
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
     
 ## 📝 구현 기술 스택 
 <details>
@@ -106,15 +120,17 @@
 - 이니시스 결제 API
 </div>
 </details>
-<br>
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 📈 ERD
 <img width="750" src="https://user-images.githubusercontent.com/57066693/200187939-4a967f14-b120-40b8-bb50-0a494da38b24.png">
-<br> 
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 🖥️ 포트폴리오
 <details>
-<summary>본문 확인 (👈 Click)</summary>
+<summary>담당 부분 포트폴리오 확인 (👈 Click)</summary>
 <div markdown="1">
 <img width="1261" alt="스크린샷 2022-12-23 오전 4 42 37" src="https://user-images.githubusercontent.com/57066693/209216583-9677cc60-8929-4156-be20-c381c55a544e.png">
 <img width="1259" alt="스크린샷 2022-12-23 오전 4 42 48" src="https://user-images.githubusercontent.com/57066693/209216586-6b1d0b6c-7622-4908-bcca-612517468b70.png">
@@ -133,7 +149,7 @@
 </div>
 </details>
 
-<br>
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## ⏰ 팀의 개발 문화 
 <details>
@@ -154,7 +170,8 @@
 
 </div>
 </details>
-<br>
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
 
 ## 📌 회고 및 성과 
 
@@ -187,3 +204,5 @@
 
 </div>
 </details>
+
+![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/rainbow.png)
