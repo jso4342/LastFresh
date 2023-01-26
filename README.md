@@ -190,17 +190,18 @@
 (프로젝트는 출시 되었지만, 출시한 이유는 AWS에 대해 공부하고자 하는 목적이었고 실제 서비스되는 페이지에 올라온 데이터들은 실제 판매자가 아닌 출시 이후 제가 임의로 생성한 상품들입니다. )
 
 #### 성장적 관점에서
-둘째로 개발자로서의 성장 관점에서 보았을 때는 나름 성공이라고 생각합니다.
+개발자로서의 성장 관점에서 보았을 때는 심심한 성공이라고 생각합니다.
 프로젝트를 진행하면서 기술적으로 많은 경험을 했을 뿐만 아니라, 비전공자로서 처음으로 개발해본 Spring 프로젝트 였습니다. Spring에 대해서는 아무것도 모르던 프로젝트 진행 전과 달리, 후에는 확실히 더 많은 것을 알게되었습니다. 또한 REST API, JPA, AWS 서버 구축 및 배포 등 개인적으로 다양한 기술을 사용하고자 했습니다. 
 물론 프로젝트 이후 코드를 다시 돌아보면 아쉬운 점은 많이 보입니다. 클린 코드의 중요성을 알지 못했을 시절 작성했던 코드였기 때문에 가독성을 신경쓰지 못한 부분과, 레거시 코드를 사용한 부분 등이 개인적으로는 눈에 띄기도 합니다. 
-특히 REST API를 JavaScript의 Ajax를 이용해서 호출하였기 때문에 아쉬움이 많이 남습니다. REST API에 관해서는 프로젝트가 끝나고 나서 꼭 다시 공부하고자 합니다.
+특히 REST API를 JavaScript의 Ajax를 이용해서 호출하였기 때문에 아쉬움이 많이 남습니다. 또한 JPA에 대한 깊은 이해 없이 사용했었기 때문에 자세히 공부해보고 싶어졌습니다.
 
 **프로젝트 이후 공부한 내용** 
 
 바로 앞서 언급했던 아쉬웠던 내용을 프로젝트가 끝난 이후에 공부하고 포스팅 및 토이 프로젝트를 진행했습니다.
 - [REST API](https://kiyoung-noona.tistory.com/34)
-- [REST API 토이 프로젝트](https://github.com/yewon9609/spring-week1-assignment-1/pull/1)
+- [REST API 토이 프로젝트 - 투두리스트](https://github.com/jso4342/STUDY__spring-week1-assignment-1/tree/progress)
 - [JPA와 MyBatis의 차이](https://kiyoung-noona.tistory.com/38)
+- [JPA 토이 프로젝트 - 게시판](https://github.com/jso4342/STUDY__springboot-board-jpa/tree/board)
 
 </div>
 </details>
